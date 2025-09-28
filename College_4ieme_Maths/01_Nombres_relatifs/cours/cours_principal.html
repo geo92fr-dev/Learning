@@ -30,7 +30,17 @@ pre,code{font-family:consolas,ui-monospace,monospace;font-size:.78rem;}
 .table-eval{width:100%;border-collapse:collapse;font-size:.75rem;}
 .table-eval th,.table-eval td{border:1px solid #28323d;padding:.35rem .4rem;text-align:left;}
 blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4px solid #2563eb;border-radius:4px;font-size:.85rem;}
-@media (max-width:760px){nav a{display:inline-block;margin:.25rem .6rem .25rem 0;}}
+/* Tips color coding */
+.tip-verify{background:#0f2027;border-left:4px solid #00d2d3;padding:.5rem .65rem;border-radius:6px;font-size:.75rem;margin:.5rem 0;}
+.tip-context{background:#1a1f3a;border-left:4px solid #3b82f6;padding:.5rem .65rem;border-radius:6px;font-size:.75rem;margin:.5rem 0;}
+.tip-method{background:#1f2937;border-left:4px solid #10b981;padding:.5rem .65rem;border-radius:6px;font-size:.75rem;margin:.5rem 0;}
+.tips-legend{display:flex;gap:.8rem;flex-wrap:wrap;margin:.6rem 0;font-size:.65rem;}
+.legend-item{display:flex;align-items:center;gap:.3rem;}
+.legend-dot{width:8px;height:8px;border-radius:50%;}
+.dot-verify{background:#00d2d3;}
+.dot-context{background:#3b82f6;}
+.dot-method{background:#10b981;}
+@media (max-width:760px){nav a{display:inline-block;margin:.25rem .6rem .25rem 0;}.tips-legend{flex-direction:column;gap:.4rem;}}
 </style>
 <script>
 function toggleSolution(id){const el=document.getElementById(id);if(!el)return;el.style.display=el.style.display==='none'||el.style.display===''?'block':'none';}
@@ -48,6 +58,11 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
  </nav>
  <div class='progress'><span class='progress-6'></span></div>
  <span class='badge'>Objectifs</span><span class='badge'>Prérequis</span><span class='badge'>Différenciation</span><span class='badge'>Métacognition</span>
+ <div class='tips-legend'>
+  <div class='legend-item'><div class='legend-dot dot-verify'></div><span>💡 Vérification</span></div>
+  <div class='legend-item'><div class='legend-dot dot-context'></div><span>🌍 Contexte réel</span></div>
+  <div class='legend-item'><div class='legend-dot dot-method'></div><span>⚡ Méthode rapide</span></div>
+ </div>
 </header>
 <section><h2>1. Mise en situation</h2><p><strong>Pourquoi ?</strong> Interpréter gains/pertes, températures, altitudes et soldes.</p><blockquote>Un jeu vidéo affiche -120 PV puis +45 PV.</blockquote></section>
 <section><h2>2. Objectif final</h2><p>Être capable de additionner, soustraire et comparer des nombres relatifs dans des situations concrètes.</p></section>
@@ -64,8 +79,8 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
     <li>Je prends les valeurs absolues : 7 et 5.</li>
     <li>Je fais 7 - 5 = 2.</li>
     <li>Je garde le signe de la plus grande valeur (7 est +) → <strong>+2</strong>.</li>
-    <li>Je vérifie avec un contexte (argent ou température).</li>
    </ol>
+   <div class='tip-verify'>💡 <strong>Vérification :</strong> Je contrôle avec un contexte (argent ou température).</div>
   </div>
   <div class='card'>
    <h3>Phase 2 – Semi-guidé</h3>
@@ -144,28 +159,27 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
    <p><strong>Règle :</strong> Additionner les valeurs et garder le signe</p>
    <p><em>Exemple :</em> (-4) + (-6)</p>
    <p>✓ Même signe (tous négatifs) → 4 + 6 = 10 → <strong>-10</strong></p>
-   <p><em>Température :</em> -4°C le matin, baisse de 6°C → -10°C</p>
+   <div class='tip-context'>🌍 <strong>Contexte :</strong> -4°C le matin, baisse de 6°C → -10°C</div>
   </div>
   <div class='card'>
    <h3>🔸 Étape 2 : Signes différents</h3>
    <p><strong>Règle :</strong> Soustraire la plus petite de la plus grande</p>
    <p><em>Exemple :</em> (+8) + (-3)</p>
    <p>✓ Signes différents → 8 - 3 = 5 → signe de 8 → <strong>+5</strong></p>
-   <p><em>Argent :</em> +8€ en poche, dépense 3€ → reste +5€</p>
+   <div class='tip-context'>🌍 <strong>Contexte :</strong> +8€ en poche, dépense 3€ → reste +5€</div>
   </div>
   <div class='card'>
    <h3>🔸 Étape 2 bis : Signes différents (inverse)</h3>
    <p><strong>Règle :</strong> Signe de la plus grande valeur absolue</p>
    <p><em>Exemple :</em> (+2) + (-7)</p>
    <p>✓ Signes différents → 7 - 2 = 5 → signe de -7 → <strong>-5</strong></p>
-   <p><em>Température :</em> +2°C puis chute de 7°C → -5°C</p>
+   <div class='tip-context'>🌍 <strong>Contexte :</strong> +2°C puis chute de 7°C → -5°C</div>
   </div>
   <div class='card'>
    <h3>✅ Étape 3 : Contrôle</h3>
    <p><strong>Règle :</strong> Vérifier avec un exemple concret</p>
-   <p><em>Question :</em> Mon résultat a-t-il du sens ?</p>
-   <p>✓ Température : partir de +2°C et perdre 7°C → logique d'arriver dans le négatif</p>
-   <p>✓ Argent : avoir 2€ et dépenser 7€ → logique d'être à découvert (-5€)</p>
+   <div class='tip-method'>⚡ <strong>Question clé :</strong> Mon résultat a-t-il du sens ?</div>
+   <div class='tip-verify'>💡 <strong>Tests :</strong> Température (+2°C → -7°C = logique) • Argent (2€ → dépenser 7€ = découvert logique)</div>
   </div>
  </div>
 </section>
