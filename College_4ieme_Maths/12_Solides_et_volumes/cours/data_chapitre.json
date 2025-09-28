@@ -1,0 +1,31 @@
+{
+  "slug": "12_Solides_et_volumes",
+  "titre": "Solides et volumes",
+  "notion": "Volumes",
+  "objectifs": [
+    "Prisme : V = A_base × h",
+    "Cylindre : V = πr²h",
+    "1 L = 1 dm³ (1000 cm³)"
+  ],
+  "prerequis": [
+    "Aires de base",
+    "Multiplications décimales",
+    "Unités longueurs"
+  ],
+  "etapes": [
+    "Identifier",
+    "Formule",
+    "Calculer"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Oublier carré sur rayon.",
+    "Confondre unités (cm² vs cm³).",
+    "Multiplier par mauvaise hauteur."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "08_Probabilites",
+  "titre": "Probabilités",
+  "notion": "Probabilités simples",
+  "objectifs": [
+    "Probabilité entre 0 et 1.",
+    "Somme des probabilités = 1.",
+    "Cas favorables / cas possibles."
+  ],
+  "prerequis": [
+    "Fraction d'un tout",
+    "Dénombrement simple",
+    "Addition cas incompatibles"
+  ],
+  "etapes": [
+    "Lister",
+    "Compter",
+    "Calculer"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Additionner des probabilités non exclusives.",
+    "Oublier un cas dans le total.",
+    "Confondre tirage avec et sans remise."
+  ]
+}

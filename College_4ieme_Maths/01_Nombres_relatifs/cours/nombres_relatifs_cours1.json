@@ -1,0 +1,70 @@
+{
+  "TITRE_COURS": "Les nombres relatifs - Découverte et calculs",
+  "NIVEAU": "4ème",
+  "DUREE": "45",
+  "DATE_MAJ": "28 septembre 2025",
+  "ANNEE": "2025",
+
+  "OBJECTIF_1": "Comprendre ce qu'est un nombre relatif",
+  "EXEMPLE_1": "-5°C, +3 étages dans l'ascenseur",
+  "OBJECTIF_2": "Additionner des nombres relatifs",
+  "EXEMPLE_2": "(+3) + (-5) = -2",
+  "OBJECTIF_3": "Comparer et ordonner des nombres relatifs",
+  "EXEMPLE_3": "-7 < -2 < 0 < +5",
+  "CRITERE_GLOBAL": "Résoudre 3 calculs sur 4 sans aide",
+
+  "ACCROCHE_CONCRETE": "Imagine que tu veux décrire la température en hiver (-5°C) ou ta position dans un immeuble (2ème étage = +2, sous-sol = -1)...",
+  "MESSAGE_REASSURANT": "Les nombres négatifs peuvent paraître bizarres au début, mais avec des exemples concrets comme les températures, tout devient plus clair !",
+  "QUESTION_DIAGNOSTIC": "Si il fait -3°C le matin et que la température monte de 7°C dans la journée, quelle température fait-il ?",
+  "REPONSE_DIAG": "+4°C (car -3 + 7 = +4)",
+
+  "ANALOGIE_VISUELLE": "Les nombres relatifs, c'est comme un thermomètre ou les étages d'un immeuble : on peut aller vers le haut (positif) ou vers le bas (négatif) !",
+  "MANIP": "Utilise tes doigts ou des jetons rouges (-) et bleus (+) pour représenter les calculs",
+  "VERBALISATION": "Dis à voix haute : 'je pars de zéro, j'avance de 3 vers la droite, puis je recule de 5 vers la gauche'",
+  "DEFINITION_SIMPLE": "Un nombre relatif peut être positif (+), négatif (-) ou nul (0). Le signe indique la direction !",
+  
+  "ETAPE_1": "Je repère les nombres sur une droite graduée",
+  "ETAPE_2": "J'identifie les signes : + (positif) ou - (négatif)",
+  "ETAPE_3": "Je compte en utilisant la droite ou mes règles de calcul",
+
+  "EXERCICE_DECOUVERTE": "Observe ce thermomètre : il indique -2°C. Si la température baisse de 3°C, quelle sera la nouvelle température ?",
+  "INDICE": "Baisse = on va vers le négatif. -2 - 3 = ?",
+
+  "ETAPE_1_METHODE": "Pour additionner : même signe → j'additionne et je garde le signe",
+  "ETAPE_2_METHODE": "Pour additionner : signes différents → je soustrais et je prends le signe du plus grand",
+  "ETAPE_3_METHODE": "Je vérifie en me représentant le résultat sur une droite graduée",
+  "ERREUR_FREQUENTE": "Attention : -3 - 5 ≠ -3 + 5 ! Le moins devant le 5 signifie 'soustraire 5'",
+  "EXEMPLE_COMMENTE": "(-4) + (+6) : signes différents, je calcule 6 - 4 = 2, je prends le signe de 6 qui est +, donc +2",
+
+  "EXERCICE_APPLICATION": "Calcule : (+7) + (-3) puis (-5) + (-2)",
+
+  "PROBLEME_CONTEXTUALISE": "Lucas a 50€ sur son compte. Il dépense 30€ (= -30€), puis sa grand-mère lui donne 20€ (= +20€). Combien a-t-il maintenant ?",
+  "EXERCICE_PRATIQUE": "Calcule le solde final : (+50) + (-30) + (+20) = ?",
+  "INDICE_PRATIQUE": "Fais les calculs étape par étape : d'abord 50 - 30, puis ajoute 20",
+  "REPONSE_PRATIQUE": "+40€",
+  "METHODE_PRATIQUE": "(+50) + (-30) = +20, puis (+20) + (+20) = +40",
+
+  "TITRE_NOTION": "Les nombres relatifs",
+  "DEFINITION_COURTE": "Nombres avec un signe + (positif) ou - (négatif) qui indiquent une direction sur la droite graduée",
+  "PHRASE_RESUME": "Même signe : j'additionne. Signes différents : je soustrais et je prends le signe du plus grand",
+  
+  "COMPETENCE_1": "Je sais reconnaître un nombre positif ou négatif",
+  "COMPETENCE_2": "Je sais additionner deux nombres relatifs",
+  "COMPETENCE_3": "Je sais comparer et ordonner des nombres relatifs",
+
+  "CORRECTION_EX1": "Nouvelle température : -2°C - 3°C = -5°C. On part de -2 et on descend encore de 3 degrés.",
+  "CORRECTION_EX2": "(+7) + (-3) = +4 (signes différents : 7-3=4, signe de 7). (-5) + (-2) = -7 (même signe négatif : 5+2=7 avec le signe -)",
+  "CORRECTION_EX3": "Solde final : (+50) + (-30) + (+20) = (+20) + (+20) = +40€. Lucas a 40€ sur son compte.",
+
+  "METHODE_REVISION": "Pour bien mémoriser les règles des nombres relatifs, il faut réviser plusieurs fois à intervalles croissants avec des exemples concrets",
+  "CONSEIL_REV1": "Relis la fiche résumé en te rappelant l'analogie du thermomètre",
+  "CONSEIL_REV2": "Refais 3 exercices de calcul sans regarder la correction",
+  "CONSEIL_REV3": "Explique à quelqu'un les règles d'addition avec tes propres mots",
+
+  "NOTION": "Nombres relatifs - Addition et comparaison",
+  "DECLENCHEUR": "Dès que je vois des + et des - ou des situations avec des directions opposées",
+  "ETAPES_FICHE": "1) Identifier les signes 2) Appliquer la règle (même signe/signes différents) 3) Vérifier le résultat",
+  "PIEGE_FICHE": "Confondre le signe - de soustraction avec le signe - du nombre négatif",
+  "REFLEXE": "Je mets des parenthèses : (+3) - (-2) = (+3) + (+2)",
+  "AUTO_CHECK": "Mon résultat a-t-il un signe logique ? Je peux le vérifier sur une droite graduée"
+}

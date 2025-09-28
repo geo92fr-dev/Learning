@@ -1,0 +1,249 @@
+{
+  "MATIERE": "Mathématiques",
+  "NIVEAU": "4ème", 
+  "ELEVE_TYPE": "élèves en difficulté",
+  "ANNEE": "2025",
+
+  "CHAPITRES": [
+    {
+      "CHAPITRE_NUM": "1",
+      "CHAPITRE_TITRE": "Nombres relatifs",
+      "CHAPITRE_DIFFICULTE": "1",
+      "CHAPITRE_DIFFICULTE_TEXT": "Facile",
+      "CHAPITRE_TYPE": "Fondamental",
+      "CHAPITRE_DESCRIPTION": "Découverte des nombres positifs et négatifs. Addition, soustraction et comparaison des relatifs avec des situations concrètes (température, ascenseur, etc.).",
+      "CHAPITRE_OBJECTIFS": [
+        "Comprendre la notion de nombre relatif",
+        "Additionner et soustraire des relatifs",
+        "Comparer et ordonner des relatifs",
+        "Résoudre des problèmes concrets"
+      ],
+      "CHAPITRE_LIEN_COURS": "01_Nombres_relatifs/cours/nombres_relatifs_cours1.html",
+      "CHAPITRE_LIEN_EXERCICES": "01_Nombres_relatifs/exercices/",
+      "CHAPITRE_LIEN_FICHE": "01_Nombres_relatifs/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "",
+      "CHAPITRE_EXERCICES_DISABLED": "",
+      "CHAPITRE_FICHE_DISABLED": ""
+    },
+    {
+      "CHAPITRE_NUM": "2",
+      "CHAPITRE_TITRE": "Fractions",
+      "CHAPITRE_DIFFICULTE": "2",
+      "CHAPITRE_DIFFICULTE_TEXT": "Moyen",
+      "CHAPITRE_TYPE": "Fondamental",
+      "CHAPITRE_DESCRIPTION": "Révision et approfondissement des fractions. Addition, soustraction, multiplication et division. Simplification et comparaison.",
+      "CHAPITRE_OBJECTIFS": [
+        "Simplifier des fractions",
+        "Additionner et soustraire des fractions",
+        "Multiplier et diviser des fractions",
+        "Résoudre des problèmes avec fractions"
+      ],
+      "CHAPITRE_LIEN_COURS": "02_Fractions/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "02_Fractions/exercices/",
+      "CHAPITRE_LIEN_FICHE": "02_Fractions/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    },
+    {
+      "CHAPITRE_NUM": "3",
+      "CHAPITRE_TITRE": "Puissances",
+      "CHAPITRE_DIFFICULTE": "2",
+      "CHAPITRE_DIFFICULTE_TEXT": "Moyen",
+      "CHAPITRE_TYPE": "Nouveau",
+      "CHAPITRE_DESCRIPTION": "Introduction aux puissances d'exposant positif. Calculs et règles de base. Applications aux grands nombres et aux unités.",
+      "CHAPITRE_OBJECTIFS": [
+        "Comprendre la notation puissance",
+        "Calculer des puissances simples",
+        "Appliquer les règles de base",
+        "Utiliser les puissances de 10"
+      ],
+      "CHAPITRE_LIEN_COURS": "03_Puissances/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "03_Puissances/exercices/",
+      "CHAPITRE_LIEN_FICHE": "03_Puissances/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    },
+    {
+      "CHAPITRE_NUM": "4",
+      "CHAPITRE_TITRE": "Calcul littéral",
+      "CHAPITRE_DIFFICULTE": "3",
+      "CHAPITRE_DIFFICULTE_TEXT": "Difficile",
+      "CHAPITRE_TYPE": "Nouveau",
+      "CHAPITRE_DESCRIPTION": "Initiation au calcul avec des lettres. Développement et factorisation simples. Introduction aux identités remarquables.",
+      "CHAPITRE_OBJECTIFS": [
+        "Comprendre le sens d'une expression littérale",
+        "Développer des expressions simples",
+        "Factoriser avec facteur commun",
+        "Résoudre des problèmes avec des formules"
+      ],
+      "CHAPITRE_LIEN_COURS": "04_Calcul_litteral/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "04_Calcul_litteral/exercices/",
+      "CHAPITRE_LIEN_FICHE": "04_Calcul_litteral/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    },
+    {
+      "CHAPITRE_NUM": "5",
+      "CHAPITRE_TITRE": "Proportionnalité",
+      "CHAPITRE_DIFFICULTE": "2",
+      "CHAPITRE_DIFFICULTE_TEXT": "Moyen",
+      "CHAPITRE_TYPE": "Révision+",
+      "CHAPITRE_DESCRIPTION": "Reconnaissance et utilisation de la proportionnalité. Pourcentages, échelles, vitesses. Représentation graphique.",
+      "CHAPITRE_OBJECTIFS": [
+        "Reconnaître une situation de proportionnalité",
+        "Utiliser un tableau de proportionnalité",
+        "Calculer des pourcentages",
+        "Résoudre des problèmes d'échelle et de vitesse"
+      ],
+      "CHAPITRE_LIEN_COURS": "05_Proportionnalite/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "05_Proportionnalite/exercices/",
+      "CHAPITRE_LIEN_FICHE": "05_Proportionnalite/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    },
+    {
+      "CHAPITRE_NUM": "6",
+      "CHAPITRE_TITRE": "Géométrie - Triangles",
+      "CHAPITRE_DIFFICULTE": "2",
+      "CHAPITRE_DIFFICULTE_TEXT": "Moyen",
+      "CHAPITRE_TYPE": "Fondamental",
+      "CHAPITRE_DESCRIPTION": "Propriétés et construction des triangles. Classification et caractéristiques des différents triangles.",
+      "CHAPITRE_OBJECTIFS": [
+        "Identifier les différents types de triangles",
+        "Construire un triangle avec règle et compas",
+        "Appliquer les propriétés des triangles",
+        "Calculer des périmètres de triangles"
+      ],
+      "CHAPITRE_LIEN_COURS": "06_Triangles/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "06_Triangles/exercices/",
+      "CHAPITRE_LIEN_FICHE": "06_Triangles/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    },
+    {
+      "CHAPITRE_NUM": "7",
+      "CHAPITRE_TITRE": "Géométrie - Parallélogrammes",
+      "CHAPITRE_DIFFICULTE": "3",
+      "CHAPITRE_DIFFICULTE_TEXT": "Difficile",
+      "CHAPITRE_TYPE": "Nouveau",
+      "CHAPITRE_DESCRIPTION": "Étude des parallélogrammes et quadrilatères particuliers. Propriétés et constructions.",
+      "CHAPITRE_OBJECTIFS": [
+        "Reconnaître un parallélogramme",
+        "Utiliser les propriétés des parallélogrammes",
+        "Différencier rectangle, losange et carré",
+        "Construire des quadrilatères"
+      ],
+      "CHAPITRE_LIEN_COURS": "07_Parallelogrammes/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "07_Parallelogrammes/exercices/",
+      "CHAPITRE_LIEN_FICHE": "07_Parallelogrammes/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    },
+    {
+      "CHAPITRE_NUM": "8",
+      "CHAPITRE_TITRE": "Aires et périmètres",
+      "CHAPITRE_DIFFICULTE": "2",
+      "CHAPITRE_DIFFICULTE_TEXT": "Moyen",
+      "CHAPITRE_TYPE": "Fondamental",
+      "CHAPITRE_DESCRIPTION": "Calcul d'aires et périmètres de figures géométriques. Applications concrètes et problèmes pratiques.",
+      "CHAPITRE_OBJECTIFS": [
+        "Calculer l'aire d'un rectangle, triangle",
+        "Calculer le périmètre de figures",
+        "Appliquer les formules d'aires",
+        "Résoudre des problèmes concrets"
+      ],
+      "CHAPITRE_LIEN_COURS": "08_Aires_perimetres/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "08_Aires_perimetres/exercices/",
+      "CHAPITRE_LIEN_FICHE": "08_Aires_perimetres/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    },
+    {
+      "CHAPITRE_NUM": "9",
+      "CHAPITRE_TITRE": "Théorème de Pythagore",
+      "CHAPITRE_DIFFICULTE": "3",
+      "CHAPITRE_DIFFICULTE_TEXT": "Difficile",
+      "CHAPITRE_TYPE": "Nouveau",
+      "CHAPITRE_DESCRIPTION": "Découverte et application du théorème de Pythagore. Calculs dans le triangle rectangle.",
+      "CHAPITRE_OBJECTIFS": [
+        "Comprendre le théorème de Pythagore",
+        "Calculer la longueur d'un côté",
+        "Vérifier qu'un triangle est rectangle",
+        "Appliquer Pythagore dans des problèmes"
+      ],
+      "CHAPITRE_LIEN_COURS": "09_Pythagore/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "09_Pythagore/exercices/",
+      "CHAPITRE_LIEN_FICHE": "09_Pythagore/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    },
+    {
+      "CHAPITRE_NUM": "10",
+      "CHAPITRE_TITRE": "Statistiques",
+      "CHAPITRE_DIFFICULTE": "1",
+      "CHAPITRE_DIFFICULTE_TEXT": "Facile",
+      "CHAPITRE_TYPE": "Nouveau",
+      "CHAPITRE_DESCRIPTION": "Lecture et interprétation de données statistiques. Moyennes, graphiques et tableaux.",
+      "CHAPITRE_OBJECTIFS": [
+        "Lire un tableau de données",
+        "Calculer une moyenne",
+        "Interpréter des graphiques",
+        "Organiser des données"
+      ],
+      "CHAPITRE_LIEN_COURS": "10_Statistiques/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "10_Statistiques/exercices/",
+      "CHAPITRE_LIEN_FICHE": "10_Statistiques/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    },
+    {
+      "CHAPITRE_NUM": "11",
+      "CHAPITRE_TITRE": "Probabilités",
+      "CHAPITRE_DIFFICULTE": "2",
+      "CHAPITRE_DIFFICULTE_TEXT": "Moyen",
+      "CHAPITRE_TYPE": "Nouveau",
+      "CHAPITRE_DESCRIPTION": "Introduction aux probabilités simples. Événements et calculs de probabilité élémentaire.",
+      "CHAPITRE_OBJECTIFS": [
+        "Comprendre la notion de probabilité",
+        "Calculer des probabilités simples",
+        "Reconnaître des événements",
+        "Utiliser les fractions en probabilité"
+      ],
+      "CHAPITRE_LIEN_COURS": "11_Probabilites/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "11_Probabilites/exercices/",
+      "CHAPITRE_LIEN_FICHE": "11_Probabilites/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    },
+    {
+      "CHAPITRE_NUM": "12",
+      "CHAPITRE_TITRE": "Équations",
+      "CHAPITRE_DIFFICULTE": "3",
+      "CHAPITRE_DIFFICULTE_TEXT": "Difficile",
+      "CHAPITRE_TYPE": "Nouveau",
+      "CHAPITRE_DESCRIPTION": "Résolution d'équations du premier degré à une inconnue. Méthodes et applications.",
+      "CHAPITRE_OBJECTIFS": [
+        "Comprendre ce qu'est une équation",
+        "Résoudre une équation simple",
+        "Vérifier une solution",
+        "Mettre en équation un problème"
+      ],
+      "CHAPITRE_LIEN_COURS": "12_Equations/cours/",
+      "CHAPITRE_LIEN_EXERCICES": "12_Equations/exercices/",
+      "CHAPITRE_LIEN_FICHE": "12_Equations/fiches_resume/",
+      "CHAPITRE_COURS_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_EXERCICES_DISABLED": "class=\"btn-disabled\"",
+      "CHAPITRE_FICHE_DISABLED": "class=\"btn-disabled\""
+    }
+  ]
+}

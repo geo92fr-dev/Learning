@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr" data-version="1.0">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[MATIERE] [NIVEAU] - Programme complet - Méthode progressive</title>
+  <meta name="description" content="Index complet des cours de [MATIERE] [NIVEAU]. Programme adapté aux élèves en difficulté avec méthode progressive et exercices corrigés." />
+  <style>
+    :root {
+      /* Couleurs optimisées pour élèves en difficulté */
+      --bg:#ffffff; --fg:#1e293b; --accent:#3b82f6; --accent-contrast:#1e40af;
+      --soft:#eff6ff; --border:#d9e2ec; --warn:#d97706; --ok:#059669; --danger:#dc2626;
+      --progress:#10b981; --radius:14px; --code:#1e293b; --focus:#f59e0b; --shadow:0 2px 6px rgba(0,0,0,.06);
+    }
+    body { margin:0; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; line-height:1.6; background:var(--bg); color:var(--fg); }
+    .skip-link { position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden; }
+    .skip-link:focus { position:static; width:auto; height:auto; background:var(--accent); color:#fff; padding:.5rem .8rem; border-radius:6px; box-shadow:0 0 0 3px rgba(255,255,255,.6); }
+    header { background:var(--accent); color:#fff; padding:1.5rem 1.15rem; position:sticky; top:0; z-index:50; }
+    header h1 { margin:.2rem 0 .8rem; font-size:1.4rem; }
+    .subtitle { font-size:.9rem; opacity:.9; margin:.5rem 0; }
+    .container { max-width:1100px; margin:0 auto; padding:1.5rem clamp(.75rem,2vw,1.25rem) 2.5rem; }
+    
+
+    
+    .chapters-grid { display:grid; gap:1.2rem; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); }
+    .chapter-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:1.2rem; box-shadow:var(--shadow); position:relative; transition:transform .2s ease, box-shadow .2s ease; }
+    .chapter-card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.1); }
+    
+    .chapter-header { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1rem; }
+    .chapter-number { background:var(--accent); color:#fff; font-size:.7rem; font-weight:600; padding:.4rem .6rem; border-radius:6px; min-width:2rem; text-align:center; }
+    .chapter-title { font-size:1rem; font-weight:600; margin:0; flex:1; }
+    
+    .chapter-meta { display:flex; gap:.5rem; margin:.5rem 0; flex-wrap:wrap; }
+    .tag { font-size:.6rem; font-weight:600; background:var(--soft); color:var(--accent); padding:.25rem .5rem; border-radius:999px; text-transform:uppercase; letter-spacing:.05em; }
+    .tag.difficulty-1 { background:#ecfdf5; color:var(--ok); }
+    .tag.difficulty-2 { background:#fef3c7; color:var(--warn); }
+    .tag.difficulty-3 { background:#fee2e2; color:var(--danger); }
+    
+    .chapter-desc { font-size:.85rem; margin:.8rem 0; opacity:.8; }
+    .chapter-objectives { font-size:.75rem; margin:.8rem 0; }
+    .chapter-objectives ul { margin:.3rem 0; padding-left:1.2rem; }
+    .chapter-objectives li { margin:.2rem 0; }
+    
+    .chapter-actions { display:flex; gap:.5rem; margin-top:1rem; flex-wrap:wrap; }
+    .btn { text-decoration:none; font-size:.75rem; font-weight:600; padding:.5rem .8rem; border-radius:6px; transition:all .2s ease; display:inline-block; }
+    .btn-primary { background:var(--accent); color:#fff; }
+    .btn-primary:hover { background:var(--accent-contrast); }
+    .btn-secondary { background:var(--soft); color:var(--accent); border:1px solid var(--border); }
+    .btn-secondary:hover { background:var(--accent); color:#fff; }
+    .btn-success { background:var(--ok); color:#fff; }
+    .btn-disabled { background:#e2e8f0; color:#64748b; pointer-events:none; }
+    
+    .status-badge { position:absolute; top:.8rem; right:.8rem; font-size:.6rem; font-weight:600; padding:.3rem .5rem; border-radius:4px; text-transform:uppercase; }
+    .status-todo { background:#f1f5f9; color:#475569; }
+    .status-progress { background:#fef3c7; color:#92400e; }
+    .status-done { background:#ecfdf5; color:#065f46; }
+    
+    .program-section { margin:2rem 0; }
+    .program-section h2 { color:var(--accent); font-size:1.2rem; margin-bottom:1.5rem; padding-bottom:.5rem; border-bottom:2px solid var(--soft); }
+    .progress-overview h2 { margin-top:0; }
+    
+    .warning { background:#fef3c7; border-left:4px solid var(--warn); padding:.8rem 1rem; border-radius:8px; font-size:.85rem; margin:1rem 0; }
+    .success { background:#ecfdf5; border-left:4px solid var(--ok); padding:.8rem 1rem; border-radius:8px; font-size:.85rem; margin:1rem 0; }
+    
+    footer { text-align:center; font-size:.65rem; padding:2rem .5rem 3rem; opacity:.65; }
+    
+    .dark { --bg:#0f172a; --fg:#f1f5f9; --accent:#3b82f6; --accent-contrast:#1e40af; --soft:#1e3a56; --border:#334155; --code:#e2e8f0; }
+    .dark body { background:var(--bg); color:var(--fg); }
+    .dark .chapter-card { background:#223042; }
+    
+    .flex-header { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+    .btn-mode { background:#fff; color:var(--accent-contrast); border:1px solid rgba(255,255,255,.2); padding:.45rem .75rem; border-radius:8px; font-size:.7rem; font-weight:600; cursor:pointer; }
+    
+    @media (max-width:680px){ 
+      .chapters-grid { grid-template-columns:1fr; }
+      .chapter-actions { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Aller au contenu</a>
+<header>
+  <div class="flex-header">
+    <div>
+      <h1>[MATIERE] [NIVEAU]</h1>
+      <div class="subtitle">Programme complet • Méthode progressive pour [ELEVE_TYPE]</div>
+    </div>
+    <button id="darkModeBtn" type="button" aria-pressed="false" aria-label="Activer le mode sombre" class="btn-mode">Mode sombre</button>
+  </div>
+</header>
+
+<main id="main" class="container">
+  
+
+
+  <!-- CHAPITRES DU PROGRAMME -->
+  <section class="program-section">
+    <h2>Programme [NIVEAU] - [MATIERE]</h2>
+    <div class="chapters-grid">
+      [CHAPITRES_CONTENT]
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Cours conçu pour [ELEVE_TYPE] • Méthode progressive • Tous droits réservés [ANNEE]</p>
+</footer>
+
+<script>
+  // Mode sombre toggle
+  const darkBtn = document.getElementById('darkModeBtn');
+  function updateModeStatus(){
+    const active = document.documentElement.classList.contains('dark');
+    darkBtn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    darkBtn.textContent = active ? 'Mode clair' : 'Mode sombre';
+  }
+  if(darkBtn){
+    darkBtn.addEventListener('click', ()=>{
+      document.documentElement.classList.toggle('dark');
+      updateModeStatus();
+    });
+    updateModeStatus();
+  }
+  
+  // Navigation clavier
+  document.addEventListener('keydown', e=>{
+    if(e.key==='m'){ document.documentElement.classList.toggle('dark'); updateModeStatus(); }
+  });
+  
+  // Mise à jour automatique du statut des cours
+  function updateProgress() {
+    // Cette fonction pourrait être étendue pour calculer automatiquement la progression
+    console.log('Index chargé - Template générique pour programmes scolaires');
+  }
+  
+  updateProgress();
+</script>
+</body>
+</html>

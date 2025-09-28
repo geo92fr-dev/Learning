@@ -1,0 +1,32 @@
+{
+  "slug": "02_Fractions_et_calculs",
+  "titre": "Fractions et calculs",
+  "notion": "Fractions – opérations",
+  "objectifs": [
+    "Pour simplifier : diviser haut et bas par un diviseur commun.",
+    "Addition : dénominateurs identiques → additionner numérateurs; sinon les rendre identiques.",
+    "Multiplication : multiplier numérateurs entre eux et dénominateurs entre eux.",
+    "Contrôle : résultat entre 0 et 1 ? supérieur ? sens cohérent ?"
+  ],
+  "prerequis": [
+    "Multiples et diviseurs",
+    "Simplification par un même nombre",
+    "Lien fraction ↔ quotient"
+  ],
+  "etapes": [
+    "Observer",
+    "Uniformiser",
+    "Calculer"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Additionner numérateurs et dénominateurs en même temps.",
+    "Oublier de simplifier le résultat.",
+    "Chercher un PPCM trop grand inutilement."
+  ]
+}

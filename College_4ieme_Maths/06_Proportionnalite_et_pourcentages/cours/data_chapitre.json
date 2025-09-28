@@ -1,0 +1,31 @@
+{
+  "slug": "06_Proportionnalite_et_pourcentages",
+  "titre": "Proportionnalité et pourcentages",
+  "notion": "Proportionnalité / Pourcentages",
+  "objectifs": [
+    "Coefficient = image / original.",
+    "Pourcentage p% → multiplier par (1 ± p/100).",
+    "Inverse : diviser par coefficient."
+  ],
+  "prerequis": [
+    "Fractions de base",
+    "Multiplication décimaux",
+    "Ratio simple"
+  ],
+  "etapes": [
+    "Détecter",
+    "Modéliser",
+    "Calculer"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Additionner des pourcentages successifs.",
+    "Confondre diminution de p% et division par p.",
+    "Produit en croix mal aligné."
+  ]
+}

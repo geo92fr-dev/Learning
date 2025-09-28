@@ -1,0 +1,31 @@
+{
+  "slug": "11_Transformations_et_symetries",
+  "titre": "Transformations et symétries",
+  "notion": "Symétries",
+  "objectifs": [
+    "Axe : perpendiculaire passant par milieu segment AA'.",
+    "Centre : vecteur (A→A') constant.",
+    "Angles conservés, longueurs conservées."
+  ],
+  "prerequis": [
+    "Repérage points",
+    "Utilisation règle/équerre",
+    "Perception axes"
+  ],
+  "etapes": [
+    "Tracer",
+    "Reporter",
+    "Vérifier"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Axe mal perpendiculaire.",
+    "Centre mal localisé.",
+    "Confusion rotation / symétrie centrale."
+  ]
+}

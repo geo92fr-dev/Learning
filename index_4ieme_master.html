@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr" data-version="1.0">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Collège 4ème - Toutes Matières - Accueil</title>
+  <meta name="description" content="Accès à toutes les matières de 4ème. Programme complet avec méthode progressive et organisation claire." />
+  <style>
+    :root {
+      /* Palette sombre permanente */
+      --bg:#0f172a; --fg:#f1f5f9; --accent:#3b82f6; --accent-contrast:#1e40af;
+      --soft:#1e3a56; --border:#334155; --success:#059669; --warning:#f59e0b;
+      --radius:14px; --shadow:0 2px 6px rgba(0,0,0,.4);
+    }
+    
+    * { margin:0; padding:0; box-sizing:border-box; }
+    
+    body { 
+      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; 
+      line-height:1.6; 
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      min-height:100vh; 
+      color:var(--fg); 
+    }
+    
+    .container {
+      max-width:1200px; 
+      margin:0 auto; 
+      padding:2rem 1rem;
+    }
+    
+    /* Header */
+    .header {
+      text-align:center;
+      margin-bottom:3rem;
+      color:#fff;
+    }
+    
+    .header h1 {
+      font-size:3rem;
+      margin-bottom:1rem;
+      font-weight:300;
+      text-shadow:0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .header .subtitle {
+      font-size:1.2rem;
+      opacity:0.9;
+      margin-bottom:0.5rem;
+    }
+    
+    .header .year {
+      font-size:1rem;
+      opacity:0.8;
+    }
+    
+    /* Stats */
+    .stats-overview {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:1.5rem;
+      margin:3rem 0;
+    }
+    
+    .stat-card {
+      background:rgba(30,41,59,0.9);
+      padding:1.5rem;
+      border-radius:var(--radius);
+      text-align:center;
+      box-shadow:var(--shadow);
+      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+    }
+    
+    .stat-number {
+      font-size:2.5rem;
+      font-weight:700;
+      color:var(--accent);
+      margin-bottom:0.5rem;
+    }
+    
+    .stat-label {
+      font-size:0.9rem;
+      color:#64748b;
+      font-weight:500;
+    }
+    
+    /* Matières Grid */
+    .subjects-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:1.5rem;
+      margin:2rem 0;
+    }
+    
+    .subject-card {
+      background:rgba(30,41,59,0.9);
+      border-radius:var(--radius);
+      padding:1.5rem;
+      box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      transition:all 0.3s ease;
+      cursor:pointer;
+      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .subject-card::before {
+      content:'';
+      position:absolute;
+      top:0; left:0; right:0;
+      height:4px;
+      background:var(--subject-color);
+      opacity:0.8;
+    }
+    
+    .subject-card:hover {
+      transform:translateY(-5px);
+      box-shadow:0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .subject-header {
+      display:flex;
+      align-items:center;
+      gap:1rem;
+      margin-bottom:1rem;
+    }
+    
+    .subject-emoji {
+      font-size:2.5rem;
+      line-height:1;
+    }
+    
+    .subject-title {
+      font-size:1.4rem;
+      font-weight:600;
+      color:var(--fg);
+      margin:0;
+    }
+    
+    .subject-desc {
+      color:#cbd5e1;
+      font-size:0.9rem;
+      margin-bottom:1.5rem;
+      line-height:1.5;
+    }
+    
+    .subject-stats {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:0.8rem;
+      color:#94a3b8;
+      margin-bottom:1rem;
+    }
+    
+    .subject-btn {
+      background:var(--subject-color);
+      color:#fff;
+      padding:0.75rem 1.5rem;
+      border:none;
+      border-radius:8px;
+      font-weight:600;
+      font-size:0.9rem;
+      cursor:pointer;
+      transition:all 0.2s ease;
+      width:100%;
+    }
+    
+    .subject-btn:hover {
+      opacity:0.9;
+      transform:translateY(-1px);
+    }
+    
+    /* Colors per subject */
+    .subject-maths { --subject-color:#3b82f6; }
+    .subject-francais { --subject-color:#8b5cf6; }
+    .subject-histoire { --subject-color:#f59e0b; }
+    .subject-anglais { --subject-color:#dc2626; }
+    .subject-espagnol { --subject-color:#ef4444; }
+    .subject-sciences { --subject-color:#10b981; }
+    .subject-svt { --subject-color:#059669; }
+    .subject-techno { --subject-color:#6366f1; }
+    .subject-arts { --subject-color:#ec4899; }
+    .subject-musique { --subject-color:#8b5cf6; }
+    .subject-eps { --subject-color:#f97316; }
+    .subject-emc { --subject-color:#3b82f6; }
+    
+    /* Footer */
+    .footer {
+      text-align:center;
+      margin-top:3rem;
+      padding:2rem;
+      color:#e2e8f0;
+      opacity:0.65;
+    }
+    
+    /* Mode sombre permanent : suppression de la bascule */
+    
+    /* Responsive */
+    @media (max-width:768px) {
+      .header h1 { font-size:2rem; }
+      .subjects-grid { grid-template-columns:1fr; }
+      .stats-overview { grid-template-columns:repeat(2,1fr); }
+      .container { padding:1rem; }
+    }
+    
+    /* Bouton mode supprimé */
+    .stats-compact { margin-top:2rem; }
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+      <h1>🎓 Collège 4ème</h1>
+      <div class="subtitle">Toutes matières • Méthode progressive</div>
+      <div class="year">Année scolaire 2024-2025</div>
+    </div>
+    
+    <!-- Aperçu (sans progression) -->
+  <div class="stats-overview stats-compact">
+      <div class="stat-card">
+        <div class="stat-number">11</div>
+        <div class="stat-label">Matières disponibles</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">132</div>
+        <div class="stat-label">Chapitres organisés</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">660</div>
+        <div class="stat-label">Espaces prêts</div>
+      </div>
+    </div>
+    
+    <!-- Matières Grid -->
+    <div class="subjects-grid">
+      
+      <!-- Mathématiques -->
+      <div class="subject-card subject-maths" onclick="window.location.href='College_4ieme_Maths/index_master_4ieme.html'">
+        <div class="subject-header">
+          <div class="subject-emoji">🔢</div>
+          <h3 class="subject-title">Mathématiques</h3>
+        </div>
+        <div class="subject-desc">
+          Nombres, calculs, géométrie et résolution de problèmes avec méthode progressive
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>✔️ Cours accessibles</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- Français -->
+      <div class="subject-card subject-francais" onclick="window.location.href='College_4ieme_Francais/'">
+        <div class="subject-header">
+          <div class="subject-emoji">📖</div>
+          <h3 class="subject-title">Français</h3>
+        </div>
+        <div class="subject-desc">
+          Littérature, expression écrite et orale, grammaire et préparation au brevet
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- Histoire-Géographie -->
+      <div class="subject-card subject-histoire" onclick="window.location.href='College_4ieme_Histoire_Geo/'">
+        <div class="subject-header">
+          <div class="subject-emoji">🌍</div>
+          <h3 class="subject-title">Histoire-Géographie</h3>
+        </div>
+        <div class="subject-desc">
+          Comprendre le monde contemporain à travers l'histoire et la géographie
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- Anglais -->
+      <div class="subject-card subject-anglais" onclick="window.location.href='College_4ieme_Anglais/'">
+        <div class="subject-header">
+          <div class="subject-emoji">🇬🇧</div>
+          <h3 class="subject-title">Anglais</h3>
+        </div>
+        <div class="subject-desc">
+          Communication en anglais et découverte de la culture anglophone
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- Espagnol -->
+      <div class="subject-card subject-espagnol" onclick="window.location.href='College_4ieme_Espagnol/'">
+        <div class="subject-header">
+          <div class="subject-emoji">🇪🇸</div>
+          <h3 class="subject-title">Espagnol</h3>
+        </div>
+        <div class="subject-desc">
+          Communication en espagnol et découverte de la culture hispanophone
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- Sciences Physiques -->
+      <div class="subject-card subject-sciences" onclick="window.location.href='College_4ieme_Sciences_Physiques/'">
+        <div class="subject-header">
+          <div class="subject-emoji">⚛️</div>
+          <h3 class="subject-title">Sciences Physiques</h3>
+        </div>
+        <div class="subject-desc">
+          Physique et chimie : comprendre les phénomènes naturels et technologiques
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- SVT -->
+      <div class="subject-card subject-svt" onclick="window.location.href='College_4ieme_SVT/'">
+        <div class="subject-header">
+          <div class="subject-emoji">🧬</div>
+          <h3 class="subject-title">SVT</h3>
+        </div>
+        <div class="subject-desc">
+          Sciences de la Vie et de la Terre : biologie humaine et géologie
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- Technologie -->
+      <div class="subject-card subject-techno" onclick="window.location.href='College_4ieme_Technologie/'">
+        <div class="subject-header">
+          <div class="subject-emoji">🔧</div>
+          <h3 class="subject-title">Technologie</h3>
+        </div>
+        <div class="subject-desc">
+          Innovation, programmation et solutions technologiques
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- Arts Plastiques -->
+      <div class="subject-card subject-arts" onclick="window.location.href='College_4ieme_Arts_Plastiques/'">
+        <div class="subject-header">
+          <div class="subject-emoji">🎨</div>
+          <h3 class="subject-title">Arts Plastiques</h3>
+        </div>
+        <div class="subject-desc">
+          Expression artistique, créativité et culture des arts visuels
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- Musique -->
+      <div class="subject-card subject-musique" onclick="window.location.href='College_4ieme_Musique/'">
+        <div class="subject-header">
+          <div class="subject-emoji">🎵</div>
+          <h3 class="subject-title">Musique</h3>
+        </div>
+        <div class="subject-desc">
+          Pratique musicale, chant et culture musicale
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- EPS -->
+      <div class="subject-card subject-eps" onclick="window.location.href='College_4ieme_EPS/'">
+        <div class="subject-header">
+          <div class="subject-emoji">🏃</div>
+          <h3 class="subject-title">EPS</h3>
+        </div>
+        <div class="subject-desc">
+          Activités physiques et sportives pour le développement personnel
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+      <!-- EMC -->
+      <div class="subject-card subject-emc" onclick="window.location.href='College_4ieme_EMC/'">
+        <div class="subject-header">
+          <div class="subject-emoji">⚖️</div>
+          <h3 class="subject-title">EMC</h3>
+        </div>
+        <div class="subject-desc">
+          Enseignement moral et civique : valeurs républicaines et citoyenneté
+        </div>
+        <div class="subject-stats">
+          <span>12 chapitres</span>
+          <span>🔧 Structure prête</span>
+        </div>
+        <button class="subject-btn">Accéder aux cours</button>
+      </div>
+      
+    </div>
+    
+  </div>
+  
+  <!-- Footer -->
+  <div class="footer">
+    <p>🎓 Collège 4ème • Programme complet • Méthode progressive • Année 2024-2025</p>
+  </div>
+  
+  <script>
+    // Mode sombre permanent (aucune bascule)
+    // Animation au scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    // Appliquer l'animation à toutes les cartes
+    document.querySelectorAll('.subject-card').forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+      observer.observe(card);
+    });
+    
+    // Animation des stats au chargement
+    document.addEventListener('DOMContentLoaded', () => {
+      const stats = document.querySelectorAll('.stat-number');
+      stats.forEach((stat, index) => {
+        setTimeout(() => {
+          stat.style.transform = 'scale(1.1)';
+          setTimeout(() => {
+            stat.style.transform = 'scale(1)';
+          }, 200);
+        }, index * 100);
+      });
+    });
+  </script>
+  
+</body>
+</html>

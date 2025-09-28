@@ -1,0 +1,31 @@
+{
+  "slug": "10_Geometrie_des_triangles_et_Thales",
+  "titre": "Géométrie des triangles et Thalès",
+  "notion": "Thalès (configuration)",
+  "objectifs": [
+    "Ordre des points conservé.",
+    "Rapports correspondants = égalité.",
+    "Isolement de l'inconnue."
+  ],
+  "prerequis": [
+    "Triangles semblables idée",
+    "Rapport de longueur",
+    "Proportionnalité"
+  ],
+  "etapes": [
+    "Repérer",
+    "Associer",
+    "Calculer"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Intervertir rapports.",
+    "Confondre côtés homologues.",
+    "Appliquer hors configuration parallèle."
+  ]
+}

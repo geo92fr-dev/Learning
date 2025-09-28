@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Final - Planning Simplifié pour Lucas</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f8fafc; }
+        .memory-box { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .success { background: #ecfdf5; border-left: 4px solid #059669; padding: 1rem; border-radius: 8px; margin-top: 1rem; }
+        .date-info { font-style: italic; opacity: 0.8; margin: 0.3rem 0; }
+        h1 { color: #1e293b; }
+        h2 { color: #3b82f6; }
+    </style>
+</head>
+<body>
+    <h1>🎯 Test Final - Planning Simplifié pour Lucas</h1>
+    <h2>Comment réviser efficacement ?</h2>
+    
+    <div class="memory-box">
+        <p><strong>🧠 La méthode :</strong></p>
+        <p>Pour bien mémoriser, il faut réviser plusieurs fois à intervalles croissants.</p>
+        
+        <div class="success revision-tips">
+            <strong>📅 Ton planning de révision :</strong><br>
+            <span id="todayDate" class="date-info"></span><br>
+            • <strong>1ère révision (<span id="date1" style="color:#059669; font-weight:bold;"></span>) :</strong> Relis juste la fiche résumé<br>
+            • <strong>2ème révision (<span id="date2" style="color:#059669; font-weight:bold;"></span>) :</strong> Refais un exercice sans regarder la correction<br>
+            • <strong>3ème révision (<span id="date3" style="color:#059669; font-weight:bold;"></span>) :</strong> Explique la méthode à quelqu'un d'autre
+        </div>
+    </div>
+
+    <script>
+        // Gestion simplifiée du planning de révision
+        const todayDate = document.getElementById('todayDate');
+        const date1 = document.getElementById('date1');
+        const date2 = document.getElementById('date2');
+        const date3 = document.getElementById('date3');
+        
+        // Initialiser le planning simplifié
+        function initializeSimplePlanning() {
+            const today = new Date();
+            
+            // Afficher la date du jour
+            const todayStr = today.toLocaleDateString('fr-FR', { 
+                weekday: 'long', 
+                day: 'numeric', 
+                month: 'long',
+                year: 'numeric'
+            });
+            todayDate.textContent = `Cours fait le ${todayStr}`;
+            
+            // Calculer les dates de révision (J+1, J+3, J+7)
+            const intervals = [1, 3, 7];
+            const dates = [date1, date2, date3];
+            
+            intervals.forEach((interval, index) => {
+                const revDate = new Date(today);
+                revDate.setDate(today.getDate() + interval);
+                
+                const dateStr = revDate.toLocaleDateString('fr-FR', { 
+                    weekday: 'long', 
+                    day: 'numeric', 
+                    month: 'long' 
+                });
+                
+                if (dates[index]) {
+                    dates[index].textContent = dateStr;
+                }
+            });
+        }
+        
+        // Charger au démarrage
+        initializeSimplePlanning();
+        
+        console.log('Planning simplifié initialisé avec succès!');
+    </script>
+
+    <div style="margin-top: 2rem; padding: 1rem; background: #fff3cd; border-radius: 8px;">
+        <h3>✅ Résultat :</h3>
+        <p><strong>Le planning est maintenant intégré directement dans les conseils !</strong></p>
+        <p>Plus besoin de boutons complexes - Lucas voit immédiatement :</p>
+        <ul>
+            <li>La date du cours</li>
+            <li>Les 3 dates de révision calculées automatiquement</li>
+            <li>Les conseils spécifiques pour chaque révision</li>
+        </ul>
+        <p><em>Interface ultra-simplifiée et accessible pour un élève en difficulté.</em></p>
+    </div>
+</body>
+</html>

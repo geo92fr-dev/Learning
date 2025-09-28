@@ -1,0 +1,31 @@
+{
+  "slug": "07_Statistiques",
+  "titre": "Statistiques",
+  "notion": "Indicateurs statistiques",
+  "objectifs": [
+    "Moyenne = somme / effectif.",
+    "Étendue = max – min.",
+    "Médiane = valeur centrale (ou moyenne des deux centrales)."
+  ],
+  "prerequis": [
+    "Addition série",
+    "Ordre croissant",
+    "Division"
+  ],
+  "etapes": [
+    "Organiser",
+    "Calculer",
+    "Interpréter"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Oublier une valeur dans la somme.",
+    "Confondre médiane et moyenne.",
+    "Inverser max et min pour l'étendue."
+  ]
+}

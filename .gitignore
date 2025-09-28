@@ -1,0 +1,41 @@
+# --- Projet Cours 4ème ---
+# Systèmes
+.DS_Store
+Thumbs.db
+
+# Archives / sauvegardes
+*_ARCHIVE*/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environnements virtuels potentiels (non présents mais préventif)
+venv/
+.env/
+.envrc
+
+# Logs / sorties temporaires
+*.log
+logs/
+
+# Fichiers temporaires éditeur
+*.swp
+*.swo
+*.tmp
+~$*
+
+# Node / front éventuel futur
+node_modules/
+.dist/
+.build/
+
+# Coverage / tests
+.coverage
+htmlcov/
+
+# Jetons / secrets (aucun ici, prévention)
+secrets*/
+.env.local

@@ -1,0 +1,31 @@
+{
+  "slug": "05_Equations_simples",
+  "titre": "Équations simples",
+  "notion": "Équations linéaires",
+  "objectifs": [
+    "Transposer en effectuant la même opération des deux côtés.",
+    "Réduire avant d'isoler.",
+    "Vérifier en remplaçant dans l'équation initiale."
+  ],
+  "prerequis": [
+    "Équilibrer une égalité",
+    "Calculs relatifs simples",
+    "Distributivité"
+  ],
+  "etapes": [
+    "Isoler",
+    "Simplifier",
+    "Résoudre"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Changer de signe sans raison.",
+    "Diviser seulement un côté.",
+    "Oublier de tester la solution."
+  ]
+}

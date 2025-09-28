@@ -1,0 +1,32 @@
+{
+  "slug": "01_Nombres_relatifs",
+  "titre": "Nombres relatifs",
+  "notion": "Addition/Soustraction relatifs",
+  "objectifs": [
+    "Même signe → additionner les valeurs et garder le signe.",
+    "Signes différents → soustraire la plus petite valeur absolue de la plus grande.",
+    "Résultat prend le signe de la plus grande valeur absolue.",
+    "Contrôle : exemple concret (température ou argent)."
+  ],
+  "prerequis": [
+    "Sens du signe moins",
+    "Lecture droite graduée",
+    "Priorités calcul simple"
+  ],
+  "etapes": [
+    "Situer",
+    "Comparer",
+    "Calculer"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Retirer mécaniquement le signe du plus grand nombre.",
+    "Confondre soustraction et 'prendre la différence' des valeurs absolues.",
+    "Oublier de justifier le signe final."
+  ]
+}

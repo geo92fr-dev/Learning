@@ -1,0 +1,32 @@
+{
+  "slug": "04_Calcul_litteral",
+  "titre": "Calcul littéral",
+  "notion": "Expression algébrique",
+  "objectifs": [
+    "Développer : a(b + c) = ab + ac",
+    "Réduire : additionner coefficients des mêmes lettres",
+    "Factoriser simple : ab + ac = a(b + c)",
+    "Vérifier en testant valeurs numériques."
+  ],
+  "prerequis": [
+    "Priorités opératoires",
+    "Distributivité intuitive",
+    "Multiplication signes"
+  ],
+  "etapes": [
+    "Identifier",
+    "Développer",
+    "Réduire"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Oublier de multiplier chaque terme lors du développement.",
+    "Changer l'ordre des lettres et perdre un signe.",
+    "Confondre factoriser et développer."
+  ]
+}

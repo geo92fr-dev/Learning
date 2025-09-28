@@ -1,0 +1,31 @@
+{
+  "slug": "09_Theoreme_de_Pythagore",
+  "titre": "Théorème de Pythagore",
+  "notion": "Théorème de Pythagore",
+  "objectifs": [
+    "Toujours isoler c^2.",
+    "Comparer c^2 et a^2+b^2 pour l'inverse.",
+    "Carrés exacts avant racine."
+  ],
+  "prerequis": [
+    "Carré d'un nombre",
+    "Triangle rectangle définition",
+    "Opposé / adjacent / hypothénuse"
+  ],
+  "etapes": [
+    "Identifier",
+    "Associer",
+    "Appliquer"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Prendre le plus petit côté comme hypoténuse.",
+    "Oublier racine finale.",
+    "Comparer c au lieu de c^2."
+  ]
+}

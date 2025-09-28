@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr" data-version="1.0">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mathématiques 4ème - Programme complet - Méthode progressive</title>
+  <meta name="description" content="Index complet des cours de mathématiques 4ème. Programme avec méthode progressive et exercices corrigés." />
+  <style>
+    :root {
+      /* Palette sombre permanente */
+      --bg:#0f172a; --fg:#f1f5f9; --accent:#3b82f6; --accent-contrast:#1e40af;
+      --soft:#1e3a56; --border:#334155; --warn:#d97706; --ok:#059669; --danger:#dc2626;
+      --progress:#10b981; --radius:14px; --code:#e2e8f0; --focus:#f59e0b; --shadow:0 2px 6px rgba(0,0,0,.35);
+    }
+    body { margin:0; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; line-height:1.6; background:var(--bg); color:var(--fg); }
+    .skip-link { position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden; }
+    .skip-link:focus { position:static; width:auto; height:auto; background:var(--accent); color:#fff; padding:.5rem .8rem; border-radius:6px; box-shadow:0 0 0 3px rgba(255,255,255,.6); }
+    header { background:var(--accent); color:#fff; padding:1.5rem 1.15rem; position:sticky; top:0; z-index:50; }
+    header h1 { margin:.2rem 0 .8rem; font-size:1.4rem; }
+    .subtitle { font-size:.9rem; opacity:.9; margin:.5rem 0; }
+    .container { max-width:1100px; margin:0 auto; padding:1.5rem clamp(.75rem,2vw,1.25rem) 2.5rem; }
+    
+
+    
+    .chapters-grid { display:grid; gap:1.2rem; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); }
+  .chapter-card { background:#223042; border:1px solid var(--border); border-radius:var(--radius); padding:1.2rem; box-shadow:var(--shadow); position:relative; transition:transform .2s ease, box-shadow .2s ease; }
+  .chapter-card:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,.55); }
+    
+    .chapter-header { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1rem; }
+    .chapter-number { background:var(--accent); color:#fff; font-size:.7rem; font-weight:600; padding:.4rem .6rem; border-radius:6px; min-width:2rem; text-align:center; }
+    .chapter-title { font-size:1rem; font-weight:600; margin:0; flex:1; }
+    
+    .chapter-meta { display:flex; gap:.5rem; margin:.5rem 0; flex-wrap:wrap; }
+    .tag { font-size:.6rem; font-weight:600; background:var(--soft); color:var(--accent); padding:.25rem .5rem; border-radius:999px; text-transform:uppercase; letter-spacing:.05em; }
+    .tag.difficulty-1 { background:#ecfdf5; color:var(--ok); }
+    .tag.difficulty-2 { background:#fef3c7; color:var(--warn); }
+    .tag.difficulty-3 { background:#fee2e2; color:var(--danger); }
+    
+    .chapter-desc { font-size:.85rem; margin:.8rem 0; opacity:.8; }
+    .chapter-objectives { font-size:.75rem; margin:.8rem 0; }
+    .chapter-objectives ul { margin:.3rem 0; padding-left:1.2rem; }
+    .chapter-objectives li { margin:.2rem 0; }
+    
+    .chapter-actions { display:flex; gap:.5rem; margin-top:1rem; flex-wrap:wrap; }
+    .btn { text-decoration:none; font-size:.75rem; font-weight:600; padding:.5rem .8rem; border-radius:6px; transition:all .2s ease; display:inline-block; }
+    .btn-primary { background:var(--accent); color:#fff; }
+    .btn-primary:hover { background:var(--accent-contrast); }
+    .btn-secondary { background:var(--soft); color:var(--accent); border:1px solid var(--border); }
+    .btn-secondary:hover { background:var(--accent); color:#fff; }
+    .btn-success { background:var(--ok); color:#fff; }
+    .btn-disabled { background:#e2e8f0; color:#64748b; pointer-events:none; }
+    
+
+    
+    .trimestre { margin:2rem 0 1rem; }
+  .trimestre-header { background:#334155; padding:.8rem 1rem; border-radius:8px; margin-bottom:1rem; }
+    .trimestre-title { font-size:1.1rem; font-weight:600; margin:0; color:var(--accent); }
+    .trimestre-desc { font-size:.8rem; margin:.3rem 0 0; opacity:.8; }
+    
+    .warning { background:#fef3c7; border-left:4px solid var(--warn); padding:.8rem 1rem; border-radius:8px; font-size:.85rem; margin:1rem 0; }
+    .success { background:#ecfdf5; border-left:4px solid var(--ok); padding:.8rem 1rem; border-radius:8px; font-size:.85rem; margin:1rem 0; }
+    
+    footer { text-align:center; font-size:.65rem; padding:2rem .5rem 3rem; opacity:.65; }
+    
+  /* Mode sombre permanent : suppression classes .dark & bouton bascule */
+  .flex-header { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+    
+    @media (max-width:680px){ 
+      .chapters-grid { grid-template-columns:1fr; }
+      .chapter-actions { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Aller au contenu</a>
+<header>
+  <div class="flex-header">
+    <div>
+      <h1>Mathématiques 4ème</h1>
+      <div class="subtitle">Programme complet • Méthode progressive</div>
+    </div>
+  <!-- Mode sombre permanent : bouton retiré -->
+  </div>
+</header>
+
+<main id="main" class="container">
+  
+
+
+  <!-- PREMIER TRIMESTRE -->
+  <div class="trimestre">
+    <div class="trimestre-header">
+      <h2 class="trimestre-title">1er Trimestre - Les fondations</h2>
+      <div class="trimestre-desc">Septembre à Décembre • Révisions et bases solides</div>
+    </div>
+    
+    <div class="chapters-grid">
+      
+      <!-- Chapitre 1 : Nombres relatifs -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">1</div>
+          <h3 class="chapter-title">Nombres relatifs</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-1">Facile</span>
+          <span class="tag">Fondamental</span>
+        </div>
+        <div class="chapter-desc">
+          Découverte des nombres positifs et négatifs. Addition, soustraction et comparaison des relatifs avec des situations concrètes (température, ascenseur, etc.).
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Placer des nombres relatifs sur une droite</li>
+            <li>Comparer et ordonner des relatifs</li>
+            <li>Additionner et soustraire des relatifs</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="01_Nombres_relatifs/cours/cours_principal.html" class="btn btn-primary">Cours</a>
+          <a href="01_Nombres_relatifs/exercices/exercices_niveau1_decouverte.html" class="btn btn-secondary">Ex N1</a>
+          <a href="01_Nombres_relatifs/exercices/exercices_niveau2_pratique.html" class="btn btn-secondary">Ex N2</a>
+          <a href="01_Nombres_relatifs/exercices/exercices_niveau3_defi.html" class="btn btn-secondary">Ex N3</a>
+          <a href="01_Nombres_relatifs/evaluations/evaluation_formative.html" class="btn btn-secondary">Éval. formative</a>
+        </div>
+      </div>
+
+      <!-- Chapitre 2 : Fractions -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">2</div>
+          <h3 class="chapter-title">Fractions</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-2">Moyen</span>
+          <span class="tag">Essentiel</span>
+        </div>
+        <div class="chapter-desc">
+          Révision et approfondissement des fractions : simplification, comparaison, addition et soustraction de fractions de même dénominateur puis de dénominateurs différents.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Simplifier une fraction</li>
+            <li>Additionner et soustraire des fractions</li>
+            <li>Résoudre des problèmes avec des fractions</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="02_Fractions_et_calculs/cours/cours_principal.html" class="btn btn-primary">Cours</a>
+          <a href="02_Fractions_et_calculs/exercices/exercices_niveau1_decouverte.html" class="btn btn-secondary">Ex N1</a>
+          <a href="02_Fractions_et_calculs/exercices/exercices_niveau2_pratique.html" class="btn btn-secondary">Ex N2</a>
+          <a href="02_Fractions_et_calculs/exercices/exercices_niveau3_defi.html" class="btn btn-secondary">Ex N3</a>
+          <a href="02_Fractions_et_calculs/evaluations/evaluation_formative.html" class="btn btn-secondary">Éval.</a>
+        </div>
+      </div>
+
+      <!-- Chapitre 3 : Puissances -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">3</div>
+          <h3 class="chapter-title">Puissances</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-2">Moyen</span><span class="tag">Nouveau</span>
+        </div>
+        <div class="chapter-desc">
+          Introduction aux puissances d'un nombre. Calculs avec les puissances de 10, écriture scientifique et ordres de grandeur.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Calculer des puissances simples</li>
+            <li>Utiliser les puissances de 10</li>
+            <li>Écrire un nombre en notation scientifique</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="03_Puissances_et_notation_scientifique/cours/cours_principal.html" class="btn btn-primary">Cours</a>
+          <a href="03_Puissances_et_notation_scientifique/exercices/exercices_niveau1_decouverte.html" class="btn btn-secondary">Ex N1</a>
+          <a href="03_Puissances_et_notation_scientifique/exercices/exercices_niveau2_pratique.html" class="btn btn-secondary">Ex N2</a>
+          <a href="03_Puissances_et_notation_scientifique/exercices/exercices_niveau3_defi.html" class="btn btn-secondary">Ex N3</a>
+          <a href="03_Puissances_et_notation_scientifique/evaluations/evaluation_formative.html" class="btn btn-secondary">Éval.</a>
+        </div>
+      </div>
+
+      <!-- Chapitre 4 : Calcul littéral -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">4</div>
+          <h3 class="chapter-title">Calcul littéral</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-3">Difficile</span><span class="tag">Nouveau</span>
+        </div>
+        <div class="chapter-desc">
+          Première approche du calcul avec des lettres. Réduction d'expressions, suppression de parenthèses et factorisation simple.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Réduire une expression littérale</li>
+            <li>Développer une expression simple</li>
+            <li>Factoriser par un facteur commun</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="04_Calcul_litteral/cours/cours_principal.html" class="btn btn-primary">Cours</a>
+          <a href="04_Calcul_litteral/exercices/exercices_niveau1_decouverte.html" class="btn btn-secondary">Ex N1</a>
+          <a href="04_Calcul_litteral/exercices/exercices_niveau2_pratique.html" class="btn btn-secondary">Ex N2</a>
+          <a href="04_Calcul_litteral/exercices/exercices_niveau3_defi.html" class="btn btn-secondary">Ex N3</a>
+          <a href="04_Calcul_litteral/evaluations/evaluation_formative.html" class="btn btn-secondary">Éval.</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DEUXIÈME TRIMESTRE -->
+  <div class="trimestre">
+    <div class="trimestre-header">
+      <h2 class="trimestre-title">2ème Trimestre - Géométrie et proportionnalité</h2>
+      <div class="trimestre-desc">Janvier à Mars • Formes, mesures et rapports</div>
+    </div>
+    
+    <div class="chapters-grid">
+      
+      <!-- Chapitre 5 : Proportionnalité -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">5</div>
+          <h3 class="chapter-title">Proportionnalité</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-2">Moyen</span><span class="tag">Utile</span>
+        </div>
+        <div class="chapter-desc">
+          Reconnaître et utiliser la proportionnalité. Tableaux de proportionnalité, coefficient de proportionnalité, règle de trois et pourcentages.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Reconnaître une situation proportionnelle</li>
+            <li>Compléter un tableau de proportionnalité</li>
+            <li>Calculer des pourcentages simples</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="06_Proportionnalite_et_pourcentages/cours/cours_principal.html" class="btn btn-primary">Cours</a>
+          <a href="06_Proportionnalite_et_pourcentages/exercices/exercices_niveau1_decouverte.html" class="btn btn-secondary">Ex N1</a>
+          <a href="06_Proportionnalite_et_pourcentages/exercices/exercices_niveau2_pratique.html" class="btn btn-secondary">Ex N2</a>
+          <a href="06_Proportionnalite_et_pourcentages/exercices/exercices_niveau3_defi.html" class="btn btn-secondary">Ex N3</a>
+          <a href="06_Proportionnalite_et_pourcentages/evaluations/evaluation_formative.html" class="btn btn-secondary">Éval.</a>
+        </div>
+      </div>
+
+      <!-- Chapitre 6 : Théorème de Pythagore -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">6</div>
+          <h3 class="chapter-title">Théorème de Pythagore</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-3">Difficile</span><span class="tag">Célèbre</span>
+        </div>
+        <div class="chapter-desc">
+          Le fameux théorème de Pythagore ! Calculs de longueurs dans les triangles rectangles et réciproque du théorème.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Appliquer le théorème de Pythagore</li>
+            <li>Calculer la longueur d'un côté</li>
+            <li>Vérifier si un triangle est rectangle</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="09_Theoreme_de_Pythagore/cours/cours_principal.html" class="btn btn-primary">Cours</a>
+          <a href="09_Theoreme_de_Pythagore/exercices/exercices_niveau1_decouverte.html" class="btn btn-secondary">Ex N1</a>
+          <a href="09_Theoreme_de_Pythagore/exercices/exercices_niveau2_pratique.html" class="btn btn-secondary">Ex N2</a>
+          <a href="09_Theoreme_de_Pythagore/exercices/exercices_niveau3_defi.html" class="btn btn-secondary">Ex N3</a>
+          <a href="09_Theoreme_de_Pythagore/evaluations/evaluation_formative.html" class="btn btn-secondary">Éval.</a>
+        </div>
+      </div>
+
+      <!-- Chapitre 7 : Triangles et cercles -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">7</div>
+          <h3 class="chapter-title">Triangles et cercles</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-2">Moyen</span><span class="tag">Géométrie</span>
+        </div>
+        <div class="chapter-desc">
+          Propriétés des triangles particuliers et du cercle circonscrit. Distance d'un point à une droite, médiatrices et bissectrices.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Construire des triangles particuliers</li>
+            <li>Tracer des médiatrices</li>
+            <li>Utiliser le cercle circonscrit</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="10_Geometrie_des_triangles_et_Thales/cours/cours_principal.html" class="btn btn-primary">Cours</a>
+          <a href="10_Geometrie_des_triangles_et_Thales/exercices/exercices_niveau1_decouverte.html" class="btn btn-secondary">Ex N1</a>
+          <a href="10_Geometrie_des_triangles_et_Thales/exercices/exercices_niveau2_pratique.html" class="btn btn-secondary">Ex N2</a>
+          <a href="10_Geometrie_des_triangles_et_Thales/exercices/exercices_niveau3_defi.html" class="btn btn-secondary">Ex N3</a>
+          <a href="10_Geometrie_des_triangles_et_Thales/evaluations/evaluation_formative.html" class="btn btn-secondary">Éval.</a>
+        </div>
+      </div>
+
+      <!-- Chapitre 8 : Aires et périmètres -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">8</div>
+          <h3 class="chapter-title">Aires et périmètres</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-1">Facile</span>
+          <span class="tag">Révision</span>
+        </div>
+        <div class="chapter-desc">
+          Révision et calculs d'aires et périmètres de figures usuelles. Aire du disque et longueur du cercle.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Calculer aires et périmètres</li>
+            <li>Utiliser la formule du cercle</li>
+            <li>Résoudre des problèmes concrets</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="11_Transformations_et_symetries/cours/cours_principal.html" class="btn btn-primary">Cours</a>
+          <a href="11_Transformations_et_symetries/exercices/exercices_niveau1_decouverte.html" class="btn btn-secondary">Ex N1</a>
+          <a href="11_Transformations_et_symetries/exercices/exercices_niveau2_pratique.html" class="btn btn-secondary">Ex N2</a>
+          <a href="11_Transformations_et_symetries/exercices/exercices_niveau3_defi.html" class="btn btn-secondary">Ex N3</a>
+          <a href="11_Transformations_et_symetries/evaluations/evaluation_formative.html" class="btn btn-secondary">Éval.</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TROISIÈME TRIMESTRE -->
+  <div class="trimestre">
+    <div class="trimestre-header">
+      <h2 class="trimestre-title">3ème Trimestre - Statistiques et révisions</h2>
+      <div class="trimestre-desc">Avril à Juin • Données et consolidation</div>
+    </div>
+    
+    <div class="chapters-grid">
+      
+      <!-- Chapitre 9 : Équations -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">9</div>
+          <h3 class="chapter-title">Équations du 1er degré</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-3">Difficile</span><span class="tag">Nouveau</span>
+        </div>
+        <div class="chapter-desc">
+          Résolution d'équations simples du premier degré. Mise en équation de problèmes et vérification des solutions.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Résoudre une équation du 1er degré</li>
+            <li>Mettre un problème en équation</li>
+            <li>Vérifier une solution</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="12_Solides_et_volumes/cours/cours_principal.html" class="btn btn-primary">Cours</a>
+          <a href="12_Solides_et_volumes/exercices/exercices_niveau1_decouverte.html" class="btn btn-secondary">Ex N1</a>
+          <a href="12_Solides_et_volumes/exercices/exercices_niveau2_pratique.html" class="btn btn-secondary">Ex N2</a>
+          <a href="12_Solides_et_volumes/exercices/exercices_niveau3_defi.html" class="btn btn-secondary">Ex N3</a>
+          <a href="12_Solides_et_volumes/evaluations/evaluation_formative.html" class="btn btn-secondary">Éval.</a>
+        </div>
+      </div>
+
+      <!-- Chapitre 10 : Statistiques -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">10</div>
+          <h3 class="chapter-title">Statistiques</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-1">Facile</span><span class="tag">Pratique</span>
+        </div>
+        <div class="chapter-desc">
+          Lecture et interprétation de graphiques et tableaux. Calcul de moyennes, fréquences et construction de diagrammes.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Lire un graphique ou tableau</li>
+            <li>Calculer une moyenne</li>
+            <li>Construire un diagramme</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="#" class="btn btn-disabled">Cours (bientôt)</a>
+          <a href="#" class="btn btn-disabled">Exercices</a>
+          <a href="#" class="btn btn-disabled">Évaluation</a>
+        </div>
+      </div>
+
+      <!-- Chapitre 11 : Volumes -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">11</div>
+          <h3 class="chapter-title">Volumes</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-2">Moyen</span>
+          <span class="tag">3D</span>
+        </div>
+        <div class="chapter-desc">
+          Calculs de volumes des solides usuels : parallélépipède, cylindre et pyramide. Conversions d'unités de volume.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Calculer le volume d'un pavé</li>
+            <li>Calculer le volume d'un cylindre</li>
+            <li>Convertir des unités de volume</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="#" class="btn btn-disabled">Cours (bientôt)</a>
+          <a href="#" class="btn btn-disabled">Exercices</a>
+          <a href="#" class="btn btn-disabled">Évaluation</a>
+        </div>
+      </div>
+
+      <!-- Chapitre 12 : Révisions générales -->
+      <div class="chapter-card">
+        <div class="chapter-header">
+          <div class="chapter-number">12</div>
+          <h3 class="chapter-title">Révisions générales</h3>
+        </div>
+        <div class="chapter-meta">
+          <span class="tag difficulty-2">Variable</span>
+          <span class="tag">Bilan</span>
+        </div>
+        <div class="chapter-desc">
+          Synthèse de l'année avec exercices mélangeant toutes les notions. Préparation à la 3ème et bilan des acquis.
+        </div>
+        <div class="chapter-objectives">
+          <strong>Tu sauras :</strong>
+          <ul>
+            <li>Mobiliser toutes les notions</li>
+            <li>Résoudre des problèmes variés</li>
+            <li>Être prêt pour la 3ème</li>
+          </ul>
+        </div>
+        <div class="chapter-actions">
+          <a href="#" class="btn btn-disabled">Cours (bientôt)</a>
+          <a href="#" class="btn btn-disabled">Exercices</a>
+          <a href="#" class="btn btn-disabled">Évaluation</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="warning">
+    <strong>💡 Conseils :</strong> 
+    <br>• Commence par les chapitres marqués "Facile" pour prendre confiance
+    <br>• N'hésite pas à revoir les bases avant d'attaquer un nouveau chapitre
+    <br>• Fais les exercices étape par étape, sans te presser
+    <br>• Demande de l'aide dès que tu bloques, c'est normal !
+  </div>
+
+</main>
+
+<footer>
+  <p>Programme Mathématiques 4ème • Méthode progressive • Version 2024-2025</p>
+  <p>Dernière mise à jour : 28 septembre 2025</p>
+</footer>
+
+<script>
+  // Navigation fluide
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      if(href !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if(target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+  // Simulation progression (à remplacer par vraies données)
+  function updateProgress() {
+    // Cette fonction sera développée pour calculer la vraie progression
+    // basée sur les cours terminés stockés localement ou via API
+  }
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,32 @@
+{
+  "slug": "03_Puissances_et_notation_scientifique",
+  "titre": "Puissances et notation scientifique",
+  "notion": "Puissances / Notation scientifique",
+  "objectifs": [
+    "a^m × a^n = a^(m+n)",
+    "a^m ÷ a^n = a^(m−n)",
+    "(a^m)^n = a^(m×n)",
+    "Notation scientifique : a × 10^n avec 1 ≤ a < 10."
+  ],
+  "prerequis": [
+    "Multiplication de facteurs identiques",
+    "Valeur de 10,100,1000",
+    "Place des zéros"
+  ],
+  "etapes": [
+    "Développer",
+    "Rassembler",
+    "Réduire"
+  ],
+  "plan_reactivation": [
+    "J+1",
+    "J+3",
+    "J+7",
+    "J+14"
+  ],
+  "erreurs_frequentes": [
+    "Confondre (a^m)^n avec a^(m+n).",
+    "Mettre deux chiffres avant la virgule en notation scientifique.",
+    "Oublier signe de l'exposant quand nombre < 1."
+  ]
+}
