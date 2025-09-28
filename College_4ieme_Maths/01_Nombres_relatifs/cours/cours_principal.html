@@ -24,6 +24,10 @@ pre,code{font-family:consolas,ui-monospace,monospace;font-size:.78rem;}
 .toggle{background:#244b82;color:#fff;border:none;padding:.3rem .55rem;border-radius:6px;font-size:.65rem;cursor:pointer;margin-top:.35rem;}
 .toggle:hover{background:#1d3f6d;}
 .solution{display:none;margin-top:.4rem;padding:.5rem .6rem;background:#1b2733;border:1px solid #2a3948;border-radius:8px;font-size:.78rem;}
+.calendar-section{text-align:center;margin-top:1rem;}
+.btn-calendar{background:#059669;padding:0.6rem 1rem;font-size:0.8rem;margin:0.5rem;color:#fff;border:none;border-radius:6px;cursor:pointer;}
+.btn-calendar:hover{background:#047857;}
+.calendar-info{font-size:0.7rem;opacity:0.8;margin-top:0.5rem;}
 
 .table-eval{width:100%;border-collapse:collapse;font-size:.75rem;}
 .table-eval th,.table-eval td{border:1px solid #28323d;padding:.35rem .4rem;text-align:left;}
@@ -363,7 +367,15 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
   <li><strong>J+7</strong> (<span id='dateJ7'></span>) : <a href='../fiches_resume/fiche_synthese.html'>mini quiz synthèse</a></li>
   <li><strong>J+14</strong> (<span id='dateJ14'></span>) : <a href='../exercices/exercices_niveau3_defi.html'>défi mélange N3</a></li>
  </ul>
- <p class='notice'><strong>Astuce :</strong> Note ces dates dans ton agenda pour réviser efficacement !</p>
+ <div class='notice calendar-section'>
+  <p><strong>📅 Ajouter à ton agenda :</strong></p>
+  <button id='addToCalendar' class='btn-calendar'>
+   📅 Ajouter au Google Calendar
+  </button>
+  <p class='calendar-info'>
+   ✨ Crée automatiquement 4 rappels de révision dans ton agenda !
+  </p>
+ </div>
 </section>
 <footer><small>Contenu enrichi – Génération structurée • Réactivation : J+1 / J+3 / J+7 / J+14</small></footer>
 <script>
@@ -398,7 +410,79 @@ function initRevisionDates() {
  });
 }
 
+// Fonction pour créer un lien Google Calendar
+function createGoogleCalendarLink(date, title, description, duration = 30) {
+ const startDate = new Date(date);
+ // Programmer à 18h00 par défaut (heure de révision)
+ startDate.setHours(18, 0, 0, 0);
+ 
+ const endDate = new Date(startDate);
+ endDate.setMinutes(startDate.getMinutes() + duration);
+ 
+ // Formatage des dates pour Google Calendar (format UTC)
+ const formatDate = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+ 
+ const params = new URLSearchParams({
+  action: 'TEMPLATE',
+  text: title,
+  dates: formatDate(startDate) + '/' + formatDate(endDate),
+  details: description,
+  location: 'Révisions Maths - Nombres relatifs'
+ });
+ 
+ return 'https://calendar.google.com/calendar/render?' + params.toString();
+}
+
+// Fonction pour ajouter tous les événements au Google Calendar
+function addAllToGoogleCalendar() {
+ const today = new Date();
+ const chapterTitle = "Nombres relatifs";
+ 
+ const events = [
+  {
+   interval: 1,
+   title: `📚 Révision ${chapterTitle} - Exercices Découverte`,
+   description: `Révision programmée : 2 exercices niveau 1 (découverte).\n\nLien direct : ${window.location.origin}/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau1_decouverte.html\n\n💡 Objectif : Réactiver les notions de base avec des exercices guidés.`
+  },
+  {
+   interval: 3,
+   title: `📖 Révision ${chapterTitle} - Exercices Pratique`,
+   description: `Révision programmée : 2 exercices niveau 2 (pratique).\n\nLien direct : ${window.location.origin}/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau2_pratique.html\n\n💡 Objectif : Application directe des règles apprises.`
+  },
+  {
+   interval: 7,
+   title: `🧠 Révision ${chapterTitle} - Quiz Synthèse`,
+   description: `Révision programmée : Mini quiz de synthèse.\n\nLien direct : ${window.location.origin}/College_4ieme_Maths/01_Nombres_relatifs/fiches_resume/fiche_synthese.html\n\n💡 Objectif : Vérifier la mémorisation des règles essentielles.`
+  },
+  {
+   interval: 14,
+   title: `🏆 Révision ${chapterTitle} - Défi Niveau 3`,
+   description: `Révision programmée : Exercices défi et approfondissement.\n\nLien direct : ${window.location.origin}/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau3_defi.html\n\n💡 Objectif : Consolider avec des problèmes complexes et créatifs.`
+  }
+ ];
+ 
+ // Ouvrir chaque événement dans un nouvel onglet
+ events.forEach(event => {
+  const eventDate = new Date(today);
+  eventDate.setDate(today.getDate() + event.interval);
+  
+  const calendarUrl = createGoogleCalendarLink(eventDate, event.title, event.description);
+  window.open(calendarUrl, '_blank');
+ });
+ 
+ // Feedback utilisateur
+ alert('🎉 4 rappels de révision ajoutés à ton Google Calendar !\n\nVérifie tes nouveaux onglets pour confirmer chaque événement.');
+}
+
 // Initialiser au chargement de la page
-document.addEventListener('DOMContentLoaded', initRevisionDates);
+document.addEventListener('DOMContentLoaded', function() {
+ initRevisionDates();
+ 
+ // Ajouter l'événement au bouton Google Calendar
+ const calendarBtn = document.getElementById('addToCalendar');
+ if (calendarBtn) {
+  calendarBtn.addEventListener('click', addAllToGoogleCalendar);
+ }
+});
 </script>
 </body></html>
