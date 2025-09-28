@@ -98,9 +98,7 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
   border-left-color: #ff9f43;
  }
 </style>
-<script>
-function toggleSolution(id){const el=document.getElementById(id);if(!el)return;el.style.display=el.style.display==='none'||el.style.display===''?'block':'none';}
-</script>
+
 </head><body>
 <header>
  <h1>Nombres relatifs</h1>
@@ -386,6 +384,7 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
  </div>
 </section>
 <footer><small>Contenu enrichi – Génération structurée • Réactivation : J+1 / J+3 / J+7 / J+14</small></footer>
+
 <script>
 // Calcul dynamique des dates de réactivation
 function initRevisionDates() {
@@ -454,32 +453,32 @@ function addSingleEventToCalendar(interval, type) {
   decouverte: {
    icon: '📚',
    title: 'Exercices Découverte',
-   url: '/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau1_decouverte.html',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau1_decouverte.html',
    description: 'Révision programmée : 2 exercices niveau 1 (découverte).\n\n💡 Objectif : Réactiver les notions de base avec des exercices guidés.'
   },
   pratique: {
    icon: '📖',
    title: 'Exercices Pratique',
-   url: '/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau2_pratique.html',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau2_pratique.html',
    description: 'Révision programmée : 2 exercices niveau 2 (pratique).\n\n💡 Objectif : Application directe des règles apprises.'
   },
   synthese: {
    icon: '🧠',
    title: 'Quiz Synthèse',
-   url: '/College_4ieme_Maths/01_Nombres_relatifs/fiches_resume/fiche_synthese.html',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/01_Nombres_relatifs/fiches_resume/fiche_synthese.html',
    description: 'Révision programmée : Mini quiz de synthèse.\n\n💡 Objectif : Vérifier la mémorisation des règles essentielles.'
   },
   defi: {
    icon: '🏆',
    title: 'Défi Niveau 3',
-   url: '/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau3_defi.html',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau3_defi.html',
    description: 'Révision programmée : Exercices défi et approfondissement.\n\n💡 Objectif : Consolider avec des problèmes complexes et créatifs.'
   }
  };
  
  const config = eventConfig[type];
  const title = `${config.icon} Révision ${chapterTitle} - ${config.title}`;
- const description = `${config.description}\n\nLien direct : ${window.location.origin}${config.url}`;
+ const description = `${config.description}\n\nLien direct : ${config.url}`;
  
  const calendarUrl = createGoogleCalendarLink(eventDate, title, description);
  window.open(calendarUrl, '_blank');
