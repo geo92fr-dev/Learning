@@ -27,7 +27,11 @@ pre,code{font-family:consolas,ui-monospace,monospace;font-size:.78rem;}
 .calendar-section{text-align:center;margin-top:1rem;}
 .btn-calendar{background:#059669;padding:0.6rem 1rem;font-size:0.8rem;margin:0.5rem;color:#fff;border:none;border-radius:6px;cursor:pointer;}
 .btn-calendar:hover{background:#047857;}
+.btn-calendar-mini{background:#059669;padding:0.3rem 0.5rem;font-size:0.7rem;color:#fff;border:none;border-radius:4px;cursor:pointer;display:inline-block;flex-shrink:0;}
+.btn-calendar-mini:hover{background:#047857;}
 .calendar-info{font-size:0.7rem;opacity:0.8;margin-top:0.5rem;}
+.reactivation-item{margin:0.5rem 0;display:flex;align-items:center;gap:0.5rem;}
+.calendar-tip{margin-top:1rem;text-align:center;font-size:0.75rem;opacity:0.8;}
 
 .table-eval{width:100%;border-collapse:collapse;font-size:.75rem;}
 .table-eval th,.table-eval td{border:1px solid #28323d;padding:.35rem .4rem;text-align:left;}
@@ -361,20 +365,24 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
 <section><h2>✅ 7. Auto-contrôle immédiat</h2><ul><li>Je peux expliquer la notion « Addition/Soustraction relatifs ».</li><li>Je sais appliquer sans modèle.</li><li>Je justifie mon signe / choix / formule.</li></ul></section>
 <section><h2>🗓️ 8. Plan de réactivation</h2>
  <p><strong>Cours fait le :</strong> <span id='dateToday' class='text-fade'></span></p>
- <ul>
-  <li><strong>J+1</strong> (<span id='dateJ1'></span>) : <a href='../exercices/exercices_niveau1_decouverte.html'>2 ex. N1 découverte</a></li>
-  <li><strong>J+3</strong> (<span id='dateJ3'></span>) : <a href='../exercices/exercices_niveau2_pratique.html'>2 ex. N2 pratique</a></li>
-  <li><strong>J+7</strong> (<span id='dateJ7'></span>) : <a href='../fiches_resume/fiche_synthese.html'>mini quiz synthèse</a></li>
-  <li><strong>J+14</strong> (<span id='dateJ14'></span>) : <a href='../exercices/exercices_niveau3_defi.html'>défi mélange N3</a></li>
- </ul>
- <div class='notice calendar-section'>
-  <p><strong>📅 Ajouter à ton agenda :</strong></p>
-  <button id='addToCalendar' class='btn-calendar'>
-   📅 Ajouter au Google Calendar
-  </button>
-  <p class='calendar-info'>
-   ✨ Crée automatiquement 4 rappels de révision dans ton agenda !
-  </p>
+ <div class='reactivation-item'>
+  <button class='btn-calendar-mini' data-interval='1' data-type='decouverte'>📅</button>
+  <span><strong>J+1</strong> (<span id='dateJ1'></span>) : <a href='../exercices/exercices_niveau1_decouverte.html'>2 ex. N1 découverte</a></span>
+ </div>
+ <div class='reactivation-item'>
+  <button class='btn-calendar-mini' data-interval='3' data-type='pratique'>📅</button>
+  <span><strong>J+3</strong> (<span id='dateJ3'></span>) : <a href='../exercices/exercices_niveau2_pratique.html'>2 ex. N2 pratique</a></span>
+ </div>
+ <div class='reactivation-item'>
+  <button class='btn-calendar-mini' data-interval='7' data-type='synthese'>📅</button>
+  <span><strong>J+7</strong> (<span id='dateJ7'></span>) : <a href='../fiches_resume/fiche_synthese.html'>mini quiz synthèse</a></span>
+ </div>
+ <div class='reactivation-item'>
+  <button class='btn-calendar-mini' data-interval='14' data-type='defi'>📅</button>
+  <span><strong>J+14</strong> (<span id='dateJ14'></span>) : <a href='../exercices/exercices_niveau3_defi.html'>défi mélange N3</a></span>
+ </div>
+ <div class='notice calendar-tip'>
+  💡 Clique sur 📅 pour ajouter chaque rappel individuellement à ton Google Calendar
  </div>
 </section>
 <footer><small>Contenu enrichi – Génération structurée • Réactivation : J+1 / J+3 / J+7 / J+14</small></footer>
@@ -433,56 +441,67 @@ function createGoogleCalendarLink(date, title, description, duration = 30) {
  return 'https://calendar.google.com/calendar/render?' + params.toString();
 }
 
-// Fonction pour ajouter tous les événements au Google Calendar
-function addAllToGoogleCalendar() {
+// Fonction pour ajouter un événement individuel au Google Calendar
+function addSingleEventToCalendar(interval, type) {
  const today = new Date();
+ const eventDate = new Date(today);
+ eventDate.setDate(today.getDate() + interval);
+ 
  const chapterTitle = "Nombres relatifs";
  
- const events = [
-  {
-   interval: 1,
-   title: `📚 Révision ${chapterTitle} - Exercices Découverte`,
-   description: `Révision programmée : 2 exercices niveau 1 (découverte).\n\nLien direct : ${window.location.origin}/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau1_decouverte.html\n\n💡 Objectif : Réactiver les notions de base avec des exercices guidés.`
+ // Configuration selon le type d'événement
+ const eventConfig = {
+  decouverte: {
+   icon: '📚',
+   title: 'Exercices Découverte',
+   url: '/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau1_decouverte.html',
+   description: 'Révision programmée : 2 exercices niveau 1 (découverte).\n\n💡 Objectif : Réactiver les notions de base avec des exercices guidés.'
   },
-  {
-   interval: 3,
-   title: `📖 Révision ${chapterTitle} - Exercices Pratique`,
-   description: `Révision programmée : 2 exercices niveau 2 (pratique).\n\nLien direct : ${window.location.origin}/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau2_pratique.html\n\n💡 Objectif : Application directe des règles apprises.`
+  pratique: {
+   icon: '📖',
+   title: 'Exercices Pratique',
+   url: '/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau2_pratique.html',
+   description: 'Révision programmée : 2 exercices niveau 2 (pratique).\n\n💡 Objectif : Application directe des règles apprises.'
   },
-  {
-   interval: 7,
-   title: `🧠 Révision ${chapterTitle} - Quiz Synthèse`,
-   description: `Révision programmée : Mini quiz de synthèse.\n\nLien direct : ${window.location.origin}/College_4ieme_Maths/01_Nombres_relatifs/fiches_resume/fiche_synthese.html\n\n💡 Objectif : Vérifier la mémorisation des règles essentielles.`
+  synthese: {
+   icon: '🧠',
+   title: 'Quiz Synthèse',
+   url: '/College_4ieme_Maths/01_Nombres_relatifs/fiches_resume/fiche_synthese.html',
+   description: 'Révision programmée : Mini quiz de synthèse.\n\n💡 Objectif : Vérifier la mémorisation des règles essentielles.'
   },
-  {
-   interval: 14,
-   title: `🏆 Révision ${chapterTitle} - Défi Niveau 3`,
-   description: `Révision programmée : Exercices défi et approfondissement.\n\nLien direct : ${window.location.origin}/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau3_defi.html\n\n💡 Objectif : Consolider avec des problèmes complexes et créatifs.`
+  defi: {
+   icon: '🏆',
+   title: 'Défi Niveau 3',
+   url: '/College_4ieme_Maths/01_Nombres_relatifs/exercices/exercices_niveau3_defi.html',
+   description: 'Révision programmée : Exercices défi et approfondissement.\n\n💡 Objectif : Consolider avec des problèmes complexes et créatifs.'
   }
- ];
+ };
  
- // Ouvrir chaque événement dans un nouvel onglet
- events.forEach(event => {
-  const eventDate = new Date(today);
-  eventDate.setDate(today.getDate() + event.interval);
-  
-  const calendarUrl = createGoogleCalendarLink(eventDate, event.title, event.description);
-  window.open(calendarUrl, '_blank');
- });
+ const config = eventConfig[type];
+ const title = `${config.icon} Révision ${chapterTitle} - ${config.title}`;
+ const description = `${config.description}\n\nLien direct : ${window.location.origin}${config.url}`;
  
- // Feedback utilisateur
- alert('🎉 4 rappels de révision ajoutés à ton Google Calendar !\n\nVérifie tes nouveaux onglets pour confirmer chaque événement.');
+ const calendarUrl = createGoogleCalendarLink(eventDate, title, description);
+ window.open(calendarUrl, '_blank');
+ 
+ // Feedback discret
+ const dayName = eventDate.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+ alert(`📅 Rappel "${config.title}" ajouté pour le ${dayName} !\n\nVérifie le nouvel onglet pour confirmer l'événement.`);
 }
 
 // Initialiser au chargement de la page
 document.addEventListener('DOMContentLoaded', function() {
  initRevisionDates();
  
- // Ajouter l'événement au bouton Google Calendar
- const calendarBtn = document.getElementById('addToCalendar');
- if (calendarBtn) {
-  calendarBtn.addEventListener('click', addAllToGoogleCalendar);
- }
+ // Ajouter les événements aux boutons calendrier individuels
+ const calendarBtns = document.querySelectorAll('.btn-calendar-mini');
+ calendarBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+   const interval = parseInt(this.getAttribute('data-interval'));
+   const type = this.getAttribute('data-type');
+   addSingleEventToCalendar(interval, type);
+  });
+ });
 });
 </script>
 </body></html>

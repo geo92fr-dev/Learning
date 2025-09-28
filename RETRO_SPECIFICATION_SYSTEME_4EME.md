@@ -35,7 +35,8 @@ Project_Learning_Simplified/
 --bg-primary: #0f1115    --text-primary: #f5f7fa
 --bg-card: #141a21       --accent-blue: #67c7ff
 --border-subtle: #1b222c --success-green: #10ac84
-.btn-calendar: #059669   .btn-calendar:hover: #047857
+.btn-calendar-mini: #059669 + flexbox gap:0.5rem
+.reactivation-item: display:flex align-items:center
 ```
 
 ### **Navigation Standard**
@@ -85,12 +86,13 @@ Project_Learning_Simplified/
 }
 ```
 
-### **Fonctionnalité Google Calendar**
-- **Bouton intégré** : "📅 Ajouter au Google Calendar"  
-- **Auto-génération** : 4 rappels (J+1, J+3, J+7, J+14) à 18h00
-- **Événements personnalisés** : Titre, description, liens directs
-- **Multi-onglets** : Ouverture simultanée pour validation
-- **JavaScript** : `createGoogleCalendarLink()` + `addAllToGoogleCalendar()`
+### **Fonctionnalité Google Calendar** 
+- **Boutons individuels** : 📅 en début de chaque ligne J+1, J+3, J+7, J+14
+- **Ajout personnalisé** : Chaque rappel ajouté séparément selon besoin
+- **Auto-génération** : Événements à 18h00 avec titre/description adaptés
+- **Feedback ciblé** : Alert personnalisé par type (découverte, pratique, etc.)
+- **Interface optimisée** : Flexbox, boutons compacts, UX intuitive
+- **JavaScript** : `addSingleEventToCalendar()` + event listeners individuels
 
 ## 🛠️ **TECHNIQUE**
 
@@ -106,6 +108,7 @@ optimize_all_subjects_structure.py       # Nettoyage dossiers
 uniformize_cours_navigation.py           # Navigation
 validate_navigation_cleanup.py           # Validation
 add_google_calendar_to_courses.py        # Intégration Google Calendar
+update_calendar_individual_buttons.py    # Migration boutons individuels
 ```
 
 ## 🎯 **PÉDAGOGIE**
@@ -141,4 +144,4 @@ add_google_calendar_to_courses.py        # Intégration Google Calendar
 
 ---
 *Spécification 28/09/2025 - Référence système 4ème*
-*✨ MAJ : Intégration Google Calendar pour plan de réactivation*
+*✨ MAJ : Google Calendar avec boutons individuels optimisés*

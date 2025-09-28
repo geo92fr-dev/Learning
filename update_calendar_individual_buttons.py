@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 """
-Script pour ajouter la fonctionnalité Google Calendar à tous les cours
-Ajoute le bouton et les scripts JavaScript pour le plan de réactivation
+Script de mise à jour des fonctionnalités Google Calendar
+Migre vers la version améliorée avec boutons individuels
 """
 
 import os
 import re
 from pathlib import Path
 
-def add_google_calendar_feature(file_path: Path, chapter_title: str, chapter_slug: str):
+def update_calendar_to_individual_buttons(file_path: Path, chapter_title: str, chapter_slug: str):
     """
-    Ajoute la fonctionnalité Google Calendar à un fichier cours_principal.html
-    Version améliorée avec boutons individuels en début de ligne
+    Met à jour un cours vers la version avec boutons individuels
     """
     
     try:
@@ -20,31 +19,36 @@ def add_google_calendar_feature(file_path: Path, chapter_title: str, chapter_slu
         
         original_content = content
         
-        # 1. Ajouter les styles CSS si pas déjà présents
-        css_styles = """
-.calendar-section{text-align:center;margin-top:1rem;}
-.btn-calendar{background:#059669;padding:0.6rem 1rem;font-size:0.8rem;margin:0.5rem;color:#fff;border:none;border-radius:6px;cursor:pointer;}
-.btn-calendar:hover{background:#047857;}
-.btn-calendar-mini{background:#059669;padding:0.3rem 0.5rem;font-size:0.7rem;color:#fff;border:none;border-radius:4px;cursor:pointer;display:inline-block;flex-shrink:0;}
+        # 1. Ajouter les nouveaux styles CSS
+        if '.btn-calendar-mini' not in content:
+            # Ajouter après les styles existants
+            new_styles = """.btn-calendar-mini{background:#059669;padding:0.3rem 0.5rem;font-size:0.7rem;color:#fff;border:none;border-radius:4px;cursor:pointer;display:inline-block;flex-shrink:0;}
 .btn-calendar-mini:hover{background:#047857;}
-.calendar-info{font-size:0.7rem;opacity:0.8;margin-top:0.5rem;}
 .reactivation-item{margin:0.5rem 0;display:flex;align-items:center;gap:0.5rem;}
 .calendar-tip{margin-top:1rem;text-align:center;font-size:0.75rem;opacity:0.8;}"""
-        
-        if '.calendar-section' not in content:
-            # Ajouter après les autres styles toggle
+            
             content = re.sub(
-                r'(\.toggle:hover\{[^}]+\})',
-                r'\1' + css_styles,
+                r'(\.calendar-info\{[^}]+\})',
+                r'\1' + new_styles,
                 content
             )
         
-        # 2. Remplacer la liste ul par des div avec boutons individuels
-        if 'Plan de réactivation' in content and 'btn-calendar-mini' not in content:
-            # Pattern pour remplacer la liste ul classique
-            ul_pattern = r'<ul>\s*<li><strong>J\+1</strong>[^<]*<span id=[\'"]dateJ1[\'"][^<]*</span>\)[^<]*<a href=[\'"][^\'\"]*exercices_niveau1_decouverte\.html[\'"][^>]*>[^<]+</a></li>\s*<li><strong>J\+3</strong>[^<]*<span id=[\'"]dateJ3[\'"][^<]*</span>\)[^<]*<a href=[\'"][^\'\"]*exercices_niveau2_pratique\.html[\'"][^>]*>[^<]+</a></li>\s*<li><strong>J\+7</strong>[^<]*<span id=[\'"]dateJ7[\'"][^<]*</span>\)[^<]*<a href=[\'"][^\'\"]*fiche_synthese\.html[\'"][^>]*>[^<]+</a></li>\s*<li><strong>J\+14</strong>[^<]*<span id=[\'"]dateJ14[\'"][^<]*</span>\)[^<]*<a href=[\'"][^\'\"]*exercices_niveau3_defi\.html[\'"][^>]*>[^<]+</a></li>\s*</ul>'
+        # 2. Remplacer l'ancienne section calendar-section par les nouveaux boutons individuels
+        if 'calendar-section' in content and 'reactivation-item' not in content:
+            old_calendar_section = r"<div class='notice calendar-section'>[^<]*<p><strong>📅 Ajouter à ton agenda :</strong></p>[^<]*<button[^>]*id='addToCalendar'[^>]*>[^<]*📅 Ajouter au Google Calendar[^<]*</button>[^<]*<p class='calendar-info'>[^<]*✨ Crée automatiquement 4 rappels de révision dans ton agenda ![^<]*</p>[^<]*</div>"
             
-            new_reactivation_html = '''<div class='reactivation-item'>
+            new_tip = """<div class='notice calendar-tip'>
+  💡 Clique sur 📅 pour ajouter chaque rappel individuellement à ton Google Calendar
+ </div>"""
+            
+            content = re.sub(old_calendar_section, new_tip, content, flags=re.DOTALL)
+        
+        # 3. Remplacer la liste ul par des div avec boutons
+        if '<ul>' in content and 'reactivation-item' not in content:
+            # Pattern pour la liste ul complète
+            ul_pattern = r'<ul>\s*<li><strong>J\+1</strong>[^<]*<span id=[\'"]dateJ1[\'"][^<]*</span>\)[^<]*<a[^>]*>[^<]+</a></li>\s*<li><strong>J\+3</strong>[^<]*<span id=[\'"]dateJ3[\'"][^<]*</span>\)[^<]*<a[^>]*>[^<]+</a></li>\s*<li><strong>J\+7</strong>[^<]*<span id=[\'"]dateJ7[\'"][^<]*</span>\)[^<]*<a[^>]*>[^<]+</a></li>\s*<li><strong>J\+14</strong>[^<]*<span id=[\'"]dateJ14[\'"][^<]*</span>\)[^<]*<a[^>]*>[^<]+</a></li>\s*</ul>'
+            
+            new_reactivation = """<div class='reactivation-item'>
   <button class='btn-calendar-mini' data-interval='1' data-type='decouverte'>📅</button>
   <span><strong>J+1</strong> (<span id='dateJ1'></span>) : <a href='../exercices/exercices_niveau1_decouverte.html'>2 ex. N1 découverte</a></span>
  </div>
@@ -62,42 +66,16 @@ def add_google_calendar_feature(file_path: Path, chapter_title: str, chapter_slu
  </div>
  <div class='notice calendar-tip'>
   💡 Clique sur 📅 pour ajouter chaque rappel individuellement à ton Google Calendar
- </div>'''
+ </div>"""
             
-            content = re.sub(ul_pattern, new_reactivation_html, content, flags=re.DOTALL)
-            
-            # Si pattern ul simple pas trouvé, essayer pattern notice
-            if 'btn-calendar-mini' not in content:
-                notice_pattern = r'<p class=[\'"]notice[\'"][^>]*><strong>Astuce :</strong>[^<]+</p>'
-                content = re.sub(notice_pattern, new_reactivation_html, content)
+            content = re.sub(ul_pattern, new_reactivation, content, flags=re.DOTALL)
         
-        # 3. Ajouter le JavaScript Google Calendar si pas déjà présent
-        if 'createGoogleCalendarLink' not in content:
-            js_code = f'''
-// Fonction pour créer un lien Google Calendar
-function createGoogleCalendarLink(date, title, description, duration = 30) {{
- const startDate = new Date(date);
- // Programmer à 18h00 par défaut (heure de révision)
- startDate.setHours(18, 0, 0, 0);
- 
- const endDate = new Date(startDate);
- endDate.setMinutes(startDate.getMinutes() + duration);
- 
- // Formatage des dates pour Google Calendar (format UTC)
- const formatDate = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
- 
- const params = new URLSearchParams({{
-  action: 'TEMPLATE',
-  text: title,
-  dates: formatDate(startDate) + '/' + formatDate(endDate),
-  details: description,
-  location: 'Révisions Maths - {chapter_title}'
- }});
- 
- return 'https://calendar.google.com/calendar/render?' + params.toString();
-}}
-
-// Fonction pour ajouter un événement individuel au Google Calendar
+        # 4. Remplacer le JavaScript pour les boutons individuels
+        if 'addAllToGoogleCalendar' in content and 'addSingleEventToCalendar' not in content:
+            # Remplacer la fonction addAllToGoogleCalendar par addSingleEventToCalendar
+            old_js_pattern = r"// Fonction pour ajouter tous les événements au Google Calendar.*?alert\('🎉 4 rappels de révision ajoutés à ton Google Calendar[^']*'\);\s*}"
+            
+            new_js = f'''// Fonction pour ajouter un événement individuel au Google Calendar
 function addSingleEventToCalendar(interval, type) {{
  const today = new Date();
  const eventDate = new Date(today);
@@ -145,12 +123,23 @@ function addSingleEventToCalendar(interval, type) {{
  alert(`📅 Rappel "${{config.title}}" ajouté pour le ${{dayName}} !\\n\\nVérifie le nouvel onglet pour confirmer l'événement.`);
 }}'''
             
-            # Ajouter le JavaScript avant la dernière fonction DOMContentLoaded
-            content = re.sub(
-                r'(// Initialiser au chargement de la page\s*document\.addEventListener\([^}]+\}\);)',
-                js_code + '\n\n// Initialiser au chargement de la page\ndocument.addEventListener(\'DOMContentLoaded\', function() {\n initRevisionDates();\n \n // Ajouter les événements aux boutons calendrier individuels\n const calendarBtns = document.querySelectorAll(\'.btn-calendar-mini\');\n calendarBtns.forEach(btn => {\n  btn.addEventListener(\'click\', function() {\n   const interval = parseInt(this.getAttribute(\'data-interval\'));\n   const type = this.getAttribute(\'data-type\');\n   addSingleEventToCalendar(interval, type);\n  });\n });\n});',
-                content
-            )
+            content = re.sub(old_js_pattern, new_js, content, flags=re.DOTALL)
+        
+        # 5. Remplacer l'event listener
+        if 'getElementById(\'addToCalendar\')' in content:
+            old_listener = r"// Ajouter l'événement au bouton Google Calendar\s*const calendarBtn = document\.getElementById\('addToCalendar'\);\s*if \(calendarBtn\) \{\s*calendarBtn\.addEventListener\('click', addAllToGoogleCalendar\);\s*\}"
+            
+            new_listener = """// Ajouter les événements aux boutons calendrier individuels
+ const calendarBtns = document.querySelectorAll('.btn-calendar-mini');
+ calendarBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+   const interval = parseInt(this.getAttribute('data-interval'));
+   const type = this.getAttribute('data-type');
+   addSingleEventToCalendar(interval, type);
+  });
+ });"""
+            
+            content = re.sub(old_listener, new_listener, content, flags=re.DOTALL)
         
         # Sauvegarder seulement si des modifications ont été apportées
         if content != original_content:
@@ -164,14 +153,13 @@ function addSingleEventToCalendar(interval, type) {{
         print(f"Erreur lors du traitement de {file_path}: {e}")
         return False
 
-def process_all_math_chapters():
+def update_all_math_chapters():
     """
-    Traite tous les chapitres de maths pour ajouter la fonctionnalité Google Calendar
+    Met à jour tous les chapitres de maths vers la nouvelle version
     """
     
     base_dir = Path("c:/Project_Learning_Simplified/College_4ieme_Maths")
     
-    # Liste des chapitres avec leurs titres
     chapters = [
         ("01_Nombres_relatifs", "Nombres relatifs"),
         ("02_Fractions_et_calculs", "Fractions et calculs"),
@@ -187,22 +175,22 @@ def process_all_math_chapters():
         ("12_Solides_et_volumes", "Solides et volumes")
     ]
     
-    processed_count = 0
+    updated_count = 0
     
     for chapter_slug, chapter_title in chapters:
         cours_file = base_dir / chapter_slug / "cours" / "cours_principal.html"
         
         if cours_file.exists():
-            print(f"Traitement : {chapter_title}")
-            if add_google_calendar_feature(cours_file, chapter_title, chapter_slug):
-                print(f"  ✅ Fonctionnalité Google Calendar ajoutée")
-                processed_count += 1
+            print(f"Mise à jour : {chapter_title}")
+            if update_calendar_to_individual_buttons(cours_file, chapter_title, chapter_slug):
+                print(f"  ✅ Migré vers boutons individuels")
+                updated_count += 1
             else:
-                print(f"  ℹ️ Aucune modification nécessaire")
+                print(f"  ℹ️ Déjà à jour")
         else:
             print(f"  ❌ Fichier manquant : {cours_file}")
     
-    print(f"\n📊 Résumé : {processed_count} fichiers modifiés sur {len(chapters)} chapitres")
+    print(f"\n📊 Résumé : {updated_count} fichiers mis à jour sur {len(chapters)} chapitres")
 
 if __name__ == "__main__":
-    process_all_math_chapters()
+    update_all_math_chapters()
