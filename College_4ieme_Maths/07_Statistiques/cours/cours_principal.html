@@ -6,7 +6,7 @@ header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 
 section{background:rgba(255,255,255,0.025);padding:1rem 1.1rem;margin:0 0 1rem;border:1px solid #1b222c;border-radius:12px;}
 h1,h2,h3{line-height:1.2;margin:0 0 .65rem;font-weight:600;}
 nav a{color:#67c7ff;text-decoration:none;margin-right:.85rem;font-size:.82rem;letter-spacing:.3px;}nav a:hover{text-decoration:underline;}
-.badge{display:inline-block;padding:.28rem .6rem;border-radius:18px;font-size:.58rem;background:#17212b;margin:0 .35rem .4rem 0;border:1px solid #23303d;letter-spacing:.5px;text-transform:uppercase;opacity:.9;}
+
 .grid-auto{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
 .card{background:#141a21;border:1px solid #232d38;padding:.75rem .85rem;border-radius:12px;position:relative;}
 .card h3{margin-top:0;font-size:1.02rem;}
@@ -16,8 +16,8 @@ pre,code{font-family:consolas,ui-monospace,monospace;font-size:.78rem;}
 .toggle{background:#244b82;color:#fff;border:none;padding:.3rem .55rem;border-radius:6px;font-size:.65rem;cursor:pointer;margin-top:.35rem;}
 .toggle:hover{background:#1d3f6d;}
 .solution{display:none;margin-top:.4rem;padding:.5rem .6rem;background:#1b2733;border:1px solid #2a3948;border-radius:8px;font-size:.78rem;}
-.progress{height:8px;background:#1d2733;border-radius:4px;overflow:hidden;margin:.55rem 0 1rem;}
-.progress span{display:block;height:100%;background:linear-gradient(90deg,#2563eb,#4f46e5);}
+
+
 .table-eval{width:100%;border-collapse:collapse;font-size:.75rem;}
 .table-eval th,.table-eval td{border:1px solid #28323d;padding:.35rem .4rem;text-align:left;}
 blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4px solid #2563eb;border-radius:4px;font-size:.85rem;}
@@ -30,15 +30,11 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
 <header>
  <h1>Statistiques</h1>
  <nav>
-  <a href='../exercices/exercices_niveau1_decouverte.html'>Ex N1</a>
-  <a href='../exercices/exercices_niveau2_pratique.html'>Ex N2</a>
-  <a href='../exercices/exercices_niveau3_defi.html'>Ex N3</a>
-  <a href='../corrections/corrections_detaillees.html'>Corrections</a>
+  <a href='../exercices/exercices_niveau1_decouverte.html'>Exercice Niveau 1</a>
+  <a href='../exercices/exercices_niveau2_pratique.html'>Exercice Niveau 2</a>
+  <a href='../exercices/exercices_niveau3_defi.html'>Exercice Niveau 3</a>
   <a href='../fiches_resume/fiche_synthese.html'>Synthèse</a>
-  <a href='../evaluations/evaluation_formative.html'>Évaluation</a>
- </nav>
- <div class='progress'><span style='width:6%'></span></div>
- <span class='badge'>Objectifs</span><span class='badge'>Prérequis</span><span class='badge'>Différenciation</span><span class='badge'>Métacognition</span>
+  </nav>
 </header>
 <section><h2>1. Mise en situation</h2><p><strong>Pourquoi ?</strong> Résumer un ensemble de données (notes, mesures).</p><blockquote>Notes : 8, 11, 11, 14, 17.</blockquote></section>
 <section><h2>2. Objectif final</h2><p>Être capable de calculer moyenne, médiane, étendue et interpréter.</p></section>
