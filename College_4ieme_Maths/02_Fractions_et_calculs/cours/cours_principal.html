@@ -2,7 +2,7 @@
 <title>Fractions et calculs</title>
 <style>
 body{font-family:Arial,system-ui,sans-serif;margin:0;padding:1.1rem 1.2rem;line-height:1.55;background:#0f1115;color:#f5f7fa;}
-header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 1.2rem;border:1px solid #1e2530;border-radius:14px;-webkit-backdrop-filter:blur(9px);}
+header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 1.2rem;border:1px solid #1e2530;border-radius:14px;-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);}
 section{background:rgba(255,255,255,0.025);padding:1rem 1.1rem;margin:0 0 1rem;border:1px solid #1b222c;border-radius:12px;}
 h1,h2,h3{line-height:1.2;margin:0 0 .65rem;font-weight:600;}
 nav a{color:#67c7ff;text-decoration:none;margin-right:.85rem;font-size:.82rem;letter-spacing:.3px;}nav a:hover{text-decoration:underline;}
@@ -18,6 +18,7 @@ pre,code{font-family:consolas,ui-monospace,monospace;font-size:.78rem;}
 .solution{display:none;margin-top:.4rem;padding:.5rem .6rem;background:#1b2733;border:1px solid #2a3948;border-radius:8px;font-size:.78rem;}
 .progress{height:8px;background:#1d2733;border-radius:4px;overflow:hidden;margin:.55rem 0 1rem;}
 .progress span{display:block;height:100%;background:linear-gradient(90deg,#2563eb,#4f46e5);}
+.progress-6{width:6%;}
 .table-eval{width:100%;border-collapse:collapse;font-size:.75rem;}
 .table-eval th,.table-eval td{border:1px solid #28323d;padding:.35rem .4rem;text-align:left;}
 blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4px solid #2563eb;border-radius:4px;font-size:.85rem;}
@@ -37,7 +38,7 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
   <a href='../fiches_resume/fiche_synthese.html'>Synthèse</a>
   <a href='../evaluations/evaluation_formative.html'>Évaluation</a>
  </nav>
- <div class='progress'><span style='width:6%'></span></div>
+ <div class='progress'><span class='progress-6'></span></div>
  <span class='badge'>Objectifs</span><span class='badge'>Prérequis</span><span class='badge'>Différenciation</span><span class='badge'>Métacognition</span>
 </header>
 <section><h2>1. Mise en situation</h2><p><strong>Pourquoi ?</strong> Partager équitablement, adapter des recettes, calculer des portions.</p><blockquote>Recette pour 6 personnes à adapter pour 4.</blockquote></section>

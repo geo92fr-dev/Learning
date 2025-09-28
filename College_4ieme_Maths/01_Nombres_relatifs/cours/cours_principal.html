@@ -2,9 +2,14 @@
 <title>Nombres relatifs</title>
 <style>
 body{font-family:Arial,system-ui,sans-serif;margin:0;padding:1.1rem 1.2rem;line-height:1.55;background:#0f1115;color:#f5f7fa;}
-header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 1.2rem;border:1px solid #1e2530;border-radius:14px;-webkit-backdrop-filter:blur(9px);}
+header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 1.2rem;border:1px solid #1e2530;border-radius:14px;-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);}
 section{background:rgba(255,255,255,0.025);padding:1rem 1.1rem;margin:0 0 1rem;border:1px solid #1b222c;border-radius:12px;}
 h1,h2,h3{line-height:1.2;margin:0 0 .65rem;font-weight:600;}
+/* Utilities */
+.mt-narrow{margin-top:.4rem;}
+.summary-mini{cursor:pointer;font-size:.7rem;}
+.text-fade{opacity:.6;}
+.list-compact{font-size:.7rem;line-height:1.3;}
 nav a{color:#67c7ff;text-decoration:none;margin-right:.85rem;font-size:.82rem;letter-spacing:.3px;}nav a:hover{text-decoration:underline;}
 .badge{display:inline-block;padding:.28rem .6rem;border-radius:18px;font-size:.58rem;background:#17212b;margin:0 .35rem .4rem 0;border:1px solid #23303d;letter-spacing:.5px;text-transform:uppercase;opacity:.9;}
 .grid-auto{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
@@ -18,6 +23,7 @@ pre,code{font-family:consolas,ui-monospace,monospace;font-size:.78rem;}
 .solution{display:none;margin-top:.4rem;padding:.5rem .6rem;background:#1b2733;border:1px solid #2a3948;border-radius:8px;font-size:.78rem;}
 .progress{height:8px;background:#1d2733;border-radius:4px;overflow:hidden;margin:.55rem 0 1rem;}
 .progress span{display:block;height:100%;background:linear-gradient(90deg,#2563eb,#4f46e5);}
+.progress-6{width:6%;}
 .table-eval{width:100%;border-collapse:collapse;font-size:.75rem;}
 .table-eval th,.table-eval td{border:1px solid #28323d;padding:.35rem .4rem;text-align:left;}
 blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4px solid #2563eb;border-radius:4px;font-size:.85rem;}
@@ -37,16 +43,66 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
   <a href='../fiches_resume/fiche_synthese.html'>Synthèse</a>
   <a href='../evaluations/evaluation_formative.html'>Évaluation</a>
  </nav>
- <div class='progress'><span style='width:6%'></span></div>
+ <div class='progress'><span class='progress-6'></span></div>
  <span class='badge'>Objectifs</span><span class='badge'>Prérequis</span><span class='badge'>Différenciation</span><span class='badge'>Métacognition</span>
 </header>
 <section><h2>1. Mise en situation</h2><p><strong>Pourquoi ?</strong> Interpréter gains/pertes, températures, altitudes et soldes.</p><blockquote>Un jeu vidéo affiche -120 PV puis +45 PV.</blockquote></section>
 <section><h2>2. Objectif final</h2><p>Être capable de additionner, soustraire et comparer des nombres relatifs dans des situations concrètes.</p></section>
 <section><h2>3. Prérequis rapides</h2><ul><li>Sens du signe moins</li><li>Lecture droite graduée</li><li>Priorités calcul simple</li></ul><div class='notice'>Si un prérequis manque → mini réactivation avant de poursuivre.</div></section>
 <section><h2>4. Étapes guidées</h2><div class='grid-auto'><div class='card'><h3>Étape 1 – Situer</h3><p>Placer chaque nombre sur une droite graduée.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div><div class='card'><h3>Étape 2 – Comparer</h3><p>Observer positions relatives pour décider signe final.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div><div class='card'><h3>Étape 3 – Calculer</h3><p>Additionner ou soustraire les valeurs absolues selon les signes.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div></div></section>
+<section><h2>4 bis. Exemple guidé (Fading)</h2>
+ <p><strong>Objectif :</strong> Passer d'un calcul entièrement expliqué à un calcul autonome.</p>
+ <div class='grid-auto'>
+  <div class='card'>
+   <h3>Phase 1 – 100% guidé</h3>
+   <p><em>Calcul :</em> (+7) + (-5)</p>
+    <ol class='mt-narrow'>
+    <li>Je repère les signes : + puis - (signes différents).</li>
+    <li>Je prends les valeurs absolues : 7 et 5.</li>
+    <li>Je fais 7 - 5 = 2.</li>
+    <li>Je garde le signe de la plus grande valeur (7 est +) → <strong>+2</strong>.</li>
+    <li>Je vérifie avec un contexte (argent ou température).</li>
+   </ol>
+  </div>
+  <div class='card'>
+   <h3>Phase 2 – Semi-guidé</h3>
+   <p><em>Calcul :</em> (-9) + (+4)</p>
+   <p>Indices : signes différents → soustraction des valeurs. Signe final ?</p>
+    <details><summary class='summary-mini'>Voir solution</summary><p>9 - 4 = 5 et 9 est négatif → <strong>-5</strong>.</p></details>
+  </div>
+  <div class='card'>
+   <h3>Phase 3 – Autonome</h3>
+   <p><em>Calcul :</em> (+12) + (-7)</p>
+    <p>Résultat : <span class='text-fade'>à écrire →</span></p>
+    <details><summary class='summary-mini'>Auto-vérification</summary><ul class='list-compact'><li>Signe logique ?</li><li>Soustraction faite ?</li><li>Signe du plus grand gardé ?</li></ul></details>
+  </div>
+ </div>
+</section>
 <section><h2>5. Visualisation</h2><p>Droite graduée avec -8, -3, 0, +4, +7 colorés.</p></section>
 <section><h2>6. Méthode</h2><ol><li>Même signe → additionner les valeurs et garder le signe.</li><li>Signes différents → soustraire la plus petite valeur absolue de la plus grande.</li><li>Résultat prend le signe de la plus grande valeur absolue.</li><li>Contrôle : exemple concret (température ou argent).</li></ol></section>
 <section><h2>7. Erreurs fréquentes</h2><ul><li>Retirer mécaniquement le signe du plus grand nombre.</li><li>Confondre soustraction et 'prendre la différence' des valeurs absolues.</li><li>Oublier de justifier le signe final.</li></ul></section>
+<section><h2>7 bis. Analyse d'erreurs</h2>
+ <div class='grid-auto'>
+  <div class='card'>
+   <h3>Erreur A</h3>
+   <p><em>Faute :</em> (+7)+(-5)= -12</p>
+   <p><strong>Pourquoi faux :</strong> On a additionné au lieu de soustraire car signes différents.</p>
+   <p><strong>Correction :</strong> 7 - 5 = 2 puis signe de 7 → +2.</p>
+  </div>
+  <div class='card'>
+   <h3>Erreur B</h3>
+   <p><em>Faute :</em> (-8)+(+3)= +5</p>
+   <p><strong>Pourquoi faux :</strong> Le signe de la plus grande valeur absolue (8) est -, pas +.</p>
+   <p><strong>Correction :</strong> 8 - 3 = 5 puis signe de -8 → -5.</p>
+  </div>
+  <div class='card'>
+   <h3>Erreur C</h3>
+   <p><em>Faute :</em> (-4)+(-6)= -2</p>
+   <p><strong>Pourquoi faux :</strong> Même signe → on additionne les valeurs absolues.</p>
+   <p><strong>Correction :</strong> 4 + 6 = 10 → -10.</p>
+  </div>
+ </div>
+</section>
 <section><h2>8. Auto-contrôle immédiat</h2><ul><li>Je peux expliquer la notion « Addition/Soustraction relatifs ».</li><li>Je sais appliquer sans modèle.</li><li>Je justifie mon signe / choix / formule.</li></ul></section>
 <section><h2>9. Plan de réactivation</h2><ul><li>J+1 : 2 ex. N1</li><li>J+3 : 2 ex. N2</li><li>J+7 : mini quiz</li><li>J+14 : défi mélange</li></ul></section>
 <footer><small>Contenu enrichi – Génération structurée • Réactivation : J+1 / J+3 / J+7 / J+14</small></footer></body></html>

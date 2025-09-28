@@ -2,7 +2,7 @@
 <title>Fiche Synthèse</title>
 <style>
 body{font-family:Arial,system-ui,sans-serif;margin:0;padding:1.1rem 1.2rem;line-height:1.55;background:#0f1115;color:#f5f7fa;}
-header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 1.2rem;border:1px solid #1e2530;border-radius:14px;-webkit-backdrop-filter:blur(9px);}
+header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 1.2rem;border:1px solid #1e2530;border-radius:14px;-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);} 
 section{background:rgba(255,255,255,0.025);padding:1rem 1.1rem;margin:0 0 1rem;border:1px solid #1b222c;border-radius:12px;}
 h1,h2,h3{line-height:1.2;margin:0 0 .65rem;font-weight:600;}
 nav a{color:#67c7ff;text-decoration:none;margin-right:.85rem;font-size:.82rem;letter-spacing:.3px;}nav a:hover{text-decoration:underline;}
@@ -21,6 +21,9 @@ pre,code{font-family:consolas,ui-monospace,monospace;font-size:.78rem;}
 .table-eval{width:100%;border-collapse:collapse;font-size:.75rem;}
 .table-eval th,.table-eval td{border:1px solid #28323d;padding:.35rem .4rem;text-align:left;}
 blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4px solid #2563eb;border-radius:4px;font-size:.85rem;}
+/* Utilities */
+.summary-mini{cursor:pointer;font-size:.65rem;}
+.note-mini{font-size:.7rem;opacity:.75;}
 @media (max-width:760px){nav a{display:inline-block;margin:.25rem .6rem .25rem 0;}}
 </style>
 <script>
@@ -29,5 +32,14 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
 </head><body>
 <header><h1>Fiche Synthèse – Nombres relatifs</h1><nav><a href='../cours/cours_principal.html'>Cours</a></nav></header>
 <section><h2>Essentiel</h2><ul><li>Même signe → additionner les valeurs et garder le signe.</li><li>Signes différents → soustraire la plus petite valeur absolue de la plus grande.</li><li>Résultat prend le signe de la plus grande valeur absolue.</li><li>Contrôle : exemple concret (température ou argent).</li></ul></section>
-<section><h2>Mini Quiz</h2><ol><li>Question rapide 1 (adapter).</li><li>Question rapide 2 (adapter).</li><li>Question rapide 3 (adapter).</li><li>Question rapide 4 (adapter).</li><li>Question rapide 5 (adapter).</li></ol></section>
+<section><h2>Mini Quiz</h2>
+ <ol>
+    <li>(+7) + (-4) = ? <details><summary class='summary-mini'>Voir</summary><em>7 - 4 = 3 signe de 7 → +3</em></details></li>
+    <li>(-9) + (+3) = ? <details><summary class='summary-mini'>Voir</summary><em>9 - 3 = 6 signe de -9 → -6</em></details></li>
+    <li>(-5) + (-6) = ? <details><summary class='summary-mini'>Voir</summary><em>Même signe : 5 + 6 = 11 → -11</em></details></li>
+    <li>Donner l'opposé de -12. <details><summary class='summary-mini'>Voir</summary><em>+12</em></details></li>
+    <li>Vrai ou faux : (-8) + (+8) = +16 ? <details><summary class='summary-mini'>Voir</summary><em>Faux : somme = 0 (nombres opposés)</em></details></li>
+ </ol>
+ <p class='note-mini'>Auto-contrôle : si 4/5 justes sans aide → passer aux exercices niveau 2.</p>
+</section>
 <footer><small>Contenu enrichi – Génération structurée • Réactivation : J+1 / J+3 / J+7 / J+14</small></footer></body></html>

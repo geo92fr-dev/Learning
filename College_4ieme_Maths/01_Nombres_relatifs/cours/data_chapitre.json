@@ -28,5 +28,26 @@
     "Retirer mécaniquement le signe du plus grand nombre.",
     "Confondre soustraction et 'prendre la différence' des valeurs absolues.",
     "Oublier de justifier le signe final."
+  ],
+  "vocabulaire": [
+    {"terme": "Valeur absolue", "definition": "Distance d'un nombre à 0 sur la droite graduée (toujours positive)."},
+    {"terme": "Signe", "definition": "+ indique une valeur au-dessus de 0, - indique une valeur en dessous de 0."},
+    {"terme": "Opposé", "definition": "Deux nombres sont opposés s'ils ont la même valeur absolue mais des signes contraires (ex: +5 et -5)."}
+  ],
+  "exemples_concrets": [
+    "Température : -3°C puis +5°C → montée de 5 degrés depuis -3.",
+    "Ascenseur : RDC (0) → 4ème (+4) → 1er (-1) = descente après montée.",
+    "Argent : Solde -20€, dépôt 35€ → solde +15€.",
+    "Plongée : surface 0m, descente 12m → -12m (profondeur)."
+  ],
+  "auto_verification": [
+    "Mon résultat a-t-il un signe logique par rapport à la situation ?",
+    "Ai-je traité séparément le calcul des valeurs et le choix du signe ?",
+    "Puis-je représenter rapidement le calcul sur une droite ?"
+  ],
+  "sequence_fading": [
+    {"etape": "Exemple entièrement guidé", "support": ["Droite graduée fournie", "Explication verbale", "Étapes numérotées"]},
+    {"etape": "Exemple semi-guidé", "support": ["Droite esquissée", "Indices de signes"]},
+    {"etape": "Exercice autonome", "support": ["Aucun support visuel", "Checklist finale seulement"]}
   ]
 }
