@@ -138,7 +138,28 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
  <p class='notice'>Les nombres colorés (-8, -3, 0, +4, +7) sont les points clés pour comprendre l'ordre et les calculs.</p>
 </section>
 <section><h2>6. Méthode</h2><ol><li>Même signe → additionner les valeurs et garder le signe.</li><li>Signes différents → soustraire la plus petite valeur absolue de la plus grande.</li><li>Résultat prend le signe de la plus grande valeur absolue.</li><li>Contrôle : exemple concret (température ou argent).</li></ol></section>
-<section><h2>7. Erreurs fréquentes</h2><ul><li>Retirer mécaniquement le signe du plus grand nombre.</li><li>Confondre soustraction et 'prendre la différence' des valeurs absolues.</li><li>Oublier de justifier le signe final.</li></ul></section>
+<section><h2>7. Erreurs fréquentes</h2>
+ <div class='grid-auto'>
+  <div class='card'>
+   <h3>❌ Erreur 1</h3>
+   <p><strong>Retirer mécaniquement le signe du plus grand nombre</strong></p>
+   <p><em>Exemple faux :</em> (+3) + (-7) = +4 <span class='text-fade'>(pensée : "7 - 3 = 4, et comme 7 est le plus grand, je garde +")</span></p>
+   <p><strong>✅ Correct :</strong> 7 - 3 = 4, mais le signe de -7 (le plus grand) → <strong>-4</strong></p>
+  </div>
+  <div class='card'>
+   <h3>❌ Erreur 2</h3>
+   <p><strong>Confondre soustraction et 'prendre la différence'</strong></p>
+   <p><em>Exemple faux :</em> (-5) + (-3) = -2 <span class='text-fade'>(pensée : "5 - 3 = 2 puis -")</span></p>
+   <p><strong>✅ Correct :</strong> Même signe → 5 + 3 = 8 puis signe commun → <strong>-8</strong></p>
+  </div>
+  <div class='card'>
+   <h3>❌ Erreur 3</h3>
+   <p><strong>Oublier de justifier le signe final</strong></p>
+   <p><em>Exemple incomplet :</em> (+6) + (-2) = 4 <span class='text-fade'>(pas d'explication du signe)</span></p>
+   <p><strong>✅ Correct :</strong> 6 - 2 = 4, signe de +6 (le plus grand) → <strong>+4</strong></p>
+  </div>
+ </div>
+</section>
 <section><h2>7 bis. Analyse d'erreurs</h2>
  <div class='grid-auto'>
   <div class='card'>
