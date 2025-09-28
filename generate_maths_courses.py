@@ -23,7 +23,7 @@ HTML_HEAD = """<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'><meta 
 <title>{title}</title>
 <style>
 body{{font-family:Arial,system-ui,sans-serif;margin:0;padding:1.2rem;line-height:1.5;background:#0f1115;color:#f5f7fa;}}
-header,footer{{background:rgba(255,255,255,0.05);padding:1rem 1.2rem;margin:0 0 1.2rem;border:1px solid #222;border-radius:12px;backdrop-filter:blur(8px);}} 
+header,footer{{background:rgba(255,255,255,0.05);padding:1rem 1.2rem;margin:0 0 1.2rem;border:1px solid #222;border-radius:12px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}} 
 section{{background:rgba(255,255,255,0.03);padding:1rem 1.2rem;margin:0 0 1rem;border:1px solid #1e1e1e;border-radius:10px;}} 
 h1,h2,h3{{line-height:1.2;margin:0 0 .6rem;font-weight:600;}} 
 nav a{{color:#6bc1ff;text-decoration:none;margin-right:.9rem;font-size:.9rem;}} nav a:hover{{text-decoration:underline;}} 
