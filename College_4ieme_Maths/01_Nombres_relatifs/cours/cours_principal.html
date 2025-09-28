@@ -191,25 +191,25 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
   </div>
  </div>
 </section>
-<section><h2>7 bis. Analyse d'erreurs</h2>
+<section><h2>7 bis. Analyse d'erreurs détaillée</h2>
  <div class='grid-auto'>
   <div class='card'>
-   <h3>Erreur A</h3>
-   <p><em>Faute :</em> (+7)+(-5)= -12</p>
-   <p><strong>Pourquoi faux :</strong> On a additionné au lieu de soustraire car signes différents.</p>
-   <p><strong>Correction :</strong> 7 - 5 = 2 puis signe de 7 → +2.</p>
+   <h3>❌ Cas d'erreur A</h3>
+   <p><em>Réponse fausse :</em> (+7) + (-5) = -12</p>
+   <p><strong>Raisonnement erroné :</strong> <span class='text-fade'>"J'additionne 7 + 5 = 12 puis je mets -"</span></p>
+   <p><strong>✅ Correction :</strong> Signes différents → 7 - 5 = 2, signe de +7 → <strong>+2</strong></p>
   </div>
   <div class='card'>
-   <h3>Erreur B</h3>
-   <p><em>Faute :</em> (-8)+(+3)= +5</p>
-   <p><strong>Pourquoi faux :</strong> Le signe de la plus grande valeur absolue (8) est -, pas +.</p>
-   <p><strong>Correction :</strong> 8 - 3 = 5 puis signe de -8 → -5.</p>
+   <h3>❌ Cas d'erreur B</h3>
+   <p><em>Réponse fausse :</em> (-8) + (+3) = +5</p>
+   <p><strong>Raisonnement erroné :</strong> <span class='text-fade'>"8 - 3 = 5, je garde le signe +"</span></p>
+   <p><strong>✅ Correction :</strong> 8 - 3 = 5, mais signe de -8 (le plus grand) → <strong>-5</strong></p>
   </div>
   <div class='card'>
-   <h3>Erreur C</h3>
-   <p><em>Faute :</em> (-4)+(-6)= -2</p>
-   <p><strong>Pourquoi faux :</strong> Même signe → on additionne les valeurs absolues.</p>
-   <p><strong>Correction :</strong> 4 + 6 = 10 → -10.</p>
+   <h3>❌ Cas d'erreur C</h3>
+   <p><em>Réponse fausse :</em> (-4) + (-6) = -2</p>
+   <p><strong>Raisonnement erroné :</strong> <span class='text-fade'>"6 - 4 = 2, je mets le signe -"</span></p>
+   <p><strong>✅ Correction :</strong> Même signe négatif → 4 + 6 = 10 → <strong>-10</strong></p>
   </div>
  </div>
 </section>
