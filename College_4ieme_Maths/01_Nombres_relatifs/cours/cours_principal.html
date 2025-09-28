@@ -162,5 +162,50 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
  </div>
 </section>
 <section><h2>8. Auto-contrôle immédiat</h2><ul><li>Je peux expliquer la notion « Addition/Soustraction relatifs ».</li><li>Je sais appliquer sans modèle.</li><li>Je justifie mon signe / choix / formule.</li></ul></section>
-<section><h2>9. Plan de réactivation</h2><ul><li>J+1 : 2 ex. N1</li><li>J+3 : 2 ex. N2</li><li>J+7 : mini quiz</li><li>J+14 : défi mélange</li></ul></section>
-<footer><small>Contenu enrichi – Génération structurée • Réactivation : J+1 / J+3 / J+7 / J+14</small></footer></body></html>
+<section><h2>9. Plan de réactivation</h2>
+ <p><strong>Cours fait le :</strong> <span id='dateToday' class='text-fade'></span></p>
+ <ul>
+  <li><strong>J+1</strong> (<span id='dateJ1'></span>) : <a href='../exercices/exercices_niveau1_decouverte.html'>2 ex. N1 découverte</a></li>
+  <li><strong>J+3</strong> (<span id='dateJ3'></span>) : <a href='../exercices/exercices_niveau2_pratique.html'>2 ex. N2 pratique</a></li>
+  <li><strong>J+7</strong> (<span id='dateJ7'></span>) : <a href='../fiches_resume/fiche_synthese.html'>mini quiz synthèse</a></li>
+  <li><strong>J+14</strong> (<span id='dateJ14'></span>) : <a href='../exercices/exercices_niveau3_defi.html'>défi mélange N3</a></li>
+ </ul>
+ <p class='notice'><strong>Astuce :</strong> Note ces dates dans ton agenda pour réviser efficacement !</p>
+</section>
+<footer><small>Contenu enrichi – Génération structurée • Réactivation : J+1 / J+3 / J+7 / J+14</small></footer>
+<script>
+// Calcul dynamique des dates de réactivation
+function initRevisionDates() {
+ const today = new Date();
+ const options = { 
+  weekday: 'long', 
+  day: 'numeric', 
+  month: 'long', 
+  year: 'numeric' 
+ };
+ 
+ // Date du jour
+ document.getElementById('dateToday').textContent = today.toLocaleDateString('fr-FR', options);
+ 
+ // Calcul des dates J+1, J+3, J+7, J+14
+ const intervals = [1, 3, 7, 14];
+ const dateIds = ['dateJ1', 'dateJ3', 'dateJ7', 'dateJ14'];
+ 
+ intervals.forEach((interval, index) => {
+  const futureDate = new Date(today);
+  futureDate.setDate(today.getDate() + interval);
+  
+  const dateStr = futureDate.toLocaleDateString('fr-FR', { 
+   weekday: 'short', 
+   day: 'numeric', 
+   month: 'short' 
+  });
+  
+  document.getElementById(dateIds[index]).textContent = dateStr;
+ });
+}
+
+// Initialiser au chargement de la page
+document.addEventListener('DOMContentLoaded', initRevisionDates);
+</script>
+</body></html>
