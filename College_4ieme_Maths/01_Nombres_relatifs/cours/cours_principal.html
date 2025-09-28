@@ -41,6 +41,62 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
 .dot-context{background:#3b82f6;}
 .dot-method{background:#10b981;}
 @media (max-width:760px){nav a{display:inline-block;margin:.25rem .6rem .25rem 0;}.tips-legend{flex-direction:column;gap:.4rem;}}
+ 
+ .regle-encadree {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+ }
+ .regle-encadree .titre-regle {
+  font-size: 1rem;
+  margin: 0 0 .4rem;
+  position: relative;
+  padding-left: 1.5rem;
+ }
+ .regle-encadree .contenu-regle {
+  background: rgba(245, 247, 250, 0.05);
+  padding: 10px;
+  border-radius: 8px;
+  border-left: 4px solid #67c7ff;
+  font-weight: 600;
+ }
+ 
+ /* Règles colorées */
+ .regle-bleue {
+  border-color: #67c7ff;
+  background: linear-gradient(135deg, rgba(103, 199, 255, 0.15), rgba(103, 199, 255, 0.05));
+  box-shadow: 0 4px 15px rgba(103, 199, 255, 0.3);
+ }
+ .regle-bleue::before {
+  content: '➕';
+  border-color: #67c7ff;
+ }
+ .regle-bleue .titre-regle {
+  color: #67c7ff;
+  text-shadow: 0 0 10px rgba(103, 199, 255, 0.5);
+ }
+ .regle-bleue .contenu-regle {
+  border-left-color: #67c7ff;
+ }
+ 
+ .regle-orange {
+  border-color: #ff9f43;
+  background: linear-gradient(135deg, rgba(255, 159, 67, 0.15), rgba(255, 159, 67, 0.05));
+  box-shadow: 0 4px 15px rgba(255, 159, 67, 0.3);
+ }
+ .regle-orange::before {
+  content: '➖';
+  border-color: #ff9f43;
+ }
+ .regle-orange .titre-regle {
+  color: #ff9f43;
+  text-shadow: 0 0 10px rgba(255, 159, 67, 0.5);
+ }
+ .regle-orange .contenu-regle {
+  border-left-color: #ff9f43;
+ }
 </style>
 <script>
 function toggleSolution(id){const el=document.getElementById(id);if(!el)return;el.style.display=el.style.display==='none'||el.style.display===''?'block':'none';}
@@ -64,12 +120,12 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
   <div class='legend-item'><div class='legend-dot dot-method'></div><span>⚡ Méthode rapide</span></div>
  </div>
 </header>
-<section><h2>1. Introduction et objectif</h2>
+<section><h2>🎯 1. Introduction et objectif</h2>
  <p><strong>Pourquoi étudier les nombres relatifs ?</strong> Pour interpréter gains/pertes, températures, altitudes et soldes dans la vie quotidienne.</p>
  <blockquote>Exemples : Un jeu vidéo affiche -120 PV puis +45 PV • Température : -5°C puis montée de 8°C • Compte bancaire : -50€ puis dépôt de 75€</blockquote>
  <div class='tip-context'>🌍 <strong>Objectif du chapitre :</strong> Être capable d'additionner, soustraire et comparer des nombres relatifs dans des situations concrètes.</div>
 </section>
-<section><h2>2. Prérequis rapides</h2>
+<section><h2>🛠️ 2. Prérequis rapides</h2>
  <div class='grid-auto'>
   <div class='card'>
    <h3>📍 Sens du signe moins</h3>
@@ -92,8 +148,8 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
  </div>
  <div class='notice'>Si un prérequis manque → mini réactivation avant de poursuivre.</div>
 </section>
-<section><h2>3. Étapes guidées</h2><div class='grid-auto'><div class='card'><h3>Étape 1 – Situer</h3><p>Placer chaque nombre sur une droite graduée.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div><div class='card'><h3>Étape 2 – Comparer</h3><p>Observer positions relatives pour décider signe final.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div><div class='card'><h3>Étape 3 – Calculer</h3><p>Additionner ou soustraire les valeurs absolues selon les signes.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div></div></section>
-<section><h2>3 bis. Exemple guidé (Fading)</h2>
+<section><h2>🚶 3. Étapes guidées</h2><div class='grid-auto'><div class='card'><h3>Étape 1 – Situer</h3><p>Placer chaque nombre sur une droite graduée.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div><div class='card'><h3>Étape 2 – Comparer</h3><p>Observer positions relatives pour décider signe final.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div><div class='card'><h3>Étape 3 – Calculer</h3><p>Additionner ou soustraire les valeurs absolues selon les signes.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div></div></section>
+<section><h2>✨ 3 bis. Exemple guidé (Fading)</h2>
  <p><strong>Objectif :</strong> Passer d'un calcul entièrement expliqué à un calcul autonome.</p>
  <div class='grid-auto'>
   <div class='card'>
@@ -101,7 +157,7 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
    <p><em>Calcul :</em> (+7) + (-5)</p>
     <ol class='mt-narrow'>
     <li>Je repère les signes : + puis - (signes différents).</li>
-    <li>Je prends les valeurs absolues : 7 et 5.</li>
+    <li>Je prends les valeurs absolues (distances à zéro) : 7 et 5.</li>
     <li>Je fais 7 - 5 = 2.</li>
     <li>Je garde le signe de la plus grande valeur (7 est +) → <strong>+2</strong>.</li>
    </ol>
@@ -110,18 +166,19 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
   <div class='card'>
    <h3>Phase 2 – Semi-guidé</h3>
    <p><em>Calcul :</em> (-9) + (+4)</p>
-   <p>Indices : signes différents → soustraction des valeurs absolues. Quel signe pour le résultat ?</p>
-    <details><summary class='summary-mini'>Voir solution</summary><p>Valeurs absolues : 9 et 4 → 9 - 4 = 5. Signe de la plus grande valeur absolue : -9 → <strong>-5</strong>.</p></details>
+   <p>Indices : signes différents → soustraction des valeurs absolues (distances à zéro). Quel signe pour le résultat ?</p>
+    <details><summary class='summary-mini'>Voir solution</summary><p>Valeurs absolues (distances à zéro) : 9 et 4 → 9 - 4 = 5. Signe de la plus grande distance : -9 → <strong>-5</strong>.</p></details>
   </div>
   <div class='card'>
-   <h3>Phase 3 – Autonome</h3>
+   <h3>Phase 3 – Autonome 🏆</h3>
    <p><em>Calcul :</em> (+12) + (-7)</p>
     <p>Résultat : <span class='text-fade'>à écrire →</span></p>
+   <details><summary class='summary-mini'>🆘 Besoin d'aide ?</summary><p><strong>Astuce :</strong> Les signes sont différents ! Tu dois soustraire les distances à zéro (12 - 7) et garder le signe du nombre le plus "fort" (+12).</p></details>
     <details><summary class='summary-mini'>Auto-vérification</summary><ul class='list-compact'><li>Signe logique ?</li><li>Soustraction faite ?</li><li>Signe du plus grand gardé ?</li></ul></details>
   </div>
  </div>
 </section>
-<section><h2>4. Visualisation</h2>
+<section><h2>🎨 4. Visualisation</h2>
  <p><strong>Droite graduée des nombres relatifs :</strong></p>
  <div class='svg-container'>
   <svg viewBox='0 0 600 120' class='svg-responsive'>
@@ -175,9 +232,24 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
    <text x='450' y='25' text-anchor='middle' fill='#10ac84' font-size='12' font-style='italic'>positifs →</text>
   </svg>
  </div>
- <p class='notice'>Les nombres colorés (-8, -3, 0, +4, +7) sont les points clés pour comprendre l'ordre et les calculs.</p>
+ <div class='grid-auto'>
+  <div class='card'>
+   <h4>🎨 Code couleur de la droite</h4>
+   <p>🔴 <strong>Rouge :</strong> Nombres très négatifs (-8, -6...)</p>
+   <p>🟠 <strong>Orange :</strong> Nombres moyennement négatifs (-3, -4...)</p>
+   <p>⚪ <strong>Blanc :</strong> Le zéro (origine, neutre)</p>
+   <p>🟢 <strong>Vert :</strong> Nombres moyennement positifs (+3, +4...)</p>
+   <p>🔵 <strong>Bleu :</strong> Nombres très positifs (+7, +8...)</p>
+  </div>
+  <div class='card'>
+   <h4>🎯 Astuce de navigation</h4>
+   <p><strong>Règle simple :</strong> Plus on va à droite, plus les nombres sont grands</p>
+   <p><em>Exemple :</em> -8 < -3 < 0 < +4 < +7</p>
+   <div class='tip-method'>⚡ <strong>Mémo :</strong> Gauche = Plus petit • Droite = Plus grand</div>
+  </div>
+ </div>
 </section>
-<section><h2>5. Méthode illustrée</h2>
+<section><h2>💡 5. Méthode illustrée</h2>
  <div class='grid-auto'>
   <div class='card'>
    <h3>🔹 Étape 1 : Même signe</h3>
@@ -220,7 +292,7 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
   </div>
  </div>
 </section>
-<section><h2>6. Erreurs fréquentes</h2>
+<section><h2>⚠️ 6. Erreurs fréquentes</h2>
  <div class='grid-auto'>
   <div class='card'>
    <h3>❌ Erreur 1</h3>
@@ -242,7 +314,7 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
   </div>
  </div>
 </section>
-<section><h2>6 bis. Analyse d'erreurs détaillée</h2>
+<section><h2>🔍 6 bis. Analyse d'erreurs détaillée</h2>
  <div class='grid-auto'>
   <div class='card'>
    <h3>❌ Cas d'erreur A</h3>
@@ -264,8 +336,42 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
   </div>
  </div>
 </section>
-<section><h2>7. Auto-contrôle immédiat</h2><ul><li>Je peux expliquer la notion « Addition/Soustraction relatifs ».</li><li>Je sais appliquer sans modèle.</li><li>Je justifie mon signe / choix / formule.</li></ul></section>
-<section><h2>8. Plan de réactivation</h2>
+<section><h2>🧩 6 ter. Erreurs à repérer (Développe ton œil critique !)</h2>
+ <div class='grid-auto'>
+  <div class='card'>
+   <h3>🕵️ Exercice 1 : Trouve l'erreur</h3>
+   <p><strong>Calcul d'Alex :</strong> (+5) + (-8) = +13</p>
+   <p><em>Raisonnement d'Alex :</em> "Je fais 5 + 8 = 13, et je mets le signe +"</p>
+   <details><summary class='summary-mini'>🔍 Voir la correction</summary>
+    <p><strong>❌ Erreur :</strong> Alex a additionné au lieu de soustraire</p>
+    <p><strong>✅ Correct :</strong> Signes différents → 8 - 5 = 3, signe de -8 → <strong>-3</strong></p>
+    <div class='tip-verify'>💡 Alex a confondu "même signe" et "signes différents"</div>
+   </details>
+  </div>
+  <div class='card'>
+   <h3>🕵️ Exercice 2 : Trouve l'erreur</h3>
+   <p><strong>Calcul de Sarah :</strong> (-6) + (-4) = +2</p>
+   <p><em>Raisonnement de Sarah :</em> "6 - 4 = 2, donc +2"</p>
+   <details><summary class='summary-mini'>🔍 Voir la correction</summary>
+    <p><strong>❌ Erreur :</strong> Sarah a soustrait au lieu d'additionner</p>
+    <p><strong>✅ Correct :</strong> Même signe négatif → 6 + 4 = 10 → <strong>-10</strong></p>
+    <div class='tip-verify'>💡 Sarah a appliqué la règle des signes différents à des signes identiques</div>
+   </details>
+  </div>
+  <div class='card'>
+   <h3>🕵️ Exercice 3 : Trouve l'erreur</h3>
+   <p><strong>Calcul de Tom :</strong> (+9) + (-2) = -7</p>
+   <p><em>Raisonnement de Tom :</em> "9 - 2 = 7, et je garde le signe -"</p>
+   <details><summary class='summary-mini'>🔍 Voir la correction</summary>
+    <p><strong>❌ Erreur :</strong> Tom a gardé le mauvais signe</p>
+    <p><strong>✅ Correct :</strong> 9 - 2 = 7, mais signe de +9 (le plus fort) → <strong>+7</strong></p>
+    <div class='tip-verify'>💡 Tom a oublié la règle : "signe du nombre le plus fort"</div>
+   </details>
+  </div>
+ </div>
+</section>
+<section><h2>✅ 7. Auto-contrôle immédiat</h2><ul><li>Je peux expliquer la notion « Addition/Soustraction relatifs ».</li><li>Je sais appliquer sans modèle.</li><li>Je justifie mon signe / choix / formule.</li></ul></section>
+<section><h2>🗓️ 8. Plan de réactivation</h2>
  <p><strong>Cours fait le :</strong> <span id='dateToday' class='text-fade'></span></p>
  <ul>
   <li><strong>J+1</strong> (<span id='dateJ1'></span>) : <a href='../exercices/exercices_niveau1_decouverte.html'>2 ex. N1 découverte</a></li>
