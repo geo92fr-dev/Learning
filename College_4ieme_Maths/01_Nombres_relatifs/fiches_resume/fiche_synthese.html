@@ -1,4 +1,25 @@
-<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'><meta name='viewport' co  <di <div class='card'>
+  <h3>📏 Droite graduée des déplacements</h3>
+  <div class='droite-graduee'>
+   <div class='ligne-droite'>Négatifs ←─────── 0 ───────→ Positifs</div>
+   <div class='nombres-negatifs'>-8   -6   -4   -2   <span class='nombre-zero'>0</span>   <span class='nombres-positifs'>+2   +4   +6   +8</span></div>
+   <div class='legende-droite'>
+    🟥 Rouge = Négatif  •  🟨 Jaune = Zéro  •  🟦 Bleu = Positif
+   </div>
+  </div>
+  <div class='exemple-box exemple-deplacements'>
+   <strong>Exemples de déplacements :</strong><br>
+   • « +3 » = avancer de 3 vers la droite →<br>
+   • « -5 » = reculer de 5 vers la gauche ←
+  </div>
+ </div>-graduee'>
+   <div class='ligne-droite'>Négatifs ←─────── 0 ───────→ Positifs</div>
+   <div class='nombres-negatifs'>-8   -6   -4   -2   <span class='nombre-zero'>0</span>   <span class='nombres-positifs'>+2   +4   +6   +8</span></div>
+   <div class='legende-droite'>
+    🔴 Rouge = Négatif  •  🟨 Jaune = Zéro  •  🔵 Bleu = Positif
+   </div>
+  </div>
+  <div class='exemple-box exemple-deplacements'>idth=device-width,initial-scale=1'>
 <title>Fiche Synthèse</title>
 <style>
 body{font-family:Arial,system-ui,sans-serif;margin:0;padding:1.1rem 1.2rem;line-height:1.55;background:#0f1115;color:#f5f7fa;}
@@ -24,6 +45,21 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
 /* Utilities */
 .summary-mini{cursor:pointer;font-size:.65rem;}
 .note-mini{font-size:.7rem;opacity:.75;}
+/* Styles pour règles colorées */
+.regle-box{border:2px solid;padding:.8rem;margin:.6rem 0;border-radius:10px;background:rgba(255,255,255,0.03);}
+.regle-positive{border-color:#67c7ff;background:linear-gradient(135deg,rgba(103,199,255,0.1),rgba(103,199,255,0.03));}
+.regle-negative{border-color:#ff6b6b;background:linear-gradient(135deg,rgba(255,107,107,0.1),rgba(255,107,107,0.03));}
+.regle-neutre{border-color:#ffd93d;background:linear-gradient(135deg,rgba(255,217,61,0.1),rgba(255,217,61,0.03));}
+.icone-regle{font-size:1.2em;margin-right:.5rem;}
+.exemple-box{background:#1a2332;padding:.5rem;border-radius:6px;margin:.4rem 0;border-left:3px solid #67c7ff;}
+.piege-box{background:#2d1b1b;padding:.5rem;border-radius:6px;margin:.4rem 0;border-left:3px solid #ff6b6b;}
+.droite-graduee{text-align:center;font-family:monospace;background:#1a2332;padding:1rem;border-radius:8px;}
+.ligne-droite{margin:.5rem 0;}
+.nombres-negatifs{color:#ff6b6b;margin:.3rem 0;}
+.nombre-zero{color:#ffd93d;font-weight:bold;}
+.nombres-positifs{color:#67c7ff;}
+.legende-droite{font-size:.7rem;margin-top:.8rem;color:#8892b0;}
+.exemple-deplacements{margin-top:.8rem;}
 @media (max-width:760px){nav a{display:inline-block;margin:.25rem .6rem .25rem 0;}}
 </style>
 <script>
@@ -31,8 +67,72 @@ function toggleSolution(id){const el=document.getElementById(id);if(!el)return;e
 </script>
 </head><body>
 <header><h1>Fiche Synthèse – Nombres relatifs</h1><nav><a href='../cours/cours_principal.html'>Cours</a></nav></header>
-<section><h2>Essentiel</h2><ul><li>Même signe → additionner les valeurs et garder le signe.</li><li>Signes différents → soustraire la plus petite valeur absolue de la plus grande.</li><li>Résultat prend le signe de la plus grande valeur absolue.</li><li>Contrôle : exemple concret (température ou argent).</li></ul></section>
-<section><h2>Mini Quiz</h2>
+<section><h2>📖 Règles Essentielles</h2>
+ <div class='regle-box regle-positive'>
+  <h3><span class='icone-regle'>➕</span>RÈGLE 1 : Même signe</h3>
+  <p><strong>Additionner les valeurs et garder le signe commun</strong></p>
+  <div class='exemple-box'>
+   <strong>Exemples :</strong><br>
+   • (-3) + (-5) = -8 <em>(3 + 5 = 8, signe -)</em><br>
+   • (+6) + (+4) = +10 <em>(6 + 4 = 10, signe +)</em>
+  </div>
+ </div>
+ 
+ <div class='regle-box regle-negative'>
+  <h3><span class='icone-regle'>➖</span>RÈGLE 2 : Signes différents</h3>
+  <p><strong>Soustraire la plus petite de la plus grande, garder le signe du « plus fort »</strong></p>
+  <div class='exemple-box'>
+   <strong>Exemples :</strong><br>
+   • (-7) + (+4) = -3 <em>(7 - 4 = 3, signe de -7)</em><br>
+   • (+9) + (-2) = +7 <em>(9 - 2 = 7, signe de +9)</em>
+  </div>
+ </div>
+ 
+ <div class='regle-box regle-neutre'>
+  <h3><span class='icone-regle'>🔍</span>RÈGLE 3 : Contrôle</h3>
+  <p><strong>Vérifier avec un contexte concret</strong></p>
+  <div class='exemple-box'>
+   <strong>Astuces :</strong><br>
+   • Température : -5°C + 8°C = +3°C ✓<br>
+   • Argent : -20€ + 15€ = -5€ (découvert) ✓
+  </div>
+ </div>
+</section>
+
+<section><h2>🎨 Schéma Visuel</h2>
+ <div class='card'>
+  <h3>📏 Droite graduée des déplacements</h3>
+  <div style='text-align:center;font-family:monospace;background:#1a2332;padding:1rem;border-radius:8px;'>
+   <div style='margin:.5rem 0;'>Négatifs ←─────── 0 ───────→ Positifs</div>
+   <div style='color:#ff6b6b;margin:.3rem 0;'>-8   -6   -4   -2   <span style='color:#ffd93d;font-weight:bold;'>0</span>   <span style='color:#67c7ff;'>+2   +4   +6   +8</span></div>
+   <div style='font-size:.7rem;margin-top:.8rem;color:#8892b0;'>
+    🟥 Rouge = Négatif  •  🟨 Jaune = Zéro  •  🟦 Bleu = Positif
+   </div>
+  </div>
+  <div class='exemple-box' style='margin-top:.8rem;'>
+   <strong>Exemples de déplacements :</strong><br>
+   • « +3 » = avancer de 3 vers la droite →<br>
+   • « -5 » = reculer de 5 vers la gauche ←
+  </div>
+ </div>
+</section>
+
+<section><h2>⚠️ Attention aux Pièges !</h2>
+ <div class='grid-auto'>
+  <div class='piege-box'>
+   <h4>🚫 Piège 1 : Confusion des règles</h4>
+   <p><strong>Erreur :</strong> (-4) + (-3) = -1 <em>(faire 4-3)</em></p>
+   <p><strong>✓ Correct :</strong> Même signe → 4+3 = 7 → <strong>-7</strong></p>
+  </div>
+  <div class='piege-box'>
+   <h4>🚫 Piège 2 : Mauvais signe final</h4>
+   <p><strong>Erreur :</strong> (+2) + (-8) = +6 <em>(garder le +)</em></p>
+   <p><strong>✓ Correct :</strong> Le « plus fort » est -8 → <strong>-6</strong></p>
+  </div>
+ </div>
+</section>
+
+<section><h2>🎮 Mini Quiz Enrichi</h2>
  <ol>
     <li>(+7) + (-4) = ? <details><summary class='summary-mini'>Voir</summary><em>7 - 4 = 3 signe de 7 → +3</em></details></li>
     <li>(-9) + (+3) = ? <details><summary class='summary-mini'>Voir</summary><em>9 - 3 = 6 signe de -9 → -6</em></details></li>
