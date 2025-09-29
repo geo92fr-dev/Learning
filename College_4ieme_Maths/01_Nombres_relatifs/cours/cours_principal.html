@@ -150,6 +150,31 @@ details summary{cursor:pointer;font-weight:600;color:#67c7ff;}
 .regle-verte .contenu-regle{border-left-color:#10b981;} 
 .droite-svg{width:100%;height:60px;margin-top:.4rem;background:#111b25;border:1px solid #20303d;border-radius:6px;}
 .note-ligne{font-size:.6rem;opacity:.7;margin:.3rem 0 0;}
+/* Stepper simplifié méthode illustrée */
+.method-stepper{list-style:none;margin:.8rem 0 1rem;padding:0;display:flex;flex-direction:column;gap:.85rem;}
+.method-step{background:#141a21;border:1px solid #24303b;border-radius:12px;padding:.75rem .9rem;position:relative;display:flex;flex-direction:column;gap:.55rem;}
+.method-step .step-head{display:flex;align-items:center;gap:.65rem;}
+.method-step .step-index{background:#2563eb;color:#fff;font-weight:600;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:.9rem;box-shadow:0 0 0 3px rgba(37,99,235,.25);} 
+.method-step:nth-child(2) .step-index{background:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.25);} 
+.method-step:nth-child(3) .step-index{background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.25);} 
+.rule-line{margin:.1rem 0 .2rem;font-size:.72rem;line-height:1.35;opacity:.9;}
+.mini-check.line{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;background:#182028;padding:.45rem .6rem;border:1px solid #24313d;border-radius:8px;font-size:.68rem;}
+.simple-resume{font-size:.68rem;margin-top:.6rem;background:#19222b;border:1px solid #24313a;padding:.55rem .7rem;border-radius:8px;}
+.method-step details{font-size:.64rem;}
+.method-step details summary{cursor:pointer;font-weight:600;color:#67c7ff;}
+.method-step details[open]{background:#17212b;padding:.4rem .55rem;border-radius:6px;border:1px solid #25323d;}
+.method-step details p,.method-step details ul{margin:.35rem 0 .4rem;}
+.method-step .mini-enonce{font-weight:600;}
+.method-step input.mini{width:70px;}
+.method-toolbar.compact{display:flex;justify-content:flex-end;margin:0;}
+.method-stepper .feedback-zone{font-size:.65rem;}
+.method-step:hover{border-color:#2f4352;} 
+.method-step:focus-within{box-shadow:0 0 0 3px rgba(103,199,255,.25);} 
+@media (max-width:620px){
+ .method-step{padding:.7rem .75rem;}
+ .method-step .step-index{width:30px;height:30px;font-size:.8rem;}
+ .rule-line{font-size:.7rem;}
+}
 /* Timeline & révision rapide */
 .method-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:.6rem;}
 .timeline-steps{display:flex;gap:.55rem;}
@@ -353,101 +378,59 @@ body.fast-mode .intro-methode{opacity:.55;}
 
 </section>
 <section id='methode-illustree'><h2>💡 4. Méthode illustrée</h2>
- <div class='method-toolbar'>
-    <div class='timeline-steps' aria-label='Progression méthode'>
-     <button class='tstep active' data-target='#etape1' aria-label='Aller étape 1'>1</button>
-     <button class='tstep' data-target='#etape2' aria-label='Aller étape 2'>2</button>
-     <button class='tstep' data-target='#etape3' aria-label='Aller étape 3'>3</button>
-    </div>
+ <div class='method-toolbar compact'>
     <button id='toggleFast' class='toggle-mode' aria-pressed='false'>Mode révision rapide</button>
  </div>
- <p class='intro-methode'>But : en 3 réflexes visuels → traiter n'importe quelle addition de relatifs sans hésitation.</p>
- <div class='method-steps'>
-    <div class='step-card etape1' id='etape1' role='group' aria-labelledby='etape1Titre'>
-   <div class='etape-badge' aria-label='Étape 1'>1</div>
-    <h3 id='etape1Titre'>🔹 Même signe</h3>
-   <div class='etape-contexte'>🌍 -4°C le matin, baisse de 6°C → -10°C</div>
-   <div class='regle-encadree regle-bleue'>
-    <div class='titre-regle'>📐 RÈGLE</div>
-    <div class='contenu-regle'>On additionne les valeurs et on garde le signe commun.</div>
-   </div>
-   <div class='etape-exemple'>
-    <div class='expr'>(-4) + (-6)</div>
-    <div class='explication-inline'>4 + 6 = 10 → les deux sont négatifs → résultat : <strong>-10</strong></div>
-   </div>
-   <div class='mini-check'>
-    <label for='mstep1' class='mini-label'>Test rapide :</label>
-    <input type='text' id='mstep1' class='quiz-textbox mini' placeholder='Résultat ?' maxlength='5'>
-    <button class='quiz-btn mini btn-method' data-method='1' data-ans='-14' data-key='checkM1'>✓</button>
-    <span class='mini-enonce'>(-8) + (-6)</span>
-   </div>
-   <div id='method1Feedback' class='feedback-zone mini-feedback'></div>
-   <details class='astuce'><summary>Besoin d'un repère ?</summary><p>Pense à une dette qui augmente : tu dois 8€, on t'ajoute encore 6€ → tu dois 14€.</p></details>
-  </div>
-    <div class='step-card etape2' id='etape2' role='group' aria-labelledby='etape2Titre'>
-   <div class='etape-badge' aria-label='Étape 2'>2</div>
-    <h3 id='etape2Titre'>🔸 Signes différents</h3>
-   <div class='etape-contexte'>💰 +8€ en poche, tu dépenses 3€ → il te reste +5€</div>
-   <div class='regle-encadree regle-orange'>
-    <div class='titre-regle'>📐 RÈGLE</div>
-    <div class='contenu-regle'>Soustraire la plus petite valeur absolue de la plus grande. Signe = celui de la plus grande valeur absolue.</div>
-   </div>
-   <div class='etape-exemple'>
-    <div class='expr'>(+8) + (-3)</div>
-    <div class='explication-inline'>8 - 3 = 5 → plus grand = +8 → <strong>+5</strong></div>
-   </div>
-   <div class='mini-check'>
-    <label for='mstep2' class='mini-label'>Teste :</label>
-    <input type='text' id='mstep2' class='quiz-textbox mini' placeholder='Résultat ?' maxlength='5'>
-    <button class='quiz-btn mini btn-method' data-method='2' data-ans='-5' data-key='checkM2'>✓</button>
-    <span class='mini-enonce'>(+2) + (-7)</span>
-   </div>
-   <div id='method2Feedback' class='feedback-zone mini-feedback'></div>
-   <details class='variante'><summary>Variante visuelle (droite graduée)</summary>
-    <svg class='droite-svg' viewBox='0 0 320 60' aria-label='Droite graduée'>
-     <line x1='10' y1='30' x2='310' y2='30' stroke='#345' stroke-width='2'/>
-     <line x1='160' y1='25' x2='160' y2='35' stroke='#567' stroke-width='2'/>
-     <text x='156' y='48' font-size='10' fill='#89a'>0</text>
-     <circle cx='184' cy='30' r='5' fill='#3b82f6'/>
-     <text x='175' y='15' font-size='10' fill='#3b82f6'>+2</text>
-     <line x1='184' y1='30' x2='134' y2='30' stroke='#f87171' stroke-width='4' marker-end='url(#fleche)'/>
-     <circle cx='134' cy='30' r='5' fill='#f87171'/>
-     <text x='125' y='15' font-size='10' fill='#f87171'>-5</text>
-     <defs>
-      <marker id='fleche' markerWidth='10' markerHeight='10' refX='6' refY='3' orient='auto'>
-       <polygon points='0 0, 6 3, 0 6' fill='#f87171'/>
-      </marker>
-     </defs>
-    </svg>
-    <p class='note-ligne'>On part de +2 puis on recule 7 unités → on passe sous zéro jusqu'à -5.</p>
-   </details>
-  </div>
-    <div class='step-card etape3' id='etape3' role='group' aria-labelledby='etape3Titre'>
-   <div class='etape-badge' aria-label='Étape 3'>3</div>
-    <h3 id='etape3Titre'>✅ Contrôle final</h3>
-   <div class='etape-contexte'>🧪 Vérifier que le résultat « raconte une histoire logique »</div>
-   <div class='regle-encadree regle-verte'>
-    <div class='titre-regle'>� RÈGLE</div>
-    <div class='contenu-regle'>Toujours tester mentalement avec température OU argent.</div>
-   </div>
-   <ul class='liste-controle'>
-    <li>Le signe est-il cohérent ?</li>
-    <li>Distance logique par rapport à 0 ?</li>
-    <li>Exemple réel plausible (température, argent, profondeur) ?</li>
-   </ul>
-   <div class='mini-check'>
-    <label for='mstep3' class='mini-label'>Vérifie :</label>
-    <input type='text' id='mstep3' class='quiz-textbox mini' placeholder='Résultat ?' maxlength='5'>
-    <button class='quiz-btn mini btn-method' data-method='3' data-ans='+5' data-key='checkM3'>✓</button>
-    <span class='mini-enonce'>(+12) + (-7)</span>
-   </div>
-   <div id='method3Feedback' class='feedback-zone mini-feedback'></div>
-   <blockquote class='rappel'>Astuce mémoire : « Même signe j'additionne – Signes différents je soustrais – Toujours je vérifie ».</blockquote>
-  </div>
- </div>
- <div class='resume-flash'>
-  <strong>Résumé express :</strong> 1) Même signe → addition 2) Différents → soustraction + signe du plus « grand » 3) Vérification concrète.
- </div>
+ <p class='intro-methode'>Objectif : 3 réflexes simples + 1 vérification finale.</p>
+ <ol class='method-stepper' aria-label='Étapes de la méthode'>
+    <li class='method-step' id='etape1'>
+     <div class='step-head'><span class='step-index'>1</span><h3>Même signe → Addition</h3></div>
+     <p class='rule-line'>Règle : additionner les valeurs absolues et garder le signe commun.</p>
+     <details class='step-more'><summary>Voir un exemple</summary>
+         <p>Exemple : (-4) + (-6) → 4 + 6 = 10 → les deux sont négatifs → -10.</p>
+         <p>Mémoire : “Même signe = j'empile”.</p>
+     </details>
+     <div class='mini-check line'>
+        <span class='mini-enonce'>(-8) + (-6) = ?</span>
+        <input type='text' id='mstep1' class='quiz-textbox mini' placeholder='Rés.' maxlength='5' aria-label='Réponse étape 1'>
+        <button class='quiz-btn mini btn-method' data-method='1' data-ans='-14' data-key='checkM1' aria-label='Valider étape 1'>✓</button>
+     </div>
+     <div id='method1Feedback' class='feedback-zone mini-feedback'></div>
+    </li>
+    <li class='method-step' id='etape2'>
+     <div class='step-head'><span class='step-index'>2</span><h3>Signes différents → Soustraction</h3></div>
+     <p class='rule-line'>Règle : soustraire les valeurs absolues, signe = celui de la plus grande valeur absolue.</p>
+     <details class='step-more'><summary>Voir un exemple</summary>
+         <p>(+8) + (-3) → 8 - 3 = 5 → signe de +8 → +5.</p>
+         <p>Droit graduée : partir de +2 et reculer 7 unités → -5.</p>
+     </details>
+     <div class='mini-check line'>
+        <span class='mini-enonce'>(+2) + (-7) = ?</span>
+        <input type='text' id='mstep2' class='quiz-textbox mini' placeholder='Rés.' maxlength='5' aria-label='Réponse étape 2'>
+        <button class='quiz-btn mini btn-method' data-method='2' data-ans='-5' data-key='checkM2' aria-label='Valider étape 2'>✓</button>
+     </div>
+     <div id='method2Feedback' class='feedback-zone mini-feedback'></div>
+    </li>
+    <li class='method-step' id='etape3'>
+     <div class='step-head'><span class='step-index'>3</span><h3>Contrôle final</h3></div>
+     <p class='rule-line'>Règle : tester le résultat avec un contexte (argent, température, altitude).</p>
+     <details class='step-more'><summary>Liste de contrôle</summary>
+         <ul class='liste-controle simple'>
+            <li>Signe logique ?</li>
+            <li>Distance cohérente ?</li>
+            <li>Exemple réel plausible ?</li>
+         </ul>
+         <p>Mémoire : “Je valide le sens”.</p>
+     </details>
+     <div class='mini-check line'>
+        <span class='mini-enonce'>(+12) + (-7) = ?</span>
+        <input type='text' id='mstep3' class='quiz-textbox mini' placeholder='Rés.' maxlength='5' aria-label='Réponse étape 3'>
+        <button class='quiz-btn mini btn-method' data-method='3' data-ans='+5' data-key='checkM3' aria-label='Valider étape 3'>✓</button>
+     </div>
+     <div id='method3Feedback' class='feedback-zone mini-feedback'></div>
+    </li>
+ </ol>
+ <div class='resume-flash simple-resume'>Mémo : 1) Même signe → addition 2) Différents → soustraction + signe de la plus grande distance 3) Je vérifie.</div>
 </section>
 <section id='erreurs' class='bloc-cours'>
  <h2>Comprendre les erreurs fréquentes</h2>
