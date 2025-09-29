@@ -115,6 +115,10 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
 .quiz-block{--q-gap:.55rem;display:flex;align-items:stretch;gap:var(--q-gap);flex-wrap:nowrap;}
 .quiz-block .quiz-textbox{flex:0 0 90px;}
 .quiz-block .quiz-btn{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;}
+/* Mini inline variant inside mini-check */
+.quiz-block.mini-inline{gap:.4rem;}
+.quiz-block.mini-inline .quiz-textbox{flex:0 0 70px;}
+.quiz-block.mini-inline .quiz-btn{padding:.32rem .6rem;font-size:.65rem;}
 @media (max-width:520px){
  .quiz-block{flex-wrap:wrap;}
  .quiz-block .quiz-textbox{flex:1 1 70px;}
@@ -398,11 +402,13 @@ body.fast-mode .intro-methode{opacity:.55;}
          <p>Exemple : (-4) + (-6) → 4 + 6 = 10 → les deux sont négatifs → -10.</p>
          <p>Mémoire : “Même signe = j'empile”.</p>
      </details>
-     <div class='mini-check line'>
-        <span class='mini-enonce'>(-8) + (-6) = ?</span>
-        <input type='text' id='mstep1' class='quiz-textbox mini' placeholder='Rés.' maxlength='5' aria-label='Réponse étape 1'>
-        <button class='quiz-btn mini btn-method' data-method='1' data-ans='-14' data-key='checkM1' aria-label='Valider étape 1'>✓</button>
-     </div>
+      <div class='mini-check line'>
+          <span class='mini-enonce'>(-8) + (-6) = ?</span>
+          <div class='quiz-block mini-inline'>
+             <input type='text' id='mstep1' class='quiz-textbox mini' placeholder='Ta réponse' maxlength='5' aria-label='Réponse étape 1'>
+             <button type='button' class='quiz-btn mini btn-method' data-method='1' data-ans='-14' data-key='checkM1' aria-label='Valider étape 1'>✓ Valider</button>
+          </div>
+      </div>
      <div id='method1Feedback' class='feedback-zone mini-feedback'></div>
     </li>
     <li class='method-step' id='etape2'>
@@ -412,11 +418,13 @@ body.fast-mode .intro-methode{opacity:.55;}
          <p>(+8) + (-3) → 8 - 3 = 5 → signe de +8 → +5.</p>
          <p>Droit graduée : partir de +2 et reculer 7 unités → -5.</p>
      </details>
-     <div class='mini-check line'>
-        <span class='mini-enonce'>(+2) + (-7) = ?</span>
-        <input type='text' id='mstep2' class='quiz-textbox mini' placeholder='Rés.' maxlength='5' aria-label='Réponse étape 2'>
-        <button class='quiz-btn mini btn-method' data-method='2' data-ans='-5' data-key='checkM2' aria-label='Valider étape 2'>✓</button>
-     </div>
+      <div class='mini-check line'>
+          <span class='mini-enonce'>(+2) + (-7) = ?</span>
+          <div class='quiz-block mini-inline'>
+             <input type='text' id='mstep2' class='quiz-textbox mini' placeholder='Ta réponse' maxlength='5' aria-label='Réponse étape 2'>
+             <button type='button' class='quiz-btn mini btn-method' data-method='2' data-ans='-5' data-key='checkM2' aria-label='Valider étape 2'>✓ Valider</button>
+          </div>
+      </div>
      <div id='method2Feedback' class='feedback-zone mini-feedback'></div>
     </li>
     <li class='method-step' id='etape3'>
@@ -430,11 +438,13 @@ body.fast-mode .intro-methode{opacity:.55;}
          </ul>
          <p>Mémoire : “Je valide le sens”.</p>
      </details>
-     <div class='mini-check line'>
-        <span class='mini-enonce'>(+12) + (-7) = ?</span>
-        <input type='text' id='mstep3' class='quiz-textbox mini' placeholder='Rés.' maxlength='5' aria-label='Réponse étape 3'>
-        <button class='quiz-btn mini btn-method' data-method='3' data-ans='+5' data-key='checkM3' aria-label='Valider étape 3'>✓</button>
-     </div>
+      <div class='mini-check line'>
+          <span class='mini-enonce'>(+12) + (-7) = ?</span>
+          <div class='quiz-block mini-inline'>
+             <input type='text' id='mstep3' class='quiz-textbox mini' placeholder='Ta réponse' maxlength='5' aria-label='Réponse étape 3'>
+             <button type='button' class='quiz-btn mini btn-method' data-method='3' data-ans='+5' data-key='checkM3' aria-label='Valider étape 3'>✓ Valider</button>
+          </div>
+      </div>
      <div id='method3Feedback' class='feedback-zone mini-feedback'></div>
     </li>
  </ol>
