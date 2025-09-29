@@ -202,6 +202,32 @@ body.fast-mode .step-card{min-height:120px;}
 body.fast-mode .expr{background:#13212c;}
 body.fast-mode .intro-methode{opacity:.55;}
  .feedback-neutral{background:rgba(103,199,255,0.1);border:1px solid #3d4c5c;color:#67c7ff;}
+/* Retention interactive */
+.retention-toolbar{display:flex;justify-content:flex-end;margin:.4rem 0 .5rem;}
+.toggle-mode.small{font-size:.6rem;padding:.35rem .6rem;}
+.retention-grid{display:grid;gap:.65rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
+.retention-card{background:#141a21;border:1px solid #24303b;padding:.6rem .7rem;border-radius:10px;position:relative;display:flex;flex-direction:column;gap:.45rem;min-height:140px;transition:border-color .25s,background .25s;}
+.retention-card:hover{border-color:#2f4455;}
+.rc-title{font-size:.72rem;font-weight:600;color:#67c7ff;}
+.rc-learn{font-size:.68rem;line-height:1.3;}
+.rc-arrow{color:#67c7ff;font-weight:700;margin-right:.25rem;}
+.rc-test{font-size:.65rem;display:flex;flex-direction:column;gap:.35rem;}
+.rc-test .rc-input{width:100%;}
+.rc-feedback{font-size:.62rem;min-height:1.2em;}
+.retention-progress{margin-top:.6rem;font-size:.65rem;padding:.5rem .65rem;background:#132129;border:1px solid #24313d;border-radius:8px;}
+.retention-card.validated{border-color:#1f5735;background:linear-gradient(135deg,#14251c,#11241b);} 
+.retention-card.validated .rc-title{color:#34d399;}
+.retention-card.validated:after{content:'✓';position:absolute;top:6px;right:8px;font-size:.7rem;color:#34d399;}
+/* Pitfalls flip cards */
+.pitfall-grid{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:.6rem 0 .8rem;}
+.pitfall-card{position:relative;padding:.65rem .7rem;border:1px solid #2a3642;background:#141b23;border-radius:10px;cursor:pointer;min-height:110px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:.65rem;line-height:1.35;transition:transform .6s,background .3s,border-color .3s;perspective:800px;}
+.pitfall-card:focus{outline:2px solid #67c7ff;outline-offset:3px;}
+.pitfall-card.flipped{background:#102530;border-color:#224b62;}
+.pitfall-card .pf-front,.pitfall-card .pf-back{position:absolute;inset:0;padding:.65rem .7rem;display:flex;align-items:center;justify-content:center;border-radius:10px;backface-visibility:hidden;}
+.pitfall-card .pf-back{transform:rotateY(180deg);}
+.pitfall-card.flipped .pf-front{transform:rotateY(180deg);} 
+.pitfall-card.flipped .pf-back{transform:rotateY(360deg);} 
+.pitfall-hint{font-size:.55rem;opacity:.55;margin:-.3rem 0 .4rem;text-align:right;}
 </style>
 
 </head><body>
@@ -482,24 +508,85 @@ body.fast-mode .intro-methode{opacity:.55;}
 
  <div class='sous-section-erreurs'>
   <h3>2. Ce qu’il faut retenir pour ne plus les refaire</h3>
-  <p class='explication-sous-partie'>But : donner la règle / réflexe / test mental qui corrige l’erreur.</p>
-  <ul class='liste-retention'>
-   <li>Signes différents → je soustrais et je garde le signe de la plus grande distance à 0.</li>
-   <li>Signes identiques → j’additionne et je garde ce signe.</li>
-   <li>Je vérifie : “Mon signe final est-il logique dans un exemple réel ?”.</li>
-   <li>En cas de doute → je reformule avec une température ou de l’argent.</li>
-  </ul>
+    <p class='explication-sous-partie'>But : donner la règle / réflexe / test mental qui corrige l’erreur.</p>
+    <div class='retention-toolbar'>
+        <button type='button' id='toggleRetentionTest' class='toggle-mode small' aria-pressed='false'>Mode test</button>
+    </div>
+    <div id='retentionSet' class='retention-grid' aria-live='polite'>
+        <div class='retention-card' data-mode='learn' data-answer='Je soustrais les valeurs absolues et je garde le signe de la plus grande distance à 0.'>
+            <div class='rc-front'>
+                <div class='rc-title'>Signes différents</div>
+                <div class='rc-learn'><span class='rc-arrow'>→</span> Je soustrais les valeurs absolues et je garde le signe de la plus grande distance à 0.</div>
+                <div class='rc-test' hidden>
+                    <span class='rc-prompt'>Complète :</span>
+                    <input type='text' class='quiz-textbox rc-input' placeholder='Ta réponse' maxlength='75' aria-label='Règle signes différents'>
+                    <button type='button' class='quiz-btn rc-check' aria-label='Valider règle 1'>✓</button>
+                    <div class='rc-feedback' aria-live='polite'></div>
+                </div>
+            </div>
+        </div>
+        <div class='retention-card' data-mode='learn' data-answer='J’additionne et je garde ce signe.'>
+            <div class='rc-front'>
+                <div class='rc-title'>Signes identiques</div>
+                <div class='rc-learn'><span class='rc-arrow'>→</span> J’additionne et je garde ce signe.</div>
+                <div class='rc-test' hidden>
+                    <span class='rc-prompt'>Complète :</span>
+                    <input type='text' class='quiz-textbox rc-input' placeholder='Ta réponse' maxlength='60' aria-label='Règle signes identiques'>
+                    <button type='button' class='quiz-btn rc-check' aria-label='Valider règle 2'>✓</button>
+                    <div class='rc-feedback' aria-live='polite'></div>
+                </div>
+            </div>
+        </div>
+        <div class='retention-card' data-mode='learn' data-answer='Je contrôle : le signe final est-il logique dans un exemple réel ?'>
+            <div class='rc-front'>
+                <div class='rc-title'>Auto-contrôle</div>
+                <div class='rc-learn'><span class='rc-arrow'>→</span> “Mon signe final est-il logique dans un exemple réel ?”.</div>
+                <div class='rc-test' hidden>
+                    <span class='rc-prompt'>Question :</span>
+                    <input type='text' class='quiz-textbox rc-input' placeholder='Ta question clé' maxlength='80' aria-label='Question auto-contrôle'>
+                    <button type='button' class='quiz-btn rc-check' aria-label='Valider règle 3'>✓</button>
+                    <div class='rc-feedback' aria-live='polite'></div>
+                </div>
+            </div>
+        </div>
+        <div class='retention-card' data-mode='learn' data-answer='Je reformule avec une température ou de l’argent.'>
+            <div class='rc-front'>
+                <div class='rc-title'>En cas de doute</div>
+                <div class='rc-learn'><span class='rc-arrow'>→</span> Je reformule avec une température ou de l’argent.</div>
+                <div class='rc-test' hidden>
+                    <span class='rc-prompt'>Astuce :</span>
+                    <input type='text' class='quiz-textbox rc-input' placeholder='Ta reformulation' maxlength='80' aria-label='Astuce reformulation'>
+                    <button type='button' class='quiz-btn rc-check' aria-label='Valider règle 4'>✓</button>
+                    <div class='rc-feedback' aria-live='polite'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id='retentionProgress' class='retention-progress' aria-live='polite'></div>
  </div>
 
  <div class='sous-section-erreurs'>
   <h3>3. Pièges à éviter</h3>
-  <p class='explication-sous-partie'>But : alerter AVANT que l’erreur ne se produise (cas limites, confusions classiques).</p>
-  <ul class='liste-pieges'>
-   <li>Ne pas additionner quand les signes sont différents.</li>
-   <li>Ne pas décider le signe “au hasard” : toujours le justifier.</li>
-   <li>Ne pas confondre “soustraire” et “comparer les distances”.</li>
-   <li>Ne pas oublier le contexte : vérifier si le résultat “raconte une histoire logique”.</li>
-  </ul>
+    <p class='explication-sous-partie'>But : alerter AVANT que l’erreur ne se produise (cas limites, confusions classiques).</p>
+    <div class='pitfall-grid'>
+        <div class='pitfall-card' tabindex='0' data-reflexe="Soustrais les valeurs absolues puis signe de la plus grande distance à 0.">
+            <div class='pf-front'>❌ Ne pas additionner quand les signes sont différents.</div>
+            <div class='pf-back' aria-hidden='true'>✅ Réflexe : Soustrais les distances puis signe de la plus grande.</div>
+        </div>
+        <div class='pitfall-card' tabindex='0' data-reflexe="Justifie toujours : signe imposé par la plus grande distance ou le contexte.">
+            <div class='pf-front'>❌ Ne pas décider le signe “au hasard”.</div>
+            <div class='pf-back' aria-hidden='true'>✅ Réflexe : Justifie avec distance à 0 ou exemple réel.</div>
+        </div>
+        <div class='pitfall-card' tabindex='0' data-reflexe="Comparer d’abord les distances à 0 avant d’appliquer la règle d’addition/soustraction.">
+            <div class='pf-front'>❌ Confondre “soustraire” et “comparer”.</div>
+            <div class='pf-back' aria-hidden='true'>✅ Réflexe : Compare valeurs absolues d’abord.</div>
+        </div>
+        <div class='pitfall-card' tabindex='0' data-reflexe="Reformule avec argent ou température pour vérifier sens du signe.">
+            <div class='pf-front'>❌ Oublier le contexte.</div>
+            <div class='pf-back' aria-hidden='true'>✅ Réflexe : Reformule (argent, température).</div>
+        </div>
+    </div>
+    <p class='pitfall-hint'>Astuce : clique ou appuie sur Entrée / Espace pour retourner les cartes.</p>
   <div class='grid-auto'>
    <div class='card'>
     <h4>🕵️ Exercice : Trouve l'erreur</h4>
@@ -883,6 +970,85 @@ document.addEventListener('DOMContentLoaded', function() {
   st.textContent = `.pulse-focus{box-shadow:0 0 0 3px rgba(103,199,255,.6)!important;transition:box-shadow .6s ease-out;}`;
   document.head.appendChild(st);
  }
+
+ // ---- Retention interactive ----
+ const toggleRetention = document.getElementById('toggleRetentionTest');
+ const RETENTION_PROGRESS = document.getElementById('retentionProgress');
+ const retentionCards = Array.from(document.querySelectorAll('.retention-card'));
+ let retentionMode = 'learn';
+
+ function updateRetentionProgress(){
+    const validated = retentionCards.filter(c=>c.classList.contains('validated')).length;
+    if(RETENTION_PROGRESS){
+     RETENTION_PROGRESS.textContent = validated===retentionCards.length
+         ? `🎯 Règles maîtrisées (${validated}/${retentionCards.length})`
+         : `Progression : ${validated}/${retentionCards.length}`;
+    }
+ }
+ updateRetentionProgress();
+
+ if(toggleRetention){
+    toggleRetention.addEventListener('click',()=>{
+     retentionMode = (retentionMode==='learn') ? 'test' : 'learn';
+     const activeTest = retentionMode==='test';
+     toggleRetention.setAttribute('aria-pressed', activeTest?'true':'false');
+     toggleRetention.textContent = activeTest ? 'Mode lecture' : 'Mode test';
+     retentionCards.forEach(card=>{
+        const testZone = card.querySelector('.rc-test');
+        const learnZone = card.querySelector('.rc-learn');
+        if(!testZone||!learnZone) return;
+        if(activeTest){
+         learnZone.hidden = true;
+         testZone.hidden = false;
+         const input = testZone.querySelector('.rc-input');
+         const fb = testZone.querySelector('.rc-feedback');
+         if(input){input.value='';input.disabled=false;}
+         if(fb){fb.textContent='';fb.className='rc-feedback';}
+         card.classList.remove('validated');
+        } else {
+         learnZone.hidden = false;
+         testZone.hidden = true;
+        }
+     });
+     updateRetentionProgress();
+    });
+ }
+
+ // Validation des règles en mode test
+ retentionCards.forEach(card=>{
+    const btn = card.querySelector('.rc-check');
+    const input = card.querySelector('.rc-input');
+    const fb = card.querySelector('.rc-feedback');
+    if(btn && input && fb){
+     const answer = card.dataset.answer.toLowerCase().trim();
+     const validate = ()=>{
+        const val = input.value.toLowerCase().trim();
+        if(val && answer.includes(val.slice(0, Math.min(val.length, answer.length - 2)))){
+         fb.textContent = '✓ Correct';
+         fb.style.color = '#34d399';
+         card.classList.add('validated');
+         input.disabled = true;
+         btn.disabled = true;
+         updateRetentionProgress();
+        } else {
+         fb.textContent = '❌ Vérifie la formulation';
+         fb.style.color = '#f87171';
+        }
+     };
+     btn.addEventListener('click',validate);
+     input.addEventListener('keyup',e=>{if(e.key==='Enter') validate();});
+    }
+ });
+
+ // ---- Pitfalls flip ----
+ const pitfallCards = document.querySelectorAll('.pitfall-card');
+ pitfallCards.forEach(card=>{
+    const toggle = ()=>{
+     card.classList.toggle('flipped');
+    };
+    card.addEventListener('click',toggle);
+    card.addEventListener('keyup',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+ });
 });
 </script>
 </body></html>
