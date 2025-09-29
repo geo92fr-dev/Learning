@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Script de mise à jour des fonctionnalités Google Calendar
-Migre vers la version améliorée avec boutons individuels
+Migre vers la version améli const description = `${{config.description}}\n\nLien direct : ${{config.url}}`;rée avec boutons individuels
 """
 
 import os
@@ -88,25 +88,25 @@ function addSingleEventToCalendar(interval, type) {{
   decouverte: {{
    icon: '📚',
    title: 'Exercices Découverte',
-   url: '/College_4ieme_Maths/{chapter_slug}/exercices/exercices_niveau1_decouverte.html',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/{chapter_slug}/exercices/exercices_niveau1_decouverte.html',
    description: 'Révision programmée : 2 exercices niveau 1 (découverte).\\n\\n💡 Objectif : Réactiver les notions de base avec des exercices guidés.'
   }},
   pratique: {{
    icon: '📖',
    title: 'Exercices Pratique',
-   url: '/College_4ieme_Maths/{chapter_slug}/exercices/exercices_niveau2_pratique.html',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/{chapter_slug}/exercices/exercices_niveau2_pratique.html',
    description: 'Révision programmée : 2 exercices niveau 2 (pratique).\\n\\n💡 Objectif : Application directe des règles apprises.'
   }},
   synthese: {{
    icon: '🧠',
    title: 'Quiz Synthèse',
-   url: '/College_4ieme_Maths/{chapter_slug}/fiches_resume/fiche_synthese.html',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/{chapter_slug}/fiches_resume/fiche_synthese.html',
    description: 'Révision programmée : Mini quiz de synthèse.\\n\\n💡 Objectif : Vérifier la mémorisation des règles essentielles.'
   }},
   defi: {{
    icon: '🏆',
    title: 'Défi Niveau 3',
-   url: '/College_4ieme_Maths/{chapter_slug}/exercices/exercices_niveau3_defi.html',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/{chapter_slug}/exercices/exercices_niveau3_defi.html',
    description: 'Révision programmée : Exercices défi et approfondissement.\\n\\n💡 Objectif : Consolider avec des problèmes complexes et créatifs.'
   }}
  }};

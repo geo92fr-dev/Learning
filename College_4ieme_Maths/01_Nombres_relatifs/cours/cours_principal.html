@@ -108,6 +108,19 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
  .sous-section-apprentissage{margin:.9rem 0;padding:.6rem .75rem;border:1px solid #1e2530;border-radius:8px;background:rgba(255,255,255,0.02);}
  .sous-section-apprentissage h3{margin-top:0;font-size:.9rem;}
  .intro-apprentissage{font-size:.7rem;opacity:.75;margin:-.2rem 0 .8rem;}
+ 
+ /* Éléments interactifs pour l'apprentissage */
+ .quiz-input{margin:0.8rem 0;display:flex;gap:0.5rem;align-items:center;}
+ .quiz-textbox{background:#1e2530;border:2px solid #3d4c5c;color:#f5f7fa;padding:0.5rem 0.75rem;border-radius:6px;font-size:0.85rem;width:80px;text-align:center;}
+ .quiz-textbox:focus{border-color:#67c7ff;outline:none;box-shadow:0 0 8px rgba(103,199,255,0.3);}
+ .quiz-textbox:disabled{background:#1a4d3a;border-color:#2d5a3d;color:#90ee90;}
+ .quiz-btn{background:#67c7ff;color:#0d1117;padding:0.4rem 0.8rem;border:none;border-radius:6px;cursor:pointer;font-size:0.8rem;font-weight:600;transition:all 0.2s;}
+ .quiz-btn:hover{background:#5bb3f0;transform:translateY(-1px);}
+ .quiz-btn:disabled{background:#2d5a3d;color:#90ee90;cursor:not-allowed;transform:none;}
+ .feedback-zone{margin:0.5rem 0 0;padding:0.6rem;border-radius:6px;font-size:0.8rem;line-height:1.4;}
+ .feedback-success{background:rgba(144,238,144,0.1);border:1px solid #2d5a3d;color:#90ee90;}
+ .feedback-error{background:rgba(255,99,99,0.1);border:1px solid #5c2d2d;color:#ff9999;}
+ .feedback-neutral{background:rgba(103,199,255,0.1);border:1px solid #3d4c5c;color:#67c7ff;}
 </style>
 
 </head><body>
@@ -151,32 +164,98 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
 </section>
 <section id='apprentissage-progressif' class='bloc-cours'>
  <h2>🚶 3. Apprendre étape par étape</h2>
- <p class='intro-apprentissage'>Pour maîtriser les nombres relatifs : d'abord des étapes claires, puis s'entraîner pour devenir autonome.</p>
 
  <div class='sous-section-apprentissage'>
-  <h3>3.1. Étapes guidées</h3>
-  <p class='explication-sous-partie'>But : découper la méthode en 3 étapes simples et claires.</p>
+  <h3>3.1. Visualisation</h3>
+  <p class='explication-sous-partie'>But : voir concrètement les nombres relatifs sur une droite graduée pour mieux comprendre les positions et comparaisons.</p>
+  <p><strong>Droite graduée des nombres relatifs :</strong></p>
+  <div class='svg-container'>
+   <svg viewBox='0 0 600 120' class='svg-responsive'>
+    <!-- Droite principale -->
+    <line x1='50' y1='60' x2='550' y2='60' stroke='#67c7ff' stroke-width='3'/>
+    <!-- Flèche -->
+    <polygon points='545,55 560,60 545,65' fill='#67c7ff'/>
+    
+    <!-- Graduations et nombres -->
+    <!-- -8 -->
+    <line x1='90' y1='50' x2='90' y2='70' stroke='#ff6b6b' stroke-width='3'/>
+    <circle cx='90' cy='60' r='6' fill='#ff6b6b' opacity='0.8'/>
+    <text x='90' y='85' text-anchor='middle' fill='#ff6b6b' font-size='14' font-weight='bold'>-8</text>
+    
+    <!-- -3 -->
+    <line x1='190' y1='50' x2='190' y2='70' stroke='#ff9f43' stroke-width='3'/>
+    <circle cx='190' cy='60' r='6' fill='#ff9f43' opacity='0.8'/>
+    <text x='190' y='85' text-anchor='middle' fill='#ff9f43' font-size='14' font-weight='bold'>-3</text>
+    
+    <!-- 0 (origine) -->
+    <line x1='300' y1='45' x2='300' y2='75' stroke='#f5f7fa' stroke-width='4'/>
+    <circle cx='300' cy='60' r='8' fill='#f5f7fa' opacity='0.9'/>
+    <text x='300' y='40' text-anchor='middle' fill='#f5f7fa' font-size='16' font-weight='bold'>0</text>
+    <text x='300' y='100' text-anchor='middle' fill='#8892b0' font-size='12'>origine</text>
+    
+    <!-- +4 -->
+    <line x1='410' y1='50' x2='410' y2='70' stroke='#10ac84' stroke-width='3'/>
+    <circle cx='410' cy='60' r='6' fill='#10ac84' opacity='0.8'/>
+    <text x='410' y='85' text-anchor='middle' fill='#10ac84' font-size='14' font-weight='bold'>+4</text>
+    
+    <!-- +7 -->
+    <line x1='480' y1='50' x2='480' y2='70' stroke='#00d2d3' stroke-width='3'/>
+    <circle cx='480' cy='60' r='6' fill='#00d2d3' opacity='0.8'/>
+    <text x='480' y='85' text-anchor='middle' fill='#00d2d3' font-size='14' font-weight='bold'>+7</text>
+    
+    <!-- Graduations mineures -->
+    <g stroke='#4a5568' stroke-width='1' opacity='0.6'>
+     <line x1='130' y1='55' x2='130' y2='65'/><text x='130' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>-6</text>
+     <line x1='170' y1='55' x2='170' y2='65'/><text x='170' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>-4</text>
+     <line x1='210' y1='55' x2='210' y2='65'/><text x='210' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>-2</text>
+     <line x1='230' y1='55' x2='230' y2='65'/><text x='230' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>-1</text>
+     <line x1='320' y1='55' x2='320' y2='65'/><text x='320' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>+1</text>
+     <line x1='340' y1='55' x2='340' y2='65'/><text x='340' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>+2</text>
+     <line x1='360' y1='55' x2='360' y2='65'/><text x='360' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>+3</text>
+     <line x1='430' y1='55' x2='430' y2='65'/><text x='430' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>+5</text>
+     <line x1='450' y1='55' x2='450' y2='65'/><text x='450' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>+6</text>
+    </g>
+    
+    <!-- Labels directionnels -->
+    <text x='150' y='25' text-anchor='middle' fill='#ff6b6b' font-size='12' font-style='italic'>← négatifs</text>
+    <text x='450' y='25' text-anchor='middle' fill='#10ac84' font-size='12' font-style='italic'>positifs →</text>
+   </svg>
+  </div>
+  <div class='card'>
+   <h4>🎯 Astuce de navigation</h4>
+   <p><strong>Règle simple :</strong> Plus on va à droite, plus les nombres sont grands</p>
+   <p><em>Exemple :</em> -8 < -3 < 0 < +4 < +7</p>
+   <div class='tip-method'>⚡ <strong>Mémo :</strong> À gauche = plus petit • À droite = plus grand</div>
+  </div>
+ </div>
+
+ <div class='sous-section-apprentissage'>
+  <h3>3.2. Étapes guidées</h3>
+  <p class='explication-sous-partie'>Méthode en 3 étapes pour additionner deux nombres relatifs.</p>
   <div class='grid-auto'>
    <div class='card'>
-    <h4>Étape 1 – Situer</h4>
-    <p>Placer chaque nombre sur une droite graduée.</p>
-    <p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p>
+    <h4>1️⃣ Je regarde les signes</h4>
+    <div class='tip-context'>🤔 <strong>Pourquoi :</strong> Car la méthode de calcul change selon les signes.</div>
+    <p>Sont-ils identiques ou différents ?</p>
+    <p><em>Ex :</em> (+3) et (-5) → différents</p>
    </div>
    <div class='card'>
-    <h4>Étape 2 – Comparer</h4>
-    <p>Observer positions relatives pour décider signe final.</p>
-    <p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p>
+    <h4>2️⃣ Je calcule</h4>
+    <div class='tip-context'>🤔 <strong>Pourquoi :</strong> Signes pareils = addition • Signes différents = soustraction.</div>
+    <p><strong>Même signe :</strong> j'additionne<br><strong>Signes différents :</strong> je soustrais le plus petit du plus grand</p>
+    <p><em>Ex :</em> 5 - 3 = 2</p>
    </div>
    <div class='card'>
-    <h4>Étape 3 – Calculer</h4>
-    <p>Additionner ou soustraire les valeurs absolues selon les signes.</p>
-    <p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p>
+    <h4>3️⃣ Je choisis le signe</h4>
+    <div class='tip-context'>🤔 <strong>Pourquoi :</strong> Le nombre le plus "fort" impose son signe au résultat.</div>
+    <p><strong>Même signe :</strong> je garde ce signe<br><strong>Signes différents :</strong> signe du plus grand nombre</p>
+    <p><em>Ex :</em> -5 est plus grand que +3 → résultat négatif</p>
    </div>
   </div>
  </div>
 
  <div class='sous-section-apprentissage'>
-  <h3>3.2. Devenir autonome</h3>
+  <h3>3.3. Devenir autonome</h3>
   <p class='explication-sous-partie'>But : passer d'un calcul entièrement expliqué à un calcul autonome (100% guidé → semi-guidé → seul).</p>
   <div class='grid-auto'>
    <div class='card'>
@@ -189,95 +268,43 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
      <li>Je garde le signe de la plus grande valeur (7 est +) → <strong>+2</strong>.</li>
     </ol>
     <div class='tip-verify'>💡 <strong>Vérification :</strong> Je contrôle avec un contexte (argent ou température).</div>
+    <p><strong>✍️ À toi de valider :</strong> Refais le même calcul (+7) + (-5) =</p>
+    <div class='quiz-input'>
+        <input type='text' class='quiz-textbox' id='phase1Answer' placeholder='Ta réponse' maxlength='4'>
+        <button class='quiz-btn' onclick='checkPhaseAnswer(1, "+2", "Signes différents : 7 - 5 = 2, signe du plus grand (+7) → +2")'>✓ Valider</button>
+    </div>
+    <div class='feedback-zone' id='phase1Feedback'></div>
    </div>
    <div class='card'>
     <h4>Phase 2 – Semi-guidé</h4>
     <p><em>Calcul :</em> (-9) + (+4)</p>
-    <p>Indices : signes différents → soustraction des valeurs absolues (distances à zéro). Quel signe pour le résultat ?</p>
-    <details><summary class='summary-mini'>Voir solution</summary><p>Valeurs absolues (distances à zéro) : 9 et 4 → 9 - 4 = 5. Signe de la plus grande distance : -9 → <strong>-5</strong>.</p></details>
+    <p><strong>💡 Indices :</strong> signes différents → soustraction des valeurs absolues (distances à zéro). Quel signe pour le résultat ?</p>
+    <details><summary class='summary-mini'>Voir solution si bloqué</summary><p>Valeurs absolues (distances à zéro) : 9 et 4 → 9 - 4 = 5. Signe de la plus grande distance : -9 → <strong>-5</strong>.</p></details>
+    <p><strong>✍️ Ton calcul :</strong> (-9) + (+4) =</p>
+    <div class='quiz-input'>
+        <input type='text' class='quiz-textbox' id='phase2Answer' placeholder='Ta réponse' maxlength='4'>
+        <button class='quiz-btn' onclick='checkPhaseAnswer(2, "-5", "Signes différents : 9 - 4 = 5, signe du plus grand (-9) → -5")'>✓ Valider</button>
+    </div>
+    <div class='feedback-zone' id='phase2Feedback'></div>
    </div>
    <div class='card'>
     <h4>Phase 3 – Autonome 🏆</h4>
     <p><em>Calcul :</em> (+12) + (-7)</p>
-    <p>Résultat : <span class='text-fade'>à écrire →</span></p>
     <details><summary class='summary-mini'>🆘 Besoin d'aide ?</summary><p><strong>Astuce :</strong> Les signes sont différents ! Tu dois soustraire les distances à zéro (12 - 7) et garder le signe du nombre le plus "fort" (+12).</p></details>
     <details><summary class='summary-mini'>Auto-vérification</summary><ul class='list-compact'><li>Signe logique ?</li><li>Soustraction faite ?</li><li>Signe du plus grand gardé ?</li></ul></details>
+    <p><strong>🎯 Défi autonome :</strong> (+12) + (-7) =</p>
+    <div class='quiz-input'>
+        <input type='text' class='quiz-textbox' id='phase3Answer' placeholder='Ta réponse' maxlength='4'>
+        <button class='quiz-btn' onclick='checkPhaseAnswer(3, "+5", "Signes différents : 12 - 7 = 5, signe du plus grand (+12) → +5")'>✓ Valider</button>
+    </div>
+    <div class='feedback-zone' id='phase3Feedback'></div>
    </div>
   </div>
  </div>
+
+
 </section>
-<section><h2>🎨 4. Visualisation</h2>
- <p><strong>Droite graduée des nombres relatifs :</strong></p>
- <div class='svg-container'>
-  <svg viewBox='0 0 600 120' class='svg-responsive'>
-   <!-- Droite principale -->
-   <line x1='50' y1='60' x2='550' y2='60' stroke='#67c7ff' stroke-width='3'/>
-   <!-- Flèche -->
-   <polygon points='545,55 560,60 545,65' fill='#67c7ff'/>
-   
-   <!-- Graduations et nombres -->
-   <!-- -8 -->
-   <line x1='90' y1='50' x2='90' y2='70' stroke='#ff6b6b' stroke-width='3'/>
-   <circle cx='90' cy='60' r='6' fill='#ff6b6b' opacity='0.8'/>
-   <text x='90' y='85' text-anchor='middle' fill='#ff6b6b' font-size='14' font-weight='bold'>-8</text>
-   
-   <!-- -3 -->
-   <line x1='190' y1='50' x2='190' y2='70' stroke='#ff9f43' stroke-width='3'/>
-   <circle cx='190' cy='60' r='6' fill='#ff9f43' opacity='0.8'/>
-   <text x='190' y='85' text-anchor='middle' fill='#ff9f43' font-size='14' font-weight='bold'>-3</text>
-   
-   <!-- 0 (origine) -->
-   <line x1='300' y1='45' x2='300' y2='75' stroke='#f5f7fa' stroke-width='4'/>
-   <circle cx='300' cy='60' r='8' fill='#f5f7fa' opacity='0.9'/>
-   <text x='300' y='40' text-anchor='middle' fill='#f5f7fa' font-size='16' font-weight='bold'>0</text>
-   <text x='300' y='100' text-anchor='middle' fill='#8892b0' font-size='12'>origine</text>
-   
-   <!-- +4 -->
-   <line x1='410' y1='50' x2='410' y2='70' stroke='#10ac84' stroke-width='3'/>
-   <circle cx='410' cy='60' r='6' fill='#10ac84' opacity='0.8'/>
-   <text x='410' y='85' text-anchor='middle' fill='#10ac84' font-size='14' font-weight='bold'>+4</text>
-   
-   <!-- +7 -->
-   <line x1='480' y1='50' x2='480' y2='70' stroke='#00d2d3' stroke-width='3'/>
-   <circle cx='480' cy='60' r='6' fill='#00d2d3' opacity='0.8'/>
-   <text x='480' y='85' text-anchor='middle' fill='#00d2d3' font-size='14' font-weight='bold'>+7</text>
-   
-   <!-- Graduations mineures -->
-   <g stroke='#4a5568' stroke-width='1' opacity='0.6'>
-    <line x1='130' y1='55' x2='130' y2='65'/><text x='130' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>-6</text>
-    <line x1='170' y1='55' x2='170' y2='65'/><text x='170' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>-4</text>
-    <line x1='210' y1='55' x2='210' y2='65'/><text x='210' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>-2</text>
-    <line x1='230' y1='55' x2='230' y2='65'/><text x='230' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>-1</text>
-    <line x1='320' y1='55' x2='320' y2='65'/><text x='320' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>+1</text>
-    <line x1='340' y1='55' x2='340' y2='65'/><text x='340' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>+2</text>
-    <line x1='360' y1='55' x2='360' y2='65'/><text x='360' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>+3</text>
-    <line x1='430' y1='55' x2='430' y2='65'/><text x='430' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>+5</text>
-    <line x1='450' y1='55' x2='450' y2='65'/><text x='450' y='80' text-anchor='middle' fill='#8892b0' font-size='10'>+6</text>
-   </g>
-   
-   <!-- Labels directionnels -->
-   <text x='150' y='25' text-anchor='middle' fill='#ff6b6b' font-size='12' font-style='italic'>← négatifs</text>
-   <text x='450' y='25' text-anchor='middle' fill='#10ac84' font-size='12' font-style='italic'>positifs →</text>
-  </svg>
- </div>
- <div class='grid-auto'>
-  <div class='card'>
-   <h4>🎨 Code couleur de la droite</h4>
-   <p>🔴 <strong>Rouge :</strong> Nombres très négatifs (-8, -6...)</p>
-   <p>🟠 <strong>Orange :</strong> Nombres moyennement négatifs (-3, -4...)</p>
-   <p>⚪ <strong>Blanc :</strong> Le zéro (origine, neutre)</p>
-   <p>🟢 <strong>Vert :</strong> Nombres moyennement positifs (+3, +4...)</p>
-   <p>🔵 <strong>Bleu :</strong> Nombres très positifs (+7, +8...)</p>
-  </div>
-  <div class='card'>
-   <h4>🎯 Astuce de navigation</h4>
-   <p><strong>Règle simple :</strong> Plus on va à droite, plus les nombres sont grands</p>
-   <p><em>Exemple :</em> -8 < -3 < 0 < +4 < +7</p>
-   <div class='tip-method'>⚡ <strong>Mémo :</strong> Gauche = Plus petit • Droite = Plus grand</div>
-  </div>
- </div>
-</section>
-<section><h2>💡 5. Méthode illustrée</h2>
+<section><h2>💡 4. Méthode illustrée</h2>
  <div class='grid-auto'>
   <div class='card'>
    <h3>🔹 Étape 1 : Même signe</h3>
@@ -523,6 +550,50 @@ function addSingleEventToCalendar(interval, type) {
  // Feedback discret
  const dayName = eventDate.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
  alert(`📅 Rappel "${config.title}" ajouté pour le ${dayName} !\n\nVérifie le nouvel onglet pour confirmer l'événement.`);
+}
+
+// Fonctions pour l'interactivité des phases d'apprentissage
+function normalizeAnswer(answer) {
+    return answer.trim().replace(/\s+/g, '').toLowerCase();
+}
+
+function checkPhaseAnswer(phaseNum, correctAnswer, explanation) {
+    const input = document.getElementById(`phase${phaseNum}Answer`);
+    const feedback = document.getElementById(`phase${phaseNum}Feedback`);
+    const userAnswer = input.value.trim();
+    
+    if (!userAnswer) {
+        feedback.className = 'feedback-zone feedback-neutral';
+        feedback.innerHTML = '📝 <strong>Écris ta réponse :</strong> Exemple +5, -3, ou 0';
+        return;
+    }
+    
+    // Normaliser les réponses pour la comparaison
+    const normalizedUser = normalizeAnswer(userAnswer);
+    const normalizedCorrect = normalizeAnswer(correctAnswer);
+    
+    // Vérifier différentes variantes de réponse
+    let isCorrect = false;
+    if (normalizedUser === normalizedCorrect || 
+        normalizedUser === normalizedCorrect.replace('+', '') ||
+        (correctAnswer === '0' && (normalizedUser === 'zéro' || normalizedUser === 'zero'))) {
+        isCorrect = true;
+    }
+    
+    if (isCorrect) {
+        feedback.className = 'feedback-zone feedback-success';
+        feedback.innerHTML = `✓ <strong>Bravo !</strong> La réponse est bien ${correctAnswer}<br><em>💡 ${explanation}</em>`;
+        
+        // Désactiver après succès
+        input.disabled = true;
+        input.style.background = '#1a4d3a';
+        const btn = input.nextElementSibling;
+        btn.disabled = true;
+        btn.textContent = '✓ Validé';
+    } else {
+        feedback.className = 'feedback-zone feedback-error';
+        feedback.innerHTML = `❌ <strong>Pas tout à fait.</strong> Réessaie en appliquant la méthode étape par étape.<br><em>💡 Aide : ${explanation}</em>`;
+    }
 }
 
 // Initialiser au chargement de la page

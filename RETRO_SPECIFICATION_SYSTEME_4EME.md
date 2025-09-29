@@ -1,5 +1,9 @@
 # 📋 RÉTRO-SPÉCIFICATION - Système Éducatif 4ème
-*Limite: 4. **🎨 Visualisation** - SVG interactif avec code couleur
+*Limite: 4. *3. **🚶 Apprendre étape par étape** (section unifiée)
+   - 3.1. Visualisation (droite graduée SVG interactive + astuce navigation)
+   - 3.2. Étapes guidées (Situer → Comparer → Calculer)
+   - 3.3. Devenir autonome (100% guidé → semi-guidé → seul)
+4. **💡 Méthode** - Règles encadrées + exemples concretsisualisation** - SVG interactif avec code couleur
 5. **💡 Méthode** - Règles encadrées + exemples concrets
 5. **🧠 Comprendre les erreurs fréquentes** (section unifiée)
    - 5.1. Les erreurs qui reviennent souvent (repérage + cartes Faux/Correct)
@@ -84,6 +88,14 @@ Project_Learning_Simplified/
 3. Exemples de pièges
 4. Quiz 5 niveaux + score dynamique
 5. Hints gradués
+
+### **💬 Éléments Interactifs**
+- **Textbox + Validation** : `.quiz-textbox` + `.quiz-btn` (pattern fiche_synthese.html)
+- **3 Phases Autonomie** : Phase 1 (100% guidé), Phase 2 (Semi-guidé), Phase 3 (Autonome 🏆)
+- **Feedback Temps Réel** : `.feedback-success` (vert), `.feedback-error` (rouge), `.feedback-neutral` (bleu)
+- **JavaScript** : `checkPhaseAnswer(phaseNum, correctAnswer, explanation)`
+- **Validation Flexible** : Accepte +2, 2, ou variantes textuelles selon contexte
+- **État Post-Succès** : Input désactivé, bouton "✓ Validé", couleur verte
 
 ## 📊 **MÉTADONNÉES**
 
