@@ -378,7 +378,7 @@ body.fast-mode .intro-methode{opacity:.55;}
    <div class='mini-check'>
     <label for='mstep1' class='mini-label'>Test rapide :</label>
     <input type='text' id='mstep1' class='quiz-textbox mini' placeholder='Résultat ?' maxlength='5'>
-    <button class='quiz-btn mini' onclick="checkMethodAnswer(1,'-14','Même signe : 8 + 6 = 14 et on garde -')">✓</button>
+    <button class='quiz-btn mini btn-method' data-method='1' data-ans='-14' data-expl="Même signe : 8 + 6 = 14 et on garde -">✓</button>
     <span class='mini-enonce'>(-8) + (-6)</span>
    </div>
    <div id='method1Feedback' class='feedback-zone mini-feedback'></div>
@@ -399,7 +399,7 @@ body.fast-mode .intro-methode{opacity:.55;}
    <div class='mini-check'>
     <label for='mstep2' class='mini-label'>Teste :</label>
     <input type='text' id='mstep2' class='quiz-textbox mini' placeholder='Résultat ?' maxlength='5'>
-    <button class='quiz-btn mini' onclick="checkMethodAnswer(2,'-5','Différents : 7 - 2 = 5, signe de 7 (négatif) → -5')">✓</button>
+    <button class='quiz-btn mini btn-method' data-method='2' data-ans='-5' data-expl="Différents : 7 - 2 = 5, signe de 7 (négatif) -> -5">✓</button>
     <span class='mini-enonce'>(+2) + (-7)</span>
    </div>
    <div id='method2Feedback' class='feedback-zone mini-feedback'></div>
@@ -438,7 +438,7 @@ body.fast-mode .intro-methode{opacity:.55;}
    <div class='mini-check'>
     <label for='mstep3' class='mini-label'>Vérifie :</label>
     <input type='text' id='mstep3' class='quiz-textbox mini' placeholder='Résultat ?' maxlength='5'>
-    <button class='quiz-btn mini' onclick="checkMethodAnswer(3,'+5','Différents : 12 - 7 = 5, signe de 12 → +5')">✓</button>
+    <button class='quiz-btn mini btn-method' data-method='3' data-ans='+5' data-expl="Différents : 12 - 7 = 5, signe de 12 -> +5">✓</button>
     <span class='mini-enonce'>(+12) + (-7)</span>
    </div>
    <div id='method3Feedback' class='feedback-zone mini-feedback'></div>
@@ -505,7 +505,7 @@ body.fast-mode .intro-methode{opacity:.55;}
     <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
     <div class='quiz-input'>
         <input type='text' class='quiz-textbox' id='piege1Answer' placeholder='Ta réponse' maxlength='4'>
-    <button class='quiz-btn' onclick="checkPiegeAnswer(1,'-3','Erreur : on additionne au lieu de soustraire. 8 - 5 = 3, signe de -8 => -3')">✓ Valider</button>
+    <button class='quiz-btn btn-piege' data-piege='1' data-ans='-3' data-expl="Erreur : on additionne au lieu de soustraire. 8 - 5 = 3, signe de -8 => -3">✓ Valider</button>
     </div>
     <div class='feedback-zone' id='piege1Feedback'></div>
    </div>
@@ -515,7 +515,7 @@ body.fast-mode .intro-methode{opacity:.55;}
     <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
     <div class='quiz-input'>
         <input type='text' class='quiz-textbox' id='piege2Answer' placeholder='Ta réponse' maxlength='4'>
-    <button class='quiz-btn' onclick="checkPiegeAnswer(2,'-10','Meme signe : (-6)+(-4) => 6+4=10 et signe - => -10')">✓ Valider</button>
+    <button class='quiz-btn btn-piege' data-piege='2' data-ans='-10' data-expl="Meme signe : (-6)+(-4) => 6+4=10 et signe - => -10">✓ Valider</button>
     </div>
     <div class='feedback-zone' id='piege2Feedback'></div>
    </div>
@@ -525,7 +525,7 @@ body.fast-mode .intro-methode{opacity:.55;}
     <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
     <div class='quiz-input'>
         <input type='text' class='quiz-textbox' id='piege3Answer' placeholder='Ta réponse' maxlength='4'>
-    <button class='quiz-btn' onclick="checkPiegeAnswer(3,'+7','Signe final : valeur absolue plus grande = +9 => 9 - 2 = 7 => +7')">✓ Valider</button>
+    <button class='quiz-btn btn-piege' data-piege='3' data-ans='+7' data-expl="Signe final : valeur absolue plus grande = +9 => 9 - 2 = 7 => +7">✓ Valider</button>
     </div>
     <div class='feedback-zone' id='piege3Feedback'></div>
    </div>
@@ -797,6 +797,26 @@ document.addEventListener('DOMContentLoaded', function() {
    if(e.key==='Enter'){
     checkMethodAnswer(item.num, item.answer || item.ans, item.expl);
    }
+  });
+ });
+
+ // Délégation des boutons méthode (data-attributes)
+ document.querySelectorAll('.btn-method').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+   const num = parseInt(btn.dataset.method,10);
+   const ans = btn.dataset.ans;
+   const expl = btn.dataset.expl;
+   checkMethodAnswer(num, ans, expl);
+  });
+ });
+
+ // Délégation des boutons pièges (data-attributes)
+ document.querySelectorAll('.btn-piege').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+   const num = parseInt(btn.dataset.piege,10);
+   const ans = btn.dataset.ans;
+   const expl = btn.dataset.expl;
+   checkPiegeAnswer(num, ans, expl);
   });
  });
 
