@@ -2,7 +2,7 @@
   "codeQuality": {
     "coverage": 0,
     "complexity": 10,
-    "duplication": 1.011326178559682,
+    "duplication": 0.16727214706205085,
     "maintainability": 0
   },
   "projectHealth": {
@@ -10,19 +10,19 @@
     "testsPassing": 0,
     "testsTotal": 0,
     "dependencies": 0,
-    "vulnerabilities": 2
+    "vulnerabilities": 1
   },
   "educationalQuality": {
     "cbdCompliance": 0,
-    "pedagogicalAlignment": 94,
+    "pedagogicalAlignment": 78,
     "accessibilityScore": 100,
-    "contentQuality": 65
+    "contentQuality": 59
   },
   "performance": {
-    "lighthouse": 94,
+    "lighthouse": 89,
     "loadTime": 500,
     "bundleSize": 24,
-    "memoryUsage": 21.476084800751366
+    "memoryUsage": 16.18080284522502
   },
-  "lastUpdate": "2025-09-29T11:23:58.470Z"
+  "lastUpdate": "2025-09-29T11:27:59.089Z"
 }

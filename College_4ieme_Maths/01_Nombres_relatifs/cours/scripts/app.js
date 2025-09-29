@@ -18,7 +18,7 @@ const userState = {
 
 //  Initialisation complète dans DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-  console.log(' Démarrage de l''application...');
+  console.log('🚀 Démarrage de l\'application...');
   initializeApp();
 });
 
@@ -45,18 +45,21 @@ function initializeApp() {
     setupNavigation();
     setupProgressBar();
     setupKeyboardNavigation();
+    setupBackToTop();
+    setupPhaseNavigation();
     
     // Section par défaut
-    showSection('intro');
+    showSection('introduction');
     
     // Statistiques initiales
     logAppStats();
+    updateProgressSummary();
     
-    console.log(' Application initialisée avec succès');
+    console.log('✅ Application initialisée avec succès');
     
   } catch (error) {
-    console.error(' Erreur critique d''initialisation:', error);
-    showAppError('Erreur d''initialisation de l''application');
+    console.error('❌ Erreur critique d\'initialisation:', error);
+    showAppError('Erreur d\'initialisation de l\'application');
   }
 }
 
@@ -126,7 +129,7 @@ function setupKeyboardNavigation() {
     
     // Échap pour retour au début
     if (e.key === 'Escape') {
-      showSection('intro');
+      showSection('introduction');
     }
   });
 }
@@ -163,7 +166,7 @@ function showSection(sectionId) {
   userState.sessionStats.sectionsVisited.add(sectionId);
   
   // Auto-marquer section précédente comme complétée
-  if (previousSection && previousSection !== sectionId && previousSection !== 'intro') {
+  if (previousSection && previousSection !== sectionId && previousSection !== 'introduction') {
     markSectionComplete(previousSection);
   }
   
@@ -351,6 +354,62 @@ function logAppStats() {
   return stats;
 }
 
+//  Fonctionnalités UX supplémentaires
+function setupBackToTop() {
+  const backToTopBtn = document.getElementById('backToTop');
+  if (!backToTopBtn) return;
+
+  // Afficher/masquer selon le scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.hidden = false;
+    } else {
+      backToTopBtn.hidden = true;
+    }
+  });
+
+  // Action de retour en haut
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+function setupPhaseNavigation() {
+  const phaseBtns = document.querySelectorAll('.phase-btn');
+  const phaseContainers = document.querySelectorAll('.quiz-phase');
+
+  phaseBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetPhase = btn.dataset.phase;
+      
+      // Mettre à jour les boutons
+      phaseBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Afficher la phase correspondante
+      phaseContainers.forEach(container => {
+        const isTarget = container.dataset.phase === targetPhase;
+        container.classList.toggle('hidden', !isTarget);
+      });
+      
+      console.log(`📚 Phase ${targetPhase} activée`);
+    });
+  });
+}
+
+function updateProgressSummary() {
+  const sectionsCompleted = document.getElementById('sectionsCompleted');
+  const quizCompleted = document.getElementById('quizCompleted');
+  
+  if (sectionsCompleted) {
+    sectionsCompleted.textContent = userState.sessionStats.sectionsVisited.size;
+  }
+  
+  if (quizCompleted) {
+    quizCompleted.textContent = userState.sessionStats.quizCompleted;
+  }
+}
+
 //  Exposition de l'API publique
 window.AppManager = {
   showSection,
@@ -359,7 +418,10 @@ window.AppManager = {
   updateProgress,
   getStats: logAppStats,
   getUserState: () => ({ ...userState }),
-  reinitialize: initializeApp
+  reinitialize: initializeApp,
+  setupBackToTop,
+  setupPhaseNavigation,
+  updateProgressSummary
 };
 
 //  Fonction globale pour compatibilité (appelée depuis HTML)

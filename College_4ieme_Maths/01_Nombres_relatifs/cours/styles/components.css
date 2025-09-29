@@ -342,6 +342,199 @@
   }
 }
 
+/* ============================================================================
+   BACK TO TOP BUTTON
+   ============================================================================ */
+
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  font-size: var(--text-lg);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-fast);
+  z-index: 100;
+}
+
+.back-to-top:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================================
+   ENHANCED FOOTER
+   ============================================================================ */
+
+.main-footer {
+  margin-top: var(--space-xl);
+  padding: var(--space-xl) 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-light);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  text-align: left;
+}
+
+.footer-section h4 {
+  color: var(--primary);
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-md);
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* -----------------------------------------------------------------------------
+   Exercise / Card / Badge / Toggle / Solution - shared styles
+   These rules were previously duplicated inline in many exercise and fiche files.
+   Centralized here for reuse across chapters.
+   --------------------------------------------------------------------------*/
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-md);
+  align-items: start;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  padding: .75rem .85rem;
+  border-radius: 12px;
+  position: relative;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.toggle {
+  display: inline-block;
+  padding: .45rem .65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-medium);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.toggle:hover {
+  background: var(--bg-hover);
+}
+
+.solution {
+  display: none;
+  margin-top: .5rem;
+  padding: .75rem;
+  border-left: 3px solid var(--primary);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.badge {
+  display: inline-block;
+  padding: .25rem .5rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--text-inverse);
+  font-size: .85rem;
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.regle-box {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin: .5rem 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+}
+
+.regle-positive { border-left: 4px solid var(--success); background: rgba(16,185,129,0.05); }
+.regle-negative { border-left: 4px solid var(--danger); background: rgba(239,68,68,0.04); }
+.regle-neutre  { border-left: 4px solid var(--primary); background: rgba(103,199,255,0.04); }
+
+.footer-section li {
+  margin-bottom: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+#progressSummary {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* ============================================================================
+   ENHANCED QUIZ PHASES
+   ============================================================================ */
+
+.phase-selector {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.phase-btn {
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-weight: var(--font-medium);
+}
+
+.phase-btn:hover {
+  color: var(--text-base);
+}
+
+.phase-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.quiz-phase {
+  animation: slideIn var(--transition-slow) ease-out;
+}
+
+.quiz-phase.hidden {
+  display: none;
+}
+
+.exercise-step.hidden {
+  display: none;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /*  REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
   * {

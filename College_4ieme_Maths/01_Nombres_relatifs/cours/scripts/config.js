@@ -44,35 +44,51 @@ const QUIZ_CONFIG = {
   },
   phase3_3: {
     answer: '0',
-    explain: 'Nombres opposés : (+7) + (-7) = 0 (ils s''annulent)'
+    explain: 'Nombres opposés : (+7) + (-7) = 0 (ils s\'annulent)'
   },
   
   //  Méthodes - Mini-vérifications
   method1: {
     answer: '-14',
-    explain: 'Même signe négatif : j''additionne 8+6=14 et je garde le signe  -14'
+    explain: 'Même signe négatif : j\'additionne 8+6=14 et je garde le signe → -14'
   },
   method2: {
     answer: '+3',
-    explain: 'Signes différents : je soustrais 9-6=3, signe du plus grand (+9)  +3'
+    explain: 'Signes différents : je soustrais 9-6=3, signe du plus grand (+9) → +3'
   },
   method3: {
     answer: '-7',
-    explain: 'Signes différents : je soustrais 12-5=7, signe du plus grand (-12)  -7'
+    explain: 'Signes différents : je soustrais 12-5=7, signe du plus grand (-12) → -7'
   },
   
+  //  Introduction - Quiz de découverte
+  introduction: {
+    answer: '-2',
+    explain: 'Correct ! Sur la droite graduée, -2 est plus à droite que -8 et -10, donc plus grand.'
+  },
+  
+  //  Rétention - Mémorisation des règles
+  retention_identiques: {
+    answer: 'J\'additionne et je garde ce signe',
+    explain: 'Parfait ! Quand les signes sont identiques, on additionne les valeurs absolues et on garde le signe commun.'
+  },
+  retention_differents: {
+    answer: 'Je soustrais et garde le signe du plus grand',
+    explain: 'Excellent ! Quand les signes sont différents, on soustrait les valeurs absolues et on garde le signe de la plus grande.'
+  },
+
   //  Pièges classiques
   piege1: {
     answer: '+8',
-    explain: 'PIÈGE évité ! Même signe positif : 3+5=8  +8 (pas -8)'
+    explain: 'PIÈGE évité ! Même signe positif : 3+5=8 → +8 (pas -8)'
   },
   piege2: {
     answer: '-2',
-    explain: 'PIÈGE évité ! Signes différents : 6-8=2, signe du plus grand (-8)  -2 (pas +2)'
+    explain: 'PIÈGE évité ! Signes différents : 6-8=2, signe du plus grand (-8) → -2 (pas +2)'
   },
   piege3: {
     answer: '+10',
-    explain: 'PIÈGE évité ! Signes différents : 15-5=10, signe du plus grand (+15)  +10'
+    explain: 'PIÈGE évité ! Signes différents : 15-5=10, signe du plus grand (+15) → +10'
   }
 };
 

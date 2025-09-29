@@ -11,34 +11,209 @@
     <link rel="stylesheet" href="styles/components.css">
     
     <style>
-    .page-header {
+    .modern-nav {
+        /* fixed, theme-aware banner that matches the app styles */
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
+        background: var(--bg-card); /* use app card background instead of hard white */
+        color: var(--text-primary);
         z-index: 1100;
-        background: var(--bg-card);
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.6rem 0.9rem;
         border-bottom: 1px solid var(--border-light);
-        -webkit-backdrop-filter: blur(6px);
-        backdrop-filter: blur(6px);
-        padding: 0.5rem 0.9rem;
+        flex-wrap: wrap;
+        height: var(--nav-height, 64px);
+        align-items: center;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
     }
 
-    .modern-nav {
+    .modern-nav button {
+        padding: 0.55rem 0.9rem;
+        border: none;
+        background: var(--primary);
+        color: var(--on-primary, #fff);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: 500;
+    }
+
+    .modern-nav button:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+    }
+    .modern-nav button:active,
+    .modern-nav button:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        background: var(--primary-dark);
+        color: var(--on-primary, #fff);
+    }
+
+    /* ensure active state is visibly distinct even if theme colors are light
+       apply a slight darkening and clear focus-visible ring for accessibility */
+    .modern-nav button:active {
+        filter: brightness(0.85);
+        transform: translateY(0);
+    }
+
+    .modern-nav button:focus-visible {
+        box-shadow: 0 0 0 3px rgba(59,130,246,0.18);
+        outline: none;
+    }
+
+    .progress-container {
+        margin: 1rem 0;
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+    }
+
+    /* Reserve space so fixed header doesn't cover content */
+    body {
+        padding-top: var(--nav-height, 64px);
+    }
+
+    .progress-bar {
+        background: var(--success);
+        color: white;
+        text-align: center;
+        padding: 0.5rem;
+        transition: width 0.3s ease;
+        font-weight: 500;
+        width: 0%;
+    }
+
+    .content-section {
+        margin: 2rem 0;
+        padding: 2rem;
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-light);
+        scroll-margin-top: 120px;
+    }
+
+    .intro-lead {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 2rem;
+    }
+
+    .rules-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .rule-card {
+        padding: 1.5rem;
+        border-radius: var(--radius-lg);
+        border-left: 4px solid;
+    }
+
+    .rule-card.primary { border-left-color: var(--primary); background: rgba(103, 199, 255, 0.1); }
+    .rule-card.secondary { border-left-color: var(--secondary); background: rgba(168, 85, 247, 0.1); }
+    .rule-card.accent { border-left-color: var(--accent); background: rgba(34, 197, 94, 0.1); }
+
+    .rule-number {
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 2rem;
+        font-weight: bold;
+        margin-right: 0.5rem;
+    }
+
+    .quiz-simple, .quiz-card, .quiz-question {
+        background: var(--bg-secondary);
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        margin: 1rem 0;
+        border: 1px solid var(--border-light);
+    }
+
+    .quiz-option {
+        margin: 0.25rem;
+        padding: 0.5rem 1rem;
+    border: 2px solid var(--border-medium);
+    background: var(--bg-input, #fff);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .quiz-option:hover {
+        border-color: var(--primary);
+    }
+
+    .shortcut-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-medium);
+        border-radius: var(--radius-sm);
+        color: var(--text-primary);
+        cursor: pointer;
+    }
+
+    .nav-shortcuts {
+        margin-left: auto;
         display: flex;
         gap: 0.5rem;
         align-items: center;
-        flex-wrap: wrap;
     }
 
-    body {
-        /* Adjust padding based on header height */
-        padding-top: 120px; /* Default for larger screens */
+    .phase-nav {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border-light);
     }
 
+    .phase-btn {
+        padding: 0.75rem 1rem;
+        border: none;
+        background: transparent;
+        color: var(--text-muted);
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .phase-btn.active {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+    }
+
+    .quiz-phase {
+        display: none;
+    }
+
+    .quiz-phase.active {
+        display: block;
+    }
+
+    /* Mobile adjustments for the banner and body spacing */
     @media (max-width: 760px) {
+        .modern-nav {
+            height: 56px;
+            padding: 0.5rem 0.75rem;
+        }
         body {
-            padding-top: 100px; /* Adjusted for mobile */
+            padding-top: 56px; /* ensure content isn't hidden under the fixed nav on mobile */
+        }
+        .nav-shortcuts {
+            width: 100%;
+            justify-content: flex-end;
         }
     }
 
@@ -125,47 +300,26 @@
         cursor: not-allowed;
         transform: none;
     }
-
-    .progress-container {
-        margin: 1rem 0 0.5rem 0; /* Adjusted margin */
-        background: var(--bg-secondary);
-        border-radius: var(--radius-md);
-        overflow: hidden;
-    }
-
-    .progress-bar {
-        height: 1.5rem;
-        background: var(--primary);
-        border-radius: var(--radius-md) 0 0 var(--radius-md);
-        transition: width 0.4s ease;
-        display: flex;
-        align-items: center;
-        padding-left: 0.5rem;
-        font-weight: 500;
-        color: white;
-    }
-
-    /* Autres styles... */
     </style>
 </head>
 <body>
 <div class="container">
-    <header class="page-header">
+    <header>
         <h1>🔢 Nombres Relatifs - Cours Interactif</h1>
         
         <!-- Navigation sticky (comme l'original) -->
         <nav class="modern-nav">
             <button onclick="showSection('introduction')">🏠 Introduction</button>
-            <button onclick="showSection('retention')">🔑 Règles</button>
+            <button onclick="showSection('retention')">🎯 Règles</button>
             <button onclick="showSection('phases')">📚 Quiz</button>
             <button onclick="showSection('methodes')">💡 Méthodes</button>
             <button onclick="showSection('pieges')">⚠️ Pièges</button>
             <!-- Shortcuts quick access -->
             <div class="nav-shortcuts">
-                <button class="shortcut-btn" onclick="showSection('exercices-n1')" title="Exercice Niveau 1 (touche 1)">✏️ Exo 1</button>
-                <button class="shortcut-btn" onclick="showSection('exercices-n2')" title="Exercice Niveau 2 (touche 2)">✏️ Exo 2</button>
-                <button class="shortcut-btn" onclick="showSection('exercices-n3')" title="Exercice Niveau 3 (touche 3)">✏️ Exo 3</button>
-                <button class="shortcut-btn" onclick="showSection('fiche-synthese')" title="Synthèse (touche 4 ou S)">📋 Synthèse</button>
+                <button class="shortcut-btn" onclick="showSection('exercices-n1')" title="Exercice Niveau 1 (touche 1)">Exo N1</button>
+                <button class="shortcut-btn" onclick="showSection('exercices-n2')" title="Exercice Niveau 2 (touche 2)">Exo N2</button>
+                <button class="shortcut-btn" onclick="showSection('exercices-n3')" title="Exercice Niveau 3 (touche 3)">Exo N3</button>
+                <button class="shortcut-btn" onclick="showSection('fiche-synthese')" title="Synthèse (touche 4 ou S)">Synthèse</button>
             </div>
         </nav>
         
@@ -203,44 +357,8 @@
             <div class="card">
                 <h4>📏 La droite graduée</h4>
                 <p>Visualisation sur une droite :</p>
-                <div class='svg-container'>
-                   <svg viewBox='0 0 600 120' class='svg-responsive'>
-                    <!-- Droite principale -->
-                    <line x1='50' y1='60' x2='550' y2='60' stroke='#67c7ff' stroke-width='3'/>
-                    <!-- Flèche -->
-                    <polygon points='545,55 560,60 545,65' fill='#67c7ff'/>
-                    
-                    <!-- Graduations et nombres -->
-                    <!-- -8 -->
-                    <line x1='90' y1='50' x2='90' y2='70' stroke='#ff6b6b' stroke-width='3'/>
-                    <circle cx='90' cy='60' r='6' fill='#ff6b6b' opacity='0.8'/>
-                    <text x='90' y='85' text-anchor='middle' fill='#ff6b6b' font-size='14' font-weight='bold'>-8</text>
-                    
-                    <!-- -3 -->
-                    <line x1='190' y1='50' x2='190' y2='70' stroke='#ff9f43' stroke-width='3'/>
-                    <circle cx='190' cy='60' r='6' fill='#ff9f43' opacity='0.8'/>
-                    <text x='190' y='85' text-anchor='middle' fill='#ff9f43' font-size='14' font-weight='bold'>-3</text>
-                    
-                    <!-- 0 (origine) -->
-                    <line x1='300' y1='45' x2='300' y2='75' stroke='var(--text-primary)' stroke-width='4'/>
-                    <circle cx='300' cy='60' r='8' fill='var(--text-primary)' opacity='0.9'/>
-                    <text x='300' y='40' text-anchor='middle' fill='var(--text-primary)' font-size='16' font-weight='bold'>0</text>
-                    <text x='300' y='100' text-anchor='middle' fill='var(--text-muted)' font-size='12'>origine</text>
-                    
-                    <!-- +4 -->
-                    <line x1='410' y1='50' x2='410' y2='70' stroke='#10ac84' stroke-width='3'/>
-                    <circle cx='410' cy='60' r='6' fill='#10ac84' opacity='0.8'/>
-                    <text x='410' y='85' text-anchor='middle' fill='#10ac84' font-size='14' font-weight='bold'>+4</text>
-                    
-                    <!-- +7 -->
-                    <line x1='480' y1='50' x2='480' y2='70' stroke='#00d2d3' stroke-width='3'/>
-                    <circle cx='480' cy='60' r='6' fill='#00d2d3' opacity='0.8'/>
-                    <text x='480' y='85' text-anchor='middle' fill='#00d2d3' font-size='14' font-weight='bold'>+7</text>
-                    
-                    <!-- Labels directionnels -->
-                    <text x='150' y='25' text-anchor='middle' fill='#ff6b6b' font-size='12' font-style='italic'>← négatifs</text>
-                    <text x='450' y='25' text-anchor='middle' fill='#10ac84' font-size='12' font-style='italic'>positifs →</text>
-                   </svg>
+                <div class="number-line">
+                    <span>-5</span> <span>-3</span> <span>-1</span> <span>0</span> <span>+1</span> <span>+3</span> <span>+5</span>
                 </div>
                 <p><strong>Règle :</strong> Plus on va à droite, plus les nombres sont grands</p>
             </div>
@@ -748,25 +866,13 @@ function checkTrap(isCorrect, message) {
 
 function updateProgress(sectionId) {
     const progressBar = document.querySelector('.progress-bar');
-    const sections = ['introduction', 'retention', 'phases', 'methodes', 'pieges', 'exercices-n1', 'exercices-n2', 'exercices-n3', 'fiche-synthese'];
-    const sectionNames = {
-        'introduction': 'Introduction',
-        'retention': 'Règles',
-        'phases': 'Quiz',
-        'methodes': 'Méthodes',
-        'pieges': 'Pièges',
-        'exercices-n1': 'Exercice 1',
-        'exercices-n2': 'Exercice 2',
-        'exercices-n3': 'Exercice 3',
-        'fiche-synthese': 'Synthèse'
-    };
+    const sections = ['introduction', 'retention', 'phases', 'methodes', 'pieges'];
     const currentIndex = sections.indexOf(sectionId);
     
     if (currentIndex >= 0) {
         const progress = ((currentIndex + 1) / sections.length) * 100;
-        const sectionName = sectionNames[sectionId] || 'Section';
         progressBar.style.width = progress + '%';
-        progressBar.textContent = `${Math.round(progress)}% - ${sectionName} (${currentIndex + 1}/${sections.length})`;
+        progressBar.textContent = Math.round(progress) + '% - Section ' + (currentIndex + 1) + '/5';
     }
 }
 
