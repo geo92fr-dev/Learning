@@ -150,6 +150,19 @@ details summary{cursor:pointer;font-weight:600;color:#67c7ff;}
 .regle-verte .contenu-regle{border-left-color:#10b981;} 
 .droite-svg{width:100%;height:60px;margin-top:.4rem;background:#111b25;border:1px solid #20303d;border-radius:6px;}
 .note-ligne{font-size:.6rem;opacity:.7;margin:.3rem 0 0;}
+/* Timeline & révision rapide */
+.method-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:.6rem;}
+.timeline-steps{display:flex;gap:.55rem;}
+.tstep{background:#1b2733;color:#8aa3b8;width:40px;height:40px;border-radius:50%;border:1px solid #2d3a46;font-weight:600;cursor:pointer;transition:.25s;position:relative;font-size:.85rem;}
+.tstep.active{background:#2563eb;color:#fff;box-shadow:0 0 0 4px rgba(37,99,235,.25);}
+.tstep:focus{outline:2px solid #67c7ff;outline-offset:2px;}
+.toggle-mode{background:#334155;color:#e2e8f0;border:1px solid #475569;padding:.45rem .8rem;border-radius:8px;font-size:.7rem;font-weight:600;cursor:pointer;transition:.25s;}
+.toggle-mode:hover{background:#3b4b5e;}
+.toggle-mode[aria-pressed='true']{background:#2563eb;border-color:#1d4ed8;color:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.35);}
+body.fast-mode .etape-contexte,body.fast-mode details,body.fast-mode .liste-controle,body.fast-mode .rappel,body.fast-mode .explication-inline,body.fast-mode details.variante,body.fast-mode .note-ligne{display:none !important;}
+body.fast-mode .step-card{min-height:120px;}
+body.fast-mode .expr{background:#13212c;}
+body.fast-mode .intro-methode{opacity:.55;}
  .feedback-neutral{background:rgba(103,199,255,0.1);border:1px solid #3d4c5c;color:#67c7ff;}
 </style>
 
@@ -340,11 +353,19 @@ details summary{cursor:pointer;font-weight:600;color:#67c7ff;}
 
 </section>
 <section id='methode-illustree'><h2>💡 4. Méthode illustrée</h2>
+ <div class='method-toolbar'>
+    <div class='timeline-steps' aria-label='Progression méthode'>
+     <button class='tstep active' data-target='#etape1' aria-label='Aller étape 1'>1</button>
+     <button class='tstep' data-target='#etape2' aria-label='Aller étape 2'>2</button>
+     <button class='tstep' data-target='#etape3' aria-label='Aller étape 3'>3</button>
+    </div>
+    <button id='toggleFast' class='toggle-mode' aria-pressed='false'>Mode révision rapide</button>
+ </div>
  <p class='intro-methode'>But : en 3 réflexes visuels → traiter n'importe quelle addition de relatifs sans hésitation.</p>
  <div class='method-steps'>
-  <div class='step-card etape1'>
+    <div class='step-card etape1' id='etape1' role='group' aria-labelledby='etape1Titre'>
    <div class='etape-badge' aria-label='Étape 1'>1</div>
-   <h3>🔹 Même signe</h3>
+    <h3 id='etape1Titre'>🔹 Même signe</h3>
    <div class='etape-contexte'>🌍 -4°C le matin, baisse de 6°C → -10°C</div>
    <div class='regle-encadree regle-bleue'>
     <div class='titre-regle'>📐 RÈGLE</div>
@@ -363,9 +384,9 @@ details summary{cursor:pointer;font-weight:600;color:#67c7ff;}
    <div id='method1Feedback' class='feedback-zone mini-feedback'></div>
    <details class='astuce'><summary>Besoin d'un repère ?</summary><p>Pense à une dette qui augmente : tu dois 8€, on t'ajoute encore 6€ → tu dois 14€.</p></details>
   </div>
-  <div class='step-card etape2'>
+    <div class='step-card etape2' id='etape2' role='group' aria-labelledby='etape2Titre'>
    <div class='etape-badge' aria-label='Étape 2'>2</div>
-   <h3>🔸 Signes différents</h3>
+    <h3 id='etape2Titre'>🔸 Signes différents</h3>
    <div class='etape-contexte'>💰 +8€ en poche, tu dépenses 3€ → il te reste +5€</div>
    <div class='regle-encadree regle-orange'>
     <div class='titre-regle'>📐 RÈGLE</div>
@@ -401,9 +422,9 @@ details summary{cursor:pointer;font-weight:600;color:#67c7ff;}
     <p class='note-ligne'>On part de +2 puis on recule 7 unités → on passe sous zéro jusqu'à -5.</p>
    </details>
   </div>
-  <div class='step-card etape3'>
+    <div class='step-card etape3' id='etape3' role='group' aria-labelledby='etape3Titre'>
    <div class='etape-badge' aria-label='Étape 3'>3</div>
-   <h3>✅ Contrôle final</h3>
+    <h3 id='etape3Titre'>✅ Contrôle final</h3>
    <div class='etape-contexte'>🧪 Vérifier que le résultat « raconte une histoire logique »</div>
    <div class='regle-encadree regle-verte'>
     <div class='titre-regle'>� RÈGLE</div>
@@ -736,6 +757,56 @@ document.addEventListener('DOMContentLoaded', function() {
    addSingleEventToCalendar(interval, type);
   });
  });
+
+ // Timeline navigation
+ const tsteps = document.querySelectorAll('.tstep');
+ tsteps.forEach(step=>{
+  step.addEventListener('click',()=>{
+   tsteps.forEach(s=>s.classList.remove('active'));
+   step.classList.add('active');
+   const targetSel = step.getAttribute('data-target');
+   const target = document.querySelector(targetSel);
+   if(target){
+    target.scrollIntoView({behavior:'smooth',block:'center'});
+    target.classList.add('pulse-focus');
+    setTimeout(()=>target.classList.remove('pulse-focus'),1200);
+   }
+  });
+ });
+
+ // Toggle révision rapide
+ const toggleFast = document.getElementById('toggleFast');
+ if(toggleFast){
+  toggleFast.addEventListener('click',()=>{
+   const isActive = document.body.classList.toggle('fast-mode');
+   toggleFast.setAttribute('aria-pressed', isActive ? 'true':'false');
+   toggleFast.textContent = isActive ? 'Mode détaillé' : 'Mode révision rapide';
+  });
+ }
+
+ // Auto validation Enter mini-checks
+ const autoChecks = [
+  {id:'mstep1',num:1,ans:'-14',expl:"Même signe : 8 + 6 = 14 et on garde -"},
+  {id:'mstep2',num:2,ans:'-5',expl:"Différents : 7 - 2 = 5, signe de 7 (négatif) => -5"},
+  {id:'mstep3',num:3,ans:'+5',expl:"Différents : 12 - 7 = 5, signe de 12 => +5"}
+ ];
+ autoChecks.forEach(item=>{
+  const el = document.getElementById(item.id);
+  if(!el) return;
+  el.addEventListener('keyup',e=>{
+   if(e.key==='Enter'){
+    checkMethodAnswer(item.num, item.answer || item.ans, item.expl);
+   }
+  });
+ });
+
+ // Style dynamique minimal pour la pulsation focus (injection si absent)
+ if(!document.getElementById('dynamicPulseStyle')){
+  const st = document.createElement('style');
+  st.id='dynamicPulseStyle';
+  st.textContent = `.pulse-focus{box-shadow:0 0 0 3px rgba(103,199,255,.6)!important;transition:box-shadow .6s ease-out;}`;
+  document.head.appendChild(st);
+ }
 });
 </script>
 </body></html>
