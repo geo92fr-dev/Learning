@@ -104,6 +104,10 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
  .explication-sous-partie{font-size:.65rem;opacity:.6;margin:.2rem 0 .5rem;}
  .liste-retention li,.liste-pieges li{font-size:.7rem;line-height:1.3;margin:.3rem 0;}
  .ancres-legacy{display:none;}
+ /* Bloc apprentissage progressif unifié */
+ .sous-section-apprentissage{margin:.9rem 0;padding:.6rem .75rem;border:1px solid #1e2530;border-radius:8px;background:rgba(255,255,255,0.02);}
+ .sous-section-apprentissage h3{margin-top:0;font-size:.9rem;}
+ .intro-apprentissage{font-size:.7rem;opacity:.75;margin:-.2rem 0 .8rem;}
 </style>
 
 </head><body>
@@ -145,33 +149,60 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
  </div>
  <div class='notice'>Si un prérequis manque → mini réactivation avant de poursuivre.</div>
 </section>
-<section><h2>🚶 3. Étapes guidées</h2><div class='grid-auto'><div class='card'><h3>Étape 1 – Situer</h3><p>Placer chaque nombre sur une droite graduée.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div><div class='card'><h3>Étape 2 – Comparer</h3><p>Observer positions relatives pour décider signe final.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div><div class='card'><h3>Étape 3 – Calculer</h3><p>Additionner ou soustraire les valeurs absolues selon les signes.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div></div></section>
-<section><h2>✨ 3 bis. Exemple guidé (Fading)</h2>
- <p><strong>Objectif :</strong> Passer d'un calcul entièrement expliqué à un calcul autonome.</p>
- <div class='grid-auto'>
-  <div class='card'>
-   <h3>Phase 1 – 100% guidé</h3>
-   <p><em>Calcul :</em> (+7) + (-5)</p>
+<section id='apprentissage-progressif' class='bloc-cours'>
+ <h2>🚶 3. Apprendre étape par étape</h2>
+ <p class='intro-apprentissage'>Pour maîtriser les nombres relatifs : d'abord des étapes claires, puis s'entraîner pour devenir autonome.</p>
+
+ <div class='sous-section-apprentissage'>
+  <h3>3.1. Étapes guidées</h3>
+  <p class='explication-sous-partie'>But : découper la méthode en 3 étapes simples et claires.</p>
+  <div class='grid-auto'>
+   <div class='card'>
+    <h4>Étape 1 – Situer</h4>
+    <p>Placer chaque nombre sur une droite graduée.</p>
+    <p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p>
+   </div>
+   <div class='card'>
+    <h4>Étape 2 – Comparer</h4>
+    <p>Observer positions relatives pour décider signe final.</p>
+    <p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p>
+   </div>
+   <div class='card'>
+    <h4>Étape 3 – Calculer</h4>
+    <p>Additionner ou soustraire les valeurs absolues selon les signes.</p>
+    <p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p>
+   </div>
+  </div>
+ </div>
+
+ <div class='sous-section-apprentissage'>
+  <h3>3.2. Devenir autonome</h3>
+  <p class='explication-sous-partie'>But : passer d'un calcul entièrement expliqué à un calcul autonome (100% guidé → semi-guidé → seul).</p>
+  <div class='grid-auto'>
+   <div class='card'>
+    <h4>Phase 1 – 100% guidé</h4>
+    <p><em>Calcul :</em> (+7) + (-5)</p>
     <ol class='mt-narrow'>
-    <li>Je repère les signes : + puis - (signes différents).</li>
-    <li>Je prends les valeurs absolues (distances à zéro) : 7 et 5.</li>
-    <li>Je fais 7 - 5 = 2.</li>
-    <li>Je garde le signe de la plus grande valeur (7 est +) → <strong>+2</strong>.</li>
-   </ol>
-   <div class='tip-verify'>💡 <strong>Vérification :</strong> Je contrôle avec un contexte (argent ou température).</div>
-  </div>
-  <div class='card'>
-   <h3>Phase 2 – Semi-guidé</h3>
-   <p><em>Calcul :</em> (-9) + (+4)</p>
-   <p>Indices : signes différents → soustraction des valeurs absolues (distances à zéro). Quel signe pour le résultat ?</p>
+     <li>Je repère les signes : + puis - (signes différents).</li>
+     <li>Je prends les valeurs absolues (distances à zéro) : 7 et 5.</li>
+     <li>Je fais 7 - 5 = 2.</li>
+     <li>Je garde le signe de la plus grande valeur (7 est +) → <strong>+2</strong>.</li>
+    </ol>
+    <div class='tip-verify'>💡 <strong>Vérification :</strong> Je contrôle avec un contexte (argent ou température).</div>
+   </div>
+   <div class='card'>
+    <h4>Phase 2 – Semi-guidé</h4>
+    <p><em>Calcul :</em> (-9) + (+4)</p>
+    <p>Indices : signes différents → soustraction des valeurs absolues (distances à zéro). Quel signe pour le résultat ?</p>
     <details><summary class='summary-mini'>Voir solution</summary><p>Valeurs absolues (distances à zéro) : 9 et 4 → 9 - 4 = 5. Signe de la plus grande distance : -9 → <strong>-5</strong>.</p></details>
-  </div>
-  <div class='card'>
-   <h3>Phase 3 – Autonome 🏆</h3>
-   <p><em>Calcul :</em> (+12) + (-7)</p>
+   </div>
+   <div class='card'>
+    <h4>Phase 3 – Autonome 🏆</h4>
+    <p><em>Calcul :</em> (+12) + (-7)</p>
     <p>Résultat : <span class='text-fade'>à écrire →</span></p>
-   <details><summary class='summary-mini'>🆘 Besoin d'aide ?</summary><p><strong>Astuce :</strong> Les signes sont différents ! Tu dois soustraire les distances à zéro (12 - 7) et garder le signe du nombre le plus "fort" (+12).</p></details>
+    <details><summary class='summary-mini'>🆘 Besoin d'aide ?</summary><p><strong>Astuce :</strong> Les signes sont différents ! Tu dois soustraire les distances à zéro (12 - 7) et garder le signe du nombre le plus "fort" (+12).</p></details>
     <details><summary class='summary-mini'>Auto-vérification</summary><ul class='list-compact'><li>Signe logique ?</li><li>Soustraction faite ?</li><li>Signe du plus grand gardé ?</li></ul></details>
+   </div>
   </div>
  </div>
 </section>

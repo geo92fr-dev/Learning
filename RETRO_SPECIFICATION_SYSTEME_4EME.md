@@ -1,5 +1,6 @@
 # 📋 RÉTRO-SPÉCIFICATION - Système Éducatif 4ème
-*Limite: 5. **💡 Méthode** - Règles encadrées + exemples concrets
+*Limite: 4. **🎨 Visualisation** - SVG interactif avec code couleur
+5. **💡 Méthode** - Règles encadrées + exemples concrets
 5. **🧠 Comprendre les erreurs fréquentes** (section unifiée)
    - 5.1. Les erreurs qui reviennent souvent (repérage + cartes Faux/Correct)
    - 5.2. Ce qu'il faut retenir pour ne plus les refaire (règles synthèse : signes différents / identiques, test mental)
@@ -60,8 +61,9 @@ Project_Learning_Simplified/
 ### **Structure Cours Principal**
 1. **🎯 Introduction** - Accroche concrète + objectif clair
 2. **🛠️ Prérequis** - Cartes interactives avec mini-tests
-3. **🚶 Étapes Guidées** - 3 max (Situer → Comparer → Calculer)
-4. **✨ Fading** - Retrait progressif des aides (100% → Semi → Autonome)
+3. **🚶 Apprendre étape par étape** (section unifiée)
+   - 3.1. Étapes guidées (Situer → Comparer → Calculer)
+   - 3.2. Devenir autonome (100% guidé → semi-guidé → seul)
 5. **🎨 Visualisation** - SVG interactif avec code couleur
 6. **💡 Méthode** - Règles encadrées + exemples concrets
 7. **🧠 Comprendre les erreurs fréquentes** (section unifiée)
