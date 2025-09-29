@@ -1,4 +1,10 @@
-﻿/* =============================================================================
+﻿/* Fallback accent semantic colors (if not already defined in tokens) */
+:root:not([data-semantic-colors]) {
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --success: #10b981;
+}
+/* =============================================================================
    COMPONENTS CSS - Composants Réutilisables
    ============================================================================= */
 
@@ -99,31 +105,86 @@
   flex-shrink: 0;
 }
 
-.feedback.success .feedback-icon {
-  color: var(--success);
+/* =============================================================================
+   STANDARD BUTTONS - Système de boutons unifié
+   ============================================================================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-size: var(--text-base, 1rem);
+    font-weight: var(--font-weight-semibold, 600);
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    text-decoration: none; /* Pour les liens stylés en boutons */
+    white-space: nowrap;
 }
 
-.feedback.error .feedback-icon {
-  color: var(--error);
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
-.feedback-text {
-  flex: 1;
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
-.feedback-text strong {
-  display: block;
-  margin-bottom: var(--space-xs);
-  color: var(--text-primary);
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-semibold, 600);
+.btn:focus-visible {
+    outline: 3px solid var(--primary-light);
+    outline-offset: 2px;
 }
 
-.feedback-text p {
-  margin: 0;
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-  line-height: var(--line-height-normal, 1.5);
+/* --- Modificateurs de style --- */
+
+/* Bouton Primaire (actions principales) */
+.btn--primary {
+    background: var(--primary);
+    color: var(--text-inverse);
+}
+
+.btn--primary:hover {
+    background: var(--primary-hover);
+}
+
+/* Bouton Secondaire (options, actions moins importantes) */
+.btn--secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-medium);
+}
+
+.btn--secondary:hover {
+    background: var(--bg-input);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Bouton Danger (mauvaises réponses / actions destructives) */
+.btn--danger {
+  background: var(--danger);
+  color: #fff;
+}
+.btn--danger:hover { background: #dc2626; }
+
+/* États spécifiques quiz rapide */
+.quiz-option--correct { box-shadow: 0 0 0 3px rgba(16,185,129,0.35); }
+.quiz-option--wrong { box-shadow: 0 0 0 3px rgba(239,68,68,0.35); }
+
+/* Bouton de Raccourci (plus petit) */
+.btn--shortcut {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    background: var(--bg-secondary);
+    border-color: var(--border-light);
+}
+.btn--shortcut:hover {
+    background: var(--bg-input);
+    border-color: var(--primary);
 }
 
 /*  ANIMATION CÉLÉBRATION */
@@ -264,41 +325,6 @@
 
 @keyframes spin {
   to { transform: rotate(360deg); }
-}
-
-/*  BOUTONS VARIANTES */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-xs);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  font-weight: var(--font-weight-medium, 500);
-  text-decoration: none;
-  cursor: pointer;
-  transition: var(--transition);
-  border: 1px solid transparent;
-}
-
-.btn-primary {
-  background: var(--primary);
-  color: var(--text-inverse);
-}
-
-.btn-primary:hover {
-  background: var(--primary-hover);
-}
-
-.btn-secondary {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  border-color: var(--border-medium);
-}
-
-.btn-secondary:hover {
-  background: var(--bg-hover);
 }
 
 /*  RESPONSIVE COMPONENTS */
@@ -492,24 +518,41 @@
   border-bottom: 1px solid var(--border-light);
 }
 
+.phase-nav { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.25rem; }
 .phase-btn {
-  padding: var(--space-sm) var(--space-md);
-  border: none;
-  background: transparent;
-  color: var(--text-muted);
-  border-bottom: 2px solid transparent;
+  --_bg: var(--bg-secondary);
+  --_border: var(--border-light);
+  --_text: var(--text-secondary);
+  padding: .55rem 1rem;
+  background: var(--_bg);
+  color: var(--_text);
+  border: 2px solid var(--_border);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all var(--transition-fast);
-  font-weight: var(--font-medium);
+  font-weight: 600;
+  font-size: .95rem;
+  letter-spacing:.25px;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  position:relative;
+  transition: background .25s, color .25s, border-color .25s, transform .25s;
 }
+.phase-btn::after { /* subtle focus ring anchor */ content:''; position:absolute; inset:-2px; border-radius:inherit; pointer-events:none; }
+.phase-btn:hover { background: var(--bg-input); border-color: var(--primary); color: var(--text-primary); }
+.phase-btn:focus-visible { outline:3px solid var(--primary-light); outline-offset:2px; }
 
-.phase-btn:hover {
-  color: var(--text-base);
-}
+/* Active state unified + colored accents per phase index via data attributes if added later */
+.phase-btn.active { background: var(--primary); color:#fff; border-color: var(--primary); box-shadow:0 2px 6px -1px rgba(0,0,0,.15); }
 
-.phase-btn.active {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
+/* Optional semantic variants (future-proof) */
+.phase-btn[data-phase="1"].active { background: linear-gradient(135deg,var(--success) 0%, var(--primary) 90%); }
+.phase-btn[data-phase="2"].active { background: linear-gradient(135deg,var(--warning) 0%, var(--primary) 90%); }
+.phase-btn[data-phase="3"].active { background: linear-gradient(135deg,var(--danger) 0%, var(--primary) 90%); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .phase-btn:hover { transform: translateY(-2px); }
+  .phase-btn:active { transform: translateY(0); }
 }
 
 .quiz-phase {
@@ -543,3 +586,170 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================================
+   SPACING ABOVE SUBSECTION TITLES (user request)
+   Adds comfortable vertical rhythm before quiz / exercise subsection headers.
+   ========================================================================== */
+.retention-quiz > h3,
+.method-quiz > h3,
+.trap-quiz > h3,
+.phase-nav + .quiz-phase > h3, /* first heading inside phase after nav */
+.content-section > h3.spaced,
+.content-section .grid-auto > h3.spaced {
+  margin-top: 2.75rem; /* extra vertical space */
+  padding-top: .25rem;
+  position: relative;
+}
+
+/* Optional subtle separator line (disabled by default) */
+/*
+.retention-quiz > h3::before,
+.method-quiz > h3::before,
+.trap-quiz > h3::before {
+  content: '';
+  position: absolute;
+  top: -1.25rem;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg,var(--primary),var(--accent, var(--success)));
+}
+*/
+
+/* ============================================================================
+   CHAPTER-SPECIFIC EXTRACTED STYLES (from previous inline <style>)
+   Moved here to centralize styling before templating. Can later be scoped or
+   refactored into generic utilities if reused across chapters.
+   ========================================================================== */
+
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  padding: 0.5rem 0.9rem;
+}
+
+.modern-nav {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+body.has-fixed-header { padding-top: 120px; }
+@media (max-width:760px) { body.has-fixed-header { padding-top: 100px; } }
+
+.rule-header { display: flex; align-items: center; margin-bottom: 1rem; }
+.rules-grid {
+  display: grid;
+  gap: 1.5rem; /* espace entre les cartes pour éviter que le rond n'empiète */
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  margin: 1.5rem 0 2rem;
+}
+
+.rule-card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-light, #e3e8ef);
+  border-radius: var(--radius-lg, 16px);
+  padding: 1.1rem 1.15rem 1.25rem;
+  position: relative;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,.06));
+  transition: var(--transition, .25s ease);
+}
+.rule-card:hover { box-shadow: var(--shadow-md, 0 4px 10px rgba(0,0,0,.08)); border-color: var(--border-medium,#d0d7e2); }
+
+/* Variation de couleur simple selon type déjà présent dans le HTML (primary / secondary / accent) */
+.rule-card.primary { border-top: 4px solid var(--primary); }
+.rule-card.secondary { border-top: 4px solid var(--warning, #f59e0b); }
+.rule-card.accent { border-top: 4px solid var(--accent, var(--success)); }
+
+.rule-card .rule-text { margin: 0 0 .75rem; line-height: 1.5; }
+.rule-card .rule-example { font-size: .9rem; background: var(--bg-secondary, #f5f7fa); padding: .6rem .7rem; border-radius: var(--radius-sm,8px); margin: 0 0 .75rem; }
+.rule-card .memory-tip { font-size: .85rem; background: linear-gradient(90deg,var(--primary-ultra-light,#eef7ff),rgba(255,255,255,.6)); padding: .55rem .7rem; border-left: 3px solid var(--primary); border-radius: 0 6px 6px 0; font-style: italic; margin-top: .4rem; }
+.rule-card.secondary .memory-tip { border-left-color: var(--warning,#f59e0b); }
+.rule-card.accent .memory-tip { border-left-color: var(--accent,var(--success)); }
+
+/* Séparateur uniquement en pile (petits écrans) */
+@media (max-width: 760px) {
+  .rules-grid { display: block; }
+  .rules-grid .rule-card + .rule-card { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light,#e3e8ef); }
+}
+.rule-number, .step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem; height: 2rem;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: bold;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+.step-number { background: var(--accent); }
+.rule-header h3, .step-header h3 { margin: 0; flex: 1; }
+
+/* Reactivation plan */
+.reactivation-plan { display: flex; flex-direction: column; gap: .85rem; margin: 1.5rem 0 2rem; }
+.reactivation-item { background: var(--bg-secondary,#f5f7fa); padding: .75rem 1rem; border-radius: var(--radius-md,10px); display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; border:1px solid var(--border-light,#e2e8f0); }
+.reactivation-item strong { color: var(--primary); }
+.reactivation-add {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  background: var(--primary-ultra-light,#eef7ff);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition,.25s ease);
+}
+.reactivation-add:hover { background: var(--primary-light,#d8eefc); transform: translateY(-2px); }
+.reactivation-add:active { transform: translateY(0); }
+.reactivation-add:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+@media (max-width:600px){ .reactivation-add { width:2.2rem; height:2.2rem; font-size:1.1rem; } }
+
+.method-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; margin: 2rem 0; }
+.method-step { padding: 1.5rem; background: var(--bg-secondary); border-radius: var(--radius-md); border-top: 3px solid var(--accent); }
+.step-header { display: flex; align-items: center; margin-bottom: 1rem; }
+
+.pitfalls-grid { display: grid; gap: 1.5rem; margin: 2rem 0; }
+.pitfall-card { padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--danger); background: rgba(239,68,68,0.1); }
+
+.quiz-feedback { margin-top: 1rem; padding: 0.75rem; border-radius: var(--radius-sm); font-weight: 500; }
+
+/* Removed fallback button:not(.btn) styles after full migration to .btn variants */
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  background: var(--bg-input, #fff);
+}
+input[type="text"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(103,199,255,0.25); }
+
+/* Taller progress override (chapter preference) */
+.progress-container { margin: 1rem 0 0.5rem 0; background: var(--bg-secondary); border-radius: var(--radius-md); overflow: hidden; }
+.progress-bar { height: 1.5rem; display: flex; align-items: center; padding-left: .5rem; font-weight: 500; }
+
+/* Scroll offset for anchored sections */
+[data-section] { scroll-margin-top: 140px; }
+@media (max-width:760px) { [data-section] { scroll-margin-top: 120px; } }
+
+/* Skip link accessibility */
+.skip-link { position: absolute; left: -999px; top: auto; width:1px; height:1px; overflow:hidden; }
+.skip-link:focus { position: fixed; left:1rem; top:1rem; width:auto; height:auto; padding:.75rem 1rem; background:#000; color:#fff; z-index:2000; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.25); }
+
