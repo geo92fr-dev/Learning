@@ -58,7 +58,10 @@ Project_Learning_Simplified/
 4. **✨ Fading** - Retrait progressif des aides (100% → Semi → Autonome)
 5. **🎨 Visualisation** - SVG interactif avec code couleur
 6. **💡 Méthode** - Règles encadrées + exemples concrets
-7. **⚠️ Erreurs Fréquentes** - Analyse erreur → correction
+7. **🧠 Comprendre les erreurs fréquentes** (section unifiée)
+  - 1. Les erreurs qui reviennent souvent (repérage + cartes Faux/Correct)
+  - 2. Ce qu’il faut retenir pour ne plus les refaire (règles synthèse : signes différents / identiques, test mental)
+  - 3. Pièges à éviter (anticipation + mini cas "Trouve l'erreur")
 8. **✅ Auto-contrôle** - Checklist validation
 9. **🗓️ Réactivation** - J+1, J+3, J+7, J+14 + **📅 Google Calendar**
 
@@ -144,4 +147,4 @@ update_calendar_individual_buttons.py    # Migration boutons individuels
 
 ---
 *Spécification 28/09/2025 - Référence système 4ème*
-*✨ MAJ : Google Calendar avec boutons individuels optimisés*
+*✨ MAJ : Google Calendar avec boutons individuels optimisés ; Section erreurs unifiée (3 niveaux : repérer / retenir / éviter)*
