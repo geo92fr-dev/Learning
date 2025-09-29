@@ -453,10 +453,34 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     const a = st.awarded[key];
                     if(a){ a.meta = { choice: rd.value }; engine.updateScoreDisplays(); }
                 }
+                // Coloration dynamique
+                applyConfidenceColor(r, rd.value);
             });
         });
     });
+    // Restauration coloration
+    ['r1','r2','r3'].forEach(r=>{
+        const key = 'selfeval-'+r;
+        if(st.awarded[key] && st.awarded[key].meta && st.awarded[key].meta.choice){
+            applyConfidenceColor(r, st.awarded[key].meta.choice);
+        }
+    });
 });
+
+function applyConfidenceColor(ruleId, level){
+    const map = { 'confiant':'conf-level-confiant', 'moyen':'conf-level-moyen', 'pas-confiant':'conf-level-pas-confiant' };
+    const cls = map[level];
+    if(!cls) return;
+    // regle boxes order: r1 -> first .regle-box inside fiche-synthese etc.
+    const synth = document.getElementById('fiche-synthese');
+    if(!synth) return;
+    const boxes = synth.querySelectorAll('.regle-box');
+    const idx = ruleId === 'r1' ? 0 : ruleId === 'r2' ? 1 : 2;
+    const box = boxes[idx];
+    if(!box) return;
+    box.classList.remove('conf-level-confiant','conf-level-moyen','conf-level-pas-confiant');
+    box.classList.add(cls);
+}
 
 // Shortcut helpers
 

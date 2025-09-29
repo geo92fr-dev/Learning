@@ -513,6 +513,50 @@ main > section.content-section { max-width: 1200px; margin-left:auto; margin-rig
 .regle-negative { border-left: 4px solid var(--danger); background: rgba(239,68,68,0.04); }
 .regle-neutre  { border-left: 4px solid var(--primary); background: rgba(103,199,255,0.04); }
 
+/* Dynamic confidence coloring for self-evaluation */
+.regle-box.conf-level-confiant {
+  border-color: var(--success);
+  background: linear-gradient(90deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));
+  box-shadow: 0 0 0 1px rgba(16,185,129,0.25), 0 2px 4px -2px rgba(16,185,129,0.35);
+}
+.regle-box.conf-level-moyen {
+  border-color: var(--warning, #f59e0b);
+  background: linear-gradient(90deg, rgba(245,158,11,0.18), rgba(245,158,11,0.05));
+  box-shadow: 0 0 0 1px rgba(245,158,11,0.35), 0 2px 4px -2px rgba(245,158,11,0.4);
+}
+.regle-box.conf-level-pas-confiant {
+  border-color: var(--danger);
+  background: linear-gradient(90deg, rgba(239,68,68,0.18), rgba(239,68,68,0.05));
+  box-shadow: 0 0 0 1px rgba(239,68,68,0.35), 0 2px 4px -2px rgba(239,68,68,0.4);
+}
+.regle-box.conf-level-pas-confiant::after {
+  content: '↺ À retravailler';
+  font-size: .65rem;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  margin-left:.5rem;
+  color: var(--danger);
+  font-weight:600;
+}
+.regle-box.conf-level-moyen::after {
+  content: 'En progrès';
+  font-size: .65rem;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  margin-left:.5rem;
+  color: var(--warning, #f59e0b);
+  font-weight:600;
+}
+.regle-box.conf-level-confiant::after {
+  content: '✔ Stable';
+  font-size: .65rem;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  margin-left:.5rem;
+  color: var(--success);
+  font-weight:600;
+}
+
 .footer-section li {
   margin-bottom: var(--space-xs);
   font-size: var(--text-sm);
