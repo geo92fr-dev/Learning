@@ -16,7 +16,7 @@
 <div class="container">
     <header class="page-header" role="banner">
         <div class="header-bar">
-            <h1>🔢 Nombres Relatifs - Cours Interactif</h1>
+            <h1>🔢 Nombres Relatifs - Cours Interactif <span id="global-score" class="score-badge" aria-live="polite" aria-label="Score global">Score : 0 / 0</span> <button id="reset-score-btn" class="btn btn--secondary btn-reset-score" aria-label="Réinitialiser le score" title="Réinitialiser le score">↺ Reset</button></h1>
             <button class="nav-toggle" aria-label="Ouvrir / fermer la navigation" aria-expanded="false" aria-controls="nav-main" onclick="toggleNav(this)">☰</button>
         </div>
         
@@ -46,7 +46,8 @@
     <!-- Section Introduction (TOUJOURS VISIBLE comme l'original) -->
     <main id="contenu-principal" tabindex="-1">
     <section id="introduction" data-section="introduction" class="content-section" aria-labelledby="heading-intro">
-        <h2 id="heading-intro">🏠 Introduction aux Nombres Relatifs</h2>
+    <hr class="phase-separator" aria-hidden="true">
+    <h2 id="heading-intro">🏠 Introduction aux Nombres Relatifs <span class="section-score" data-section-score="introduction">0 / 1</span></h2>
         <p class="intro-lead">Découvrons les nombres positifs et négatifs à travers des situations concrètes.</p>
         
         <div class="card highlight">
@@ -128,7 +129,7 @@
 
     <!-- Section Règles (TOUJOURS VISIBLE) -->
     <section id="retention" data-section="retention" class="content-section">
-        <h2>🎯 Les Règles Essentielles</h2>
+    <h2>🎯 Les Règles Essentielles <span class="section-score" data-section-score="retention">0 / 4</span></h2>
         <p class="intro-lead">Mémorisez ces 3 règles pour réussir tous les calculs !</p>
 
         <div class="rules-grid">
@@ -175,44 +176,61 @@
         <!-- Quiz rétention -->
         <div class="retention-quiz">
             <h3>🧠 Testez votre mémorisation</h3>
-            
-            <div class="quiz-card">
-                <p><strong>Signes identiques → Que faut-il faire ?</strong></p>
-                <input type="text" id="retention1" placeholder="Votre réponse" aria-label="Réponse - retention règle 1">
-                <button class="btn btn--primary" onclick="checkRetention('retention1', 'additionne')">✓ Valider</button>
-                <div class="quiz-feedback" id="retention1-feedback" aria-live="polite"></div>
+            <p>Répondez par Vrai/Faux ou choisissez la bonne option :</p>
+
+            <div class="quiz-card" data-retention-item="r1">
+                <p><strong>Q1.</strong> Si les deux nombres ont le même signe, on additionne les valeurs absolues et on garde le signe commun.</p>
+                <div class="mc-options" role="group" aria-label="Question 1 vrai faux">
+                    <button class="btn btn--secondary" onclick="answerRetentionVF(this,'r1',true)">Vrai</button>
+                    <button class="btn btn--secondary" onclick="answerRetentionVF(this,'r1',false)">Faux</button>
+                </div>
+                <div class="quiz-feedback" id="retention-r1" aria-live="polite"></div>
             </div>
 
-            <div class="quiz-card">
-                <p><strong>Signes différents → Que faut-il faire ?</strong></p>
-                <input type="text" id="retention2" placeholder="Votre réponse" aria-label="Réponse - retention règle 2">
-                <button class="btn btn--primary" onclick="checkRetention('retention2', 'soustrais')">✓ Valider</button>
-                <div class="quiz-feedback" id="retention2-feedback" aria-live="polite"></div>
+            <div class="quiz-card" data-retention-item="r2">
+                <p><strong>Q2.</strong> (+9) + (-4) : on calcule 9 - 4 puis on met toujours un signe +.</p>
+                <div class="mc-options" role="group" aria-label="Question 2 vrai faux">
+                    <button class="btn btn--secondary" onclick="answerRetentionVF(this,'r2',false)">Vrai</button>
+                    <button class="btn btn--secondary" onclick="answerRetentionVF(this,'r2',true)">Faux</button>
+                </div>
+                <div class="quiz-feedback" id="retention-r2" aria-live="polite"></div>
+            </div>
+
+            <div class="quiz-card" data-retention-item="r3">
+                <p><strong>Q3.</strong> Quand les signes sont différents :</p>
+                <div class="mc-options" role="radiogroup" aria-label="Question 3 choix multiples">
+                    <button class="btn btn--secondary" onclick="answerRetentionMC(this,'r3','A')">A. J'additionne toujours les valeurs</button>
+                    <button class="btn btn--secondary" onclick="answerRetentionMC(this,'r3','B')">B. Je soustrais les valeurs absolues</button>
+                    <button class="btn btn--secondary" onclick="answerRetentionMC(this,'r3','C')">C. Je prends le plus petit</button>
+                </div>
+                <div class="quiz-feedback" id="retention-r3" aria-live="polite"></div>
+            </div>
+
+            <div class="quiz-card" data-retention-item="r4">
+                <p><strong>Q4.</strong> Contrôle final : vérifier avec une situation réelle aide à éviter les erreurs de signe.</p>
+                <div class="mc-options" role="group" aria-label="Question 4 vrai faux">
+                    <button class="btn btn--secondary" onclick="answerRetentionVF(this,'r4',true)">Vrai</button>
+                    <button class="btn btn--secondary" onclick="answerRetentionVF(this,'r4',false)">Faux</button>
+                </div>
+                <div class="quiz-feedback" id="retention-r4" aria-live="polite"></div>
             </div>
         </div>
     </section>
 
     <!-- Section Quiz (TOUJOURS VISIBLE) -->
     <section id="phases" data-section="phases" class="content-section" aria-labelledby="heading-quiz">
-        <h2 id="heading-quiz">📚 Quiz Progressifs</h2>
-        <p class="intro-lead">Entraînez-vous étape par étape avec des exercices adaptés !</p>
+        <h2 id="heading-quiz">📚 Quiz Progressifs <span class="section-score" data-section-score="phases">0 / 9</span></h2>
+        <!-- Navigation retirée à la demande (phase nav & intro lead) -->
 
-        <!-- Sélecteur de phases -->
-        <div class="phase-nav">
-            <button class="phase-btn active" data-phase="1" onclick="showPhase(1)">Phase 1 - Débutant</button>
-            <button class="phase-btn" data-phase="2" onclick="showPhase(2)">Phase 2 - Intermédiaire</button>
-            <button class="phase-btn" data-phase="3" onclick="showPhase(3)">Phase 3 - Avancé</button>
-        </div>
-
-        <!-- Phase 1 -->
-        <div id="phase-1" class="quiz-phase active">
+    <!-- Phase 1 -->
+    <div id="phase-1" class="quiz-phase active">
             <h3>🟢 Phase 1 : Premiers pas</h3>
             <p>Calculs avec des nombres simples.</p>
             
             <div class="quiz-question">
                 <h4>Question 1</h4>
                 <p>Calculez : (+7) + (-5) = ?</p>
-                <input type="text" id="phase1-q1" aria-label="Réponse phase 1 question 1">
+                <input type="text" id="phase1-q1" placeholder="Votre réponse" aria-label="Réponse phase 1 question 1">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase1-q1', '+2', 'Signes différents : 7-5=2, signe de +7 → +2')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase1-q1-feedback" aria-live="polite"></div>
             </div>
@@ -220,7 +238,7 @@
             <div class="quiz-question">
                 <h4>Question 2</h4>
                 <p>Calculez : (-8) + (+5) = ?</p>
-                <input type="text" id="phase1-q2" aria-label="Réponse phase 1 question 2">
+                <input type="text" id="phase1-q2" placeholder="Votre réponse" aria-label="Réponse phase 1 question 2">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase1-q2', '-3', 'Signes différents : 8-5=3, signe de -8 → -3')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase1-q2-feedback" aria-live="polite"></div>
             </div>
@@ -228,7 +246,7 @@
             <div class="quiz-question">
                 <h4>Question 3</h4>
                 <p>Calculez : (+4) + (+5) = ?</p>
-                <input type="text" id="phase1-q3" aria-label="Réponse phase 1 question 3">
+                <input type="text" id="phase1-q3" placeholder="Votre réponse" aria-label="Réponse phase 1 question 3">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase1-q3', '+9', 'Même signe positif : 4+5=9 → +9')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase1-q3-feedback" aria-live="polite"></div>
             </div>
@@ -236,13 +254,14 @@
 
         <!-- Phase 2 -->
         <div id="phase-2" class="quiz-phase">
+            <hr class="phase-separator" aria-hidden="true">
             <h3>🟡 Phase 2 : Pratique autonome</h3>
             <p>Maîtrisez différents types de calculs.</p>
             
             <div class="quiz-question">
                 <h4>Question 1</h4>
                 <p>Calculez : (-9) + (+4) = ?</p>
-                <input type="text" id="phase2-q1" aria-label="Réponse phase 2 question 1">
+                <input type="text" id="phase2-q1" placeholder="Votre réponse" aria-label="Réponse phase 2 question 1">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase2-q1', '-5', 'Signes différents : 9-4=5, signe de -9 → -5')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase2-q1-feedback" aria-live="polite"></div>
             </div>
@@ -250,7 +269,7 @@
             <div class="quiz-question">
                 <h4>Question 2</h4>
                 <p>Calculez : (+15) + (-4) = ?</p>
-                <input type="text" id="phase2-q2" aria-label="Réponse phase 2 question 2">
+                <input type="text" id="phase2-q2" placeholder="Votre réponse" aria-label="Réponse phase 2 question 2">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase2-q2', '+11', 'Signes différents : 15-4=11, signe de +15 → +11')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase2-q2-feedback" aria-live="polite"></div>
             </div>
@@ -258,7 +277,7 @@
             <div class="quiz-question">
                 <h4>Question 3</h4>
                 <p>Calculez : (-7) + (-5) = ?</p>
-                <input type="text" id="phase2-q3" aria-label="Réponse phase 2 question 3">
+                <input type="text" id="phase2-q3" placeholder="Votre réponse" aria-label="Réponse phase 2 question 3">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase2-q3', '-12', 'Même signe négatif : 7+5=12 → -12')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase2-q3-feedback" aria-live="polite"></div>
             </div>
@@ -266,13 +285,14 @@
 
         <!-- Phase 3 -->
         <div id="phase-3" class="quiz-phase">
+            <hr class="phase-separator" aria-hidden="true">
             <h3>🔴 Phase 3 : Maîtrise</h3>
             <p>Situations avancées et cas spéciaux.</p>
             
             <div class="quiz-question">
                 <h4>Question 1</h4>
                 <p>Calculez : (+10) + (-4) = ?</p>
-                <input type="text" id="phase3-q1" aria-label="Réponse phase 3 question 1">
+                <input type="text" id="phase3-q1" placeholder="Votre réponse" aria-label="Réponse phase 3 question 1">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase3-q1', '+6', 'Signes différents : 10-4=6, signe de +10 → +6')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase3-q1-feedback" aria-live="polite"></div>
             </div>
@@ -280,7 +300,7 @@
             <div class="quiz-question">
                 <h4>Question 2</h4>
                 <p>Calculez : (-3) + (-5) = ?</p>
-                <input type="text" id="phase3-q2" aria-label="Réponse phase 3 question 2">
+                <input type="text" id="phase3-q2" placeholder="Votre réponse" aria-label="Réponse phase 3 question 2">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase3-q2', '-8', 'Même signe négatif : 3+5=8 → -8')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase3-q2-feedback" aria-live="polite"></div>
             </div>
@@ -288,7 +308,7 @@
             <div class="quiz-question">
                 <h4>Question 3 - Cas spécial</h4>
                 <p>Calculez : (+7) + (-7) = ?</p>
-                <input type="text" id="phase3-q3" aria-label="Réponse phase 3 question 3">
+                <input type="text" id="phase3-q3" placeholder="Votre réponse" aria-label="Réponse phase 3 question 3">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase3-q3', '0', 'Nombres opposés : ils s\'annulent → 0')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase3-q3-feedback" aria-live="polite"></div>
             </div>
@@ -297,64 +317,60 @@
 
     <!-- Section Méthodes (TOUJOURS VISIBLE) -->
     <section id="methodes" data-section="methodes" class="content-section" aria-labelledby="heading-methodes">
-        <h2 id="heading-methodes">💡 Méthode Illustrée</h2>
+        <h2 id="heading-methodes">💡 Méthode Illustrée <span class="section-score" data-section-score="methodes">0 / 3</span></h2>
         <p class="intro-lead">3 étapes simples pour ne jamais se tromper !</p>
 
-        <div class="method-steps">
-            <div class="method-step">
+        <div class="method-steps grid-auto">
+            <div class="card method-step">
                 <div class="step-header">
                     <span class="step-number">1</span>
                     <h3>Identifier les signes</h3>
                 </div>
-                <p>Je regarde si les signes sont identiques ou différents.</p>
+                <p>Je repère : même signe ou signes différents ?</p>
                 <div class="step-example">
-                    <strong>Exemple :</strong> (+5) + (-3)<br>
-                    <em>→ Signes différents : + et -</em>
+                    <strong>Exemple :</strong> (+5) + (-3) → signes différents.
+                </div>
+                <div class="guided-question" aria-labelledby="method-step1-title">
+                    <p><strong>Exercice guidé :</strong> Dans (-8) + (+3), les signes sont-ils identiques ?</p>
+                    <button class="btn btn--secondary" onclick="checkMethodStep(1, false, 'Non, ils sont différents : - et +')">Oui</button>
+                    <button class="btn btn--secondary" onclick="checkMethodStep(1, true, 'Correct ! Signes différents')">Non</button>
+                    <div class="quiz-feedback" id="method-step1-feedback" aria-live="polite"></div>
                 </div>
             </div>
-
-            <div class="method-step">
+            <div class="card method-step">
                 <div class="step-header">
                     <span class="step-number">2</span>
                     <h3>Appliquer la règle</h3>
                 </div>
-                <p><strong>Même signe :</strong> j'additionne<br>
-                   <strong>Signes différents :</strong> je soustrais</p>
-                <div class="step-example">
-                    <strong>Suite :</strong> 5 - 3 = 2<br>
-                    <em>→ Je garde le signe de 5 (le plus grand) : +2</em>
+                <p><strong>Même signe :</strong> j'additionne. <strong>Différents :</strong> je soustrais la plus petite valeur.</p>
+                <div class="step-example"><strong>Suite :</strong> 8 - 3 = 5 (valeurs absolues)</div>
+                <div class="guided-question">
+                    <p><strong>Exercice guidé :</strong> Quelle opération effectuer pour (-8) + (+3) ?</p>
+                    <button class="btn btn--secondary" onclick="checkMethodStep(2, false, 'Pas une addition : les signes sont différents')">Addition 8 + 3</button>
+                    <button class="btn btn--secondary" onclick="checkMethodStep(2, true, 'Correct : soustraction 8 - 3 = 5')">Soustraction 8 - 3</button>
+                    <div class="quiz-feedback" id="method-step2-feedback" aria-live="polite"></div>
                 </div>
             </div>
-
-            <div class="method-step">
+            <div class="card method-step">
                 <div class="step-header">
                     <span class="step-number">3</span>
-                    <h3>Vérifier le résultat</h3>
+                    <h3>Vérifier & Signe</h3>
                 </div>
-                <p>Je teste avec une situation concrète.</p>
-                <div class="step-example">
-                    <strong>Test :</strong> "J'ai 5€, je dépense 3€ → il me reste 2€" ✓<br>
-                    <em>→ Le résultat +2 est logique !</em>
+                <p>Je prends le signe du nombre de plus grande valeur absolue.</p>
+                <div class="step-example"><strong>Plus grande valeur :</strong> 8 (négatif)</div>
+                <div class="guided-question">
+                    <p><strong>Exercice guidé :</strong> Signe final de (-8) + (+3) ?</p>
+                    <button class="btn btn--secondary" onclick="checkMethodStep(3, false, 'Non : 8 est négatif, donc signe -')">+</button>
+                    <button class="btn btn--secondary" onclick="checkMethodStep(3, true, 'Correct : résultat -5')">-</button>
+                    <div class="quiz-feedback" id="method-step3-feedback" aria-live="polite"></div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Quiz méthode -->
-        <div class="method-quiz">
-            <h3>🎯 Exercice guidé : (-8) + (+3)</h3>
-            
-            <div class="guided-question">
-                <p><strong>Étape 1 :</strong> Les signes sont-ils identiques ?</p>
-                <button class="btn btn--secondary" onclick="checkMethodStep(1, false, 'Non, ils sont différents : - et +')">Oui</button>
-                <button class="btn btn--primary" onclick="checkMethodStep(1, true, 'Correct ! Les signes sont différents')">Non, ils sont différents</button>
-                <div class="quiz-feedback" id="method-step1-feedback" aria-live="polite"></div>
             </div>
         </div>
     </section>
 
     <!-- Section Pièges (TOUJOURS VISIBLE) -->
     <section id="pieges" data-section="pieges" class="content-section" aria-labelledby="heading-pieges">
-        <h2 id="heading-pieges">⚠️ Pièges à Éviter</h2>
+    <h2 id="heading-pieges">⚠️ Pièges à Éviter <span class="section-score" data-section-score="pieges">0 / 2</span></h2>
         <p class="intro-lead">Identifiez les erreurs les plus courantes pour ne plus les refaire !</p>
 
         <div class="pitfalls-grid">
@@ -368,6 +384,13 @@
                     <strong>✅ Correct :</strong> 7 - 3 = 4, signe de -7 → <strong>-4</strong><br>
                     <em>Méthode : Signes différents → je soustrais (7-3) = 4 puis je prends le signe du nombre de plus grande valeur absolue : -7.</em>
                 </div>
+                <div class="mini-trap-quiz" data-trap-id="trap-q1">
+                    <p class="mini-trap-title">🧠 Quiz Anti-Piège (Erreur n°1)</p>
+                    <p>Dans (+9) + (-4), pourquoi le résultat n'est-il pas -5 ?</p>
+                    <button class="btn btn--secondary trap-option" onclick="checkTrap(this,true,'Correct : signes différents → 9 - 4 = 5 avec signe +','trap-q1')" data-correct="true">Parce que on fait 9 - 4 et le signe vient de +9</button>
+                    <button class="btn btn--secondary trap-option" onclick="checkTrap(this,false,'Non : ce n\'est pas une addition de deux négatifs','trap-q1')" data-correct="false">Parce que on additionne 9 et 4</button>
+                    <div class="quiz-feedback" aria-live="polite"></div>
+                </div>
             </div>
 
             <div class="pitfall-card warning">
@@ -380,18 +403,13 @@
                     <strong>✅ Correct :</strong> Même signe → 5 + 3 = 8 → <strong>-8</strong><br>
                     <em>Méthode : Même signe → j'additionne les valeurs : 5 + 3 = 8 puis je garde le signe commun (négatif).</em>
                 </div>
-            </div>
-        </div>
-
-        <!-- Quiz anti-pièges -->
-        <div class="trap-quiz">
-            <h3>🧠 Quiz Anti-Pièges</h3>
-            <div class="quiz-question">
-                <p>Un élève écrit : (-6) + (-4) = -2</p>
-                <p><strong>Quelle est son erreur ?</strong></p>
-                <button class="btn btn--secondary trap-option" data-correct="true" onclick="checkTrap(this, true, 'Correct ! Il a soustrait au lieu d\'additionner (même signe)')">Il a soustrait au lieu d'additionner</button>
-                <button class="btn btn--secondary trap-option" data-correct="false" onclick="checkTrap(this, false, 'Non, l\'erreur est qu\'il a soustrait au lieu d\'additionner')">Il a mal calculé le signe</button>
-                <div class="quiz-feedback" id="trap-feedback" aria-live="polite"></div>
+                <div class="mini-trap-quiz" data-trap-id="trap-q2">
+                    <p class="mini-trap-title">🧠 Quiz Anti-Piège (Piège n°2)</p>
+                    <p>Pourquoi (-7) + (-2) n'est pas -5 + 2 ?</p>
+                    <button class="btn btn--secondary trap-option" onclick="checkTrap(this,true,'Exact : on additionne les valeurs absolues car même signe','trap-q2')" data-correct="true">Parce qu'il faut additionner 7 et 2 → 9 puis mettre -</button>
+                    <button class="btn btn--secondary trap-option" onclick="checkTrap(this,false,'Non : ce n\'est pas une différence, ce sont deux négatifs','trap-q2')" data-correct="false">Parce qu'on doit soustraire 7 - 2</button>
+                    <div class="quiz-feedback" aria-live="polite"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -402,7 +420,7 @@
      ========================== -->
 
 <section id="exercices-n1" data-section="exercices-n1" class="content-section" aria-labelledby="heading-exos-n1">
-    <h2 id="heading-exos-n1">✏️ Exercices - Niveau 1 (Découverte)</h2>
+    <h2 id="heading-exos-n1">✏️ Exercices - Niveau 1 (Découverte) <span class="section-score" data-section-score="exercices-n1">0 / 5</span></h2>
     <p>Exercices guidés pour s'entraîner sur les notions de base.</p>
     <div class="grid-auto">
         <div class="card">
@@ -470,7 +488,7 @@
 </section>
 
 <section id="exercices-n2" data-section="exercices-n2" class="content-section" aria-labelledby="heading-exos-n2">
-    <h2 id="heading-exos-n2">✏️ Exercices - Niveau 2 (Pratique)</h2>
+    <h2 id="heading-exos-n2">✏️ Exercices - Niveau 2 (Pratique) <span class="section-score" data-section-score="exercices-n2">0 / 10</span></h2>
     <p>Exercices d'application pour automatiser les règles.</p>
     <div class="grid-auto">
         <div class="card">
@@ -538,7 +556,7 @@
 </section>
 
 <section id="exercices-n3" data-section="exercices-n3" class="content-section" aria-labelledby="heading-exos-n3">
-    <h2 id="heading-exos-n3">✏️ Exercices - Niveau 3 (Défi)</h2>
+    <h2 id="heading-exos-n3">✏️ Exercices - Niveau 3 (Défi) <span class="section-score" data-section-score="exercices-n3">0 / 15</span></h2>
     <p>Exercices avancés pour approfondir et transférer.</p>
     <div class="grid-auto">
         <div class="card">
@@ -609,25 +627,43 @@
      Fiche synthèse intégrée
      ========================== -->
 <section id="fiche-synthese" data-section="fiche-synthese" class="content-section" aria-labelledby="heading-synthese">
-    <h2 id="heading-synthese">📋 Fiche Synthèse</h2>
+    <h2 id="heading-synthese">📋 Fiche Synthèse <span class="section-score" data-section-score="fiche-synthese">0 / 3</span></h2>
     <div class="card">
         <h3>Règles essentielles</h3>
         <div class="regle-box regle-positive">
             <h4>RÈGLE 1 : Même signe</h4>
             <p>Additionner les valeurs et garder le signe commun.</p>
+            <fieldset class="self-eval" aria-label="Auto-évaluation confiance règle 1" >
+                <legend class="self-eval-legend">Ton niveau de confiance sur l'utilisation de la règle « même signe → j'additionne » ?</legend>
+                <label><input type="radio" name="eval-r1" value="confiant"> Confiant</label>
+                <label><input type="radio" name="eval-r1" value="moyen"> Moyen / hésitant</label>
+                <label><input type="radio" name="eval-r1" value="pas-confiant"> Pas confiant</label>
+            </fieldset>
         </div>
         <div class="regle-box regle-negative">
             <h4>RÈGLE 2 : Signes différents</h4>
             <p>Soustraire la plus petite de la plus grande, garder le signe du plus fort.</p>
+            <fieldset class="self-eval" aria-label="Auto-évaluation confiance règle 2">
+                <legend class="self-eval-legend">Ton niveau de confiance sur l'utilisation de la règle « signes différents → je soustrais » ?</legend>
+                <label><input type="radio" name="eval-r2" value="confiant"> Confiant</label>
+                <label><input type="radio" name="eval-r2" value="moyen"> Moyen / hésitant</label>
+                <label><input type="radio" name="eval-r2" value="pas-confiant"> Pas confiant</label>
+            </fieldset>
         </div>
         <div class="regle-box regle-neutre">
             <h4>RÈGLE 3 : Contrôle</h4>
             <p>Vérifier le résultat dans un contexte concret (température, argent, déplacement).</p>
+            <fieldset class="self-eval" aria-label="Auto-évaluation confiance règle 3">
+                <legend class="self-eval-legend">Ton niveau de confiance sur l'utilisation de la règle « contrôle par contexte » ?</legend>
+                <label><input type="radio" name="eval-r3" value="confiant"> Confiant</label>
+                <label><input type="radio" name="eval-r3" value="moyen"> Moyen / hésitant</label>
+                <label><input type="radio" name="eval-r3" value="pas-confiant"> Pas confiant</label>
+            </fieldset>
         </div>
     </div>
  </section>
  <section id="plan-reactivation" data-section="plan-reactivation" class="content-section" aria-labelledby="heading-plan-reactivation">
-    <h2 id="heading-plan-reactivation">🗓️ 8. Plan de réactivation</h2>
+    <h2 id="heading-plan-reactivation">🗓️ 8. Plan de réactivation <span class="section-score" data-section-score="plan-reactivation">0 / 4</span></h2>
     <p id="plan-base-date" class="plan-base-date" aria-live="polite"></p>
     <p class="plan-intro">Ce plan exploite les sections : Règles → Quiz progressifs → Méthodes → Pièges → Exercices (N1→N2→N3) → Synthèse. Il espace les réactivations pour consolider la mémoire.</p>
     <div id="reactivation-list" class="reactivation-plan" aria-describedby="plan-base-date"></div>
@@ -638,7 +674,8 @@
  </section>
  </main>
 
-<!-- JavaScript Centralisé -->
+<!-- JavaScript Externalisés -->
+<script src="scripts/scoring.js" defer></script>
 <script src="scripts/main.js" defer></script>
 </body>
 </html>

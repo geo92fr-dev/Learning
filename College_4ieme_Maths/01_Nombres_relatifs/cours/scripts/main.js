@@ -59,6 +59,7 @@ function checkPhaseAnswer(inputId, correctAnswer, explanation) {
         feedback.style.color = '#10b981';
         input.disabled = true;
         input.nextElementSibling.disabled = true;
+        registerScore('phases', 'phase-'+inputId, 1);
     } else {
         feedback.textContent = '❌ Essayez encore. Pensez aux règles !';
         feedback.style.color = '#ef4444';
@@ -81,6 +82,7 @@ function checkAnswer(button, isCorrect) {
         button.classList.add('btn--primary', 'quiz-option--correct');
         feedback.textContent = '✅ Correct ! -2 est plus grand que -8 et -10 sur la droite graduée.';
         feedback.style.color = '#10b981';
+        registerScore('introduction', 'intro-q1', 1);
     } else {
         button.classList.add('btn--danger', 'quiz-option--wrong');
         feedback.textContent = '❌ Non, regardez la droite graduée : plus on va à droite, plus c\'est grand.';
@@ -103,49 +105,93 @@ function checkRetention(inputId, expectedWord) {
         feedback.style.color = '#10b981';
         input.disabled = true;
         input.nextElementSibling.disabled = true;
+        registerScore('retention', 'retention-'+inputId, 1);
     } else {
         feedback.textContent = '❌ Relisez la règle correspondante ci-dessus.';
         feedback.style.color = '#ef4444';
     }
 }
 
+// Nouveau quiz de mémorisation (Vrai/Faux & choix multiple)
+function answerRetentionVF(btn, key, expected){
+    const container = btn.closest('.quiz-card');
+    if(!container) return;
+    const fb = document.getElementById('retention-'+key);
+    if(!fb) return;
+    // Si déjà répondu, ignorer
+    if(container.classList.contains('done')) return;
+    const isTrueBtn = btn.textContent.trim().toLowerCase() === 'vrai';
+    const userValue = (btn.textContent.trim().toLowerCase() === 'vrai');
+    const correct = expected === userValue;
+    container.querySelectorAll('button').forEach(b=>{ b.disabled = true; });
+    if(correct){
+        fb.textContent = '✅ Correct'; fb.style.color = '#10b981';
+        registerScore('retention','retention-'+key,1);
+    } else {
+        fb.textContent = '❌ Faux'; fb.style.color = '#ef4444';
+    }
+    container.classList.add('done');
+}
+function answerRetentionMC(btn, key, choice){
+    const container = btn.closest('.quiz-card');
+    if(!container) return;
+    const fb = document.getElementById('retention-'+key);
+    if(!fb) return;
+    if(container.classList.contains('done')) return;
+    const correctChoice = 'B';
+    container.querySelectorAll('button').forEach(b=> b.disabled = true);
+    if(choice === correctChoice){
+        fb.textContent = '✅ Correct : soustraction des valeurs absolues'; fb.style.color = '#10b981';
+        registerScore('retention','retention-'+key,1);
+    } else {
+        fb.textContent = '❌ Non, on soustrait les valeurs absolues (réponse B)'; fb.style.color = '#ef4444';
+    }
+    container.classList.add('done');
+}
+
 function checkMethodStep(step, isCorrect, message) {
     const feedback = document.getElementById(`method-step${step}-feedback`);
     const buttons = document.querySelectorAll('.guided-question button');
-    
-    buttons.forEach(btn => btn.disabled = true);
-    
+    // Scope to this guided-question only
+    const container = feedback ? feedback.closest('.guided-question') : null;
+    const localButtons = container ? container.querySelectorAll('button') : buttons;
+    localButtons.forEach(btn => btn.disabled = true);
     if (isCorrect) {
         feedback.textContent = '✅ ' + message;
         feedback.style.color = '#10b981';
+        registerScore('methodes', 'method-step-'+step, 1);
+        // highlight correct button
+        event?.target?.classList?.remove('btn--secondary');
+        event?.target?.classList?.add('btn--primary');
     } else {
         feedback.textContent = '❌ ' + message;
         feedback.style.color = '#ef4444';
+        event?.target?.classList?.add('btn--danger');
     }
 }
 
-function checkTrap(button, isCorrect, message) {
-    const feedback = document.getElementById('trap-feedback');
-    const buttons = document.querySelectorAll('.trap-option');
-
+function checkTrap(button, isCorrect, message, key='trap-q1') {
+    const container = button.closest('.mini-trap-quiz');
+    if(!container || container.classList.contains('done')) return;
+    const feedback = container.querySelector('.quiz-feedback');
+    const buttons = container.querySelectorAll('.trap-option');
     buttons.forEach(btn => {
         btn.disabled = true;
         btn.classList.remove('btn--primary','btn--danger','quiz-option--correct','quiz-option--wrong');
         btn.setAttribute('aria-pressed','false');
     });
-
     if (isCorrect) {
         button.classList.add('btn--primary','quiz-option--correct');
-        feedback.textContent = '✅ ' + message;
-        feedback.style.color = '#10b981';
+        if(feedback){ feedback.textContent = '✅ ' + message; feedback.style.color = '#10b981'; }
+        registerScore('pieges', key, 1);
     } else {
         button.classList.add('btn--danger','quiz-option--wrong');
-        feedback.textContent = '❌ ' + message;
-        feedback.style.color = '#ef4444';
+        if(feedback){ feedback.textContent = '❌ ' + message; feedback.style.color = '#ef4444'; }
         const correctBtn = Array.from(buttons).find(b => b.dataset.correct === 'true');
         if (correctBtn) correctBtn.classList.add('btn--primary','quiz-option--correct');
     }
     button.setAttribute('aria-pressed','true');
+    container.classList.add('done');
 }
 
 function updateProgress(sectionId) {
@@ -239,6 +285,10 @@ function createCalendarEvent(dayOffset, label, sectionId){
     const location = encodeURIComponent('En ligne / Classe');
     const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${times.start}/${times.end}&details=${details}&location=${location}&trp=false&sprop=name:`;
     window.open(url, '_blank');
+    // Scoring (1 point par ajout si pas déjà pris)
+    if(window.registerScore){
+        registerScore('plan-reactivation', 'reactivation-'+dayOffset, 1, {label});
+    }
 }
 
 // =========================
@@ -301,11 +351,112 @@ function checkExerciseAnswer(btn){
         fb.textContent = '✅ Correct !';
         fb.style.color = '#10b981';
         input.disabled = true; btn.disabled = true;
+        // Determine section by DOM (closest h2 id marker already separated by sections)
+        const section = wrapper.closest('[data-section]')?.getAttribute('data-section') || 'exercices-n1';
+        const exId = wrapper.getAttribute('data-ex-id') || expectedRaw;
+        // Weight: N1=1, N2=2, N3=3
+        let weight = 1;
+        if(section === 'exercices-n2') weight = 2;
+        if(section === 'exercices-n3') weight = 3;
+        registerScore(section, 'exercise-'+exId, weight);
     } else {
         fb.textContent = '❌ Vérifie les règles et réessaie.';
         fb.style.color = '#ef4444';
     }
 }
+
+// Score restoration & reset button wiring now relies on external ScoreEngine
+document.addEventListener('DOMContentLoaded', ()=>{
+    const engine = window.ScoreEngine;
+    if(!engine) return;
+    const st = engine.getState();
+    const resetBtn = document.getElementById('reset-score-btn');
+    if(resetBtn){
+        resetBtn.addEventListener('click', ()=>{
+            if(confirm('Réinitialiser toutes les scores ?')){ engine.resetScores(); location.reload(); }
+        });
+    }
+    // Disable already awarded items heuristically (UI sync)
+    Object.keys(st.awarded).forEach(key=>{
+        if(key.startsWith('intro-q1')){
+            document.querySelectorAll('.quiz-option').forEach(b=> b.disabled = true);
+        }
+        if(key.startsWith('phase-')){
+            const id = key.replace('phase-','');
+            const input = document.getElementById(id);
+            if(input){
+                input.disabled = true;
+                const btn = input.nextElementSibling; if(btn) btn.disabled = true;
+            }
+        }
+        if(key.startsWith('retention-')){
+            const simpleKey = key.replace('retention-','');
+            const card = document.querySelector('.quiz-card[data-retention-item="'+simpleKey+'"]');
+            if(card){
+                card.classList.add('done');
+                card.querySelectorAll('button').forEach(b=> b.disabled = true);
+                const fb = document.getElementById('retention-'+simpleKey);
+                if(fb){ fb.textContent = '✅ Correct (restauré)'; fb.style.color = '#10b981'; }
+            }
+        }
+        if(key.startsWith('method-step-')){
+            document.querySelectorAll('.guided-question button').forEach(b=> b.disabled = true);
+        }
+        if(key.startsWith('trap-q')){
+            const trapContainer = document.querySelector('.mini-trap-quiz[data-trap-id="'+key+'"]');
+            if(trapContainer){
+                trapContainer.classList.add('done');
+                trapContainer.querySelectorAll('.trap-option').forEach(b=> b.disabled = true);
+                const fb = trapContainer.querySelector('.quiz-feedback');
+                if(fb && !fb.textContent.includes('Correct')){ fb.textContent = '✅ Correct (restauré)'; fb.style.color = '#10b981'; }
+            }
+        }
+        if(key.startsWith('selfeval-r')){
+            const ruleNum = key.replace('selfeval-r','');
+            const awarded = st.awarded[key];
+            const choice = awarded && awarded.meta ? awarded.meta.choice : null;
+            if(choice){
+                const input = document.querySelector('input[name="eval-r'+ruleNum+'"][value="'+choice+'"]');
+                if(input){ input.checked = true; }
+            }
+        }
+        if(key.startsWith('reactivation-')){
+            const day = key.replace('reactivation-','');
+            const btn = document.querySelector('.reactivation-add[onclick*="createCalendarEvent('+day+',"]');
+            if(btn){ btn.classList.add('done'); btn.setAttribute('title','Déjà ajouté'); }
+        }
+    });
+    // Assign data-ex-id to each exercise for stable keys
+    let autoId = 1;
+    document.querySelectorAll('.exercise').forEach(ex=>{
+        if(!ex.getAttribute('data-ex-id')){
+            ex.setAttribute('data-ex-id', 'ex'+autoId++);
+        }
+        const exKey = 'exercise-'+ex.getAttribute('data-ex-id');
+        if(st.awarded[exKey]){
+            const input = ex.querySelector('input'); const btn = ex.querySelector('button');
+            if(input) input.disabled = true; if(btn) btn.disabled = true;
+            const fb = ex.querySelector('.exercise-feedback'); if(fb){ fb.textContent = '✅ Correct (restauré)'; fb.style.color = '#10b981'; }
+        }
+    });
+
+    // Auto-évaluation (fiche synthèse) -> 1 point par règle évaluée (3 max)
+    ['r1','r2','r3'].forEach(r=>{
+        const radios = document.querySelectorAll('input[name="eval-'+r+'"]');
+        radios.forEach(rd=>{
+            rd.addEventListener('change', ()=>{
+                const key = 'selfeval-'+r;
+                if(!st.awarded[key]){
+                    registerScore('fiche-synthese', key, 1, { choice: rd.value });
+                } else {
+                    // Mise à jour de la meta choice si l'utilisateur change (optionnel)
+                    const a = st.awarded[key];
+                    if(a){ a.meta = { choice: rd.value }; engine.updateScoreDisplays(); }
+                }
+            });
+        });
+    });
+});
 
 // Shortcut helpers
 
