@@ -484,24 +484,12 @@
  </section>
  <section id="plan-reactivation" data-section="plan-reactivation" class="content-section" aria-labelledby="heading-plan-reactivation">
     <h2 id="heading-plan-reactivation">🗓️ 8. Plan de réactivation</h2>
-    <p>Cours fait le : lundi 29 septembre 2025</p>
-    <div class="reactivation-plan">
-        <div class="reactivation-item">
-            <button class="reactivation-add" onclick="createCalendarEvent(1,'2 Exercices découverte')" aria-label="Ajouter J+1 au Google Agenda">📅</button>
-            <strong>J+1</strong> (mar. 30 sept.) : 2 Exo 1 découverte
-        </div>
-        <div class="reactivation-item">
-            <button class="reactivation-add" onclick="createCalendarEvent(3,'2 Exercices pratique')" aria-label="Ajouter J+3 au Google Agenda">📅</button>
-            <strong>J+3</strong> (jeu. 2 oct.) : 2 Exo 2 pratique
-        </div>
-        <div class="reactivation-item">
-            <button class="reactivation-add" onclick="createCalendarEvent(7,'Mini quiz synthèse')" aria-label="Ajouter J+7 au Google Agenda">📅</button>
-            <strong>J+7</strong> (lun. 6 oct.) : mini quiz synthèse
-        </div>
-        <div class="reactivation-item">
-            <button class="reactivation-add" onclick="createCalendarEvent(14,'Défi mélange N3')" aria-label="Ajouter J+14 au Google Agenda">📅</button>
-            <strong>J+14</strong> (lun. 13 oct.) : défi mélange N3
-        </div>
+    <p id="plan-base-date" class="plan-base-date" aria-live="polite"></p>
+    <p class="plan-intro">Ce plan exploite les sections : Règles → Quiz progressifs → Méthodes → Pièges → Exercices (N1→N2→N3) → Synthèse. Il espace les réactivations pour consolider la mémoire.</p>
+    <div id="reactivation-list" class="reactivation-plan" aria-describedby="plan-base-date"></div>
+    <div class="plan-legend">
+        <span><strong>🎯 Objectif :</strong> item d'entraînement ciblé</span>
+        <span><strong>📅</strong> = ajouter au Google Agenda (17h, 30 min)</span>
     </div>
  </section>
  </main>

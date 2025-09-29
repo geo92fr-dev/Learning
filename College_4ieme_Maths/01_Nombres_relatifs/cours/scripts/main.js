@@ -239,6 +239,44 @@ function createCalendarEvent(dayOffset, label){
     window.open(url, '_blank');
 }
 
+// =========================
+// Génération dynamique du plan de réactivation
+// =========================
+const REACTIVATION_STEPS = [
+    { d:1,  type:'rappel', label:'Relire les 3 règles + 2 ex. N1', focus:'Règles + Exos découverte', icon:'📘'},
+    { d:3,  type:'application', label:'2 ex. N2 + 1 méthode guidée', focus:'Automatisation', icon:'🛠️'},
+    { d:5,  type:'pièges', label:'Revoir 2 pièges + 1 ex. N2', focus:'Éviter erreurs', icon:'⚠️'},
+    { d:7,  type:'synthèse', label:'Mini quiz synthèse + 1 ex. N3', focus:'Consolidation', icon:'🧠'},
+    { d:10, type:'défi', label:'2 ex. N3 (défi)', focus:'Transfert avancé', icon:'🔥'},
+    { d:14, type:'bilan', label:'Quiz récap + 1 ex. mixte', focus:'Stabilité mémoire', icon:'✅'}
+];
+
+function formatFrenchDate(date){
+    return date.toLocaleDateString('fr-FR',{ weekday:'short', day:'numeric', month:'short'}).replace('.', '');
+}
+
+function buildReactivationPlan(){
+    const container = document.getElementById('reactivation-list');
+    const baseDateEl = document.getElementById('plan-base-date');
+    if(!container || !baseDateEl) return;
+    const today = new Date(); today.setHours(0,0,0,0);
+    const longBase = today.toLocaleDateString('fr-FR',{ weekday:'long', day:'numeric', month:'long', year:'numeric'});
+    baseDateEl.textContent = 'Cours fait le : ' + longBase;
+    container.innerHTML='';
+    REACTIVATION_STEPS.forEach(step => {
+         const target = new Date(today.getTime() + step.d*24*60*60*1000);
+         const li = document.createElement('div');
+         li.className = 'reactivation-item';
+         li.innerHTML = `
+             <button class="reactivation-add" onclick="createCalendarEvent(${step.d},'${step.label.replace(/'/g,"\'")}')" aria-label="Ajouter J+${step.d} au Google Agenda">📅</button>
+             <strong>J+${step.d}</strong> (${formatFrenchDate(target)}) : ${step.icon} ${step.label} <span class="reactivation-focus" aria-label="Focus pédagogique">→ ${step.focus}</span>
+         `;
+         container.appendChild(li);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', buildReactivationPlan);
+
 // Shortcut helpers
 
 function goToExercise(level) {

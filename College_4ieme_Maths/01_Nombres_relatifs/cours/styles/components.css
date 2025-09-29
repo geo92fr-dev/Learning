@@ -735,6 +735,11 @@ body.has-fixed-header { padding-top: 120px; }
   justify-content: center;
   transition: var(--transition,.25s ease);
 }
+.reactivation-focus { font-size:.75rem; background:var(--bg-card,#fff); padding:.25rem .5rem; border-radius:12px; border:1px solid var(--border-light,#e2e8f0); margin-left:.5rem; color:var(--text-muted,#555); }
+.plan-base-date { font-style:italic; color:var(--text-muted,#555); margin-top:.5rem; }
+.plan-intro { font-size:.9rem; line-height:1.4; margin-top:.75rem; }
+.plan-legend { display:flex; flex-wrap:wrap; gap:1.25rem; font-size:.75rem; opacity:.85; margin-top:1rem; }
+@media (max-width:600px){ .reactivation-focus { display:block; margin:.35rem 0 0 2.9rem; } }
 .reactivation-add:hover { background: var(--primary-light,#d8eefc); transform: translateY(-2px); }
 .reactivation-add:active { transform: translateY(0); }
 .reactivation-add:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
