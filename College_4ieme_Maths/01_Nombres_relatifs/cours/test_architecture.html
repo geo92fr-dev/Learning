@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Architecture - Nombres Relatifs</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">  
+  <link rel="stylesheet" href="styles/components.css">
+</head>
+<body>
+  
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <button onclick="showSection('intro')">Introduction</button>
+      <button onclick="showSection('retention')">Règles</button>
+      <button onclick="showSection('phases')">Quiz</button>
+    </div>
+  </nav>
+
+  <!-- Barre de progression (sera créée automatiquement) -->
+
+  <div class="container">
+    <!-- Section 1 : Introduction -->
+    <article id="intro" data-section="intro" class="content">
+      <h2> 1. Introduction aux Nombres Relatifs</h2>
+      <p>Bienvenue dans ce cours interactif sur les nombres relatifs !</p>
+      
+      <div class="card">
+        <h3>Objectifs</h3>
+        <ul>
+          <li>Comprendre l'addition de nombres relatifs</li>
+          <li>Maîtriser les règles selon les signes</li>
+          <li>Éviter les erreurs classiques</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Section 2 : Règles de Rétention -->  
+    <article id="retention" data-section="retention" class="content">
+      <h2>2. Ce qu'il faut retenir</h2>
+      
+      <!-- Mémo principal -->
+      <div class="memo-box">
+        <h3> Mémo : 1) Même signe  addition 2) Différents  soustraction + signe plus grande distance 3) Je vérifie</h3>
+      </div>
+      
+      <!-- Règles détaillées -->
+      <ul class="rules-list">
+        <li><strong>Signes différents :</strong> je soustrais les valeurs absolues et je garde le signe de la plus grande distance à 0.</li>
+        <li><strong>Signes identiques :</strong> j'additionne et je garde ce signe.</li>
+        <li><strong>Auto-contrôle :</strong> "Mon signe final est-il logique dans un exemple réel ?"</li>
+        <li><strong>En cas de doute :</strong> je reformule avec une température ou de l'argent.</li>
+      </ul>
+    </article>
+
+    <!-- Section 3 : Quiz -->
+    <article id="phases" data-section="phases" class="content">
+      <h2>3. Phases d'apprentissage</h2>
+      
+      <div class="phase-card">
+        <h3>Phase 1 - Guidé</h3>
+        <p><strong>Calcul :</strong> (+7) + (-5) = ?</p>
+        <div class="quiz" data-answer="+2" data-key="phase1_1">
+          <input type="text" placeholder="Ta réponse">
+          <button> Valider</button>
+          <div class="feedback"></div>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <h3>Phase 2 - Pratique</h3>
+        <p><strong>Calcul :</strong> (-8) + (-4) = ?</p>
+        <div class="quiz" data-answer="-12" data-key="method1">
+          <input type="text" placeholder="Ta réponse">
+          <button> Valider</button>
+          <div class="feedback"></div>
+        </div>
+      </div>
+      
+      <div class="phase-card">
+        <h3>Piège classique</h3>
+        <p><strong>Attention :</strong> (+3) + (+5) = ?</p>
+        <div class="quiz" data-answer="+8" data-key="piege1">
+          <input type="text" placeholder="Ta réponse">
+          <button> Valider</button>
+          <div class="feedback"></div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Progressive Enhancement Fallback -->
+  <noscript>
+    <style>
+      [data-section] { display: block !important; opacity: 1 !important; }
+      nav { display: none; }
+      .progress-container { display: none; }
+    </style>
+    <div class="no-js-notice">
+       <em>Mode impression/accessibilité : toutes les sections sont affichées</em>
+    </div>
+  </noscript>
+
+  <!-- Scripts dans l'ordre correct -->
+  <script src="scripts/config.js"></script>
+  <script src="scripts/quiz.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>
