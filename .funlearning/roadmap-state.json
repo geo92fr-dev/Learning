@@ -1,0 +1,133 @@
+{
+  "currentPhase": 1,
+  "globalProgress": 6,
+  "phases": [
+    {
+      "phase": 1,
+      "title": "Configuration & Setup",
+      "totalItems": 4,
+      "completedItems": 0,
+      "percentage": 0,
+      "nextTask": "Setup projet",
+      "estimatedHours": 8,
+      "blockers": []
+    },
+    {
+      "phase": 2,
+      "title": "Authentification Firebase",
+      "totalItems": 4,
+      "completedItems": 1,
+      "percentage": 25,
+      "nextTask": "Firebase config",
+      "estimatedHours": 12,
+      "blockers": [
+        "Firebase doit être initialisé avant l'authentification"
+      ]
+    },
+    {
+      "phase": 3,
+      "title": "Contenu Éducatif",
+      "totalItems": 4,
+      "completedItems": 1,
+      "percentage": 25,
+      "nextTask": "Exercices interactifs",
+      "estimatedHours": 16,
+      "blockers": []
+    },
+    {
+      "phase": 4,
+      "title": "Interface Utilisateur",
+      "totalItems": 4,
+      "completedItems": 0,
+      "percentage": 0,
+      "nextTask": "Design system",
+      "estimatedHours": 20,
+      "blockers": []
+    },
+    {
+      "phase": 5,
+      "title": "CRUD Avancé",
+      "totalItems": 4,
+      "completedItems": 0,
+      "percentage": 0,
+      "nextTask": "Firestore setup",
+      "estimatedHours": 18,
+      "blockers": [
+        "Configuration Firebase requise pour Firestore"
+      ]
+    },
+    {
+      "phase": 6,
+      "title": "Curriculum Intelligence",
+      "totalItems": 4,
+      "completedItems": 0,
+      "percentage": 0,
+      "nextTask": "Compétences map",
+      "estimatedHours": 24,
+      "blockers": []
+    },
+    {
+      "phase": 7,
+      "title": "Interactions Avancées",
+      "totalItems": 4,
+      "completedItems": 0,
+      "percentage": 0,
+      "nextTask": "Gamification",
+      "estimatedHours": 16,
+      "blockers": []
+    },
+    {
+      "phase": 8,
+      "title": "Responsive & Mobile",
+      "totalItems": 4,
+      "completedItems": 0,
+      "percentage": 0,
+      "nextTask": "Mobile first",
+      "estimatedHours": 14,
+      "blockers": []
+    },
+    {
+      "phase": 9,
+      "title": "PWA & Offline",
+      "totalItems": 4,
+      "completedItems": 0,
+      "percentage": 0,
+      "nextTask": "Service Worker",
+      "estimatedHours": 12,
+      "blockers": []
+    },
+    {
+      "phase": 10,
+      "title": "Performance",
+      "totalItems": 4,
+      "completedItems": 0,
+      "percentage": 0,
+      "nextTask": "Code splitting",
+      "estimatedHours": 10,
+      "blockers": []
+    },
+    {
+      "phase": 11,
+      "title": "Production",
+      "totalItems": 4,
+      "completedItems": 1,
+      "percentage": 25,
+      "nextTask": "Deployment",
+      "estimatedHours": 14,
+      "blockers": []
+    },
+    {
+      "phase": 12,
+      "title": "Maintenance",
+      "totalItems": 4,
+      "completedItems": 0,
+      "percentage": 0,
+      "nextTask": "Error tracking",
+      "estimatedHours": 8,
+      "blockers": []
+    }
+  ],
+  "lastUpdate": "2025-09-29T08:55:55.704Z",
+  "activeFiles": [],
+  "recentActions": []
+}

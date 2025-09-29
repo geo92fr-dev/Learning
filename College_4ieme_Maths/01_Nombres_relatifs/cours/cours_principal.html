@@ -2,7 +2,86 @@
 <title>Nombres relatifs</title>
 <style>
 body{font-family:Arial,system-ui,sans-serif;margin:0;padding:1.1rem 1.2rem;line-height:1.55;background:#0f1115;color:#f5f7fa;}
-header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 1.2rem;border:1px solid #1e2530;border-radius:14px;-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);}
+header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 1.2rem;border:1px solid #1e2530;border-   <div cla    <div class='sous-section-erreu  
+  <div class='card'>
+   <h4>⚠️ Checklist anti-pièges</h4>
+   <div class='grid-auto'>
+    <div class='card'>
+     <h5>🚫 Signes différents</h5>
+     <p><strong>Piège :</strong> Additionner directement</p>
+     <p><strong>✅ Bon réflexe :</strong> Je soustrais !</p>
+    </div>
+    <div class='card'>
+     <h5>🎲 Signe au hasard</h5>
+     <p><strong>Piège :</strong> Choisir sans réfléchir</p>
+     <p><strong>✅ Bon réflexe :</strong> Je justifie toujours</p>
+    </div>
+    <div class='card'>
+     <h5>🤔 Distances vs soustraire</h5>
+     <p><strong>Piège :</strong> Confondre les méthodes</p>
+     <p><strong>✅ Bon réflexe :</strong> Distances à zéro d'abord</p>
+    </div>
+    <div class='card'>
+     <h5>🌍 Contexte oublié</h5>
+     <p><strong>Piège :</strong> Résultat illogique</p>
+     <p><strong>✅ Bon réflexe :</strong> Je vérifie avec température/argent</p>
+    </div>
+   </div>
+  </div>  <h3>3. Pièges à éviter</h3>
+  <p class='explication-sous-partie'>But : alerter AVANT que l'erreur ne se produise (cas limites, confusions classiques).</p>
+  
+  <div class='card'>
+   <h4>⚠️ Checklist anti-pièges</h4>
+   <div class='grid-auto'>
+    <div class='card'>
+     <h5>🚫 Signes différents</h5>
+     <p><strong>Piège :</strong> Additionner directement</p>
+     <p><strong>✅ Bon réflexe :</strong> Je soustrais !</p>
+    </div>
+    <div class='card'>
+     <h5>🎲 Signe au hasard</h5>
+     <p><strong>Piège :</strong> Choisir sans réfléchir</p>
+     <p><strong>✅ Bon réflexe :</strong> Je justifie toujours</p>
+    </div>
+    <div class='card'>
+     <h5>🤔 Distances vs soustraire</h5>
+     <p><strong>Piège :</strong> Confondre les méthodes</p>
+     <p><strong>✅ Bon réflexe :</strong> Distances à zéro d'abord</p>
+    </div>
+    <div class='card'>
+     <h5>🌍 Contexte oublié</h5>
+     <p><strong>Piège :</strong> Résultat illogique</p>
+     <p><strong>✅ Bon réflexe :</strong> Je vérifie avec température/argent</p>
+    </div>
+   </div>
+  </div><div class='card'>
+    <h4>🕵️ Exercice : Trouve l'erreur</h4>
+    <p><strong>Calcul :</strong> (-6) + (-4) = +2</p>
+    <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
+    <div class='quiz-input'>
+        <input type='text' class='quiz-textbox' id='piege2Answer' placeholder='Ta réponse' maxlength='4'>
+        <button class='quiz-btn' onclick='checkPiegeAnswer(2, "-10", "Erreur : soustraction au lieu d\'addition (même signe). Correct : 6 + 4 = 10 → -10")'>✓ Valider</button>
+    </div>
+    <div class='feedback-zone' id='piege2Feedback'></div>
+   </div>rd'>
+    <h4>🕵️ Exercice : Trouve l'erreur</h4>
+    <p><strong>Calcul :</strong> (-6) + (-4) = +2</p>
+    <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
+    <div class='quiz-input'>
+        <input type='text' class='quiz-textbox' id='piege2Answer' placeholder='Ta réponse' maxlength='4'>
+        <button class='quiz-btn' onclick='checkPiegeAnswer(2, "-10", "Erreur : soustraction au lieu d\'addition (même signe). Correct : 6 + 4 = 10 → -10")'>✓ Valider</button>
+    </div>
+    <div class='feedback-zone' id='piege2Feedback'></div>
+   </div>'>
+    <h4>🕵️ Exercice : Trouve l'erreur</h4>
+    <p><strong>Calcul :</strong> (-6) + (-4) = +2</p>
+    <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
+    <div class='quiz-input'>
+        <input type='text' class='quiz-textbox' id='piege2Answer' placeholder='Ta réponse' maxlength='4'>
+        <button class='quiz-btn' onclick='checkPiegeAnswer(2, "-10", "Erreur : soustraction au lieu d\'addition (même signe). Correct : 6 + 4 = 10 → -10")'>✓ Valider</button>
+    </div>
+    <div class='feedback-zone' id='piege2Feedback'></div>
+   </div>4px;-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);}
 section{background:rgba(255,255,255,0.025);padding:1rem 1.1rem;margin:0 0 1rem;border:1px solid #1b222c;border-radius:12px;}
 h1,h2,h3{line-height:1.2;margin:0 0 .65rem;font-weight:600;}
 /* Utilities */
@@ -285,7 +364,12 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
     <h4>Phase 2 – Semi-guidé</h4>
     <p><em>Calcul :</em> (-9) + (+4)</p>
     <p><strong>💡 Indices :</strong> signes différents → soustraction des valeurs absolues (distances à zéro). Quel signe pour le résultat ?</p>
-    <details><summary class='summary-mini'>Voir solution si bloqué</summary><p>Valeurs absolues (distances à zéro) : 9 et 4 → 9 - 4 = 5. Signe de la plus grande distance : -9 → <strong>-5</strong>.</p></details>
+    <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
+    <div class='quiz-input'>
+        <input type='text' class='quiz-textbox' id='piege2Answer' placeholder='Ta réponse' maxlength='4'>
+        <button class='quiz-btn' onclick='checkPiegeAnswer(2, "-10", "Erreur : soustraction au lieu d\'addition (même signe). Correct : 6 + 4 = 10 → -10")'>✓ Valider</button>
+    </div>
+    <div class='feedback-zone' id='piege2Feedback'></div>
     <p><strong>✍️ Ton calcul :</strong> (-9) + (+4) =</p>
     <div class='quiz-input'>
         <input type='text' class='quiz-textbox' id='phase2Answer' placeholder='Ta réponse' maxlength='4'>
@@ -410,26 +494,32 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
    <div class='card'>
     <h4>🕵️ Exercice : Trouve l'erreur</h4>
     <p><strong>Calcul :</strong> (+5) + (-8) = +13</p>
-    <details><summary class='summary-mini'>Voir la correction</summary>
-     <p><strong>❌ Erreur :</strong> Addition directe au lieu de soustraire.</p>
-     <p><strong>✅ Correct :</strong> 8 - 5 = 3, signe de -8 → <strong>-3</strong></p>
-    </details>
+    <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
+    <div class='quiz-input'>
+        <input type='text' class='quiz-textbox' id='piege1Answer' placeholder='Ta réponse' maxlength='4'>
+        <button class='quiz-btn' onclick='checkPiegeAnswer(1, "-3", "Erreur : addition directe au lieu de soustraire. Correct : 8 - 5 = 3, signe de -8 → -3")'>✓ Valider</button>
+    </div>
+    <div class='feedback-zone' id='piege1Feedback'></div>
    </div>
    <div class='card'>
     <h4>🕵️ Exercice : Trouve l'erreur</h4>
     <p><strong>Calcul :</strong> (-6) + (-4) = +2</p>
-    <details><summary class='summary-mini'>Voir la correction</summary>
-     <p><strong>❌ Erreur :</strong> Soustraction au lieu d’addition (même signe).</p>
-     <p><strong>✅ Correct :</strong> 6 + 4 = 10 → <strong>-10</strong></p>
-    </details>
+    <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
+    <div class='quiz-input'>
+        <input type='text' class='quiz-textbox' id='piege2Answer' placeholder='Ta réponse' maxlength='4'>
+        <button class='quiz-btn' onclick='checkPiegeAnswer(2, "-10", "Erreur : soustraction au lieu d\'addition (même signe). Correct : 6 + 4 = 10 → -10")'>✓ Valider</button>
+    </div>
+    <div class='feedback-zone' id='piege2Feedback'></div>
    </div>
    <div class='card'>
     <h4>🕵️ Exercice : Trouve l'erreur</h4>
     <p><strong>Calcul :</strong> (+9) + (-2) = -7</p>
-    <details><summary class='summary-mini'>Voir la correction</summary>
-     <p><strong>❌ Erreur :</strong> Mauvais signe gardé.</p>
-     <p><strong>✅ Correct :</strong> 9 - 2 = 7 signe de +9 → <strong>+7</strong></p>
-    </details>
+    <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
+    <div class='quiz-input'>
+        <input type='text' class='quiz-textbox' id='piege3Answer' placeholder='Ta réponse' maxlength='4'>
+        <button class='quiz-btn' onclick='checkPiegeAnswer(3, "+7", "Erreur : mauvais signe gardé. Correct : 9 - 2 = 7, signe de +9 → +7")'>✓ Valider</button>
+    </div>
+    <div class='feedback-zone' id='piege3Feedback'></div>
    </div>
   </div>
  </div>
@@ -603,6 +693,46 @@ function checkPhaseAnswer(phaseNum, correctAnswer, explanation) {
     } else {
         feedback.className = 'feedback-zone feedback-error';
         feedback.innerHTML = `❌ <strong>Pas tout à fait.</strong> Réessaie en appliquant la méthode étape par étape.<br><em>💡 Aide : ${explanation}</em>`;
+    }
+}
+
+// Fonction pour valider les pièges à éviter
+function checkPiegeAnswer(piegeNum, correctAnswer, explanation) {
+    const input = document.getElementById(`piege${piegeNum}Answer`);
+    const feedback = document.getElementById(`piege${piegeNum}Feedback`);
+    const userAnswer = input.value.trim();
+    
+    if (!userAnswer) {
+        feedback.className = 'feedback-zone feedback-neutral';
+        feedback.innerHTML = '📝 <strong>Écris ta réponse :</strong> Exemple +7, -10, ou 0';
+        return;
+    }
+    
+    // Normaliser les réponses pour la comparaison
+    const normalizedUser = normalizeAnswer(userAnswer);
+    const normalizedCorrect = normalizeAnswer(correctAnswer);
+    
+    // Vérifier différentes variantes de réponse
+    let isCorrect = false;
+    if (normalizedUser === normalizedCorrect || 
+        normalizedUser === normalizedCorrect.replace('+', '') ||
+        (correctAnswer === '0' && (normalizedUser === 'zéro' || normalizedUser === 'zero'))) {
+        isCorrect = true;
+    }
+    
+    if (isCorrect) {
+        feedback.className = 'feedback-zone feedback-success';
+        feedback.innerHTML = `✓ <strong>Excellent !</strong> Tu as trouvé l'erreur et la correction : ${correctAnswer}<br><em>💡 ${explanation}</em>`;
+        
+        // Désactiver après succès
+        input.disabled = true;
+        input.style.background = '#1a4d3a';
+        const btn = input.nextElementSibling;
+        btn.disabled = true;
+        btn.textContent = '✓ Validé';
+    } else {
+        feedback.className = 'feedback-zone feedback-error';
+        feedback.innerHTML = `❌ <strong>Pas encore...</strong> Réfléchis : quelle est l'erreur dans le calcul proposé ?<br><em>💡 Indice : ${explanation.split('.')[0]}.</em>`;
     }
 }
 

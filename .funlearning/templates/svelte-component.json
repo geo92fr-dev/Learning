@@ -1,0 +1,44 @@
+{
+  "id": "svelte-component",
+  "name": "Composant Svelte FunLearning",
+  "description": "Composant Svelte avec validation pédagogique",
+  "category": "component",
+  "level": "all",
+  "variables": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Nom du composant",
+      "required": true,
+      "validation": "not-empty"
+    },
+    {
+      "name": "props",
+      "type": "array",
+      "description": "Propriétés du composant",
+      "default": [],
+      "required": false
+    },
+    {
+      "name": "educational",
+      "type": "boolean",
+      "description": "Composant à vocation pédagogique",
+      "default": true,
+      "required": false
+    }
+  ],
+  "files": [
+    {
+      "path": "src/lib/components/{{kebabCase(name)}}/{{capitalize(name)}}.svelte",
+      "content": "<script>\n    /**\n     * 🎨 {{capitalize(name)}} - Composant FunLearning\n     * {{#if educational}}Composant pédagogique pour niveau {{context.targetLevel}}{{/if}}\n     */\n    \n    {{#each props}}\n    export let {{this}};\n    {{/each}}\n    \n    import { createEventDispatcher } from 'svelte';\n    {{#if educational}}\n    import { validateEducationalContent } from '$lib/stores/education.js';\n    {{/if}}\n    \n    const dispatch = createEventDispatcher();\n    \n    {{#if educational}}\n    // Validation pédagogique\n    $: isValid = validateEducationalContent({\n        component: '{{name}}',\n        level: '{{context.targetLevel}}',\n        content: /* contenu à valider */\n    });\n    {{/if}}\n    \n    function handleInteraction(event) {\n        dispatch('interact', {\n            component: '{{name}}',\n            action: event.type,\n            {{#if educational}}\n            educational: true,\n            level: '{{context.targetLevel}}'\n            {{/if}}\n        });\n    }\n</script>\n\n{{#if educational}}\n<!-- Composant pédagogique pour {{context.targetLevel}} -->\n<div class=\"educational-component {{kebabCase(name)}}\" \n     data-level=\"{{context.targetLevel}}\"\n     on:click={handleInteraction}\n     on:keydown={handleInteraction}>\n    \n    <header class=\"component-header\">\n        <h3>{{title || name}}</h3>\n        {{#if context.targetLevel}}\n        <span class=\"level-badge\">Niveau {{context.targetLevel}}</span>\n        {{/if}}\n    </header>\n    \n    <main class=\"component-content\">\n        <slot />\n    </main>\n    \n    {{#if isValid === false}}\n    <aside class=\"validation-warning\">\n        ⚠️ Contenu non adapté au niveau {{context.targetLevel}}\n    </aside>\n    {{/if}}\n    \n</div>\n{{else}}\n<!-- Composant standard -->\n<div class=\"component {{kebabCase(name)}}\" \n     on:click={handleInteraction}>\n    <slot />\n</div>\n{{/if}}\n\n<style>\n    .educational-component {\n        border: 2px solid var(--color-educational);\n        border-radius: 8px;\n        padding: 1rem;\n        margin-bottom: 1rem;\n        background: var(--bg-educational);\n    }\n    \n    .component-header {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        margin-bottom: 1rem;\n    }\n    \n    .level-badge {\n        background: var(--color-level);\n        color: white;\n        padding: 0.25rem 0.5rem;\n        border-radius: 4px;\n        font-size: 0.875rem;\n    }\n    \n    .validation-warning {\n        background: var(--color-warning);\n        color: white;\n        padding: 0.5rem;\n        border-radius: 4px;\n        margin-top: 1rem;\n        font-size: 0.875rem;\n    }\n    \n    .component {\n        /* Styles composant standard */\n    }\n</style>",
+      "type": "svelte"
+    },
+    {
+      "path": "src/lib/components/{{kebabCase(name)}}/{{capitalize(name)}}.test.js",
+      "content": "import { render, fireEvent } from '@testing-library/svelte';\nimport {{capitalize(name)}} from './{{capitalize(name)}}.svelte';\n\ndescribe('{{capitalize(name)}}', () => {\n    test('renders correctly', () => {\n        const { getByRole } = render({{capitalize(name)}}, {\n            {{#each props}}\n            {{this}}: 'test-value',\n            {{/each}}\n        });\n        \n        expect(getByRole('main')).toBeInTheDocument();\n    });\n    \n    {{#if educational}}\n    test('validates educational content', () => {\n        const { container } = render({{capitalize(name)}}, {\n            educational: true,\n            level: '{{context.targetLevel}}'\n        });\n        \n        expect(container.querySelector('.educational-component')).toBeInTheDocument();\n        expect(container.querySelector('[data-level=\"{{context.targetLevel}}\"]')).toBeInTheDocument();\n    });\n    {{/if}}\n    \n    test('dispatches interact event', async () => {\n        const mock = jest.fn();\n        const { component } = render({{capitalize(name)}});\n        \n        component.$on('interact', mock);\n        \n        await fireEvent.click(component);\n        \n        expect(mock).toHaveBeenCalledWith(\n            expect.objectContaining({\n                detail: expect.objectContaining({\n                    component: '{{name}}',\n                    action: 'click'\n                })\n            })\n        );\n    });\n});",
+      "type": "javascript",
+      "condition": "context.projectPhase > 2"
+    }
+  ],
+  "dependencies": []
+}

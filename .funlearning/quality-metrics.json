@@ -1,0 +1,28 @@
+{
+  "codeQuality": {
+    "coverage": 0,
+    "complexity": 1,
+    "duplication": 1.7673471506589151,
+    "maintainability": 0
+  },
+  "projectHealth": {
+    "buildStatus": "warning",
+    "testsPassing": 0,
+    "testsTotal": 0,
+    "dependencies": 0,
+    "vulnerabilities": 1
+  },
+  "educationalQuality": {
+    "cbdCompliance": 0,
+    "pedagogicalAlignment": 94,
+    "accessibilityScore": 100,
+    "contentQuality": 65
+  },
+  "performance": {
+    "lighthouse": 94,
+    "loadTime": 500,
+    "bundleSize": 0,
+    "memoryUsage": 23.03555114100809
+  },
+  "lastUpdate": "2025-09-29T08:55:56.169Z"
+}
