@@ -227,14 +227,16 @@ function formatDateForGCal(date){
     return { start: toStr(start), end: toStr(end) };
 }
 
-function createCalendarEvent(dayOffset, label){
-    const base = new Date(); // aujourd'hui comme point de départ
+const COURSE_URL = 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/01_Nombres_relatifs/cours/cours_principal.html';
+function createCalendarEvent(dayOffset, label, sectionId){
+    const base = new Date();
     base.setHours(0,0,0,0);
     const target = new Date(base.getTime() + dayOffset*24*60*60*1000);
     const times = formatDateForGCal(target);
     const title = encodeURIComponent('Réactivation: ' + label);
-    const details = encodeURIComponent('Session de réactivation du chapitre Nombres relatifs. Objectif: ' + label + '.');
-    const location = encodeURIComponent('Classe / Maison');
+    const anchorUrl = COURSE_URL + (sectionId ? '#' + sectionId : '');
+    const details = encodeURIComponent('Session de réactivation du chapitre Nombres relatifs. Objectif: ' + label + '\nAccès direct: ' + anchorUrl);
+    const location = encodeURIComponent('En ligne / Classe');
     const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${times.start}/${times.end}&details=${details}&location=${location}&trp=false&sprop=name:`;
     window.open(url, '_blank');
 }
@@ -243,12 +245,12 @@ function createCalendarEvent(dayOffset, label){
 // Génération dynamique du plan de réactivation
 // =========================
 const REACTIVATION_STEPS = [
-    { d:1,  type:'rappel', label:'Relire les 3 règles + 2 ex. N1', focus:'Règles + Exos découverte', icon:'📘'},
-    { d:3,  type:'application', label:'2 ex. N2 + 1 méthode guidée', focus:'Automatisation', icon:'🛠️'},
-    { d:5,  type:'pièges', label:'Revoir 2 pièges + 1 ex. N2', focus:'Éviter erreurs', icon:'⚠️'},
-    { d:7,  type:'synthèse', label:'Mini quiz synthèse + 1 ex. N3', focus:'Consolidation', icon:'🧠'},
-    { d:10, type:'défi', label:'2 ex. N3 (défi)', focus:'Transfert avancé', icon:'🔥'},
-    { d:14, type:'bilan', label:'Quiz récap + 1 ex. mixte', focus:'Stabilité mémoire', icon:'✅'}
+    { d:1,  type:'rappel',      section:'retention',      label:'Relire les 3 règles + 2 ex. N1',         focus:'Règles + Exos découverte', icon:'📘'},
+    { d:3,  type:'application', section:'exercices-n2',   label:'2 ex. N2 + 1 méthode guidée',           focus:'Automatisation',           icon:'🛠️'},
+    { d:5,  type:'pièges',      section:'pieges',         label:'Revoir 2 pièges + 1 ex. N2',            focus:'Éviter erreurs',           icon:'⚠️'},
+    { d:7,  type:'synthèse',    section:'fiche-synthese', label:'Mini quiz synthèse + 1 ex. N3',         focus:'Consolidation',            icon:'🧠'},
+    { d:10, type:'défi',        section:'exercices-n3',   label:'2 ex. N3 (défi)',                       focus:'Transfert avancé',         icon:'🔥'},
+    { d:14, type:'bilan',       section:'phases',         label:'Quiz récap + 1 ex. mixte',              focus:'Stabilité mémoire',        icon:'✅'}
 ];
 
 function formatFrenchDate(date){
@@ -268,7 +270,7 @@ function buildReactivationPlan(){
          const li = document.createElement('div');
          li.className = 'reactivation-item';
          li.innerHTML = `
-             <button class="reactivation-add" onclick="createCalendarEvent(${step.d},'${step.label.replace(/'/g,"\'")}')" aria-label="Ajouter J+${step.d} au Google Agenda">📅</button>
+             <button class="reactivation-add" onclick="createCalendarEvent(${step.d},'${step.label.replace(/'/g,"\'")}', '${step.section}')" aria-label="Ajouter J+${step.d} au Google Agenda (section ${step.section})">📅</button>
              <strong>J+${step.d}</strong> (${formatFrenchDate(target)}) : ${step.icon} ${step.label} <span class="reactivation-focus" aria-label="Focus pédagogique">→ ${step.focus}</span>
          `;
          container.appendChild(li);
