@@ -110,7 +110,15 @@ blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4
  .intro-apprentissage{font-size:.7rem;opacity:.75;margin:-.2rem 0 .8rem;}
  
  /* Éléments interactifs pour l'apprentissage */
- .quiz-input{margin:0.8rem 0;display:flex;gap:0.5rem;align-items:center;}
+.quiz-input{margin:0.8rem 0;display:flex;gap:0.5rem;align-items:center;}
+/* Component quiz block alignment */
+.quiz-block{--q-gap:.55rem;display:flex;align-items:stretch;gap:var(--q-gap);flex-wrap:nowrap;}
+.quiz-block .quiz-textbox{flex:0 0 90px;}
+.quiz-block .quiz-btn{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;}
+@media (max-width:520px){
+ .quiz-block{flex-wrap:wrap;}
+ .quiz-block .quiz-textbox{flex:1 1 70px;}
+}
  .quiz-textbox{background:#1e2530;border:2px solid #3d4c5c;color:#f5f7fa;padding:0.5rem 0.75rem;border-radius:6px;font-size:0.85rem;width:80px;text-align:center;}
  .quiz-textbox:focus{border-color:#67c7ff;outline:none;box-shadow:0 0 8px rgba(103,199,255,0.3);}
  .quiz-textbox:disabled{background:#1a4d3a;border-color:#2d5a3d;color:#90ee90;}
@@ -343,9 +351,9 @@ body.fast-mode .intro-methode{opacity:.55;}
     </ol>
 
     <p><strong>✍️ À toi de valider :</strong> Refais le même calcul (+7) + (-5) =</p>
-    <div class='quiz-input'>
-        <input type='text' class='quiz-textbox' id='phase1Answer' placeholder='Ta réponse' maxlength='4'>
-    <button class='quiz-btn' onclick="checkPhaseAnswer(1, '+2', 'Signes différents : 7 - 5 = 2, signe du plus grand (+7) → +2')">✓ Valider</button>
+    <div class='quiz-input quiz-block' data-phase='1' data-ans='+2' data-key='phase1'>
+        <input type='text' class='quiz-textbox phase-input' id='phase1Answer' placeholder='Ta réponse' maxlength='4' aria-label='Réponse phase 1'>
+        <button type='button' class='quiz-btn btn-phase' data-phase='1' data-ans='+2' data-key='phase1' aria-label='Valider phase 1'>✓ Valider</button>
     </div>
     <div class='feedback-zone' id='phase1Feedback'></div>
    </div>
@@ -354,9 +362,9 @@ body.fast-mode .intro-methode{opacity:.55;}
     <p><em>Calcul :</em> (-9) + (+4)</p>
     <p><strong>💡 Indices :</strong> signes différents → soustraction des valeurs absolues (distances à zéro). Quel signe pour le résultat ?</p>
     <p><strong>✍️ Ton calcul :</strong> (-9) + (+4) =</p>
-    <div class='quiz-input'>
-        <input type='text' class='quiz-textbox' id='phase2Answer' placeholder='Ta réponse' maxlength='4'>
-    <button class='quiz-btn' onclick="checkPhaseAnswer(2, '-5', 'Signes differents : 9 - 4 = 5, signe du plus grand (-9) => -5')">✓ Valider</button>
+    <div class='quiz-input quiz-block' data-phase='2' data-ans='-5' data-key='phase2'>
+        <input type='text' class='quiz-textbox phase-input' id='phase2Answer' placeholder='Ta réponse' maxlength='4' aria-label='Réponse phase 2'>
+        <button type='button' class='quiz-btn btn-phase' data-phase='2' data-ans='-5' data-key='phase2' aria-label='Valider phase 2'>✓ Valider</button>
     </div>
     <div class='feedback-zone' id='phase2Feedback'></div>
    </div>
@@ -366,9 +374,9 @@ body.fast-mode .intro-methode{opacity:.55;}
     <details><summary class='summary-mini'>🆘 Besoin d'aide ?</summary><p><strong>Astuce :</strong> Les signes sont différents ! Tu dois soustraire les distances à zéro (12 - 7) et garder le signe du nombre le plus "fort" (+12).</p></details>
     <details><summary class='summary-mini'>Auto-vérification</summary><ul class='list-compact'><li>Signe logique ?</li><li>Soustraction faite ?</li><li>Signe du plus grand gardé ?</li></ul></details>
     <p><strong>🎯 Défi autonome :</strong> (+12) + (-7) =</p>
-    <div class='quiz-input'>
-        <input type='text' class='quiz-textbox' id='phase3Answer' placeholder='Ta réponse' maxlength='4'>
-    <button class='quiz-btn' onclick="checkPhaseAnswer(3, '+5', 'Signes différents : 12 - 7 = 5, signe du plus grand (+12) → +5')">✓ Valider</button>
+    <div class='quiz-input quiz-block' data-phase='3' data-ans='+5' data-key='phase3'>
+        <input type='text' class='quiz-textbox phase-input' id='phase3Answer' placeholder='Ta réponse' maxlength='4' aria-label='Réponse phase 3'>
+        <button type='button' class='quiz-btn btn-phase' data-phase='3' data-ans='+5' data-key='phase3' aria-label='Valider phase 3'>✓ Valider</button>
     </div>
     <div class='feedback-zone' id='phase3Feedback'></div>
    </div>
@@ -736,6 +744,9 @@ const EXPLAINS = Object.freeze({
     checkM1: "8 + 6 = 14 et les deux sont négatifs → résultat négatif.",
     checkM2: "7 - 2 = 5 et 7 était négatif → le résultat est -5.",
     checkM3: "12 - 7 = 5 le plus grand est positif → +5.",
+    phase1: "Signes différents : 7 - 5 = 2 puis signe du plus grand (+7) → +2.",
+    phase2: "Signes différents : 9 - 4 = 5 signe du plus grand (-9) → -5.",
+    phase3: "Signes différents : 12 - 7 = 5 signe du plus grand (+12) → +5.",
     piege1: "On a additionné au lieu de soustraire : 8 - 5 = 3 signe de -8 → -3.",
     piege2: "Mêmes signes négatifs : on additionne 6 + 4 = 10 puis signe -.",
     piege3: "Valeur absolue la plus grande = 9 positif → 9 - 2 = 7 donc +7."
@@ -803,6 +814,30 @@ document.addEventListener('DOMContentLoaded', function() {
    const ans = btn.dataset.ans;
    const key = btn.dataset.key || ('method'+num);
    checkMethodAnswer(num, ans, EXPLAINS[key]);
+  });
+ });
+
+ // Délégation phases (remplace onclick inline)
+ document.querySelectorAll('.btn-phase').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+   const num = parseInt(btn.dataset.phase,10);
+   const ans = btn.dataset.ans;
+   const key = btn.dataset.key || ('phase'+num);
+   checkPhaseAnswer(num, ans, EXPLAINS[key]);
+  });
+ });
+
+ // Validation Enter sur inputs phases
+ document.querySelectorAll('.phase-input').forEach(inp=>{
+  inp.addEventListener('keyup',e=>{
+   if(e.key==='Enter'){
+    const wrap = inp.closest('.quiz-block');
+    if(!wrap) return;
+    const num = parseInt(wrap.dataset.phase,10);
+    const ans = wrap.dataset.ans;
+    const key = wrap.dataset.key || ('phase'+num);
+    checkPhaseAnswer(num, ans, EXPLAINS[key]);
+   }
   });
  });
 
