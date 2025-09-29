@@ -378,7 +378,7 @@ body.fast-mode .intro-methode{opacity:.55;}
    <div class='mini-check'>
     <label for='mstep1' class='mini-label'>Test rapide :</label>
     <input type='text' id='mstep1' class='quiz-textbox mini' placeholder='Résultat ?' maxlength='5'>
-    <button class='quiz-btn mini btn-method' data-method='1' data-ans='-14' data-expl="Même signe : 8 + 6 = 14 et on garde -">✓</button>
+    <button class='quiz-btn mini btn-method' data-method='1' data-ans='-14' data-key='checkM1'>✓</button>
     <span class='mini-enonce'>(-8) + (-6)</span>
    </div>
    <div id='method1Feedback' class='feedback-zone mini-feedback'></div>
@@ -399,7 +399,7 @@ body.fast-mode .intro-methode{opacity:.55;}
    <div class='mini-check'>
     <label for='mstep2' class='mini-label'>Teste :</label>
     <input type='text' id='mstep2' class='quiz-textbox mini' placeholder='Résultat ?' maxlength='5'>
-    <button class='quiz-btn mini btn-method' data-method='2' data-ans='-5' data-expl="Différents : 7 - 2 = 5, signe de 7 (négatif) -> -5">✓</button>
+    <button class='quiz-btn mini btn-method' data-method='2' data-ans='-5' data-key='checkM2'>✓</button>
     <span class='mini-enonce'>(+2) + (-7)</span>
    </div>
    <div id='method2Feedback' class='feedback-zone mini-feedback'></div>
@@ -438,7 +438,7 @@ body.fast-mode .intro-methode{opacity:.55;}
    <div class='mini-check'>
     <label for='mstep3' class='mini-label'>Vérifie :</label>
     <input type='text' id='mstep3' class='quiz-textbox mini' placeholder='Résultat ?' maxlength='5'>
-    <button class='quiz-btn mini btn-method' data-method='3' data-ans='+5' data-expl="Différents : 12 - 7 = 5, signe de 12 -> +5">✓</button>
+    <button class='quiz-btn mini btn-method' data-method='3' data-ans='+5' data-key='checkM3'>✓</button>
     <span class='mini-enonce'>(+12) + (-7)</span>
    </div>
    <div id='method3Feedback' class='feedback-zone mini-feedback'></div>
@@ -505,7 +505,7 @@ body.fast-mode .intro-methode{opacity:.55;}
     <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
     <div class='quiz-input'>
         <input type='text' class='quiz-textbox' id='piege1Answer' placeholder='Ta réponse' maxlength='4'>
-    <button class='quiz-btn btn-piege' data-piege='1' data-ans='-3' data-expl="Erreur : on additionne au lieu de soustraire. 8 - 5 = 3, signe de -8 => -3">✓ Valider</button>
+    <button class='quiz-btn btn-piege' data-piege='1' data-ans='-3' data-key='piege1'>✓ Valider</button>
     </div>
     <div class='feedback-zone' id='piege1Feedback'></div>
    </div>
@@ -515,7 +515,7 @@ body.fast-mode .intro-methode{opacity:.55;}
     <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
     <div class='quiz-input'>
         <input type='text' class='quiz-textbox' id='piege2Answer' placeholder='Ta réponse' maxlength='4'>
-    <button class='quiz-btn btn-piege' data-piege='2' data-ans='-10' data-expl="Meme signe : (-6)+(-4) => 6+4=10 et signe - => -10">✓ Valider</button>
+    <button class='quiz-btn btn-piege' data-piege='2' data-ans='-10' data-key='piege2'>✓ Valider</button>
     </div>
     <div class='feedback-zone' id='piege2Feedback'></div>
    </div>
@@ -525,7 +525,7 @@ body.fast-mode .intro-methode{opacity:.55;}
     <p><strong>📝 Quelle est l'erreur ? Donne le bon résultat :</strong></p>
     <div class='quiz-input'>
         <input type='text' class='quiz-textbox' id='piege3Answer' placeholder='Ta réponse' maxlength='4'>
-    <button class='quiz-btn btn-piege' data-piege='3' data-ans='+7' data-expl="Signe final : valeur absolue plus grande = +9 => 9 - 2 = 7 => +7">✓ Valider</button>
+    <button class='quiz-btn btn-piege' data-piege='3' data-ans='+7' data-key='piege3'>✓ Valider</button>
     </div>
     <div class='feedback-zone' id='piege3Feedback'></div>
    </div>
@@ -745,6 +745,19 @@ function checkPiegeAnswer(piegeNum, correctAnswer, explanation) {
 }
 
 // Initialiser au chargement de la page
+// Dictionnaire centralisé des explications
+const EXPLAINS = Object.freeze({
+    method1: "Même signe : on additionne les valeurs absolues et on garde le signe commun.",
+    method2: "Signes différents : soustraire les valeurs absolues et garder le signe de la plus grande distance à 0.",
+    method3: "Contrôle : tester avec un contexte (argent, température) pour valider le signe.",
+    checkM1: "8 + 6 = 14 et les deux sont négatifs → résultat négatif.",
+    checkM2: "7 - 2 = 5 et 7 était négatif → le résultat est -5.",
+    checkM3: "12 - 7 = 5 le plus grand est positif → +5.",
+    piege1: "On a additionné au lieu de soustraire : 8 - 5 = 3 signe de -8 → -3.",
+    piege2: "Mêmes signes négatifs : on additionne 6 + 4 = 10 puis signe -.",
+    piege3: "Valeur absolue la plus grande = 9 positif → 9 - 2 = 7 donc +7."
+});
+
 document.addEventListener('DOMContentLoaded', function() {
  initRevisionDates();
  
@@ -786,16 +799,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
  // Auto validation Enter mini-checks
  const autoChecks = [
-  {id:'mstep1',num:1,ans:'-14',expl:"Même signe : 8 + 6 = 14 et on garde -"},
-  {id:'mstep2',num:2,ans:'-5',expl:"Différents : 7 - 2 = 5, signe de 7 (négatif) => -5"},
-  {id:'mstep3',num:3,ans:'+5',expl:"Différents : 12 - 7 = 5, signe de 12 => +5"}
+  {id:'mstep1',num:1,ans:'-14',key:'checkM1'},
+  {id:'mstep2',num:2,ans:'-5',key:'checkM2'},
+  {id:'mstep3',num:3,ans:'+5',key:'checkM3'}
  ];
  autoChecks.forEach(item=>{
   const el = document.getElementById(item.id);
   if(!el) return;
   el.addEventListener('keyup',e=>{
    if(e.key==='Enter'){
-    checkMethodAnswer(item.num, item.answer || item.ans, item.expl);
+    checkMethodAnswer(item.num, item.answer || item.ans, EXPLAINS[item.key]);
    }
   });
  });
@@ -805,8 +818,8 @@ document.addEventListener('DOMContentLoaded', function() {
   btn.addEventListener('click',()=>{
    const num = parseInt(btn.dataset.method,10);
    const ans = btn.dataset.ans;
-   const expl = btn.dataset.expl;
-   checkMethodAnswer(num, ans, expl);
+   const key = btn.dataset.key || ('method'+num);
+   checkMethodAnswer(num, ans, EXPLAINS[key]);
   });
  });
 
@@ -815,8 +828,8 @@ document.addEventListener('DOMContentLoaded', function() {
   btn.addEventListener('click',()=>{
    const num = parseInt(btn.dataset.piege,10);
    const ans = btn.dataset.ans;
-   const expl = btn.dataset.expl;
-   checkPiegeAnswer(num, ans, expl);
+   const key = btn.dataset.key || ('piege'+num);
+   checkPiegeAnswer(num, ans, EXPLAINS[key]);
   });
  });
 
