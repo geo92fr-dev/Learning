@@ -244,13 +244,12 @@ function createCalendarEvent(dayOffset, label, sectionId){
 // =========================
 // Génération dynamique du plan de réactivation
 // =========================
+// Version simplifiée (4 étapes majeures)
 const REACTIVATION_STEPS = [
-    { d:1,  type:'rappel',      section:'retention',      label:'Relire les 3 règles + 2 ex. N1',         focus:'Règles + Exos découverte', icon:'📘'},
-    { d:3,  type:'application', section:'exercices-n2',   label:'2 ex. N2 + 1 méthode guidée',           focus:'Automatisation',           icon:'🛠️'},
-    { d:5,  type:'pièges',      section:'pieges',         label:'Revoir 2 pièges + 1 ex. N2',            focus:'Éviter erreurs',           icon:'⚠️'},
-    { d:7,  type:'synthèse',    section:'fiche-synthese', label:'Mini quiz synthèse + 1 ex. N3',         focus:'Consolidation',            icon:'🧠'},
-    { d:10, type:'défi',        section:'exercices-n3',   label:'2 ex. N3 (défi)',                       focus:'Transfert avancé',         icon:'🔥'},
-    { d:14, type:'bilan',       section:'phases',         label:'Quiz récap + 1 ex. mixte',              focus:'Stabilité mémoire',        icon:'✅'}
+    { d:1,  type:'ancrage',     section:'retention',      label:'Relire règles + 2 ex. N1',              focus:'Ancrer fondamentaux',      icon:'📘'},
+    { d:4,  type:'automatisation', section:'exercices-n2', label:'3 ex. N2 + 1 méthode',                 focus:'Automatiser procédures',   icon:'🛠️'},
+    { d:8,  type:'consolidation', section:'fiche-synthese', label:'Mini quiz + 2 ex. N3',                focus:'Consolider + transférer',  icon:'🧠'},
+    { d:15, type:'bilan',       section:'phases',         label:'Quiz récap + 1 mixte',                  focus:'Stabilité à long terme',   icon:'✅'}
 ];
 
 function formatFrenchDate(date){
@@ -278,6 +277,35 @@ function buildReactivationPlan(){
 }
 
 document.addEventListener('DOMContentLoaded', buildReactivationPlan);
+
+// =========================
+// Vérification des réponses d'exercices (inputs libres)
+// =========================
+function normalizeUserValue(val){
+    return val.toLowerCase().trim().replace(/\s+/g,'').replace('°c','c');
+}
+function checkExerciseAnswer(btn){
+    const wrapper = btn.closest('.exercise');
+    if(!wrapper) return;
+    const input = wrapper.querySelector('input');
+    const fb = wrapper.querySelector('.exercise-feedback');
+    const expectedRaw = wrapper.getAttribute('data-expected') || '';
+    const expectedList = expectedRaw.split('|').map(e=>normalizeUserValue(e));
+    const user = normalizeUserValue(input.value);
+    if(!user){
+        fb.textContent = '📝 Entrez une réponse.';
+        fb.style.color = 'var(--warning, #f59e0b)';
+        return;
+    }
+    if(expectedList.includes(user)){
+        fb.textContent = '✅ Correct !';
+        fb.style.color = '#10b981';
+        input.disabled = true; btn.disabled = true;
+    } else {
+        fb.textContent = '❌ Vérifie les règles et réessaie.';
+        fb.style.color = '#ef4444';
+    }
+}
 
 // Shortcut helpers
 

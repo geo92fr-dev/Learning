@@ -408,20 +408,62 @@
         <div class="card">
             <h3>Exercice 1 – + et - basiques</h3>
             <p>Calculer : (+5) + (-3)</p>
+            <div class="exercise" data-expected="+2|2">
+                <label for="ex-n1-1" class="visually-hidden">Réponse exercice 1</label>
+                <input id="ex-n1-1" type="text" placeholder="Votre réponse" aria-describedby="ex-n1-1-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n1-1-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
             <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_1" onclick="toggleSolution('sol_01_Nombres_relatifs_1_1', this)">Afficher / Masquer solution</button>
             <div id="sol_01_Nombres_relatifs_1_1" class="solution"><p><strong>Indice :</strong> Signes différents → soustraction des valeurs absolues.</p><p><strong>Solution :</strong> 5 - 3 = 2, signe de +5 → +2</p></div>
         </div>
         <div class="card">
             <h3>Exercice 2 – Températures</h3>
             <p>Matin : -2°C, après-midi : +4°C. Variation ?</p>
+            <div class="exercise" data-expected="+6|6|+6c|6c">
+                <label for="ex-n1-2" class="visually-hidden">Réponse exercice 2</label>
+                <input id="ex-n1-2" type="text" placeholder="Votre réponse" aria-describedby="ex-n1-2-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n1-2-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
             <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_2" onclick="toggleSolution('sol_01_Nombres_relatifs_1_2', this)">Afficher / Masquer solution</button>
             <div id="sol_01_Nombres_relatifs_1_2" class="solution"><p><strong>Indice :</strong> Variation = température finale - température initiale.</p><p><strong>Solution :</strong> (+4) - (-2) = (+4) + (+2) = +6°C</p></div>
         </div>
         <div class="card">
             <h3>Exercice 3 – Argent</h3>
             <p>Lucas a -15€ sur son compte. Il reçoit 8€. Quel est son nouveau solde ?</p>
+            <div class="exercise" data-expected="-7|7-">
+                <label for="ex-n1-3" class="visually-hidden">Réponse exercice 3</label>
+                <input id="ex-n1-3" type="text" placeholder="Votre réponse" aria-describedby="ex-n1-3-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n1-3-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
             <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_3" onclick="toggleSolution('sol_01_Nombres_relatifs_1_3', this)">Afficher / Masquer solution</button>
             <div id="sol_01_Nombres_relatifs_1_3" class="solution"><p><strong>Indice :</strong> Recevoir de l'argent = addition positive.</p><p><strong>Solution :</strong> (-15) + (+8) = -(15-8) = -7€</p></div>
+        </div>
+        <div class="card">
+            <h3>Exercice 4 – Même signe négatif</h3>
+            <p>Calculer : (-2) + (-6)</p>
+            <div class="exercise" data-expected="-8|8-">
+                <label for="ex-n1-4" class="visually-hidden">Réponse exercice 4</label>
+                <input id="ex-n1-4" type="text" placeholder="Votre réponse" aria-describedby="ex-n1-4-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n1-4-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_4" onclick="toggleSolution('sol_01_Nombres_relatifs_1_4', this)">Afficher / Masquer solution</button>
+            <div id="sol_01_Nombres_relatifs_1_4" class="solution"><p><strong>Règle :</strong> Même signe → j'additionne les valeurs absolues : 2 + 6 = 8 et je garde le signe -.</p><p><strong>Solution :</strong> -8</p></div>
+        </div>
+        <div class="card">
+            <h3>Exercice 5 – Signes différents</h3>
+            <p>Calculer : (+7) + (-9)</p>
+            <div class="exercise" data-expected="-2|2-">
+                <label for="ex-n1-5" class="visually-hidden">Réponse exercice 5</label>
+                <input id="ex-n1-5" type="text" placeholder="Votre réponse" aria-describedby="ex-n1-5-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n1-5-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_5" onclick="toggleSolution('sol_01_Nombres_relatifs_1_5', this)">Afficher / Masquer solution</button>
+            <div id="sol_01_Nombres_relatifs_1_5" class="solution"><p><strong>Règle :</strong> Signes différents → soustraction 9 - 7 = 2, signe du plus grand en valeur absolue (9 négatif).</p><p><strong>Solution :</strong> -2</p></div>
         </div>
         <!-- autres exercices N1... -->
     </div>
@@ -434,14 +476,62 @@
         <div class="card">
             <h3>Exercice 1 – Somme multiple</h3>
             <p>(-7) + (+12) + (-5)</p>
+            <div class="exercise" data-expected="0|+0">
+                <label for="ex-n2-1" class="visually-hidden">Réponse exercice 1 N2</label>
+                <input id="ex-n2-1" type="text" placeholder="Votre réponse" aria-describedby="ex-n2-1-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n2-1-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
             <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_1" onclick="toggleSolution('sol_01_Nombres_relatifs_2_1', this)">Afficher / Masquer solution</button>
             <div id="sol_01_Nombres_relatifs_2_1" class="solution"><p><strong>Méthode :</strong> Regrouper par signes : (+12) et (-7-5).</p><p><strong>Solution :</strong> (+12) + (-12) = 0</p></div>
         </div>
         <div class="card">
             <h3>Exercice 2 – Soustraction</h3>
             <p>(-15) - (-9)</p>
+            <div class="exercise" data-expected="-6|6-">
+                <label for="ex-n2-2" class="visually-hidden">Réponse exercice 2 N2</label>
+                <input id="ex-n2-2" type="text" placeholder="Votre réponse" aria-describedby="ex-n2-2-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n2-2-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
             <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_2" onclick="toggleSolution('sol_01_Nombres_relatifs_2_2', this)">Afficher / Masquer solution</button>
             <div id="sol_01_Nombres_relatifs_2_2" class="solution"><p><strong>Méthode :</strong> Transformer : -(-9) = +9.</p><p><strong>Solution :</strong> (-15) + (+9) = -(15-9) = -6</p></div>
+        </div>
+        <div class="card">
+            <h3>Exercice 3 – Trois termes variés</h3>
+            <p>(+18) + (-11) + (-4)</p>
+            <div class="exercise" data-expected="+3|3">
+                <label for="ex-n2-3" class="visually-hidden">Réponse exercice 3 N2</label>
+                <input id="ex-n2-3" type="text" placeholder="Votre réponse" aria-describedby="ex-n2-3-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n2-3-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_3" onclick="toggleSolution('sol_01_Nombres_relatifs_2_3', this)">Afficher / Masquer solution</button>
+            <div id="sol_01_Nombres_relatifs_2_3" class="solution"><p><strong>Méthode :</strong> Regrouper : (+18) + (-11 -4) = (+18) + (-15) = +(18-15) = +3.</p><p><strong>Solution :</strong> +3</p></div>
+        </div>
+        <div class="card">
+            <h3>Exercice 4 – Deux positifs, un grand négatif</h3>
+            <p>(+6) + (+2) + (-15)</p>
+            <div class="exercise" data-expected="-7|7-">
+                <label for="ex-n2-4" class="visually-hidden">Réponse exercice 4 N2</label>
+                <input id="ex-n2-4" type="text" placeholder="Votre réponse" aria-describedby="ex-n2-4-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n2-4-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_4" onclick="toggleSolution('sol_01_Nombres_relatifs_2_4', this)">Afficher / Masquer solution</button>
+            <div id="sol_01_Nombres_relatifs_2_4" class="solution"><p><strong>Méthode :</strong> (+6)+(+2)=+8 puis +8 + (-15) = -(15-8) = -7.</p><p><strong>Solution :</strong> -7</p></div>
+        </div>
+        <div class="card">
+            <h3>Exercice 5 – Deux négatifs + un positif</h3>
+            <p>(-9) + (-3) + (+5)</p>
+            <div class="exercise" data-expected="-7|7-">
+                <label for="ex-n2-5" class="visually-hidden">Réponse exercice 5 N2</label>
+                <input id="ex-n2-5" type="text" placeholder="Votre réponse" aria-describedby="ex-n2-5-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n2-5-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_5" onclick="toggleSolution('sol_01_Nombres_relatifs_2_5', this)">Afficher / Masquer solution</button>
+            <div id="sol_01_Nombres_relatifs_2_5" class="solution"><p><strong>Méthode :</strong> (-9)+(-3) = -12 puis -12 + (+5) = -(12-5) = -7.</p><p><strong>Solution :</strong> -7</p></div>
         </div>
         <!-- autres exercices N2... -->
     </div>
@@ -454,8 +544,62 @@
         <div class="card">
             <h3>Exercice 1 – Expression complexe</h3>
             <p>Simplifier : (-4) + (+9) - (+3) - (-2)</p>
+            <div class="exercise" data-expected="+4|4">
+                <label for="ex-n3-1" class="visually-hidden">Réponse exercice 1 N3</label>
+                <input id="ex-n3-1" type="text" placeholder="Votre réponse" aria-describedby="ex-n3-1-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n3-1-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
             <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_1" onclick="toggleSolution('sol_01_Nombres_relatifs_3_1', this)">Afficher / Masquer solution</button>
             <div id="sol_01_Nombres_relatifs_3_1" class="solution"><p><strong>Étapes :</strong> (-4) + (+9) + (-3) + (+2) = (-7) + (+11) = +4</p><p><strong>Solution :</strong> +4</p></div>
+        </div>
+        <div class="card">
+            <h3>Exercice 2 – Alternance signes</h3>
+            <p>(+12) + (-5) - (-7) + (-10)</p>
+            <div class="exercise" data-expected="+4|4">
+                <label for="ex-n3-2" class="visually-hidden">Réponse exercice 2 N3</label>
+                <input id="ex-n3-2" type="text" placeholder="Votre réponse" aria-describedby="ex-n3-2-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n3-2-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_2" onclick="toggleSolution('sol_01_Nombres_relatifs_3_2', this)">Afficher / Masquer solution</button>
+            <div id="sol_01_Nombres_relatifs_3_2" class="solution"><p><strong>Méthode :</strong> -(-7)=+7 donc (+12) + (-5) + (+7) + (-10) = (12-5)=7; 7+7=14; 14-10=4.</p><p><strong>Solution :</strong> +4</p></div>
+        </div>
+        <div class="card">
+            <h3>Exercice 3 – Compensation</h3>
+            <p>(-8) + (+3) + (-6) - (-5)</p>
+            <div class="exercise" data-expected="-6|6-">
+                <label for="ex-n3-3" class="visually-hidden">Réponse exercice 3 N3</label>
+                <input id="ex-n3-3" type="text" placeholder="Votre réponse" aria-describedby="ex-n3-3-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n3-3-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_3" onclick="toggleSolution('sol_01_Nombres_relatifs_3_3', this)">Afficher / Masquer solution</button>
+            <div id="sol_01_Nombres_relatifs_3_3" class="solution"><p><strong>Méthode :</strong> -(-5)=+5 donc (-8)+(+3)+(-6)+(+5) = (-5)+(-6)+(+5) = (-11)+(+5) = -6.</p><p><strong>Solution :</strong> -6</p></div>
+        </div>
+        <div class="card">
+            <h3>Exercice 4 – Décomposition</h3>
+            <p>(+20) - (-4) + (-15) + (-3)</p>
+            <div class="exercise" data-expected="+6|6">
+                <label for="ex-n3-4" class="visually-hidden">Réponse exercice 4 N3</label>
+                <input id="ex-n3-4" type="text" placeholder="Votre réponse" aria-describedby="ex-n3-4-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n3-4-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_4" onclick="toggleSolution('sol_01_Nombres_relatifs_3_4', this)">Afficher / Masquer solution</button>
+            <div id="sol_01_Nombres_relatifs_3_4" class="solution"><p><strong>Méthode :</strong> -(-4)=+4 donc (+20)+(+4)=+24 puis +24+(-15)+(-3)= +24 -18 = +6.</p><p><strong>Solution :</strong> +6</p></div>
+        </div>
+        <div class="card">
+            <h3>Exercice 5 – Regroupement</h3>
+            <p>(-10) + (-2) + (+9) + (+5)</p>
+            <div class="exercise" data-expected="+2|2">
+                <label for="ex-n3-5" class="visually-hidden">Réponse exercice 5 N3</label>
+                <input id="ex-n3-5" type="text" placeholder="Votre réponse" aria-describedby="ex-n3-5-fb">
+                <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
+                <div id="ex-n3-5-fb" class="exercise-feedback" aria-live="polite"></div>
+            </div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_5" onclick="toggleSolution('sol_01_Nombres_relatifs_3_5', this)">Afficher / Masquer solution</button>
+            <div id="sol_01_Nombres_relatifs_3_5" class="solution"><p><strong>Méthode :</strong> Regrouper les positifs : (+9)+(+5)=+14 et les négatifs : (-10)+(-2) = -12 puis +14 + (-12) = +2.</p><p><strong>Solution :</strong> +2</p></div>
         </div>
         <!-- autres exercices N3... -->
     </div>
