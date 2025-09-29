@@ -1,5 +1,11 @@
 # 📋 RÉTRO-SPÉCIFICATION - Système Éducatif 4ème
-*Limite: 10240 caractères | Actuel: ~4800 | Basée sur : `College_4ieme_Maths\01_Nombres_relatifs`*
+*Limite: 5. **💡 Méthode** - Règles encadrées + exemples concrets
+5. **🧠 Comprendre les erreurs fréquentes** (section unifiée)
+   - 5.1. Les erreurs qui reviennent souvent (repérage + cartes Faux/Correct)
+   - 5.2. Ce qu'il faut retenir pour ne plus les refaire (règles synthèse : signes différents / identiques, test mental)
+   - 5.3. Pièges à éviter (anticipation + mini cas "Trouve l'erreur")
+6. **✅ Auto-contrôle** - Checklist validation
+7. **🗓️ Réactivation** - J+1, J+3, J+7, J+14 + **📅 Google Calendar**aractères | Actuel: ~4800 | Basée sur : `College_4ieme_Maths\01_Nombres_relatifs`*
 
 ## 🎯 **Architecture Globale**
 ```
