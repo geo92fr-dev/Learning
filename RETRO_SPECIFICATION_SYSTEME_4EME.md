@@ -97,6 +97,18 @@ Project_Learning_Simplified/
 - **Validation Flexible** : Accepte +2, 2, ou variantes textuelles selon contexte
 - **État Post-Succès** : Input désactivé, bouton "✓ Validé", couleur verte
 
+### **🎯 Règle Positionnement Icônes**
+**RÈGLE :** Tous les éléments avec icônes se placent **juste après les titres** (h2, h3, h4)
+
+**Icônes Uniques par Contexte :**
+- 🌍 **Contexte/Objectif** : Situations concrètes et buts pédagogiques
+- 💡 **Mini-test/Vérification** : Questions rapides et contrôles
+- ⚡ **Mémo/Question clé** : Règles synthèses et points cruciaux  
+- 🤔 **Pourquoi** : Justifications pédagogiques et explications
+- 🎯 **Défi/Astuce** : Défis autonomes et astuces navigation
+- ✅ **Contrôle/Validation** : Étapes de vérification finale
+- 🆘 **Besoin d'aide** : Liens vers aide contextuelle
+
 ## 📊 **MÉTADONNÉES**
 
 ### **`data_chapitre.json`**
