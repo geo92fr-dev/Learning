@@ -15,10 +15,13 @@
 <a href="#contenu-principal" class="skip-link">Aller au contenu principal</a>
 <div class="container">
     <header class="page-header" role="banner">
-        <h1>🔢 Nombres Relatifs - Cours Interactif</h1>
+        <div class="header-bar">
+            <h1>🔢 Nombres Relatifs - Cours Interactif</h1>
+            <button class="nav-toggle" aria-label="Ouvrir / fermer la navigation" aria-expanded="false" aria-controls="nav-main" onclick="toggleNav(this)">☰</button>
+        </div>
         
         <!-- Navigation sticky (comme l'original) -->
-    <nav class="modern-nav" role="navigation" aria-label="Navigation principale du chapitre">
+    <nav class="modern-nav" id="nav-main" role="navigation" aria-label="Navigation principale du chapitre">
             <button class="btn btn--secondary" onclick="showSection('introduction')">🏠 Introduction</button>
             <button class="btn btn--secondary" onclick="showSection('retention')">🔑 Règles</button>
             <button class="btn btn--secondary" onclick="showSection('phases')">📚 Quiz</button>

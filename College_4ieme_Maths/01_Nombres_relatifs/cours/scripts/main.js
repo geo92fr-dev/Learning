@@ -285,3 +285,11 @@ function getCurrentVisibleSection() {
     
     return visibleSection;
 }
+
+// Responsive navigation toggle
+function toggleNav(btn){
+    const nav = document.getElementById('nav-main');
+    if(!nav) return;
+    const isOpen = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true':'false');
+}
