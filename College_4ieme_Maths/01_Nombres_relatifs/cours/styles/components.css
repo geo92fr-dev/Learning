@@ -557,6 +557,26 @@ main > section.content-section { max-width: 1200px; margin-left:auto; margin-rig
   font-weight:600;
 }
 
+/* Mini recap recommendation */
+.mini-recap {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem 1.25rem;
+  border: 1px solid var(--border-light);
+  border-left: 5px solid var(--primary);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  position: relative;
+}
+.mini-recap-title { margin:0 0 .5rem; font-size:1rem; font-weight:600; }
+.mini-recap-main { margin:.25rem 0 .5rem; font-size:.9rem; line-height:1.35; }
+.mini-recap-extra { margin:0; font-size:.75rem; color: var(--text-muted); }
+.mini-recap-reset { position:absolute; top:.5rem; right:.5rem; background:var(--bg-input); border:1px solid var(--border-light); border-radius:4px; padding:.25rem .5rem; cursor:pointer; font-size:.7rem; }
+.mini-recap-reset:hover { background:var(--bg-hover); }
+.mini-recap--danger { border-left-color: var(--danger); }
+.mini-recap--warning { border-left-color: var(--warning, #f59e0b); }
+.mini-recap--success { border-left-color: var(--success); }
+.mini-recap--info { border-left-color: var(--primary); }
+
 .footer-section li {
   margin-bottom: var(--space-xs);
   font-size: var(--text-sm);

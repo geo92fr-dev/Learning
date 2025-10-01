@@ -76,6 +76,10 @@
         });
     }
 
+    function dispatchUpdate(){
+        try { document.dispatchEvent(new CustomEvent('score:updated',{ detail:{ state } })); } catch(e) { /* ignore */ }
+    }
+
     function registerScore(section, itemKey, value, meta){
         if(!section || !itemKey || !value) return;
         if(state.awarded[itemKey]) return; // déjà compté
@@ -86,17 +90,20 @@
         updateDisplays();
         const span = document.querySelector('[data-section-score="'+section+'"]');
         if(span){ span.classList.add('updated'); setTimeout(()=>span.classList.remove('updated'), 700); }
+        dispatchUpdate();
     }
 
     function resetScores(){
         state = { total:0, perSection:{}, awarded:{} };
         persist();
         updateDisplays();
+        dispatchUpdate();
     }
 
     function init(){
         load();
         updateDisplays();
+        dispatchUpdate();
     }
 
     // Public API

@@ -455,6 +455,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 }
                 // Coloration dynamique
                 applyConfidenceColor(r, rd.value);
+                buildMiniRecap();
             });
         });
     });
@@ -465,6 +466,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             applyConfidenceColor(r, st.awarded[key].meta.choice);
         }
     });
+    buildMiniRecap();
 });
 
 function applyConfidenceColor(ruleId, level){
@@ -535,4 +537,88 @@ function toggleNav(btn){
     if(!nav) return;
     const isOpen = nav.classList.toggle('open');
     btn.setAttribute('aria-expanded', isOpen ? 'true':'false');
+}
+
+// =============================
+// Mini Récap Recommandation
+// =============================
+document.addEventListener('score:updated', ()=>{
+    buildMiniRecap();
+});
+
+function buildMiniRecap(){
+    const engine = window.ScoreEngine; if(!engine) return;
+    const st = engine.getState();
+    const targetParent = document.getElementById('plan-reactivation') || document.querySelector('main');
+    if(!targetParent) return;
+    let container = document.getElementById('mini-recap-reco');
+    if(!container){
+        container = document.createElement('div');
+        container.id = 'mini-recap-reco';
+        container.className = 'mini-recap';
+        container.setAttribute('role','region');
+        container.setAttribute('aria-label','Recommandation');
+        targetParent.appendChild(container);
+    }
+    const msg = computeRecommendation(st, engine.MAX_POINTS);
+    container.className = 'mini-recap mini-recap--'+msg.type;
+    container.innerHTML = `
+        <h3 class="mini-recap-title">🎯 Recommandation</h3>
+        <p class="mini-recap-main">${msg.text}</p>
+        ${msg.extra ? `<p class="mini-recap-extra">${msg.extra}</p>`: ''}
+        <button type="button" class="mini-recap-reset" onclick="resetScores()" title="Réinitialiser toutes les données (scores & recommandations)">↺ Reset</button>
+    `;
+}
+
+function computeRecommendation(st, MAX_POINTS){
+    const awarded = st.awarded || {};
+    const getChoice = r => awarded['selfeval-'+r] && awarded['selfeval-'+r].meta ? awarded['selfeval-'+r].meta.choice : null;
+    const c1 = getChoice('r1');
+    const c2 = getChoice('r2');
+    const c3 = getChoice('r3');
+    const selfDoneCount = [c1,c2,c3].filter(Boolean).length;
+    const globalRatio = st.total / Object.values(MAX_POINTS).reduce((a,b)=>a+b,0);
+    const planScore = st.perSection['plan-reactivation'] || 0;
+    const planMax = MAX_POINTS['plan-reactivation'] || 4;
+
+    const weakMap = { 'pas-confiant':1, 'moyen':2, 'confiant':3 };
+    const rules = [
+        {id:'Règle 1 (même signe)', level:c1},
+        {id:'Règle 2 (signes différents)', level:c2},
+        {id:'Règle 3 (contrôle)', level:c3}
+    ];
+    const weakRules = rules.filter(r=>r.level==='pas-confiant');
+    const mediumRules = rules.filter(r=>r.level==='moyen');
+
+    // Priority logic
+    if(selfDoneCount === 0){
+        return { type:'warning', text:'Commence par l’auto-évaluation des 3 règles dans la fiche synthèse.', extra:null };
+    }
+    if(weakRules.length){
+        const first = weakRules[0];
+        return { type:'danger', text:first.id+' : tu t’es déclaré « pas confiant » → relis la règle puis fais Ex N1 (Ex 5) et un Ex N2.', extra:'Priorité : sécuriser les bases avant de poursuivre.' };
+    }
+    if(globalRatio < .40){
+        return { type:'warning', text:'Progression globale < 40% : refais 2 quiz Phase 1 puis 2 exercices N1.', extra:null };
+    }
+    // Check low sections (phases, exercices-n2/n3)
+    const lowSection = ['phases','exercices-n2','exercices-n3'].find(sec => {
+        const val = st.perSection[sec] || 0; const max = MAX_POINTS[sec]||0; return max && (val/max) < .5;
+    });
+    if(lowSection){
+        return { type:'warning', text:'Renforce la section « '+lowSection+' » (<50%). Cible 2 items supplémentaires.', extra:null };
+    }
+    if(planScore === 0){
+        return { type:'info', text:'Plan de réactivation non démarré : ajoute J+1 à ton agenda.', extra:null };
+    }
+    if(planScore < planMax){
+        return { type:'info', text:'Réactivation en cours : ajoute les étapes restantes (J+'+(['1','4','8','15'].filter(d=> !awarded['reactivation-'+d]).join(', '))+').', extra:null };
+    }
+    if(mediumRules.length){
+        return { type:'info', text:'Tu peux consolider : '+mediumRules.map(r=>r.id).join(', ')+' (niveau « moyen »).', extra:'Fais 1 ex N2 et 1 ex N3 pour chaque règle.' };
+    }
+    if(globalRatio >= .70 && c1==='confiant' && c2==='confiant' && c3==='confiant'){
+        return { type:'success', text:'Base solide : enchaîne vers le chapitre suivant ou crée tes propres exemples.', extra:null };
+    }
+    return { type:'info', text:'Continue sur les exercices N3 pour consolider ta maîtrise.', extra:null };
 }
