@@ -194,6 +194,24 @@ function checkTrap(button, isCorrect, message, key='trap-q1') {
     container.classList.add('done');
 }
 
+const VISITED_STORAGE_KEY = 'relatifs_sections_seen_v1';
+let visitedSections = new Set();
+try {
+    const rawVisited = localStorage.getItem(VISITED_STORAGE_KEY);
+    if(rawVisited){ JSON.parse(rawVisited).forEach(s=>visitedSections.add(s)); }
+} catch(e){ /* ignore */ }
+
+function persistVisited(){
+    try { localStorage.setItem(VISITED_STORAGE_KEY, JSON.stringify(Array.from(visitedSections))); } catch(e){ /* ignore */ }
+}
+
+function getMasteryRatio(){
+    const engine = window.ScoreEngine; if(!engine) return 0;
+    const st = engine.getState();
+    const max = Object.values(engine.MAX_POINTS).reduce((a,b)=>a+b,0) || 1;
+    return st.total / max;
+}
+
 function updateProgress(sectionId) {
     const progressBar = document.querySelector('.progress-bar');
     if (!progressBar) return;
@@ -209,24 +227,40 @@ function updateProgress(sectionId) {
         'exercices-n3': 'Exercice 3',
         'fiche-synthese': 'Synthèse'
     };
-    const currentIndex = sections.indexOf(sectionId);
-    if (currentIndex >= 0) {
-        const progress = ((currentIndex + 1) / sections.length) * 100;
-        const sectionName = sectionNames[sectionId] || 'Section';
-        const rounded = Math.round(progress);
-        progressBar.style.width = progress + '%';
-        progressBar.textContent = `${rounded}% - ${sectionName} (${currentIndex + 1}/${sections.length})`;
-        progressBar.setAttribute('aria-valuenow', String(rounded));
-        progressBar.setAttribute('aria-label', `Progression du chapitre : ${rounded}%. Section : ${sectionName}`);
-        // Add completion banner once when reaching 100%
-        if (rounded === 100 && !document.getElementById('end-banner')) {
-            const synthese = document.getElementById('fiche-synthese');
-            if (synthese) {
-                const endDiv = document.createElement('div');
-                endDiv.id = 'end-banner';
-                endDiv.className = 'memo-box';
-                endDiv.innerHTML = '<h3>🎉 Bravo ! Vous avez complété 100% du chapitre.</h3><p>Suggestion : enchaînez avec la multiplication des nombres relatifs.</p>';
-                synthese.appendChild(endDiv);
+    if(sectionId) { visitedSections.add(sectionId); persistVisited(); }
+    // Progression basée sur sections réellement visitées (et non simple index)
+    const visitedCount = Array.from(visitedSections).filter(s=>sections.includes(s)).length;
+    const progress = (visitedCount / sections.length) * 100;
+    const currentName = sectionNames[sectionId] || 'Section';
+    const rounded = Math.round(progress);
+    progressBar.style.width = progress + '%';
+    progressBar.textContent = `${rounded}% (parcours) - ${currentName} (${visitedCount}/${sections.length})`;
+    progressBar.setAttribute('aria-valuenow', String(rounded));
+    progressBar.setAttribute('aria-label', `Progression de lecture : ${rounded}%. Section courante : ${currentName}`);
+
+    // Gestion des bannières de fin
+    const existing = document.getElementById('end-banner');
+    const synthese = document.getElementById('fiche-synthese');
+    if(!synthese) return;
+    const mastery = getMasteryRatio();
+    const masteryPct = Math.round(mastery*100);
+    if(visitedCount === sections.length){
+        if(!existing){
+            const endDiv = document.createElement('div');
+            endDiv.id = 'end-banner';
+            endDiv.className = 'memo-box';
+            if(mastery === 1){
+                endDiv.innerHTML = `<h3>🎉 Bravo ! Vous avez parcouru et maîtrisé 100% du chapitre.</h3><p>Suggestion : enchaînez avec la multiplication des nombres relatifs.</p>`;
+            } else if(mastery >= .7){
+                endDiv.innerHTML = `<h3>✅ Parcours terminé (lecture 100%). Maîtrise solide : ${masteryPct}%.</h3><p>Suggestion : finalisez les derniers points restants pour viser 100%.</p>`;
+            } else {
+                endDiv.innerHTML = `<h3>📘 Parcours terminé, maîtrise actuelle : ${masteryPct}%.</h3><p>Complétez les quiz / exercices et réactivations pour augmenter votre score.</p>`;
+            }
+            synthese.appendChild(endDiv);
+        } else {
+            // Mettre à jour dynamiquement si la maîtrise évolue
+            if(mastery === 1 && !existing.innerHTML.includes('🎉')){
+                existing.innerHTML = `<h3>🎉 Bravo ! Vous avez parcouru et maîtrisé 100% du chapitre.</h3><p>Suggestion : enchaînez avec la multiplication des nombres relatifs.</p>`;
             }
         }
     }
@@ -544,6 +578,8 @@ function toggleNav(btn){
 // =============================
 document.addEventListener('score:updated', ()=>{
     buildMiniRecap();
+    // Re-évaluer bannière de fin (maîtrise) si progression déjà complète
+    updateProgress();
 });
 
 function buildMiniRecap(){
@@ -592,33 +628,41 @@ function computeRecommendation(st, MAX_POINTS){
 
     // Priority logic
     if(selfDoneCount === 0){
-        return { type:'warning', text:'Commence par l’auto-évaluation des 3 règles dans la fiche synthèse.', extra:null };
+        const link = '<a href="#fiche-synthese" onclick="showSection(\'fiche-synthese\')" class="mini-recap-link" aria-label="Aller à la section Fiche Synthèse">📋 Fiche Synthèse</a>';
+        return { 
+            type:'warning', 
+            text:'Commence par l’auto‑évaluation des trois règles dans la section '+link+' (bloc Auto‑évaluation).', 
+            extra:'Une fois tes niveaux (Confiant / Moyen / Pas confiant) choisis, une recommandation plus précise apparaîtra.' 
+        };
     }
     if(weakRules.length){
         const first = weakRules[0];
-        return { type:'danger', text:first.id+' : tu t’es déclaré « pas confiant » → relis la règle puis fais Ex N1 (Ex 5) et un Ex N2.', extra:'Priorité : sécuriser les bases avant de poursuivre.' };
+        const synthLink = '<a href="#fiche-synthese" onclick="showSection(\'fiche-synthese\')" class="mini-recap-link">Fiche Synthèse</a>';
+        const reglesLink = '<a href="#retention" onclick="showSection(\'retention\')" class="mini-recap-link">Règles</a>';
+        return { type:'danger', text:first.id+' : niveau « pas confiant » → relis dans '+reglesLink+' puis valide dans '+synthLink+'. Entraîne-toi via <a href="#exercices-n1" onclick="showSection(\'exercices-n1\')" class="mini-recap-link">Ex N1</a> & <a href="#exercices-n2" onclick="showSection(\'exercices-n2\')" class="mini-recap-link">Ex N2</a>.', extra:'Priorité : sécuriser les bases avant de poursuivre.' };
     }
     if(globalRatio < .40){
-        return { type:'warning', text:'Progression globale < 40% : refais 2 quiz Phase 1 puis 2 exercices N1.', extra:null };
+        return { type:'warning', text:'Progression globale < 40% : refais 2 quiz dans <a href="#phases" onclick="showSection(\'phases\')" class="mini-recap-link">Quiz Phases</a> puis 2 exercices dans <a href="#exercices-n1" onclick="showSection(\'exercices-n1\')" class="mini-recap-link">Ex N1</a>.', extra:null };
     }
     // Check low sections (phases, exercices-n2/n3)
     const lowSection = ['phases','exercices-n2','exercices-n3'].find(sec => {
         const val = st.perSection[sec] || 0; const max = MAX_POINTS[sec]||0; return max && (val/max) < .5;
     });
     if(lowSection){
-        return { type:'warning', text:'Renforce la section « '+lowSection+' » (<50%). Cible 2 items supplémentaires.', extra:null };
+        const labelMap = { 'phases':'Quiz Phases', 'exercices-n2':'Exercices N2', 'exercices-n3':'Exercices N3' };
+        return { type:'warning', text:'Renforce <a href="#'+lowSection+'" onclick="showSection(\''+lowSection+'\')" class="mini-recap-link">'+labelMap[lowSection]+'</a> (<50%). Cible 2 items supplémentaires.', extra:null };
     }
     if(planScore === 0){
-        return { type:'info', text:'Plan de réactivation non démarré : ajoute J+1 à ton agenda.', extra:null };
+        return { type:'info', text:'Plan de réactivation non démarré : ajoute J+1 dans <a href="#plan-reactivation" onclick="showSection(\'plan-reactivation\')" class="mini-recap-link">Plan de réactivation</a>.', extra:null };
     }
     if(planScore < planMax){
-        return { type:'info', text:'Réactivation en cours : ajoute les étapes restantes (J+'+(['1','4','8','15'].filter(d=> !awarded['reactivation-'+d]).join(', '))+').', extra:null };
+        return { type:'info', text:'Réactivation en cours : ajoute les étapes restantes dans <a href="#plan-reactivation" onclick="showSection(\'plan-reactivation\')" class="mini-recap-link">Plan de réactivation</a> (J+'+(['1','4','8','15'].filter(d=> !awarded['reactivation-'+d]).join(', '))+').', extra:null };
     }
     if(mediumRules.length){
-        return { type:'info', text:'Tu peux consolider : '+mediumRules.map(r=>r.id).join(', ')+' (niveau « moyen »).', extra:'Fais 1 ex N2 et 1 ex N3 pour chaque règle.' };
+        return { type:'info', text:'Tu peux consolider : '+mediumRules.map(r=>r.id).join(', ')+' (niveau « moyen ») via <a href="#exercices-n2" onclick="showSection(\'exercices-n2\')" class="mini-recap-link">Ex N2</a> puis <a href="#exercices-n3" onclick="showSection(\'exercices-n3\')" class="mini-recap-link">Ex N3</a>.', extra:'Astuce : vérifie ensuite dans la <a href="#fiche-synthese" onclick="showSection(\'fiche-synthese\')" class="mini-recap-link">Fiche Synthèse</a> si le ressenti progresse.' };
     }
     if(globalRatio >= .70 && c1==='confiant' && c2==='confiant' && c3==='confiant'){
-        return { type:'success', text:'Base solide : enchaîne vers le chapitre suivant ou crée tes propres exemples.', extra:null };
+        return { type:'success', text:'Base solide : explore d’autres chapitres ou crée des variantes dans <a href="#exercices-n3" onclick="showSection(\'exercices-n3\')" class="mini-recap-link">Ex N3</a>.', extra:null };
     }
-    return { type:'info', text:'Continue sur les exercices N3 pour consolider ta maîtrise.', extra:null };
+    return { type:'info', text:'Poursuis dans <a href="#exercices-n3" onclick="showSection(\'exercices-n3\')" class="mini-recap-link">Exercices N3</a> pour consolider ta maîtrise.', extra:null };
 }

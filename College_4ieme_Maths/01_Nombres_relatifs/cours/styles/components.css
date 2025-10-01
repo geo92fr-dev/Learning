@@ -143,8 +143,9 @@
 
 /* Bouton Primaire (actions principales) */
 .btn--primary {
-    background: var(--primary);
-    color: var(--text-inverse);
+  background: var(--primary);
+  color: var(--text-inverse, #fff);
+  font-weight: 600;
 }
 
 .btn--primary:hover {
@@ -576,6 +577,8 @@ main > section.content-section { max-width: 1200px; margin-left:auto; margin-rig
 .mini-recap--warning { border-left-color: var(--warning, #f59e0b); }
 .mini-recap--success { border-left-color: var(--success); }
 .mini-recap--info { border-left-color: var(--primary); }
+.mini-recap a.mini-recap-link { color: var(--primary); font-weight:600; text-decoration:underline; }
+.mini-recap a.mini-recap-link:hover { text-decoration:none; }
 
 .footer-section li {
   margin-bottom: var(--space-xs);
@@ -872,7 +875,11 @@ input[type="text"] {
   font-size: 1rem;
   margin: 0.5rem 0;
   background: var(--bg-input, #fff);
+  color: var(--text-primary,#111);
+  font-weight: 500;
 }
+input[type="text"]::placeholder { color: var(--text-muted,#555); opacity: .9; font-weight:400; }
+input[type="text"][disabled] { background: var(--bg-secondary,#f4f6f8); color: var(--text-secondary,#666); }
 input[type="text"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(103,199,255,0.25); }
 
 /* Taller progress override (chapter preference) */
