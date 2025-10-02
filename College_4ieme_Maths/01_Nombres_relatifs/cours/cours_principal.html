@@ -6,21 +6,35 @@
     <meta name="description" content="Cours interactif sur les nombres relatifs : règles, méthodes, quiz progressifs et exercices niveaux 1 à 3 avec fiche synthèse.">
     <title>Nombres Relatifs - Cours Interactif</title>
     
-    <!-- CSS moderne -->
-    <link rel="stylesheet" href="styles/tokens.css">
+    <!-- Google Fonts pour thème gamer -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS moderne avec système de thèmes -->
+    <link rel="stylesheet" href="styles/variables.css" id="theme-variables">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/theme-selector.css">
 </head>
 <body class="has-fixed-header">
 <a href="#contenu-principal" class="skip-link">Aller au contenu principal</a>
 <div class="container">
     <header class="page-header" role="banner">
         <div class="header-bar">
-            <h1>🔢 Nombres Relatifs - Cours Interactif <span id="global-score" class="score-badge" aria-live="polite" aria-label="Score global">Score : 0 / 0</span> <button id="reset-score-btn" class="btn btn--secondary btn-reset-score" aria-label="Réinitialiser le score" title="Réinitialiser le score">↺ Reset</button></h1>
+            <h1>🔢 Nombres Relatifs - Cours Interactif 
+                <div class="header-controls inline-element spaced-group">
+                    <button id="global-score" class="gamer-element primary" aria-live="polite" aria-label="Score global" disabled>Score : 0 / 0</button> 
+                    <button id="reset-score-btn" class="gamer-element interactive" aria-label="Réinitialiser le score" title="Réinitialiser le score">↺ Reset</button>
+                    <select id="theme-selector" class="gamer-element interactive" aria-label="Sélectionner un thème" title="Changer le thème visuel">
+                        <option value="default">🎨 Défaut</option>
+                        <option value="classic">📚 Classique</option>
+                        <option value="modern">✨ Moderne</option>
+                    </select>
+                </div>
+            </h1>
             <button class="nav-toggle" aria-label="Ouvrir / fermer la navigation" aria-expanded="false" aria-controls="nav-main" onclick="toggleNav(this)">☰</button>
         </div>
-        
-        <!-- Navigation sticky (comme l'original) -->
     <nav class="modern-nav" id="nav-main" role="navigation" aria-label="Navigation principale du chapitre">
             <button class="btn btn--secondary" onclick="showSection('introduction')">🏠 Introduction</button>
             <button class="btn btn--secondary" onclick="showSection('retention')">🔑 Règles</button>
@@ -36,17 +50,11 @@
                 <button class="btn btn--shortcut" onclick="showSection('fiche-synthese')" title="Synthèse (touche 4 ou S)">📋 Synthèse</button>
             </div>
         </nav>
-        
-        <!-- Barre de progression -->
-        <div class="progress-container">
-            <div class="progress-bar" role="progressbar" aria-label="Progression du chapitre" aria-valuemin="0" aria-valuemax="100">0% - Commencez !</div>
-        </div>
     </header>
 
     <!-- Section Introduction (TOUJOURS VISIBLE comme l'original) -->
     <main id="contenu-principal" tabindex="-1">
     <section id="introduction" data-section="introduction" class="content-section" aria-labelledby="heading-intro">
-    <hr class="phase-separator" aria-hidden="true">
     <h2 id="heading-intro">🏠 Introduction aux Nombres Relatifs <span class="section-score" data-section-score="introduction">0 / 1</span></h2>
         <p class="intro-lead">Découvrons les nombres positifs et négatifs à travers des situations concrètes.</p>
         
@@ -130,7 +138,7 @@
     <!-- Section Règles (TOUJOURS VISIBLE) -->
     <section id="retention" data-section="retention" class="content-section">
     <h2>🎯 Les Règles Essentielles <span class="section-score" data-section-score="retention">0 / 4</span></h2>
-        <p class="intro-lead">Mémorisez ces 3 règles pour réussir tous les calculs !</p>
+    <p class="intro-lead">Apprends ces 3 règles pour réussir tous les calculs.</p>
 
         <div class="rules-grid">
             <div class="rule-card primary">
@@ -149,7 +157,7 @@
             <div class="rule-card secondary">
                 <div class="rule-header">
                     <span class="rule-number">2</span>
-                    <h3>Signes différents → Soustraction</h3>
+                    <h3>Signes différents → On soustrait</h3>
                 </div>
                 <p class="rule-text">Je soustrais les valeurs absolues, signe = celui de la plus grande valeur absolue.</p>
                 <div class="rule-example">
@@ -229,7 +237,7 @@
             
             <div class="quiz-question">
                 <h4>Question 1</h4>
-                <p>Calculez : (+7) + (-5) = ?</p>
+                <p>Calcule : (+7) + (-5) = ?</p>
                 <input type="text" id="phase1-q1" placeholder="Votre réponse" aria-label="Réponse phase 1 question 1">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase1-q1', '+2', 'Signes différents : 7-5=2, signe de +7 → +2')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase1-q1-feedback" aria-live="polite"></div>
@@ -237,7 +245,7 @@
 
             <div class="quiz-question">
                 <h4>Question 2</h4>
-                <p>Calculez : (-8) + (+5) = ?</p>
+                <p>Calcule : (-8) + (+5) = ?</p>
                 <input type="text" id="phase1-q2" placeholder="Votre réponse" aria-label="Réponse phase 1 question 2">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase1-q2', '-3', 'Signes différents : 8-5=3, signe de -8 → -3')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase1-q2-feedback" aria-live="polite"></div>
@@ -245,7 +253,7 @@
 
             <div class="quiz-question">
                 <h4>Question 3</h4>
-                <p>Calculez : (+4) + (+5) = ?</p>
+                <p>Calcule : (+4) + (+5) = ?</p>
                 <input type="text" id="phase1-q3" placeholder="Votre réponse" aria-label="Réponse phase 1 question 3">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase1-q3', '+9', 'Même signe positif : 4+5=9 → +9')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase1-q3-feedback" aria-live="polite"></div>
@@ -260,7 +268,7 @@
             
             <div class="quiz-question">
                 <h4>Question 1</h4>
-                <p>Calculez : (-9) + (+4) = ?</p>
+                <p>Calcule : (-9) + (+4) = ?</p>
                 <input type="text" id="phase2-q1" placeholder="Votre réponse" aria-label="Réponse phase 2 question 1">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase2-q1', '-5', 'Signes différents : 9-4=5, signe de -9 → -5')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase2-q1-feedback" aria-live="polite"></div>
@@ -268,7 +276,7 @@
 
             <div class="quiz-question">
                 <h4>Question 2</h4>
-                <p>Calculez : (+15) + (-4) = ?</p>
+                <p>Calcule : (+15) + (-4) = ?</p>
                 <input type="text" id="phase2-q2" placeholder="Votre réponse" aria-label="Réponse phase 2 question 2">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase2-q2', '+11', 'Signes différents : 15-4=11, signe de +15 → +11')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase2-q2-feedback" aria-live="polite"></div>
@@ -276,7 +284,7 @@
 
             <div class="quiz-question">
                 <h4>Question 3</h4>
-                <p>Calculez : (-7) + (-5) = ?</p>
+                <p>Calcule : (-7) + (-5) = ?</p>
                 <input type="text" id="phase2-q3" placeholder="Votre réponse" aria-label="Réponse phase 2 question 3">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase2-q3', '-12', 'Même signe négatif : 7+5=12 → -12')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase2-q3-feedback" aria-live="polite"></div>
@@ -291,7 +299,7 @@
             
             <div class="quiz-question">
                 <h4>Question 1</h4>
-                <p>Calculez : (+10) + (-4) = ?</p>
+                <p>Calcule : (+10) + (-4) = ?</p>
                 <input type="text" id="phase3-q1" placeholder="Votre réponse" aria-label="Réponse phase 3 question 1">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase3-q1', '+6', 'Signes différents : 10-4=6, signe de +10 → +6')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase3-q1-feedback" aria-live="polite"></div>
@@ -299,7 +307,7 @@
 
             <div class="quiz-question">
                 <h4>Question 2</h4>
-                <p>Calculez : (-3) + (-5) = ?</p>
+                <p>Calcule : (-3) + (-5) = ?</p>
                 <input type="text" id="phase3-q2" placeholder="Votre réponse" aria-label="Réponse phase 3 question 2">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase3-q2', '-8', 'Même signe négatif : 3+5=8 → -8')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase3-q2-feedback" aria-live="polite"></div>
@@ -307,7 +315,7 @@
 
             <div class="quiz-question">
                 <h4>Question 3 - Cas spécial</h4>
-                <p>Calculez : (+7) + (-7) = ?</p>
+                <p>Calcule : (+7) + (-7) = ?</p>
                 <input type="text" id="phase3-q3" placeholder="Votre réponse" aria-label="Réponse phase 3 question 3">
                 <button class="btn btn--primary" onclick="checkPhaseAnswer('phase3-q3', '0', 'Nombres opposés : ils s\'annulent → 0')">✓ Valider</button>
                 <div class="quiz-feedback" id="phase3-q3-feedback" aria-live="polite"></div>
@@ -331,7 +339,7 @@
                     <strong>Exemple :</strong> (+5) + (-3) → signes différents.
                 </div>
                 <div class="guided-question" aria-labelledby="method-step1-title">
-                    <p><strong>Exercice guidé :</strong> Dans (-8) + (+3), les signes sont-ils identiques ?</p>
+                    <p><strong>Exo guidé :</strong> Dans (-8) + (+3), les signes sont-ils identiques ?</p>
                     <button class="btn btn--secondary" onclick="checkMethodStep(1, false, 'Non, ils sont différents : - et +')">Oui</button>
                     <button class="btn btn--secondary" onclick="checkMethodStep(1, true, 'Correct ! Signes différents')">Non</button>
                     <div class="quiz-feedback" id="method-step1-feedback" aria-live="polite"></div>
@@ -345,9 +353,9 @@
                 <p><strong>Même signe :</strong> j'additionne. <strong>Différents :</strong> je soustrais la plus petite valeur.</p>
                 <div class="step-example"><strong>Suite :</strong> 8 - 3 = 5 (valeurs absolues)</div>
                 <div class="guided-question">
-                    <p><strong>Exercice guidé :</strong> Quelle opération effectuer pour (-8) + (+3) ?</p>
+                    <p><strong>Exo guidé :</strong> Quelle opération pour (-8) + (+3) ?</p>
                     <button class="btn btn--secondary" onclick="checkMethodStep(2, false, 'Pas une addition : les signes sont différents')">Addition 8 + 3</button>
-                    <button class="btn btn--secondary" onclick="checkMethodStep(2, true, 'Correct : soustraction 8 - 3 = 5')">Soustraction 8 - 3</button>
+                    <button class="btn btn--secondary" onclick="checkMethodStep(2, true, 'Correct : on soustrait 8 - 3 = 5')">On soustrait 8 - 3</button>
                     <div class="quiz-feedback" id="method-step2-feedback" aria-live="polite"></div>
                 </div>
             </div>
@@ -359,7 +367,7 @@
                 <p>Je prends le signe du nombre de plus grande valeur absolue.</p>
                 <div class="step-example"><strong>Plus grande valeur :</strong> 8 (négatif)</div>
                 <div class="guided-question">
-                    <p><strong>Exercice guidé :</strong> Signe final de (-8) + (+3) ?</p>
+                    <p><strong>Exo guidé :</strong> Signe final de (-8) + (+3) ?</p>
                     <button class="btn btn--secondary" onclick="checkMethodStep(3, false, 'Non : 8 est négatif, donc signe -')">+</button>
                     <button class="btn btn--secondary" onclick="checkMethodStep(3, true, 'Correct : résultat -5')">-</button>
                     <div class="quiz-feedback" id="method-step3-feedback" aria-live="polite"></div>
@@ -419,24 +427,25 @@
      Exercices intégrés (Niveau 1,2,3)
      ========================== -->
 
+<div class="container">
 <section id="exercices-n1" data-section="exercices-n1" class="content-section" aria-labelledby="heading-exos-n1">
-    <h2 id="heading-exos-n1">✏️ Exercices - Niveau 1 (Découverte) <span class="section-score" data-section-score="exercices-n1">0 / 5</span></h2>
+    <h2 id="heading-exos-n1">✏️ Exos - Niveau 1 (Découverte) <span class="section-score" data-section-score="exercices-n1">0 / 5</span></h2>
     <p>Exercices guidés pour s'entraîner sur les notions de base.</p>
     <div class="grid-auto">
         <div class="card">
-            <h3>Exercice 1 – + et - basiques</h3>
-            <p>Calculer : (+5) + (-3)</p>
+            <h3>Exo 1 – + et - basiques</h3>
+            <p>Calcule : (+5) + (-3)</p>
             <div class="exercise" data-expected="+2|2">
                 <label for="ex-n1-1" class="visually-hidden">Réponse exercice 1</label>
                 <input id="ex-n1-1" type="text" placeholder="Votre réponse" aria-describedby="ex-n1-1-fb">
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n1-1-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_1" onclick="toggleSolution('sol_01_Nombres_relatifs_1_1', this)">Afficher / Masquer solution</button>
-            <div id="sol_01_Nombres_relatifs_1_1" class="solution"><p><strong>Indice :</strong> Signes différents → soustraction des valeurs absolues.</p><p><strong>Solution :</strong> 5 - 3 = 2, signe de +5 → +2</p></div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_1" onclick="toggleSolution('sol_01_Nombres_relatifs_1_1', this)">Besoin d'aide ?</button>
+            <div id="sol_01_Nombres_relatifs_1_1" class="solution"><p><strong>Indice :</strong> Signes différents → on soustrait les valeurs absolues.</p><p><strong>Solution :</strong> 5 - 3 = 2, signe de +5 → +2</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 2 – Températures</h3>
+            <h3>Exo 2 – Températures</h3>
             <p>Matin : -2°C, après-midi : +4°C. Variation ?</p>
             <div class="exercise" data-expected="+6|6|+6c|6c">
                 <label for="ex-n1-2" class="visually-hidden">Réponse exercice 2</label>
@@ -444,11 +453,11 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n1-2-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_2" onclick="toggleSolution('sol_01_Nombres_relatifs_1_2', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_2" onclick="toggleSolution('sol_01_Nombres_relatifs_1_2', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_1_2" class="solution"><p><strong>Indice :</strong> Variation = température finale - température initiale.</p><p><strong>Solution :</strong> (+4) - (-2) = (+4) + (+2) = +6°C</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 3 – Argent</h3>
+            <h3>Exo 3 – Argent</h3>
             <p>Lucas a -15€ sur son compte. Il reçoit 8€. Quel est son nouveau solde ?</p>
             <div class="exercise" data-expected="-7|7-">
                 <label for="ex-n1-3" class="visually-hidden">Réponse exercice 3</label>
@@ -456,43 +465,45 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n1-3-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_3" onclick="toggleSolution('sol_01_Nombres_relatifs_1_3', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_3" onclick="toggleSolution('sol_01_Nombres_relatifs_1_3', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_1_3" class="solution"><p><strong>Indice :</strong> Recevoir de l'argent = addition positive.</p><p><strong>Solution :</strong> (-15) + (+8) = -(15-8) = -7€</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 4 – Même signe négatif</h3>
-            <p>Calculer : (-2) + (-6)</p>
+            <h3>Exo 4 – Même signe négatif</h3>
+            <p>Calcule : (-2) + (-6)</p>
             <div class="exercise" data-expected="-8|8-">
                 <label for="ex-n1-4" class="visually-hidden">Réponse exercice 4</label>
                 <input id="ex-n1-4" type="text" placeholder="Votre réponse" aria-describedby="ex-n1-4-fb">
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n1-4-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_4" onclick="toggleSolution('sol_01_Nombres_relatifs_1_4', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_4" onclick="toggleSolution('sol_01_Nombres_relatifs_1_4', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_1_4" class="solution"><p><strong>Règle :</strong> Même signe → j'additionne les valeurs absolues : 2 + 6 = 8 et je garde le signe -.</p><p><strong>Solution :</strong> -8</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 5 – Signes différents</h3>
-            <p>Calculer : (+7) + (-9)</p>
+            <h3>Exo 5 – Signes différents</h3>
+            <p>Calcule : (+7) + (-9)</p>
             <div class="exercise" data-expected="-2|2-">
                 <label for="ex-n1-5" class="visually-hidden">Réponse exercice 5</label>
                 <input id="ex-n1-5" type="text" placeholder="Votre réponse" aria-describedby="ex-n1-5-fb">
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n1-5-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_5" onclick="toggleSolution('sol_01_Nombres_relatifs_1_5', this)">Afficher / Masquer solution</button>
-            <div id="sol_01_Nombres_relatifs_1_5" class="solution"><p><strong>Règle :</strong> Signes différents → soustraction 9 - 7 = 2, signe du plus grand en valeur absolue (9 négatif).</p><p><strong>Solution :</strong> -2</p></div>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_1_5" onclick="toggleSolution('sol_01_Nombres_relatifs_1_5', this)">Besoin d'aide ?</button>
+            <div id="sol_01_Nombres_relatifs_1_5" class="solution"><p><strong>Règle :</strong> Signes différents → on soustrait 9 - 7 = 2 puis signe du plus grand (9 négatif).</p><p><strong>Solution :</strong> -2</p></div>
         </div>
         <!-- autres exercices N1... -->
     </div>
-</section>
+ </section>
+</div>
 
+<div class="container">
 <section id="exercices-n2" data-section="exercices-n2" class="content-section" aria-labelledby="heading-exos-n2">
-    <h2 id="heading-exos-n2">✏️ Exercices - Niveau 2 (Pratique) <span class="section-score" data-section-score="exercices-n2">0 / 10</span></h2>
+    <h2 id="heading-exos-n2">✏️ Exos - Niveau 2 (Pratique) <span class="section-score" data-section-score="exercices-n2">0 / 10</span></h2>
     <p>Exercices d'application pour automatiser les règles.</p>
     <div class="grid-auto">
         <div class="card">
-            <h3>Exercice 1 – Somme multiple</h3>
+            <h3>Exo 1 – Somme multiple</h3>
             <p>(-7) + (+12) + (-5)</p>
             <div class="exercise" data-expected="0|+0">
                 <label for="ex-n2-1" class="visually-hidden">Réponse exercice 1 N2</label>
@@ -500,11 +511,11 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n2-1-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_1" onclick="toggleSolution('sol_01_Nombres_relatifs_2_1', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_1" onclick="toggleSolution('sol_01_Nombres_relatifs_2_1', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_2_1" class="solution"><p><strong>Méthode :</strong> Regrouper par signes : (+12) et (-7-5).</p><p><strong>Solution :</strong> (+12) + (-12) = 0</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 2 – Soustraction</h3>
+            <h3>Exo 2 – On soustrait</h3>
             <p>(-15) - (-9)</p>
             <div class="exercise" data-expected="-6|6-">
                 <label for="ex-n2-2" class="visually-hidden">Réponse exercice 2 N2</label>
@@ -512,11 +523,11 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n2-2-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_2" onclick="toggleSolution('sol_01_Nombres_relatifs_2_2', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_2" onclick="toggleSolution('sol_01_Nombres_relatifs_2_2', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_2_2" class="solution"><p><strong>Méthode :</strong> Transformer : -(-9) = +9.</p><p><strong>Solution :</strong> (-15) + (+9) = -(15-9) = -6</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 3 – Trois termes variés</h3>
+            <h3>Exo 3 – Trois termes variés</h3>
             <p>(+18) + (-11) + (-4)</p>
             <div class="exercise" data-expected="+3|3">
                 <label for="ex-n2-3" class="visually-hidden">Réponse exercice 3 N2</label>
@@ -524,11 +535,11 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n2-3-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_3" onclick="toggleSolution('sol_01_Nombres_relatifs_2_3', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_3" onclick="toggleSolution('sol_01_Nombres_relatifs_2_3', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_2_3" class="solution"><p><strong>Méthode :</strong> Regrouper : (+18) + (-11 -4) = (+18) + (-15) = +(18-15) = +3.</p><p><strong>Solution :</strong> +3</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 4 – Deux positifs, un grand négatif</h3>
+            <h3>Exo 4 – Deux positifs, un grand négatif</h3>
             <p>(+6) + (+2) + (-15)</p>
             <div class="exercise" data-expected="-7|7-">
                 <label for="ex-n2-4" class="visually-hidden">Réponse exercice 4 N2</label>
@@ -536,11 +547,11 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n2-4-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_4" onclick="toggleSolution('sol_01_Nombres_relatifs_2_4', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_4" onclick="toggleSolution('sol_01_Nombres_relatifs_2_4', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_2_4" class="solution"><p><strong>Méthode :</strong> (+6)+(+2)=+8 puis +8 + (-15) = -(15-8) = -7.</p><p><strong>Solution :</strong> -7</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 5 – Deux négatifs + un positif</h3>
+            <h3>Exo 5 – Deux négatifs + un positif</h3>
             <p>(-9) + (-3) + (+5)</p>
             <div class="exercise" data-expected="-7|7-">
                 <label for="ex-n2-5" class="visually-hidden">Réponse exercice 5 N2</label>
@@ -548,19 +559,21 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n2-5-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_5" onclick="toggleSolution('sol_01_Nombres_relatifs_2_5', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_2_5" onclick="toggleSolution('sol_01_Nombres_relatifs_2_5', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_2_5" class="solution"><p><strong>Méthode :</strong> (-9)+(-3) = -12 puis -12 + (+5) = -(12-5) = -7.</p><p><strong>Solution :</strong> -7</p></div>
         </div>
         <!-- autres exercices N2... -->
     </div>
 </section>
+</div>
 
+<div class="container">
 <section id="exercices-n3" data-section="exercices-n3" class="content-section" aria-labelledby="heading-exos-n3">
-    <h2 id="heading-exos-n3">✏️ Exercices - Niveau 3 (Défi) <span class="section-score" data-section-score="exercices-n3">0 / 15</span></h2>
+    <h2 id="heading-exos-n3">✏️ Exos - Niveau 3 (Défi) <span class="section-score" data-section-score="exercices-n3">0 / 15</span></h2>
     <p>Exercices avancés pour approfondir et transférer.</p>
     <div class="grid-auto">
         <div class="card">
-            <h3>Exercice 1 – Expression complexe</h3>
+            <h3>Exo 1 – Expression complexe</h3>
             <p>Simplifier : (-4) + (+9) - (+3) - (-2)</p>
             <div class="exercise" data-expected="+4|4">
                 <label for="ex-n3-1" class="visually-hidden">Réponse exercice 1 N3</label>
@@ -568,11 +581,11 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n3-1-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_1" onclick="toggleSolution('sol_01_Nombres_relatifs_3_1', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_1" onclick="toggleSolution('sol_01_Nombres_relatifs_3_1', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_3_1" class="solution"><p><strong>Étapes :</strong> (-4) + (+9) + (-3) + (+2) = (-7) + (+11) = +4</p><p><strong>Solution :</strong> +4</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 2 – Alternance signes</h3>
+            <h3>Exo 2 – Alternance signes</h3>
             <p>(+12) + (-5) - (-7) + (-10)</p>
             <div class="exercise" data-expected="+4|4">
                 <label for="ex-n3-2" class="visually-hidden">Réponse exercice 2 N3</label>
@@ -580,11 +593,11 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n3-2-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_2" onclick="toggleSolution('sol_01_Nombres_relatifs_3_2', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_2" onclick="toggleSolution('sol_01_Nombres_relatifs_3_2', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_3_2" class="solution"><p><strong>Méthode :</strong> -(-7)=+7 donc (+12) + (-5) + (+7) + (-10) = (12-5)=7; 7+7=14; 14-10=4.</p><p><strong>Solution :</strong> +4</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 3 – Compensation</h3>
+            <h3>Exo 3 – Compensation</h3>
             <p>(-8) + (+3) + (-6) - (-5)</p>
             <div class="exercise" data-expected="-6|6-">
                 <label for="ex-n3-3" class="visually-hidden">Réponse exercice 3 N3</label>
@@ -592,11 +605,11 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n3-3-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_3" onclick="toggleSolution('sol_01_Nombres_relatifs_3_3', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_3" onclick="toggleSolution('sol_01_Nombres_relatifs_3_3', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_3_3" class="solution"><p><strong>Méthode :</strong> -(-5)=+5 donc (-8)+(+3)+(-6)+(+5) = (-5)+(-6)+(+5) = (-11)+(+5) = -6.</p><p><strong>Solution :</strong> -6</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 4 – Décomposition</h3>
+            <h3>Exo 4 – Décomposition</h3>
             <p>(+20) - (-4) + (-15) + (-3)</p>
             <div class="exercise" data-expected="+6|6">
                 <label for="ex-n3-4" class="visually-hidden">Réponse exercice 4 N3</label>
@@ -604,11 +617,11 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n3-4-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_4" onclick="toggleSolution('sol_01_Nombres_relatifs_3_4', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_4" onclick="toggleSolution('sol_01_Nombres_relatifs_3_4', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_3_4" class="solution"><p><strong>Méthode :</strong> -(-4)=+4 donc (+20)+(+4)=+24 puis +24+(-15)+(-3)= +24 -18 = +6.</p><p><strong>Solution :</strong> +6</p></div>
         </div>
         <div class="card">
-            <h3>Exercice 5 – Regroupement</h3>
+            <h3>Exo 5 – Regroupement</h3>
             <p>(-10) + (-2) + (+9) + (+5)</p>
             <div class="exercise" data-expected="+2|2">
                 <label for="ex-n3-5" class="visually-hidden">Réponse exercice 5 N3</label>
@@ -616,12 +629,13 @@
                 <button class="btn btn--primary" onclick="checkExerciseAnswer(this)">Valider</button>
                 <div id="ex-n3-5-fb" class="exercise-feedback" aria-live="polite"></div>
             </div>
-            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_5" onclick="toggleSolution('sol_01_Nombres_relatifs_3_5', this)">Afficher / Masquer solution</button>
+            <button class="toggle" aria-expanded="false" aria-controls="sol_01_Nombres_relatifs_3_5" onclick="toggleSolution('sol_01_Nombres_relatifs_3_5', this)">Besoin d'aide ?</button>
             <div id="sol_01_Nombres_relatifs_3_5" class="solution"><p><strong>Méthode :</strong> Regrouper les positifs : (+9)+(+5)=+14 et les négatifs : (-10)+(-2) = -12 puis +14 + (-12) = +2.</p><p><strong>Solution :</strong> +2</p></div>
         </div>
         <!-- autres exercices N3... -->
     </div>
 </section>
+</div>
 
 <!-- ==========================
      Fiche synthèse intégrée
@@ -629,7 +643,7 @@
 <section id="fiche-synthese" data-section="fiche-synthese" class="content-section" aria-labelledby="heading-synthese">
     <h2 id="heading-synthese">📋 Fiche Synthèse <span class="section-score" data-section-score="fiche-synthese">0 / 3</span></h2>
     <div class="card">
-        <h3>Règles essentielles</h3>
+    <h3>Règles essentielles <small class="note-inline">(valeur absolue = distance à 0)</small></h3>
         <div class="regle-box regle-positive">
             <h4>RÈGLE 1 : Même signe</h4>
             <p>Additionner les valeurs et garder le signe commun.</p>
@@ -676,6 +690,39 @@
 
 <!-- JavaScript Externalisés -->
 <script src="scripts/scoring.js" defer></script>
+<script src="scripts/theme-manager.js" defer></script>
 <script src="scripts/main.js" defer></script>
+<script>
+    // Appliquer les variables CSS aux éléments SVG
+    document.addEventListener('DOMContentLoaded', function() {
+        const root = document.documentElement;
+        const computedStyle = getComputedStyle(root);
+        
+        // Récupérer les couleurs des variables CSS
+        const colors = {
+            primary: computedStyle.getPropertyValue('--primary').trim(),
+            mathPositive: computedStyle.getPropertyValue('--math-positive').trim(),
+            mathNegative: computedStyle.getPropertyValue('--math-negative').trim(),
+            mathNeutral: computedStyle.getPropertyValue('--math-neutral').trim(),
+            mathHighlight: computedStyle.getPropertyValue('--math-highlight').trim()
+        };
+        
+        // Appliquer aux éléments SVG
+        document.querySelectorAll('svg line, svg polygon').forEach(el => {
+            if (el.getAttribute('stroke') === '#67c7ff' || el.getAttribute('fill') === '#67c7ff') {
+                if (el.hasAttribute('stroke')) el.setAttribute('stroke', colors.primary);
+                if (el.hasAttribute('fill')) el.setAttribute('fill', colors.primary);
+            }
+        });
+        
+        document.querySelectorAll('svg circle, svg text').forEach(el => {
+            const fill = el.getAttribute('fill');
+            if (fill === '#ff6b6b') el.setAttribute('fill', colors.mathNegative);
+            if (fill === '#ff9f43') el.setAttribute('fill', colors.mathNeutral);
+            if (fill === '#10ac84') el.setAttribute('fill', colors.mathPositive);
+            if (fill === '#00d2d3') el.setAttribute('fill', colors.mathHighlight);
+        });
+    });
+</script>
 </body>
 </html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <title>📋 Fiche Synthèse – Nombres relatifs</title>
+    <style>
+body{font-family:Arial,system-ui,sans-serif;margin:0;padding:1.1rem 1.2rem;line-height:1.55;background:#0f1115;color:#f5f7fa;}
+header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 1.2rem;border:1px solid #1e2530;border-radius:14px;-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);}
+.refresh-btn{background:#67c7ff;color:#0f1115;border:none;padding:.4rem .8rem;border-radius:6px;margin-left:1rem;cursor:pointer;font-weight:600;}
+.refresh-btn:hover{background:#5ab9f0;} 
+section{background:rgba(255,255,255,0.025);padding:1rem 1.1rem;margin:0 0 1rem;border:1px solid #1b222c;border-radius:12px;}
+h1,h2,h3{line-height:1.2;margin:0 0 .65rem;font-weight:600;}
+nav a{color:#67c7ff;text-decoration:none;margin-right:.85rem;font-size:.82rem;letter-spacing:.3px;}
+nav a:hover{text-decoration:underline;}
+.grid-auto{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+.card{background:#141a21;border:1px solid #232d38;padding:.75rem .85rem;border-radius:12px;position:relative;}
+.card h3{margin-top:0;font-size:1.02rem;}
+.notice{background:#162f47;border:1px solid #214b6b;padding:.65rem .8rem;border-radius:9px;font-size:.78rem;}
+blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4px solid #2563eb;border-radius:4px;font-size:.85rem;}
+
+/* Styles pour règles colorées */
+.regle-box{border:2px solid;padding:.8rem;margin:.6rem 0;border-radius:10px;background:rgba(255,255,255,0.03);}
+.regle-positive{border-color:#67c7ff;background:linear-gradient(135deg,rgba(103,199,255,0.1),rgba(103,199,255,0.03));}
+.regle-negative{border-color:#ff6b6b;background:linear-gradient(135deg,rgba(255,107,107,0.1),rgba(255,107,107,0.03));}
+.regle-neutre{border-color:#ffd93d;background:linear-gradient(135deg,rgba(255,217,61,0.1),rgba(255,217,61,0.03));}
+.icone-regle{font-size:1.2em;margin-right:.5rem;}
+.exemple-box{background:#1a2332;padding:.5rem;border-radius:6px;margin:.4rem 0;border-left:3px solid #67c7ff;}
+.piege-box{background:#2d1b1b;padding:.5rem;border-radius:6px;margin:.4rem 0;border-left:3px solid #ff6b6b;}
+
+.droite-graduee{text-align:center;font-family:monospace;background:#1a2332;padding:1rem;border-radius:8px;}
+.ligne-droite{margin:.5rem 0;}
+.nombres-negatifs{color:#ff6b6b;margin:.3rem 0;}
+.nombre-zero{color:#ffd93d;font-weight:bold;}
+.nombres-positifs{color:#67c7ff;}
+.legende-droite{font-size:.7rem;margin-top:.8rem;color:#8892b0;}
+.exemple-deplacements{margin-top:.8rem;}
+
+/* Quiz enrichi */
+.quiz-enrichi .quiz-item{background:#1a2532;border:1px solid #2a3948;padding:.6rem;margin:.5rem 0;border-radius:8px;}
+.score-box{background:#162f47;border:1px solid #214b6b;padding:.8rem;border-radius:10px;text-align:center;}
+.badge-reussite{background:linear-gradient(135deg,#10ac84,#00d2d3);color:#fff;padding:.4rem .8rem;border-radius:20px;font-weight:bold;}
+.feedback-correct{color:#10ac84;font-weight:bold;}
+.feedback-erreur{color:#ff6b6b;font-weight:bold;}
+
+/* Quiz interactif */
+.quiz-input{display:flex;align-items:center;gap:.5rem;margin:.5rem 0;}
+.quiz-textbox{background:#2a3441;border:1px solid #3f4956;color:#f5f7fa;padding:.4rem .6rem;border-radius:6px;font-size:.9rem;min-width:80px;text-align:center;}
+.quiz-textbox:focus{outline:none;border-color:#67c7ff;box-shadow:0 0 0 2px rgba(103,199,255,0.2);}
+.quiz-btn{background:#67c7ff;color:#0f1115;border:none;padding:.4rem .8rem;border-radius:6px;font-weight:600;cursor:pointer;font-size:.8rem;}
+.quiz-btn:hover{background:#5ab9f0;}
+.quiz-btn:disabled{background:#4a5568;color:#8892b0;cursor:not-allowed;}
+.feedback-zone{margin-top:.6rem;padding:.5rem;border-radius:6px;min-height:20px;}
+.feedback-success{background:#1a4d3a;border-left:4px solid #10ac84;color:#10ac84;}
+.feedback-error{background:#4a1e1e;border-left:4px solid #ff6b6b;color:#ff6b6b;}
+.feedback-neutral{background:#1e293b;border-left:4px solid #67c7ff;color:#67c7ff;}
+.quiz-score{font-weight:bold;font-size:1.1em;margin:.5rem 0;}
+.quiz-progress{background:#2a3441;height:8px;border-radius:4px;margin:.5rem 0;overflow:hidden;}
+.quiz-progress-bar{height:100%;background:linear-gradient(90deg,#67c7ff,#10ac84);transition:width 0.3s ease;width:0%;}
+
+
+/* Quiz complétion de phrases */
+.completion-item{background:#1a2532;border:1px solid #2a3948;padding:.8rem;margin:.6rem 0;border-radius:8px;}
+.completion-select{background:#2a3441;border:1px solid #3f4956;color:#f5f7fa;padding:.3rem .5rem;border-radius:4px;margin:0 .3rem;font-size:.9rem;}
+.completion-select:focus{outline:none;border-color:#67c7ff;box-shadow:0 0 0 2px rgba(103,199,255,0.2);}
+.completion-btn{background:#67c7ff;color:#0f1115;border:none;padding:.4rem .8rem;border-radius:6px;margin-left:.5rem;cursor:pointer;font-size:.8rem;font-weight:600;}
+.completion-btn:hover{background:#5ab9f0;}
+.completion-btn:disabled{background:#4a5568;color:#8892b0;cursor:not-allowed;}
+.completion-feedback{margin-top:.5rem;padding:.4rem;border-radius:4px;min-height:16px;}
+.completion-score{font-weight:bold;color:#67c7ff;text-align:center;margin:.8rem 0;padding:.5rem;background:#162f47;border-radius:6px;}
+
+/* Utilities */
+.summary-mini{cursor:pointer;font-size:.65rem;}
+.note-mini{font-size:.7rem;opacity:.75;}
+
+@media (max-width:760px){
+    nav a{display:inline-block;margin:.25rem .6rem .25rem 0;}
+}
+    </style>
+    
+    <script>
+        let quizScore = 0;
+        let answeredQuestions = new Set();
+        
+        function normalizeAnswer(answer) {
+            return answer.trim().replace(/\s+/g, '').toLowerCase();
+        }
+        
+        function checkAnswer(questionNum, correctAnswer, explanation) {
+            const input = document.getElementById(`answer${questionNum}`);
+            const feedback = document.getElementById(`feedback${questionNum}`);
+            const userAnswer = input.value.trim();
+            
+            if (!userAnswer) {
+                feedback.className = 'feedback-zone feedback-neutral';
+                feedback.innerHTML = '📝 <strong>Astuce :</strong> Écris ta réponse dans la case (exemple: +3, -5, 0)';
+                return;
+            }
+            
+            // Normaliser les réponses pour la comparaison
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const normalizedCorrect = normalizeAnswer(correctAnswer);
+            
+            // Vérifier différentes variantes de réponse
+            let isCorrect = false;
+            if (normalizedUser === normalizedCorrect || 
+                normalizedUser === normalizedCorrect.replace('+', '') ||
+                (correctAnswer === '+12' && (normalizedUser === '12' || normalizedUser === 'douze')) ||
+                (correctAnswer === '0' && (normalizedUser === 'zéro' || normalizedUser === 'zero' || normalizedUser === '0000'))) {
+                isCorrect = true;
+            }
+            
+            if (isCorrect) {
+                feedback.className = 'feedback-zone feedback-success';
+                feedback.innerHTML = `✓ <strong>Excellent !</strong> Réponse correcte : ${correctAnswer}<br><em>💡 ${explanation}</em>`;
+                
+                if (!answeredQuestions.has(questionNum)) {
+                    quizScore++;
+                    answeredQuestions.add(questionNum);
+                    updateScore();
+                }
+                
+                // Désactiver le bouton
+                input.disabled = true;
+                input.style.background = '#1a4d3a';
+                const btn = input.nextElementSibling;
+                btn.disabled = true;
+                btn.textContent = '✓ Validé';
+            } else {
+                feedback.className = 'feedback-zone feedback-error';
+                
+                // Analyse plus fine du type d'erreur
+                let errorMsg = '';
+                let diagnostic = '';
+                
+                if (questionNum <= 3) {
+                    // Analyser le type d'erreur pour les calculs
+                    const userNum = parseInt(userAnswer.replace(/[^-\d]/g, ''));
+                    const correctNum = parseInt(correctAnswer.replace(/[^-\d]/g, ''));
+                    
+                    if (isNaN(userNum)) {
+                        errorMsg = 'Assure-toi d\\u0027écrire un nombre entier (exemple: +3, -5)';
+                        diagnostic = 'Format de réponse';
+                    } else if (Math.abs(userNum) === Math.abs(correctNum) && userNum !== correctNum) {
+                        errorMsg = 'Le calcul est bon, mais vérifie le signe final !';
+                        diagnostic = 'Erreur de signe';
+                    } else if (Math.abs(userNum) !== Math.abs(correctNum)) {
+                        errorMsg = 'Vérifie ton calcul arithmétique, puis les règles de signes.';
+                        diagnostic = 'Erreur de calcul';
+                    } else {
+                        errorMsg = 'Vérifie les signes ! Sont-ils identiques ou différents ?';
+                        diagnostic = 'Méthode à revoir';
+                    }
+                } else if (questionNum === 4) {
+                    errorMsg = 'L\\u0027opposé d\\u0027un nombre change juste son signe.';
+                    diagnostic = 'Concept d\\u0027opposé';
+                } else {
+                    errorMsg = 'Attention au piège ! Que se passe-t-il quand on additionne des nombres opposés ?';
+                    diagnostic = 'Nombres opposés';
+                }
+                
+                feedback.innerHTML = `✗ <strong>Pas tout à fait...</strong><br>🔍 <em>${diagnostic}:</em> ${errorMsg}<br><strong>Aide :</strong> ${explanation}`;
+                
+                // Effet visuel d'erreur
+                input.style.borderColor = '#ff6b6b';
+                setTimeout(() => {
+                    input.style.borderColor = '#3f4956';
+                }, 2000);
+            }
+        }
+        
+        function updateScore() {
+            const scoreElement = document.getElementById('quizScore');
+            const progressBar = document.getElementById('progressBar');
+            
+            scoreElement.textContent = `Score : ${quizScore}/5`;
+            
+            const percentage = (quizScore / 5) * 100;
+            progressBar.style.width = percentage + '%';
+            
+            // Message d'encouragement
+            if (quizScore === 5) {
+                scoreElement.innerHTML += ' 🎉 <span style="color:#10ac84">PARFAIT !</span>';
+            } else if (quizScore >= 3) {
+                scoreElement.innerHTML += ' 😊 <span style="color:#67c7ff">Bon travail !</span>';
+            }
+        }
+        
+
+        
+        // Variables pour le quiz de complétion
+        let completionScore = 0;
+        let completionAnswered = new Set();
+        
+        function checkCompletion(questionNum, correctAnswers) {
+            const selectA = document.getElementById(`comp${questionNum}a`);
+            const selectB = document.getElementById(`comp${questionNum}b`);
+            const feedback = document.getElementById(`compFeedback${questionNum}`);
+            const btn = event.target;
+            
+            const answerA = selectA.value;
+            const answerB = selectB.value;
+            
+            if (!answerA || !answerB) {
+                feedback.className = 'completion-feedback feedback-neutral';
+                feedback.innerHTML = '📝 <em>Complète les deux parties avant de valider !</em>';
+                return;
+            }
+            
+            const isCorrect = (answerA === correctAnswers[0] && answerB === correctAnswers[1]);
+            
+            if (isCorrect) {
+                feedback.className = 'completion-feedback feedback-success';
+                feedback.innerHTML = `✓ <strong>Parfait !</strong> Tu maîtrises cette règle !`;
+                
+                if (!completionAnswered.has(questionNum)) {
+                    completionScore++;
+                    completionAnswered.add(questionNum);
+                    updateCompletionScore();
+                }
+                
+                // Désactiver les éléments
+                selectA.disabled = true;
+                selectB.disabled = true;
+                btn.disabled = true;
+                btn.textContent = '✓ Validé';
+                
+            } else {
+                feedback.className = 'completion-feedback feedback-error';
+                
+                let hint = '';
+                if (questionNum === 1) {
+                    hint = 'Pense : que fais-tu quand les signes sont pareils ?';
+                } else if (questionNum === 2) {
+                    hint = 'Rappel : avec des signes différents, on fait une soustraction !';
+                } else {
+                    hint = 'Quels exemples concrets utilise-t-on pour les nombres relatifs ?';
+                }
+                
+                feedback.innerHTML = `✗ <strong>Pas encore...</strong><br>💡 <em>${hint}</em>`;
+            }
+        }
+        
+        function updateCompletionScore() {
+            const scoreElement = document.getElementById('completionScore');
+            scoreElement.textContent = `Score phrases : ${completionScore}/3`;
+            
+            if (completionScore === 3) {
+                scoreElement.innerHTML += ' 🎉 <span style="color:#10ac84">Règles maîtrisées !</span>';
+            }
+        }
+        
+        // Permettre validation avec Entrée
+        document.addEventListener('DOMContentLoaded', function() {
+            for (let i = 1; i <= 5; i++) {
+                const input = document.getElementById(`answer${i}`);
+                if (input) {
+                    input.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            const btn = this.nextElementSibling;
+                            btn.click();
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>📋 Fiche Synthèse – Nombres relatifs</h1>
+    <nav>
+        <a href='../cours/cours_principal.html'>🔙 Retour au cours</a>
+        <button onclick='location.reload()' class='refresh-btn'>🔄 Tout recommencer</button>
+    </nav>
+</header>
+
+<section>
+    <h2>📖 Règles Essentielles</h2>
+    
+    <div class='regle-box regle-positive'>
+        <h3><span class='icone-regle'>➕</span>RÈGLE 1 : Même signe</h3>
+        <p><strong>Additionner les valeurs et garder le signe commun</strong></p>
+        <div class='exemple-box'>
+            <strong>Exemples :</strong><br>
+            • (-3) + (-5) = -8 <em>(3 + 5 = 8, signe -)</em><br>
+            • (+6) + (+4) = +10 <em>(6 + 4 = 10, signe +)</em>
+        </div>
+    </div>
+    
+    <div class='regle-box regle-negative'>
+        <h3><span class='icone-regle'>➖</span>RÈGLE 2 : Signes différents</h3>
+        <p><strong>Soustraire la plus petite de la plus grande, garder le signe du « plus fort »</strong></p>
+        <div class='exemple-box'>
+            <strong>Exemples :</strong><br>
+            • (-7) + (+4) = -3 <em>(7 - 4 = 3, signe de -7)</em><br>
+            • (+9) + (-2) = +7 <em>(9 - 2 = 7, signe de +9)</em>
+        </div>
+    </div>
+    
+    <div class='regle-box regle-neutre'>
+        <h3><span class='icone-regle'>🔍</span>RÈGLE 3 : Contrôle</h3>
+        <p><strong>Vérifier avec un contexte concret</strong></p>
+        <div class='exemple-box'>
+            <strong>Astuces :</strong><br>
+            • Température : -5°C + 8°C = +3°C ✓<br>
+            • Argent : -20€ + 15€ = -5€ (découvert) ✓
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>🎨 Schéma Visuel</h2>
+    <div class='card'>
+        <h3>📏 Droite graduée des déplacements</h3>
+        <div class='droite-graduee'>
+            <div class='ligne-droite'>Négatifs ←─────── 0 ───────→ Positifs</div>
+            <div class='nombres-negatifs'>-8   -6   -4   -2   <span class='nombre-zero'>0</span>   <span class='nombres-positifs'>+2   +4   +6   +8</span></div>
+            <div class='legende-droite'>
+                🟥 Rouge = Négatif  •  🟨 Jaune = Zéro  •  🟦 Bleu = Positif
+            </div>
+        </div>
+        <div class='exemple-box exemple-deplacements'>
+            <strong>Exemples de déplacements :</strong><br>
+            • « +3 » = avancer de 3 vers la droite →<br>
+            • « -5 » = reculer de 5 vers la gauche ←
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>⚠️ Attention aux Pièges !</h2>
+    <div class='grid-auto'>
+        <div class='piege-box'>
+            <h4>🚫 Piège 1 : Confusion des règles</h4>
+            <p><strong>Erreur :</strong> (-4) + (-3) = -1 <em>(faire 4-3)</em></p>
+            <p><strong>✓ Correct :</strong> Même signe → 4+3 = 7 → <strong>-7</strong></p>
+        </div>
+        <div class='piege-box'>
+            <h4>🚫 Piège 2 : Mauvais signe final</h4>
+            <p><strong>Erreur :</strong> (+2) + (-8) = +6 <em>(garder le +)</em></p>
+            <p><strong>✓ Correct :</strong> Le « plus fort » est -8 → <strong>-6</strong></p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>🎮 Mini Quiz Interactif</h2>
+    <div class='quiz-enrichi'>
+        <!-- Barre de progression -->
+        <div class='quiz-progress'>
+            <div class='quiz-progress-bar' id='progressBar'></div>
+        </div>
+        <div class='quiz-score' id='quizScore'>Score : 0/5</div>
+        
+        <!-- Question 1 -->
+        <div class='quiz-item' id='q1'>
+            <p><strong>🎯 Niveau Facile :</strong> (+7) + (-4) = ?</p>
+            <div class='quiz-input'>
+                <input type='text' class='quiz-textbox' id='answer1' placeholder='Ta réponse' maxlength='4'>
+                <button class='quiz-btn' onclick='checkAnswer(1, "+3", "Signes différents : 7 - 4 = 3, signe de +7 (le plus fort) → +3")'>✓ Valider</button>
+            </div>
+            <div class='feedback-zone' id='feedback1'></div>
+        </div>
+        
+        <!-- Question 2 -->
+        <div class='quiz-item' id='q2'>
+            <p><strong>🎯 Niveau Moyen :</strong> (-9) + (+3) = ?</p>
+            <div class='quiz-input'>
+                <input type='text' class='quiz-textbox' id='answer2' placeholder='Ta réponse' maxlength='4'>
+                <button class='quiz-btn' onclick='checkAnswer(2, "-6", "Signes différents : 9 - 3 = 6, signe de -9 (le plus fort) → -6")'>✓ Valider</button>
+            </div>
+            <div class='feedback-zone' id='feedback2'></div>
+        </div>
+        
+        <!-- Question 3 -->
+        <div class='quiz-item' id='q3'>
+            <p><strong>🎯 Niveau Difficile :</strong> (-5) + (-6) = ?</p>
+            <div class='quiz-input'>
+                <input type='text' class='quiz-textbox' id='answer3' placeholder='Ta réponse' maxlength='4'>
+                <button class='quiz-btn' onclick='checkAnswer(3, "-11", "Même signe négatif : 5 + 6 = 11, on garde le signe - → -11")'>✓ Valider</button>
+            </div>
+            <div class='feedback-zone' id='feedback3'></div>
+        </div>
+        
+        <!-- Question 4 -->
+        <div class='quiz-item' id='q4'>
+            <p><strong>🧩 Défi :</strong> Donner l'opposé de -12</p>
+            <div class='quiz-input'>
+                <input type='text' class='quiz-textbox' id='answer4' placeholder='Ta réponse' maxlength='4'>
+                <button class='quiz-btn' onclick='checkAnswer(4, "+12", "L\u0027opposé change le signe : l\u0027opposé de -12 est +12")'>✓ Valider</button>
+            </div>
+            <div class='feedback-zone' id='feedback4'></div>
+        </div>
+        
+        <!-- Question 5 -->
+        <div class='quiz-item' id='q5'>
+            <p><strong>🔍 Piège :</strong> (-8) + (+8) = ?</p>
+            <div class='quiz-input'>
+                <input type='text' class='quiz-textbox' id='answer5' placeholder='Ta réponse' maxlength='4'>
+                <button class='quiz-btn' onclick='checkAnswer(5, "0", "Nombres opposés : (-8) et (+8) s\u0027annulent, somme = 0")'>✓ Valider</button>
+            </div>
+            <div class='feedback-zone' id='feedback5'></div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>🧠 Fiche Mémo à compléter</h2>
+    <div class='card'>
+        <h3>✍️ Complète les phrases (sans regarder !)</h3>
+        
+        <!-- Question 1 -->
+        <div class='completion-item'>
+            <p><strong>1.</strong> Quand les signes sont <strong>identiques</strong>, je 
+                <select class='completion-select' id='comp1a' title='Première action avec signes identiques'>
+                    <option value=''>-- Choisir --</option>
+                    <option value='additionne'>additionne</option>
+                    <option value='soustrais'>soustrais</option>
+                    <option value='multiplie'>multiplie</option>
+                    <option value='divise'>divise</option>
+                </select>
+                les valeurs et je 
+                <select class='completion-select' id='comp1b' title='Action sur le signe avec signes identiques'>
+                    <option value=''>-- Choisir --</option>
+                    <option value='garde'>garde</option>
+                    <option value='change'>change</option>
+                    <option value='inverse'>inverse</option>
+                    <option value='supprime'>supprime</option>
+                </select>
+                le signe.
+                <button class='completion-btn' onclick='checkCompletion(1, ["additionne", "garde"])'>✓ Valider</button>
+            </p>
+            <div class='completion-feedback' id='compFeedback1'></div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class='completion-item'>
+            <p><strong>2.</strong> Quand les signes sont <strong>différents</strong>, je 
+                <select class='completion-select' id='comp2a' title='Action avec signes différents'>
+                    <option value=''>-- Choisir --</option>
+                    <option value='additionne'>additionne</option>
+                    <option value='soustrais'>soustrais</option>
+                    <option value='multiplie'>multiplie</option>
+                    <option value='ignore'>ignore</option>
+                </select>
+                et je garde le signe du 
+                <select class='completion-select' id='comp2b' title='Quel signe garder avec signes différents'>
+                    <option value=''>-- Choisir --</option>
+                    <option value='plus fort'>plus fort</option>
+                    <option value='plus faible'>plus faible</option>
+                    <option value='premier'>premier</option>
+                    <option value='dernier'>dernier</option>
+                </select>.
+                <button class='completion-btn' onclick='checkCompletion(2, ["soustrais", "plus fort"])'>✓ Valider</button>
+            </p>
+            <div class='completion-feedback' id='compFeedback2'></div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class='completion-item'>
+            <p><strong>3.</strong> Pour vérifier, j'utilise un exemple avec la 
+                <select class='completion-select' id='comp3a' title='Premier exemple concret'>
+                    <option value=''>-- Choisir --</option>
+                    <option value='température'>température</option>
+                    <option value='distance'>distance</option>
+                    <option value='vitesse'>vitesse</option>
+                    <option value='masse'>masse</option>
+                </select>
+                ou l'
+                <select class='completion-select' id='comp3b' title='Second exemple concret'>
+                    <option value=''>-- Choisir --</option>
+                    <option value='argent'>argent</option>
+                    <option value='énergie'>énergie</option>
+                    <option value='altitude'>altitude</option>
+                    <option value='âge'>âge</option>
+                </select>.
+                <button class='completion-btn' onclick='checkCompletion(3, ["température", "argent"])'>✓ Valider</button>
+            </p>
+            <div class='completion-feedback' id='compFeedback3'></div>
+        </div>
+
+        <!-- Score global pour les phrases -->
+        <div class='completion-score' id='completionScore'>Score phrases : 0/3</div>
+    </div>
+</section>
+<section>
+    <h2>🚀 Prochaines étapes</h2>
+    <div class='card'>
+        <div class='exemple-box'>
+            <p>📋 <strong>Si tout est vert :</strong> Passe aux <a href='../exercices/exercices_niveau2_pratique.html'>exercices pratiques</a></p>
+            <p>⚠️ <strong>Si des erreurs :</strong> Retourne au <a href='../cours/cours_principal.html'>cours principal</a> section concernée</p>
+            <p>🎪 <strong>Pour aller plus loin :</strong> Teste les <a href='../exercices/exercices_niveau3_defi.html'>défis avancés</a></p>
+        </div>
+    </div>
+</section>
+<footer>
+    <small>📈 Fiche enrichie – Génération adaptative • Réactivation scientifique espacée</small>
+</footer>
+</body>
+</html>

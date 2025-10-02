@@ -1,0 +1,329 @@
+/* =============================================================================
+   VARIABLES CSS - PALETTE ULTRA MODERNE
+   Style Gaming/Moderne pour Collégiens 4ème
+   ============================================================================= */
+
+:root {
+  /* ===== COULEURS PRINCIPALES ===== */
+  --primary: #67c7ff;           /* Bleu principal (mathématiques) */
+  --primary-light: #a8d8ff;    /* Bleu clair */
+  --primary-dark: #3b82f6;     /* Bleu foncé */
+  --primary-ultra-light: #e0f2ff; /* Bleu très clair pour fonds */
+  
+  --accent: #00d2d3;           /* Cyan accent pour contraste */
+  
+  /* ===== COULEURS SÉMANTIQUES ===== */
+  --success: #10b981;          /* Vert succès */
+  --success-light: #34d399;   /* Vert clair */
+  --success-dark: #059669;    /* Vert foncé */
+  
+  --warning: #f59e0b;          /* Orange avertissement */
+  --warning-light: #fbbf24;   /* Orange clair */
+  --warning-dark: #d97706;    /* Orange foncé */
+  
+  --danger: #ef4444;           /* Rouge erreur */
+  --danger-light: #f87171;    /* Rouge clair */
+  --danger-dark: #dc2626;     /* Rouge foncé */
+  
+  --error: var(--danger);      /* Alias pour erreur */
+  
+  /* ===== COULEURS SPÉCIFIQUES MATHÉMATIQUES ===== */
+  --math-positive: #10ac84;    /* Vert pour nombres positifs */
+  --math-negative: #ff6b6b;    /* Rouge pour nombres négatifs */
+  --math-neutral: #ff9f43;     /* Orange pour zéro/neutre */
+  --math-axis: #67c7ff;        /* Bleu pour axes et lignes */
+  --math-highlight: #00d2d3;   /* Cyan pour mise en évidence */
+  
+  /* ===== COULEURS DE FOND MODERNES ===== */
+  --bg-primary: #0f172a;       /* Fond sombre principal */
+  --bg-secondary: #1e293b;     /* Fond secondaire (cartes, aides) */
+  --bg-tertiary: #334155;      /* Fond tertiaire */
+  --bg-card: rgba(30, 41, 59, 0.8); /* Fond des cartes avec transparence */
+  --bg-input: #1e293b;        /* Fond des champs de saisie */
+  --bg-hover: #475569;         /* Fond au survol */
+  
+  /* Surfaces spéciales pour glassmorphism */
+  --surface: rgba(255, 255, 255, 0.1);
+  --surface-alt: rgba(255, 255, 255, 0.15);
+  --surface-glass: rgba(255, 255, 255, 0.08);
+  
+  /* ===== COULEURS DE TEXTE ===== */
+  --text-primary: #f1f5f9;     /* Texte principal clair */
+  --text-secondary: #cbd5e1;   /* Texte secondaire */
+  --text-muted: #94a3b8;      /* Texte atténué */
+  --text-inverse: #1f2937;     /* Texte inverse (sur fond clair) */
+  
+  /* ===== COULEURS DE BORDURE ===== */
+  --border-light: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.2);
+  --border-dark: rgba(255, 255, 255, 0.3);
+  --border-glow: rgba(103, 199, 255, 0.5);
+  
+  /* ===== COULEURS AVEC TRANSPARENCE ===== */
+  /* Couleurs principales avec alpha */
+  --primary-alpha-05: rgba(103, 199, 255, 0.05);
+  --primary-alpha-10: rgba(103, 199, 255, 0.1);
+  --primary-alpha-15: rgba(103, 199, 255, 0.15);
+  --primary-alpha-20: rgba(103, 199, 255, 0.2);
+  --primary-alpha-35: rgba(103, 199, 255, 0.35);
+  --primary-alpha-60: rgba(103, 199, 255, 0.6);
+  --primary-alpha-80: rgba(103, 199, 255, 0.8);
+  
+  /* Couleurs sémantiques avec alpha */
+  --success-alpha-05: rgba(16, 185, 129, 0.05);
+  --success-alpha-15: rgba(16, 185, 129, 0.15);
+  --success-alpha-25: rgba(16, 185, 129, 0.25);
+  --success-alpha-35: rgba(16, 185, 129, 0.35);
+  --success-alpha-60: rgba(16, 185, 129, 0.6);
+  
+  --warning-alpha-05: rgba(245, 158, 11, 0.05);
+  --warning-alpha-18: rgba(245, 158, 11, 0.18);
+  --warning-alpha-35: rgba(245, 158, 11, 0.35);
+  --warning-alpha-40: rgba(245, 158, 11, 0.4);
+  
+  --danger-alpha-04: rgba(239, 68, 68, 0.04);
+  --danger-alpha-35: rgba(239, 68, 68, 0.35);
+  --danger-alpha-60: rgba(239, 68, 68, 0.6);
+  
+  /* Couleurs accent avec alpha */
+  --accent-alpha-60: rgba(0, 210, 211, 0.6);
+  --accent-alpha-70: rgba(0, 210, 211, 0.7);
+  
+  /* ===== PROPRIÉTÉS DÉRIVÉES ===== */
+  /* Couleurs de confiance (auto-évaluation) */
+  --confidence-high: var(--success);      /* Confiant */
+  --confidence-medium: var(--warning);    /* Moyen */
+  --confidence-low: var(--danger);        /* Pas confiant */
+  
+  /* Couleurs d'état des exercices */
+  --exercise-pending: var(--text-muted);
+  --exercise-correct: var(--success);
+  --exercise-incorrect: var(--danger);
+  --exercise-hint: var(--primary);
+  
+  /* ===== ESPACEMENTS ET DIMENSIONS ===== */
+  --space-xs: 0.25rem;         /* 4px */
+  --space-sm: 0.5rem;          /* 8px */
+  --space-md: 1rem;            /* 16px */
+  --space-lg: 1.5rem;          /* 24px */
+  --space-xl: 2rem;            /* 32px */
+  --space-xxl: 3rem;           /* 48px */
+  
+  /* ===== RAYONS DE BORDURE ===== */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-xxl: 20px;
+  --radius-full: 9999px;
+  
+  /* ===== OMBRES MODERNES ===== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+  --shadow-primary: 0 4px 15px var(--primary-alpha-35);
+  --shadow-success: 0 2px 4px -2px var(--success-alpha-35);
+  --shadow-warning: 0 2px 4px -2px var(--warning-alpha-40);
+  --shadow-glow-primary: 0 0 20px var(--primary-alpha-60);
+  --shadow-glow-success: 0 0 20px var(--success-alpha-60);
+  --shadow-glow-accent: 0 0 40px var(--accent-alpha-70);
+  
+  /* ===== TYPOGRAPHIE ===== */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.875rem;   /* 30px */
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* ===== TRANSITIONS ET ANIMATIONS ===== */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+  --transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* ===== Z-INDEX ===== */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
+  
+  /* ===== LARGEURS CONTENEUR ===== */
+  --container-max-width: 1200px;
+  --content-max-width: 800px;
+  
+  /* ===== EFFETS SPÉCIAUX ===== */
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(12px);
+  --blur-xl: blur(16px);
+  
+  --backdrop-glass: blur(12px) saturate(180%);
+}
+
+/* =============================================================================
+   STYLE ULTRA MODERNE - POUR COLLÉGIENS
+   Ajout : Glow, Dégradés animés, Glassmorphism
+   ============================================================================= */
+
+/* ===== DÉGRADÉS ANIMÉS ===== */
+.bg-animated-gradient {
+  background: linear-gradient(270deg, #67c7ff, #00d2d3, #3b82f6, #10b981);
+  background-size: 600% 600%;
+  animation: gradientShift 12s ease infinite;
+  color: var(--text-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-primary);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== GLOW EFFECT ===== */
+.glow {
+  text-shadow: 0 0 10px var(--primary-alpha-80),
+               0 0 20px var(--primary-alpha-60),
+               0 0 40px var(--accent-alpha-60);
+}
+
+.glow-success {
+  text-shadow: 0 0 10px var(--success-alpha-60),
+               0 0 20px var(--success-alpha-35);
+}
+
+.glow-warning {
+  text-shadow: 0 0 10px var(--warning-alpha-40),
+               0 0 20px var(--warning-alpha-35);
+}
+
+/* ===== GLASSMORPHISM CARDS ===== */
+.card-glass {
+  background: var(--surface-glass);
+  backdrop-filter: var(--backdrop-glass);
+  -webkit-backdrop-filter: var(--backdrop-glass);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ===== BOUTONS "GAMING" ===== */
+.btn {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all var(--transition-bounce);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, var(--primary-dark), var(--accent));
+  color: var(--text-primary);
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-glow-primary), var(--shadow-glow-accent);
+}
+
+.btn-success {
+  background: linear-gradient(45deg, var(--success), var(--success-light));
+  color: var(--text-primary);
+  box-shadow: var(--shadow-glow-success);
+}
+
+.btn-success:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-glow-success);
+}
+
+/* ===== BADGES POUR EXERCICES ===== */
+.badge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-correct { 
+  background: var(--success);
+  box-shadow: var(--shadow-glow-success);
+}
+
+.badge-incorrect { 
+  background: var(--danger);
+  box-shadow: 0 0 10px var(--danger-alpha-60);
+}
+
+.badge-hint { 
+  background: var(--primary);
+  box-shadow: var(--shadow-glow-primary);
+}
+
+/* ===== PULSE ANIMATIONS ===== */
+@keyframes pulse-primary {
+  0%, 100% { box-shadow: var(--shadow-glow-primary); }
+  50% { box-shadow: var(--shadow-glow-primary), 0 0 40px var(--primary-alpha-35); }
+}
+
+@keyframes pulse-success {
+  0%, 100% { box-shadow: var(--shadow-glow-success); }
+  50% { box-shadow: var(--shadow-glow-success), 0 0 30px var(--success-alpha-35); }
+}
+
+.pulse-primary {
+  animation: pulse-primary 2s infinite;
+}
+
+.pulse-success {
+  animation: pulse-success 2s infinite;
+}
+
+/* =============================================================================
+   CLASSES UTILITAIRES DE COULEURS
+   ============================================================================= */
+
+/* Classes pour tests rapides */
+.text-primary { color: var(--primary); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-danger { color: var(--danger); }
+.text-math-positive { color: var(--math-positive); }
+.text-math-negative { color: var(--math-negative); }
+.text-math-neutral { color: var(--math-neutral); }
+
+.bg-primary { background-color: var(--primary); }
+.bg-success { background-color: var(--success); }
+.bg-warning { background-color: var(--warning); }
+.bg-danger { background-color: var(--danger); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-glass { background: var(--surface-glass); }

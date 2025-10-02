@@ -1,12 +1,39 @@
-// Helper to toggle solution blocks (used by integrated exercise cards)
+// (toggleSolution) obsolète : les solutions complètes sont injectées après validation maintenant
 function toggleSolution(id, btn){
+    // Affiche l'indice à la première ouverture puis toggle ensuite
     const el = document.getElementById(id);
-    if (!el) return;
-    const isHidden = (el.style.display === 'none' || el.style.display === '');
-    el.style.display = isHidden ? 'block' : 'none';
-    if (btn) {
-        const expanded = isHidden ? 'true' : 'false';
-        btn.setAttribute('aria-expanded', expanded);
+    if(!el) return;
+    if(!el.dataset.mode){
+        const { hintHtml } = extractHintAndSolution(el.innerHTML);
+        el.dataset.full = el.innerHTML;
+        el.innerHTML = hintHtml && hintHtml.trim() ? hintHtml : '<p><em>Aucun indice disponible.</em></p>';
+        el.dataset.mode = 'prepared';
+        // Première ouverture : rendre visible
+        el.removeAttribute('hidden');
+        el.style.display = 'block'; // sécurité
+        if(btn) btn.setAttribute('aria-expanded','true');
+        el.dataset.preparedDisplayed = '1';
+        console.debug('[Indice] affiché pour', id);
+        // Tracking usage indice (1 seul enregistrement par bloc)
+        try {
+            if(window.registerScore && !el.dataset.hintAwarded){
+                // section déterminée via parent data-section
+                const section = el.closest('[data-section]')?.getAttribute('data-section') || 'exercices-n1';
+                registerScore(section, 'hint-'+id, 0, { hint:true }); // valeur 0: pas d'impact sur score mais trace dans awarded
+                el.dataset.hintAwarded = '1';
+            }
+        } catch(e){ /* ignore */ }
+        return;
+    }
+    const isHidden = el.hasAttribute('hidden');
+    if(isHidden){
+        el.removeAttribute('hidden');
+        el.style.display = 'block';
+        if(btn) btn.setAttribute('aria-expanded','true');
+    } else {
+        el.setAttribute('hidden','');
+        el.style.display = 'none';
+        if(btn) btn.setAttribute('aria-expanded','false');
     }
 }
 
@@ -56,13 +83,13 @@ function checkPhaseAnswer(inputId, correctAnswer, explanation) {
     
     if (userAnswer === correct || userAnswer === correct.replace('+', '')) {
         feedback.textContent = '✅ Correct ! ' + explanation;
-        feedback.style.color = '#10b981';
+        feedback.style.color = 'var(--success)';
         input.disabled = true;
         input.nextElementSibling.disabled = true;
         registerScore('phases', 'phase-'+inputId, 1);
     } else {
-        feedback.textContent = '❌ Essayez encore. Pensez aux règles !';
-        feedback.style.color = '#ef4444';
+    feedback.textContent = '❌ Réessaie. Pense aux règles.';
+        feedback.style.color = 'var(--danger)';
     }
 }
 
@@ -80,13 +107,13 @@ function checkAnswer(button, isCorrect) {
     // Appliquer l'état sur le bouton cliqué
     if (isCorrect) {
         button.classList.add('btn--primary', 'quiz-option--correct');
-        feedback.textContent = '✅ Correct ! -2 est plus grand que -8 et -10 sur la droite graduée.';
-        feedback.style.color = '#10b981';
+    feedback.textContent = '✅ Oui ! -2 est plus grand que -8 et -10 sur la droite graduée.';
+        feedback.style.color = 'var(--success)';
         registerScore('introduction', 'intro-q1', 1);
     } else {
         button.classList.add('btn--danger', 'quiz-option--wrong');
-        feedback.textContent = '❌ Non, regardez la droite graduée : plus on va à droite, plus c\'est grand.';
-        feedback.style.color = '#ef4444';
+    feedback.textContent = '❌ Non. Regarde la droite graduée : plus à droite = plus grand.';
+        feedback.style.color = 'var(--danger)';
         // Mettre aussi en évidence le bon bouton pour l'apprentissage
         const correctBtn = Array.from(buttons).find(b => b.dataset.correct === 'true');
         if (correctBtn) correctBtn.classList.add('btn--primary', 'quiz-option--correct');
@@ -101,14 +128,14 @@ function checkRetention(inputId, expectedWord) {
     const userAnswer = normalizeAnswer(input.value);
     
     if (userAnswer.includes(expectedWord)) {
-        feedback.textContent = '✅ Parfait ! Vous maîtrisez la règle.';
-        feedback.style.color = '#10b981';
+        feedback.textContent = '✅ Bien ! Tu connais la règle.';
+        feedback.style.color = 'var(--success)';
         input.disabled = true;
         input.nextElementSibling.disabled = true;
         registerScore('retention', 'retention-'+inputId, 1);
     } else {
-        feedback.textContent = '❌ Relisez la règle correspondante ci-dessus.';
-        feedback.style.color = '#ef4444';
+        feedback.textContent = '❌ Relis la règle juste au-dessus.';
+        feedback.style.color = 'var(--danger)';
     }
 }
 
@@ -125,10 +152,10 @@ function answerRetentionVF(btn, key, expected){
     const correct = expected === userValue;
     container.querySelectorAll('button').forEach(b=>{ b.disabled = true; });
     if(correct){
-        fb.textContent = '✅ Correct'; fb.style.color = '#10b981';
+        fb.textContent = '✅ Oui'; fb.style.color = 'var(--success)';
         registerScore('retention','retention-'+key,1);
     } else {
-        fb.textContent = '❌ Faux'; fb.style.color = '#ef4444';
+        fb.textContent = '❌ Non'; fb.style.color = 'var(--danger)';
     }
     container.classList.add('done');
 }
@@ -141,10 +168,10 @@ function answerRetentionMC(btn, key, choice){
     const correctChoice = 'B';
     container.querySelectorAll('button').forEach(b=> b.disabled = true);
     if(choice === correctChoice){
-        fb.textContent = '✅ Correct : soustraction des valeurs absolues'; fb.style.color = '#10b981';
+        fb.textContent = '✅ Oui : on soustrait les valeurs'; fb.style.color = 'var(--success)';
         registerScore('retention','retention-'+key,1);
     } else {
-        fb.textContent = '❌ Non, on soustrait les valeurs absolues (réponse B)'; fb.style.color = '#ef4444';
+        fb.textContent = '❌ Non : on soustrait (réponse B)'; fb.style.color = 'var(--danger)';
     }
     container.classList.add('done');
 }
@@ -158,14 +185,14 @@ function checkMethodStep(step, isCorrect, message) {
     localButtons.forEach(btn => btn.disabled = true);
     if (isCorrect) {
         feedback.textContent = '✅ ' + message;
-        feedback.style.color = '#10b981';
+        feedback.style.color = 'var(--success)';
         registerScore('methodes', 'method-step-'+step, 1);
         // highlight correct button
         event?.target?.classList?.remove('btn--secondary');
         event?.target?.classList?.add('btn--primary');
     } else {
         feedback.textContent = '❌ ' + message;
-        feedback.style.color = '#ef4444';
+        feedback.style.color = 'var(--danger)';
         event?.target?.classList?.add('btn--danger');
     }
 }
@@ -182,11 +209,11 @@ function checkTrap(button, isCorrect, message, key='trap-q1') {
     });
     if (isCorrect) {
         button.classList.add('btn--primary','quiz-option--correct');
-        if(feedback){ feedback.textContent = '✅ ' + message; feedback.style.color = '#10b981'; }
+        if(feedback){ feedback.textContent = '✅ ' + message; feedback.style.color = 'var(--success)'; }
         registerScore('pieges', key, 1);
     } else {
         button.classList.add('btn--danger','quiz-option--wrong');
-        if(feedback){ feedback.textContent = '❌ ' + message; feedback.style.color = '#ef4444'; }
+        if(feedback){ feedback.textContent = '❌ ' + message; feedback.style.color = 'var(--danger)'; }
         const correctBtn = Array.from(buttons).find(b => b.dataset.correct === 'true');
         if (correctBtn) correctBtn.classList.add('btn--primary','quiz-option--correct');
     }
@@ -250,17 +277,17 @@ function updateProgress(sectionId) {
             endDiv.id = 'end-banner';
             endDiv.className = 'memo-box';
             if(mastery === 1){
-                endDiv.innerHTML = `<h3>🎉 Bravo ! Vous avez parcouru et maîtrisé 100% du chapitre.</h3><p>Suggestion : enchaînez avec la multiplication des nombres relatifs.</p>`;
+                endDiv.innerHTML = `<h3>🎉 Bravo ! Tu as tout lu et tout maîtrisé (100%).</h3><p>Suite possible : multiplication des nombres relatifs.</p>`;
             } else if(mastery >= .7){
-                endDiv.innerHTML = `<h3>✅ Parcours terminé (lecture 100%). Maîtrise solide : ${masteryPct}%.</h3><p>Suggestion : finalisez les derniers points restants pour viser 100%.</p>`;
+                endDiv.innerHTML = `<h3>✅ Tu as tout lu. Maîtrise solide : ${masteryPct}%.</h3><p>Encore quelques points pour atteindre 100%.</p>`;
             } else {
-                endDiv.innerHTML = `<h3>📘 Parcours terminé, maîtrise actuelle : ${masteryPct}%.</h3><p>Complétez les quiz / exercices et réactivations pour augmenter votre score.</p>`;
+                endDiv.innerHTML = `<h3>📘 Tu as tout lu. Maîtrise actuelle : ${masteryPct}%.</h3><p>Fais d'autres quiz, exercices ou révisions pour monter ton score.</p>`;
             }
             synthese.appendChild(endDiv);
         } else {
             // Mettre à jour dynamiquement si la maîtrise évolue
             if(mastery === 1 && !existing.innerHTML.includes('🎉')){
-                existing.innerHTML = `<h3>🎉 Bravo ! Vous avez parcouru et maîtrisé 100% du chapitre.</h3><p>Suggestion : enchaînez avec la multiplication des nombres relatifs.</p>`;
+                existing.innerHTML = `<h3>🎉 Bravo ! Tu as tout lu et tout maîtrisé (100%).</h3><p>Suite possible : multiplication des nombres relatifs.</p>`;
             }
         }
     }
@@ -281,8 +308,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Navigation au clavier
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') showPreviousSection();
-        if (e.key === 'ArrowRight') showNextSection();
+        const tag = e.target.tagName;
+        const typingContext = ['INPUT','TEXTAREA'].includes(tag) || e.target.isContentEditable;
+        // Allow Escape to still work, but block navigation keys while typing to avoid scroll jumps
+        if (typingContext) {
+            if(e.key === 'Escape') { showSection('introduction'); }
+            return; // prevent arrow / numeric shortcuts during text entry
+        }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); showPreviousSection(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); showNextSection(); }
         if (e.key === 'Escape') showSection('introduction');
         // Shortcuts: 1/2/3/4/S navigate in-page to exercise levels and synthesis
         if (e.key === '1') { showSection('exercices-n1'); }
@@ -368,6 +402,53 @@ document.addEventListener('DOMContentLoaded', buildReactivationPlan);
 function normalizeUserValue(val){
     return val.toLowerCase().trim().replace(/\s+/g,'').replace('°c','c');
 }
+function extractHintAndSolution(solutionHtml){
+    // Retire balises extérieures si besoin puis sépare Indice/Méthode/Règle/Étapes et Solution
+    // On récupère les paragraphes et on re-classe.
+    const container = document.createElement('div');
+    container.innerHTML = solutionHtml;
+    const ps = Array.from(container.querySelectorAll('p'));
+    let hintParts = [];
+    let solutionParts = [];
+    ps.forEach(p => {
+        const raw = p.textContent || '';
+        const txt = raw.trim();
+        const lower = txt.toLowerCase();
+        if(/^indice\s*:/.test(lower) || /^(méthode|methode)\s*:/.test(lower) || /^(règle|regle)\s*:/.test(lower) || /^(étapes|etapes)\s*:/.test(lower)){
+            // Retire le label initial pour allèger
+            const cleaned = txt.replace(/^\w+\s*:\s*/i,'').trim();
+            if(cleaned) hintParts.push('<p>'+cleaned+'</p>');
+        } else if(/^solution\s*:/.test(lower)) {
+            const cleaned = txt.replace(/^solution\s*:\s*/i,'').trim();
+            if(cleaned) solutionParts.push('<p>'+cleaned+'</p>');
+        } else {
+            if(solutionParts.length===0) hintParts.push(p.outerHTML); else solutionParts.push(p.outerHTML);
+        }
+    });
+    return { hintHtml: hintParts.join(''), solutionHtml: solutionParts.join('') };
+}
+
+// Helper pour forcer un style succès inline (contourne overrides externes)
+function applySuccessFeedback(fb, restored=false){
+    if(!fb) return;
+    fb.classList.add('exercise-feedback--success');
+    fb.style.setProperty('background','var(--bg-secondary)','important');
+    fb.style.setProperty('border-left','3px solid var(--success)','important');
+    fb.style.setProperty('box-shadow','inset 0 0 0 1px rgba(16,185,129,0.15)','important');
+    const baseMsg = restored ? 'Correct (restauré)' : 'Bien !';
+    // Ne pas écraser si une solution inline est déjà injectée (on reconstruit seulement l'entête)
+    const existingInline = fb.querySelector('.success-head');
+    if(!existingInline){
+        // Conserver éventuelle solution déjà injectée
+        const solutionNodes = Array.from(fb.querySelectorAll('.inline-solution'));
+        fb.innerHTML = `<div class="success-head"><span class="assist-icon" aria-hidden="true">✅</span><span class="assist-text">${baseMsg}</span></div>`;
+        solutionNodes.forEach(n=> fb.appendChild(n));
+    } else {
+        const label = existingInline.querySelector('.assist-text');
+        if(label) label.textContent = baseMsg;
+    }
+}
+
 function checkExerciseAnswer(btn){
     const wrapper = btn.closest('.exercise');
     if(!wrapper) return;
@@ -377,25 +458,87 @@ function checkExerciseAnswer(btn){
     const expectedList = expectedRaw.split('|').map(e=>normalizeUserValue(e));
     const user = normalizeUserValue(input.value);
     if(!user){
-        fb.textContent = '📝 Entrez une réponse.';
-        fb.style.color = 'var(--warning, #f59e0b)';
+        fb.textContent = '📝 Écris ta réponse.';
+        fb.style.color = 'var(--warning, var(--warning))';
+        // Force same background as help boxes even for empty input message
+        fb.className = 'exercise-feedback exercise-feedback--helplike';
+        fb.style.setProperty('background','var(--bg-secondary)','important');
+        fb.style.setProperty('border-left','3px solid var(--warning, var(--warning))','important');
+        fb.style.setProperty('padding','.45rem .6rem','important');
+        fb.style.setProperty('border-radius','6px','important');
         return;
     }
     if(expectedList.includes(user)){
-        fb.textContent = '✅ Correct !';
-        fb.style.color = '#10b981';
+    // Affichage succès (structure harmonisée)
+    applySuccessFeedback(fb, false);
         input.disabled = true; btn.disabled = true;
-        // Determine section by DOM (closest h2 id marker already separated by sections)
         const section = wrapper.closest('[data-section]')?.getAttribute('data-section') || 'exercices-n1';
         const exId = wrapper.getAttribute('data-ex-id') || expectedRaw;
-        // Weight: N1=1, N2=2, N3=3
-        let weight = 1;
-        if(section === 'exercices-n2') weight = 2;
-        if(section === 'exercices-n3') weight = 3;
+        let weight = 1; if(section === 'exercices-n2') weight = 2; if(section === 'exercices-n3') weight = 3;
         registerScore(section, 'exercise-'+exId, weight);
+        const card = wrapper.closest('.card');
+        if(card){
+            const solutionEl = card.querySelector('.solution');
+            if(solutionEl && !solutionEl.dataset.injected){
+                solutionEl.setAttribute('hidden','');
+                // Récupère solution complète à partir du full stocké si existant
+                let original = solutionEl.dataset.full || solutionEl.innerHTML;
+                const { solutionHtml } = extractHintAndSolution(original);
+                const container = document.createElement('div');
+                container.className = 'inline-solution';
+                container.innerHTML = solutionHtml || solutionEl.innerHTML;
+                fb.appendChild(container);
+                // Icône d'achèvement
+                container.insertAdjacentHTML('afterbegin','<div class="solution-badge" aria-hidden="true">✅</div>');
+                solutionEl.dataset.injected = 'true';
+                // make feedback visually similar to help
+                fb.classList.add('exercise-feedback--helplike');
+                // record that this exercise was solved (no implicit hint used here)
+            }
+        }
     } else {
-        fb.textContent = '❌ Vérifie les règles et réessaie.';
-        fb.style.color = '#ef4444';
+        // Reset and clear any existing content/styling first
+        fb.innerHTML = '';
+        fb.className = 'exercise-feedback exercise-feedback--helplike';
+        fb.style.setProperty('background','var(--bg-secondary)','important');
+        fb.style.setProperty('border-left','3px solid var(--accent,var(--primary))','important');
+        fb.style.setProperty('padding','.45rem .6rem','important');
+        fb.style.setProperty('border-radius','6px','important');
+        
+        // Add error message
+        const errorMsg = document.createElement('div');
+        errorMsg.style.color = 'var(--danger)';
+        errorMsg.textContent = '❌ Vérifie la règle et réessaie.';
+        fb.appendChild(errorMsg);
+        // Fournir explication + solution complète après une erreur (selon la consigne)
+        const card = wrapper.closest('.card');
+        if(card){
+            const solutionEl = card.querySelector('.solution');
+            if(solutionEl && !solutionEl.dataset.errorShown){
+                // On récupère solution + hint
+                let original = solutionEl.dataset.full || solutionEl.innerHTML;
+                const { hintHtml, solutionHtml } = extractHintAndSolution(original);
+                const container = document.createElement('div');
+                container.className = 'inline-solution';
+                     // Construire bloc erreur : n'afficher les sous-titres que si contenu
+                     let parts = [];
+                     if(hintHtml){
+                   parts.push('<div class="sol-hint"><span class="hint-icon" aria-hidden="true">💡</span>'+hintHtml+'</div>');
+                     }
+                     const finalSolution = solutionHtml || extractHintAndSolution(original).solutionHtml || '';
+                     if(finalSolution){
+                         parts.push('<div class="sol-correction">'+finalSolution+'</div>');
+                     }
+                     if(parts.length===0){
+                         parts.push('<p><em>Aucun détail disponible.</em></p>');
+                     }
+                     container.innerHTML = parts.join('');
+                fb.appendChild(container);
+                solutionEl.dataset.errorShown = 'true';
+                // mark that a hint was shown for this exercise
+                try{ if(window.registerScore){ registerScore(wrapper.closest('[data-section]')?.getAttribute('data-section')||'exercices-n1', 'hint-'+(wrapper.closest('.card')?.querySelector('.exercise')?.getAttribute('data-ex-id')||''), 0, {hint:true}); } }catch(e){}
+            }
+        }
     }
 }
 
@@ -404,6 +547,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const engine = window.ScoreEngine;
     if(!engine) return;
     const st = engine.getState();
+    // Masquer toutes les solutions par défaut (elles seront ouvertes via le bouton ou injectées après validation)
+    document.querySelectorAll('.solution').forEach(sol=>{
+        if(!sol.dataset.injected){ sol.setAttribute('hidden',''); }
+    });
     const resetBtn = document.getElementById('reset-score-btn');
     if(resetBtn){
         resetBtn.addEventListener('click', ()=>{
@@ -430,7 +577,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 card.classList.add('done');
                 card.querySelectorAll('button').forEach(b=> b.disabled = true);
                 const fb = document.getElementById('retention-'+simpleKey);
-                if(fb){ fb.textContent = '✅ Correct (restauré)'; fb.style.color = '#10b981'; }
+                if(fb){ fb.textContent = '✅ Correct (restauré)'; fb.style.color = 'var(--success)'; }
             }
         }
         if(key.startsWith('method-step-')){
@@ -442,7 +589,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 trapContainer.classList.add('done');
                 trapContainer.querySelectorAll('.trap-option').forEach(b=> b.disabled = true);
                 const fb = trapContainer.querySelector('.quiz-feedback');
-                if(fb && !fb.textContent.includes('Correct')){ fb.textContent = '✅ Correct (restauré)'; fb.style.color = '#10b981'; }
+                if(fb && !fb.textContent.includes('Correct')){ fb.textContent = '✅ Correct (restauré)'; fb.style.color = 'var(--success)'; }
             }
         }
         if(key.startsWith('selfeval-r')){
@@ -470,9 +617,32 @@ document.addEventListener('DOMContentLoaded', ()=>{
         if(st.awarded[exKey]){
             const input = ex.querySelector('input'); const btn = ex.querySelector('button');
             if(input) input.disabled = true; if(btn) btn.disabled = true;
-            const fb = ex.querySelector('.exercise-feedback'); if(fb){ fb.textContent = '✅ Correct (restauré)'; fb.style.color = '#10b981'; }
+            const fb = ex.querySelector('.exercise-feedback'); if(fb){
+                applySuccessFeedback(fb, true);
+                const card = ex.closest('.card');
+                if(card){
+                    const solutionEl = card.querySelector('.solution');
+                    if(solutionEl && !solutionEl.dataset.injected){
+                        solutionEl.setAttribute('hidden','');
+                        const { solutionHtml } = extractHintAndSolution(solutionEl.innerHTML);
+                        const container = document.createElement('div');
+                        container.className = 'inline-solution';
+                        container.innerHTML = solutionHtml || solutionEl.innerHTML;
+                        fb.appendChild(container);
+                        solutionEl.dataset.injected = 'true';
+                    }
+                }
+            }
         }
     });
+    // Sécurité : forcer style succès sur anciennes restaurations manquées
+    setTimeout(()=>{
+        document.querySelectorAll('.exercise-feedback').forEach(fb=>{
+            if(/Correct \(restauré\)/.test(fb.textContent) || fb.querySelector('.assist-text')?.textContent.includes('restauré')){
+                applySuccessFeedback(fb, true);
+            }
+        });
+    },50);
 
     // Auto-évaluation (fiche synthèse) -> 1 point par règle évaluée (3 max)
     ['r1','r2','r3'].forEach(r=>{
@@ -604,6 +774,20 @@ function buildMiniRecap(){
         ${msg.extra ? `<p class="mini-recap-extra">${msg.extra}</p>`: ''}
         <button type="button" class="mini-recap-reset" onclick="resetScores()" title="Réinitialiser toutes les données (scores & recommandations)">↺ Reset</button>
     `;
+    // Append hint-used indicators if any
+    const awarded = st.awarded || {};
+    const hintKeys = Object.keys(awarded).filter(k=>k.startsWith('hint-'));
+    if(hintKeys.length){
+        const hintList = document.createElement('div');
+        hintList.className = 'mini-recap-hints';
+        hintList.innerHTML = '<strong>Indices utilisés :</strong> ' + hintKeys.slice(0,5).map(k=>{
+            const meta = awarded[k] && awarded[k].meta ? awarded[k].meta : {};
+            const sec = awarded[k] ? awarded[k].section : '';
+            const id = k.replace('hint-','');
+            return `<span class="hint-badge">💡 ${id || sec}</span>`;
+        }).join(' ');
+        container.appendChild(hintList);
+    }
 }
 
 function computeRecommendation(st, MAX_POINTS){
@@ -642,7 +826,7 @@ function computeRecommendation(st, MAX_POINTS){
         return { type:'danger', text:first.id+' : niveau « pas confiant » → relis dans '+reglesLink+' puis valide dans '+synthLink+'. Entraîne-toi via <a href="#exercices-n1" onclick="showSection(\'exercices-n1\')" class="mini-recap-link">Ex N1</a> & <a href="#exercices-n2" onclick="showSection(\'exercices-n2\')" class="mini-recap-link">Ex N2</a>.', extra:'Priorité : sécuriser les bases avant de poursuivre.' };
     }
     if(globalRatio < .40){
-        return { type:'warning', text:'Progression globale < 40% : refais 2 quiz dans <a href="#phases" onclick="showSection(\'phases\')" class="mini-recap-link">Quiz Phases</a> puis 2 exercices dans <a href="#exercices-n1" onclick="showSection(\'exercices-n1\')" class="mini-recap-link">Ex N1</a>.', extra:null };
+        return { type:'warning', text:'Progression globale < 40% : fais 2 quiz dans <a href="#phases" onclick="showSection(\'phases\')" class="mini-recap-link">Quiz Phases</a> puis 2 exercices dans <a href="#exercices-n1" onclick="showSection(\'exercices-n1\')" class="mini-recap-link">Ex N1</a>.', extra:null };
     }
     // Check low sections (phases, exercices-n2/n3)
     const lowSection = ['phases','exercices-n2','exercices-n3'].find(sec => {

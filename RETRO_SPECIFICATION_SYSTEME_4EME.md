@@ -41,7 +41,96 @@ Project_Learning_Simplified/
 
 ## 🎨 **DESIGN UNIFIÉ**
 
-### **Palette CSS**
+### **🎨 Système de Variables CSS (Octobre 2025)**
+**Architecture centralisée** : `styles/variables.css` → `base.css` → `components.css`
+
+#### **📋 Structure des Fichiers CSS**
+```
+styles/
+├── variables.css     # ⭐ Variables centralisées (NOUVEAU)
+├── base.css         # Reset + Layout global
+└── components.css   # Composants réutilisables
+```
+
+#### **🎯 Variables Principales**
+```css
+/* Couleurs principales */
+--primary: #67c7ff           /* Bleu mathématiques */
+--accent: #67c7ff            /* Accent (même que primary) */
+
+/* Couleurs sémantiques */
+--success: #10b981           /* Vert succès */
+--warning: #f59e0b           /* Orange avertissement */
+--danger: #ef4444            /* Rouge erreur/échec */
+
+/* Couleurs mathématiques spécialisées */
+--math-positive: #10ac84     /* Vert nombres positifs */
+--math-negative: #ff6b6b     /* Rouge nombres négatifs */
+--math-neutral: #ff9f43      /* Orange zéro/neutre */
+--math-axis: #67c7ff         /* Bleu axes/droites */
+--math-highlight: #00d2d3    /* Cyan mise en évidence */
+
+/* Fonds */
+--bg-primary: #ffffff        /* Fond principal */
+--bg-secondary: #f8fafc      /* Cartes, aides "Besoin d'aide ?" */
+--bg-tertiary: #f1f5f9       /* Fond tertiaire */
+--bg-card: #ffffff           /* Fond des cartes */
+--bg-input: #f9fafb         /* Champs de saisie */
+--bg-hover: #f0f9ff         /* Survol */
+
+/* Transparences (nouvelles) */
+--primary-alpha-05: rgba(103, 199, 255, 0.05)
+--primary-alpha-15: rgba(103, 199, 255, 0.15)
+--success-alpha-35: rgba(16, 185, 129, 0.35)
+--warning-alpha-40: rgba(245, 158, 11, 0.4)
+```
+
+#### **🔧 Migration Effectuée**
+✅ **JavaScript** : `main.js` 
+- `#10b981` → `var(--success)`
+- `#ef4444` → `var(--danger)`  
+- `#f59e0b` → `var(--warning)`
+
+✅ **CSS** : `components.css`
+- Suppression des définitions codées en dur
+- Utilisation systématique des variables
+
+✅ **Styles spéciaux** : `memo-styles.css`
+- `#67c7ff` → `var(--primary)`
+- `rgba(103, 199, 255, *)` → `var(--primary-alpha-*)`
+
+✅ **SVG dynamique** : `cours_principal.html`
+- Script JavaScript pour appliquer les variables CSS aux éléments SVG
+- Support des couleurs mathématiques spécialisées
+
+#### **💡 Avantages du Système**
+- **Cohérence** : Une seule source de vérité pour les couleurs
+- **Maintenabilité** : Modification centralisée possible
+- **Évolutivité** : Thème sombre facilement implémentable
+- **Performance** : Variables CSS natives (pas de préprocesseur)
+
+#### **📏 Autres Variables Standardisées**
+```css
+/* Espacements */
+--space-xs: 0.25rem  --space-sm: 0.5rem   --space-md: 1rem
+--space-lg: 1.5rem   --space-xl: 2rem     --space-xxl: 3rem
+
+/* Rayons */
+--radius-sm: 4px     --radius-md: 6px     --radius-lg: 8px
+--radius-xl: 12px    --radius-full: 9999px
+
+/* Ombres */
+--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05)
+--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1)
+--shadow-primary: 0 4px 15px var(--primary-alpha-20)
+
+/* Transitions */
+--transition-fast: 150ms ease
+--transition-normal: 250ms ease
+--transition-slow: 350ms ease
+```
+
+### **Palette CSS Héritée** 
 ```css
 --bg-primary: #0f1115    --text-primary: #f5f7fa
 --bg-card: #141a21       --accent-blue: #67c7ff
@@ -159,6 +248,57 @@ update_calendar_individual_buttons.py    # Migration boutons individuels
 - Émojis cohérents, code couleur pédagogique
 - Formatage : `<strong>` essentiels, `<em>` exemples, `<code>` formules
 
+### **🛠️ Bonnes Pratiques CSS (Variables)**
+
+#### **✅ À FAIRE**
+```css
+/* ✅ Utiliser les variables */
+.exercise-feedback { background: var(--bg-secondary); }
+.success-message { color: var(--success); }
+.math-positive { color: var(--math-positive); }
+
+/* ✅ Avec fallback pour compatibilité */
+background: var(--primary, #67c7ff);
+
+/* ✅ Combinaisons avec transparence */
+box-shadow: 0 0 0 3px var(--success-alpha-35);
+```
+
+#### **❌ ÉVITER**
+```css
+/* ❌ Couleurs codées en dur */
+color: #10b981;
+background: #f8fafc;
+
+/* ❌ Magic numbers */
+padding: 16px;  /* → var(--space-md) */
+border-radius: 8px;  /* → var(--radius-lg) */
+```
+
+#### **📱 Application dans JavaScript**
+```javascript
+// ✅ Utiliser les variables CSS
+feedback.style.color = 'var(--success)';
+fb.style.setProperty('background', 'var(--bg-secondary)', 'important');
+
+// ✅ Pour SVG (nécessite script)
+const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
+svgElement.setAttribute('fill', primaryColor);
+```
+
+#### **🔄 Workflow Mise à Jour**
+1. **Modifier** `variables.css` uniquement
+2. **Tester** sur plusieurs composants
+3. **Vérifier** JavaScript et SVG
+4. **Commit** avec message descriptif
+
+#### **🎨 Guide Couleurs Mathématiques**
+- **Positif** : `var(--math-positive)` → +7, +15, etc.
+- **Négatif** : `var(--math-negative)` → -3, -12, etc.  
+- **Zéro/Neutre** : `var(--math-neutral)` → 0, points neutres
+- **Axes/Droites** : `var(--math-axis)` → droite graduée, axes
+- **Highlight** : `var(--math-highlight)` → résultats, focus
+
 ## 🚀 **DÉPLOIEMENT**
 
 ### **Organisation**
@@ -166,11 +306,64 @@ update_calendar_individual_buttons.py    # Migration boutons individuels
 - Encodage UTF-8, liens relatifs
 - Git avec commits descriptifs
 
+### **🎨 CSS Architecture (Nouveau Standard)**
+```html
+<!-- Ordre d'inclusion OBLIGATOIRE -->
+<link rel="stylesheet" href="styles/variables.css">  <!-- 1. Variables -->
+<link rel="stylesheet" href="styles/base.css">      <!-- 2. Base -->
+<link rel="stylesheet" href="styles/components.css"> <!-- 3. Composants -->
+```
+
 ### **Qualité**
 - Structure standard respectée
 - Navigation fonctionnelle
 - Responsive + accessibilité
 - Performance < 2s
+- **NOUVEAU** : Variables CSS cohérentes
+
+### **📊 Checklist Validation CSS**
+- [ ] `variables.css` inclus en premier
+- [ ] Aucune couleur codée en dur (`#ffffff`, `rgb()`)
+- [ ] Variables sémantiques utilisées (`--success`, `--danger`)
+- [ ] Couleurs mathématiques pour contenus spécialisés
+- [ ] SVG mis à jour par script JavaScript
+- [ ] Compatibilité mobile testée
+
+### **🔮 Évolutions Prévues**
+
+#### **Phase 2 : Thème Sombre (À Venir)**
+```css
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b; 
+    --text-primary: #f1f5f9;
+    /* Couleurs math inchangées pour contraste */
+  }
+}
+```
+
+#### **Phase 3 : Variables Matières**
+- Variables spécifiques par matière (Français, Sciences, etc.)
+- Palette étendue pour besoins disciplinaires
+- Système de thèmes commutables
+
+### **🛠️ Maintenance Variables CSS**
+
+#### **Vérification Périodique**
+```bash
+# Rechercher couleurs codées en dur oubliées
+grep -r "#[0-9a-fA-F]\{6\}" styles/ scripts/
+grep -r "rgb\(" styles/ scripts/
+
+# Vérifier utilisation variables
+grep -r "var(--" styles/ scripts/
+```
+
+#### **Tests de Régression**
+- Vérifier toutes les couleurs après modification `variables.css`
+- Tester sur 3 navigateurs minimum (Chrome, Firefox, Safari)
+- Validation mobile + mode sombre si implémenté
 
 ## 📊 **MÉTRIQUES**
 - Engagement, scores quiz, progression

@@ -1,0 +1,192 @@
+/* =============================================================================
+   THEME GAMER - Variables CSS Propres - SANS OVERRIDE
+   ============================================================================= */
+
+:root {
+  /* ===== FONDS ===== */
+  --bg-primary: #0f1419;
+  --bg-secondary: #1a1f2e;
+  --bg-tertiary: #242b3d;
+  --bg-card: #1a1f2e;
+
+  /* ===== COULEURS PRINCIPALES ===== */
+  --primary: #00e0ff;
+  --primary-light: #33e6ff;
+  --primary-dark: #0099cc;
+  --secondary: #ff3b81;
+  --accent: #7c3aed;
+
+  /* ===== TEXTE ===== */
+  --text-primary: #ffffff;
+  --text-secondary: #b8c4d0;
+  --text-muted: #7c8b9a;
+
+  /* ===== BORDURES ===== */
+  --border-light: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.2);
+
+  /* ===== ESPACEMENTS ===== */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-xxl: 3rem;
+
+  /* ===== BORDURES ARRONDIES ===== */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* ===== OMBRES ===== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+  /* ===== TYPOGRAPHIE ===== */
+  --font-family-base: 'Orbitron', 'Rajdhani', sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 200ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+/* =============================================================================
+   STYLES GAMER DE BASE
+   ============================================================================= */
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family-base);
+}
+
+/* =============================================================================
+   CLASSES TEMPLATE GÉNÉRIQUES - SANS OVERRIDE
+   ============================================================================= */
+
+/* Template pour éléments inline */
+.inline-element {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Template pour boutons/badges gamer */
+.gamer-element {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  padding: 6px 12px;
+  border-radius: var(--radius-xl);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+  display: inline-block;
+  vertical-align: top;
+  line-height: 1.2;
+  box-sizing: border-box;
+}
+
+/* Variante primary pour badges importants */
+.gamer-element.primary {
+  color: var(--primary-light);
+}
+
+/* Variante interactive pour boutons */
+.gamer-element.interactive {
+  cursor: pointer;
+}
+
+.gamer-element.interactive:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--primary);
+}
+
+/* Template pour espacement horizontal */
+.spaced-group > * {
+  margin-right: 0.5em;
+}
+
+.spaced-group > *:last-child {
+  margin-right: 0;
+}
+
+/* Template pour conteneur header */
+.header-controls {
+  margin-left: 1em;
+}
+
+/* Style pour bouton disabled (badge score) */
+.gamer-element:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+/* =============================================================================
+   UNIFORMISATION NATURELLE - SANS FORÇAGE
+   ============================================================================= */
+
+/* Boutons de navigation - uniformisation douce */
+.modern-nav .btn,
+.btn--secondary, 
+.btn--shortcut {
+  min-width: 120px;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.modern-nav > .btn {
+  margin-right: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.nav-shortcuts {
+  margin-top: 0.35rem;
+}
+
+.nav-shortcuts .btn {
+  margin: 0;
+}
+
+/* Layout sections - cohérence naturelle */
+.content-section {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.content-section:first-child,
+#introduction {
+  margin-top: 0;
+  padding-top: 0.25rem;
+}
+
+.content-section:last-child,
+#plan-reactivation {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Titres - harmonisation douce */
+.content-section h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding-top: 0;
+}
+
+#heading-intro {
+  margin-top: 0;
+}

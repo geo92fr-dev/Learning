@@ -80,28 +80,7 @@ nav button.active {
   font-weight: var(--font-weight-semibold, 600);
 }
 
-/*  BARRE DE PROGRESSION */
-.progress-container {
-  width: 100%;
-  height: 6px;
-  background: var(--bg-secondary);
-  border-radius: var(--radius-sm);
-  margin: var(--space-md) 0;
-  overflow: hidden;
-}
 
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--success), var(--primary));
-  border-radius: var(--radius-sm);
-  transition: width var(--transition-slow);
-  font-size: var(--text-xs);
-  text-align: center;
-  line-height: 6px;
-  color: var(--text-inverse);
-  font-weight: var(--font-weight-semibold, 600);
-  min-width: 60px; /* Pour afficher le texte */
-}
 
 /*  GESTION DES SECTIONS */
 [data-section] {
@@ -109,7 +88,6 @@ nav button.active {
   opacity: 0;
   transform: translateY(10px);
   transition: all var(--transition) var(--easing-out, ease);
-  padding: var(--space-3xl) 0;
 }
 
 [data-section].active {
@@ -131,7 +109,6 @@ h2 {
   font-size: var(--text-2xl); 
   border-bottom: 2px solid var(--primary);
   padding-bottom: var(--space-sm);
-  margin-bottom: var(--space-xl);
 }
 h3 { font-size: var(--text-xl); }
 
@@ -234,7 +211,7 @@ img {
 /*  PRINT STYLES */
 @media print {
   nav { display: none; }
-  .progress-container { display: none; }
+
   [data-section] { 
     display: block !important; 
     opacity: 1 !important;

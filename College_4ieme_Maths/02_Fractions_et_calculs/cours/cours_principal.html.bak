@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Fractions et calculs</title>
+<style>
+body{font-family:Arial,system-ui,sans-serif;margin:0;padding:1.1rem 1.2rem;line-height:1.55;background:#0f1115;color:#f5f7fa;}
+header,footer{background:rgba(255,255,255,0.05);padding:1rem 1.25rem;margin:0 0 1.2rem;border:1px solid #1e2530;border-radius:14px;-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);}
+section{background:rgba(255,255,255,0.025);padding:1rem 1.1rem;margin:0 0 1rem;border:1px solid #1b222c;border-radius:12px;}
+h1,h2,h3{line-height:1.2;margin:0 0 .65rem;font-weight:600;}
+nav a{color:#67c7ff;text-decoration:none;margin-right:.85rem;font-size:.82rem;letter-spacing:.3px;}nav a:hover{text-decoration:underline;}
+
+.grid-auto{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+.card{background:#141a21;border:1px solid #232d38;padding:.75rem .85rem;border-radius:12px;position:relative;}
+.card h3{margin-top:0;font-size:1.02rem;}
+.notice{background:#162f47;border:1px solid #214b6b;padding:.65rem .8rem;border-radius:9px;font-size:.78rem;}
+small.ref{font-size:.65rem;opacity:.75;}
+pre,code{font-family:consolas,ui-monospace,monospace;font-size:.78rem;}
+.toggle{background:#244b82;color:#fff;border:none;padding:.3rem .55rem;border-radius:6px;font-size:.65rem;cursor:pointer;margin-top:.35rem;}
+.toggle:hover{background:#1d3f6d;}
+.calendar-section{text-align:center;margin-top:1rem;}
+.btn-calendar{background:#059669;padding:0.6rem 1rem;font-size:0.8rem;margin:0.5rem;color:#fff;border:none;border-radius:6px;cursor:pointer;}
+.btn-calendar:hover{background:#047857;}
+.calendar-info{font-size:0.7rem;opacity:0.8;margin-top:0.5rem;}.btn-calendar-mini{background:#059669;padding:0.3rem 0.5rem;font-size:0.7rem;color:#fff;border:none;border-radius:4px;cursor:pointer;display:inline-block;flex-shrink:0;}
+.btn-calendar-mini:hover{background:#047857;}
+.reactivation-item{margin:0.5rem 0;display:flex;align-items:center;gap:0.5rem;}
+.calendar-tip{margin-top:1rem;text-align:center;font-size:0.75rem;opacity:0.8;}
+.solution{display:none;margin-top:.4rem;padding:.5rem .6rem;background:#1b2733;border:1px solid #2a3948;border-radius:8px;font-size:.78rem;}
+
+
+
+.table-eval{width:100%;border-collapse:collapse;font-size:.75rem;}
+.table-eval th,.table-eval td{border:1px solid #28323d;padding:.35rem .4rem;text-align:left;}
+blockquote{margin:.6rem 0;padding:.55rem .75rem;background:#17212b;border-left:4px solid #2563eb;border-radius:4px;font-size:.85rem;}
+@media (max-width:760px){nav a{display:inline-block;margin:.25rem .6rem .25rem 0;}}
+</style>
+<script>
+function toggleSolution(id){const el=document.getElementById(id);if(!el)return;el.style.display=el.style.display==='none'||el.style.display===''?'block':'none';}
+</script>
+</head><body>
+<header>
+ <h1>Fractions et calculs</h1>
+ <nav>
+  <a href='../exercices/exercices_niveau1_decouverte.html'>Exercice Niveau 1</a>
+  <a href='../exercices/exercices_niveau2_pratique.html'>Exercice Niveau 2</a>
+  <a href='../exercices/exercices_niveau3_defi.html'>Exercice Niveau 3</a>
+  <a href='../fiches_resume/fiche_synthese.html'>Synthèse</a>
+  </nav>
+</header>
+<section><h2>1. Mise en situation</h2><p><strong>Pourquoi ?</strong> Partager équitablement, adapter des recettes, calculer des portions.</p><blockquote>Recette pour 6 personnes à adapter pour 4.</blockquote></section>
+<section><h2>2. Objectif final</h2><p>Être capable de réduire, additionner, multiplier des fractions et interpréter le résultat.</p></section>
+<section><h2>3. Prérequis rapides</h2><ul><li>Multiples et diviseurs</li><li>Simplification par un même nombre</li><li>Lien fraction ↔ quotient</li></ul><div class='notice'>Si un prérequis manque → mini réactivation avant de poursuivre.</div></section>
+<section><h2>4. Étapes guidées</h2><div class='grid-auto'><div class='card'><h3>Étape 1 – Observer</h3><p>Identifier numérateurs et dénominateurs; repérer simplifications possibles.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div><div class='card'><h3>Étape 2 – Uniformiser</h3><p>Mettre au même dénominateur si addition/soustraction.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div><div class='card'><h3>Étape 3 – Calculer</h3><p>Opérer sur numérateurs ou multiplier/dénominateurs.</p><p><em>Variante blocage :</em> Donner un exemple concret chiffré.</p></div></div></section>
+<section><h2>5. Visualisation</h2><p>Barres fractionnaires colorées montrant 3/4 et 2/3.</p></section>
+<section><h2>6. Méthode</h2><ol><li>Pour simplifier : diviser haut et bas par un diviseur commun.</li><li>Addition : dénominateurs identiques → additionner numérateurs; sinon les rendre identiques.</li><li>Multiplication : multiplier numérateurs entre eux et dénominateurs entre eux.</li><li>Contrôle : résultat entre 0 et 1 ? supérieur ? sens cohérent ?</li></ol></section>
+<section><h2>7. Erreurs fréquentes</h2><ul><li>Additionner numérateurs et dénominateurs en même temps.</li><li>Oublier de simplifier le résultat.</li><li>Chercher un PPCM trop grand inutilement.</li></ul></section>
+<section><h2>8. Auto-contrôle immédiat</h2><ul><li>Je peux expliquer la notion « Fractions – opérations ».</li><li>Je sais appliquer sans modèle.</li><li>Je justifie mon signe / choix / formule.</li></ul></section>
+<section><h2>9. Plan de réactivation</h2><ul><li>J+1 : 2 ex. N1</li><li>J+3 : 2 ex. N2</li><li>J+7 : mini quiz</li><li>J+14 : défi mélange</li></ul></section>
+<footer><small>Contenu enrichi – Génération structurée • Réactivation : J+1 / J+3 / J+7 / J+14</small></footer><script>
+// Calcul dynamique des dates de réactivation
+function initRevisionDates() {
+ const today = new Date();
+ const options = { 
+  weekday: 'long', 
+  day: 'numeric', 
+  month: 'long', 
+  year: 'numeric' 
+ };
+ 
+ // Date du jour
+ document.getElementById('dateToday').textContent = today.toLocaleDateString('fr-FR', options);
+ 
+ // Calcul des dates J+1, J+3, J+7, J+14
+ const intervals = [1, 3, 7, 14];
+ const dateIds = ['dateJ1', 'dateJ3', 'dateJ7', 'dateJ14'];
+ 
+ intervals.forEach((interval, index) => {
+  const futureDate = new Date(today);
+  futureDate.setDate(today.getDate() + interval);
+  
+  const dateStr = futureDate.toLocaleDateString('fr-FR', { 
+   weekday: 'short', 
+   day: 'numeric', 
+   month: 'short' 
+  });
+  
+  document.getElementById(dateIds[index]).textContent = dateStr;
+ });
+}
+
+// Fonction pour créer un lien Google Calendar
+function createGoogleCalendarLink(date, title, description, duration = 30) {
+ const startDate = new Date(date);
+ // Programmer à 18h00 par défaut (heure de révision)
+ startDate.setHours(18, 0, 0, 0);
+ 
+ const endDate = new Date(startDate);
+ endDate.setMinutes(startDate.getMinutes() + duration);
+ 
+ // Formatage des dates pour Google Calendar (format UTC)
+ const formatDate = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+ 
+ const params = new URLSearchParams({
+  action: 'TEMPLATE',
+  text: title,
+  dates: formatDate(startDate) + '/' + formatDate(endDate),
+  details: description,
+  location: 'Révisions Maths - Fractions et calculs'
+ });
+ 
+ return 'https://calendar.google.com/calendar/render?' + params.toString();
+}
+
+// Fonction pour ajouter un événement individuel au Google Calendar
+function addSingleEventToCalendar(interval, type) {
+ const today = new Date();
+ const eventDate = new Date(today);
+ eventDate.setDate(today.getDate() + interval);
+ 
+ const chapterTitle = "Fractions et calculs";
+ 
+ // Configuration selon le type d'événement
+ const eventConfig = {
+  decouverte: {
+   icon: '📚',
+   title: 'Exercices Découverte',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/02_Fractions_et_calculs/exercices/exercices_niveau1_decouverte.html',
+   description: 'Révision programmée : 2 exercices niveau 1 (découverte).\n\n💡 Objectif : Réactiver les notions de base avec des exercices guidés.'
+  },
+  pratique: {
+   icon: '📖',
+   title: 'Exercices Pratique',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/02_Fractions_et_calculs/exercices/exercices_niveau2_pratique.html',
+   description: 'Révision programmée : 2 exercices niveau 2 (pratique).\n\n💡 Objectif : Application directe des règles apprises.'
+  },
+  synthese: {
+   icon: '🧠',
+   title: 'Quiz Synthèse',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/02_Fractions_et_calculs/fiches_resume/fiche_synthese.html',
+   description: 'Révision programmée : Mini quiz de synthèse.\n\n💡 Objectif : Vérifier la mémorisation des règles essentielles.'
+  },
+  defi: {
+   icon: '🏆',
+   title: 'Défi Niveau 3',
+   url: 'https://geo92fr-dev.github.io/Learning/College_4ieme_Maths/02_Fractions_et_calculs/exercices/exercices_niveau3_defi.html',
+   description: 'Révision programmée : Exercices défi et approfondissement.\n\n💡 Objectif : Consolider avec des problèmes complexes et créatifs.'
+  }
+ };
+ 
+ const config = eventConfig[type];
+ const title = `${config.icon} Révision ${chapterTitle} - ${config.title}`;
+ const description = `${config.description}\n\nLien direct : ${config.url}`;
+ 
+ const calendarUrl = createGoogleCalendarLink(eventDate, title, description);
+ window.open(calendarUrl, '_blank');
+ 
+ // Feedback discret
+ const dayName = eventDate.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+ alert(`📅 Rappel "${config.title}" ajouté pour le ${dayName} !\n\nVérifie le nouvel onglet pour confirmer l'événement.`);
+}
+
+// Initialiser au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+ initRevisionDates();
+ 
+ // Ajouter les événements aux boutons calendrier individuels
+ const calendarBtns = document.querySelectorAll('.btn-calendar-mini');
+ calendarBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+   const interval = parseInt(this.getAttribute('data-interval'));
+   const type = this.getAttribute('data-type');
+   addSingleEventToCalendar(interval, type);
+  });
+ });
+});
+</script>
+</body></html>
