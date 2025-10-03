@@ -1,0 +1,1047 @@
+/* =============================================================================
+   COMPONENTS CSS - Composants Réutilisables
+   Note: Les variables de couleurs sont maintenant définies dans variables.css
+   Support multi-thèmes avec classes spécifiques
+   ============================================================================= */
+
+/*  QUIZ COMPONENTS */
+.quiz {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: stretch;
+  background: var(--bg-card);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  margin: var(--space-lg) 0;
+  transition: var(--transition-normal);
+}
+
+.quiz:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-md);
+}
+
+.quiz input {
+  background: var(--bg-input);
+  border: 2px solid var(--border-medium);
+  color: var(--text-primary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  transition: var(--transition);
+  outline: none;
+}
+
+.quiz input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(103, 199, 255, 0.1);
+}
+
+.quiz input::placeholder {
+  color: var(--text-muted);
+}
+
+.quiz button {
+  background: var(--primary);
+  color: var(--text-inverse);
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold, 600);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.quiz button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.quiz button:active {
+  transform: translateY(0);
+}
+
+/*  FEEDBACK VISUEL */
+.feedback {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-sm);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all var(--transition);
+}
+
+.feedback.success {
+  background: var(--success-light);
+  border: 1px solid var(--success);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feedback.error {
+  background: var(--error-light);
+  border: 1px solid var(--error);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feedback-icon {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold, 700);
+  flex-shrink: 0;
+}
+
+/* =============================================================================
+   STANDARD BUTTONS - Syst�me de boutons unifi�
+   ============================================================================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-size: var(--text-base, 1rem);
+    font-weight: var(--font-weight-semibold, 600);
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    text-decoration: none; /* Pour les liens styl�s en boutons */
+    white-space: nowrap;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--primary-light);
+    outline-offset: 2px;
+}
+
+/* --- Modificateurs de style --- */
+
+/* Bouton Primaire (actions principales) */
+.btn--primary {
+  background: var(--primary);
+  color: var(--text-inverse, var(--text-inverse));
+  font-weight: 600;
+}
+
+.btn--primary:hover {
+    background: var(--primary-hover);
+}
+
+/* Bouton Secondaire (options, actions moins importantes) */
+.btn--secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-medium);
+}
+
+.btn--secondary:hover {
+    background: var(--bg-input);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Bouton Danger (mauvaises r�ponses / actions destructives) */
+.btn--danger {
+  background: var(--danger);
+  color: var(--text-inverse);
+}
+.btn--danger:hover { background: var(--danger-dark); }
+
+/* �tats sp�cifiques quiz rapide */
+.quiz-option--correct { box-shadow: 0 0 0 3px rgba(16,185,129,0.35); }
+.quiz-option--wrong { box-shadow: 0 0 0 3px rgba(239,68,68,0.35); }
+
+/* Bouton de Raccourci (plus petit) */
+.btn--shortcut {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    background: var(--bg-secondary);
+    border-color: var(--border-light);
+}
+.btn--shortcut:hover {
+    background: var(--bg-input);
+    border-color: var(--primary);
+}
+
+/*  ANIMATION C�L�BRATION */
+.quiz-success {
+  animation: celebrate 0.6s ease;
+}
+
+@keyframes celebrate {
+  0%, 100% { 
+    transform: scale(1); 
+  }
+  25% { 
+    transform: scale(1.02) rotate(-1deg);
+    box-shadow: var(--shadow-lg);
+  }
+  75% { 
+    transform: scale(1.02) rotate(1deg);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/*  M�MO BOX */
+.memo-box {
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-ultra-light));
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin: var(--space-2xl) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.memo-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--success));
+}
+
+.memo-box h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-bold, 700);
+  line-height: var(--line-height-normal, 1.5);
+}
+
+/*  RULES LIST */
+.rules-list {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+  border: 1px solid var(--border-light);
+  list-style: none;
+  margin-left: 0;
+}
+
+.rules-list li {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--border-light);
+  position: relative;
+  padding-left: var(--space-xl);
+}
+
+.rules-list li:last-child {
+  border-bottom: none;
+}
+
+.rules-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: var(--space-md);
+  color: var(--success);
+  font-weight: var(--font-weight-bold, 700);
+  font-size: var(--text-lg);
+}
+
+/*  PHASE CARDS */
+.phase-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+  transition: var(--transition);
+}
+
+.phase-card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.phase-card h3 {
+  color: var(--primary);
+  margin-bottom: var(--space-md);
+  font-size: var(--text-xl);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: var(--space-sm);
+}
+
+/*  �TATS D'ERREUR */
+.error {
+  color: var(--error);
+  background: var(--error-light);
+  padding: var(--space-sm);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--error);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/*  LOADING STATES */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--border-light);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/*  RESPONSIVE COMPONENTS */
+@media (max-width: 768px) {
+  .quiz {
+    padding: var(--space-md);
+    margin: var(--space-md) 0;
+  }
+  
+  .memo-box {
+    padding: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+  
+  .phase-card {
+    padding: var(--space-md);
+  }
+  
+  .feedback {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .feedback-icon {
+    align-self: center;
+  }
+}
+
+/*  HIGH CONTRAST MODE */
+@media (prefers-contrast: high) {
+  .quiz {
+    border-width: 2px;
+  }
+  
+  .quiz input {
+    border-width: 2px;
+  }
+  
+  .feedback {
+    border-width: 2px;
+  }
+}
+
+/* ============================================================================
+   BACK TO TOP BUTTON
+   ============================================================================ */
+
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  font-size: var(--text-lg);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-fast);
+  z-index: 100;
+}
+
+.back-to-top:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================================
+   ENHANCED FOOTER
+   ============================================================================ */
+
+.main-footer {
+  margin-top: var(--space-xl);
+  padding: var(--space-xl) 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-light);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  text-align: left;
+}
+
+.footer-section h4 {
+  color: var(--primary);
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-md);
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* -----------------------------------------------------------------------------
+   Exercise / Card / Badge / Toggle / Solution - shared styles
+   These rules were previously duplicated inline in many exercise and fiche files.
+   Centralized here for reuse across chapters.
+   --------------------------------------------------------------------------*/
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-md);
+  align-items: start;
+}
+
+/* Harmoniser largeur : on laisse s'�tendre jusqu'� 100% de la zone de section plut�t que 420px.
+   Ancienne limite supprim�e pour aligner visuellement avec les sections "Exos". */
+.content-section .quiz-phase .quiz-question,
+.content-section .retention-quiz .quiz-card,
+.content-section .method-step,
+.content-section .trap-quiz .quiz-question { max-width: 100%; }
+
+/* Option : si on veut une largeur lisible sur tr�s grands �crans, on peut borner avec une variable: */
+
+/* �tendre l'ensemble de la zone "haut" pour �viter rupture visuelle */
+/* Uniformiser grille quiz progressifs : transformer les questions en grille semblable aux exercices quand �cran large */
+@media (min-width: 900px){
+  .quiz-phase { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:var(--space-md); align-items:start; }
+  .quiz-phase > h3 { grid-column:1/-1; }
+  .quiz-phase > p { grid-column:1/-1; margin:0 0 .75rem 0; }
+  .quiz-phase .quiz-question { background: var(--bg-card); border:1px solid var(--border-light); padding:.75rem .9rem; border-radius:12px; }
+}
+
+.phase-separator { grid-column:1/-1; border:0; height:1px; background:linear-gradient(90deg,var(--border-medium),transparent); margin:1.75rem 0 .75rem; }
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  padding: .75rem .85rem;
+  border-radius: 12px;
+  position: relative;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.toggle {
+  display: inline-block;
+  padding: .45rem .65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-medium);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.toggle:hover {
+  background: var(--bg-hover);
+}
+
+.solution {
+  display: none;
+  margin-top: .5rem;
+  padding: .75rem;
+  border-left: 3px solid var(--primary);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.badge {
+  display: inline-block;
+  padding: .25rem .5rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--text-inverse);
+  font-size: .85rem;
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.regle-box {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin: .5rem 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+}
+
+.regle-positive { border-left: 4px solid var(--success); background: rgba(16,185,129,0.05); }
+.regle-negative { border-left: 4px solid var(--danger); background: rgba(239,68,68,0.04); }
+.regle-neutre  { border-left: 4px solid var(--primary); background: rgba(103,199,255,0.04); }
+
+/* Dynamic confidence coloring for self-evaluation */
+.regle-box.conf-level-confiant {
+  border-color: var(--success);
+  background: linear-gradient(90deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));
+  box-shadow: 0 0 0 1px rgba(16,185,129,0.25), 0 2px 4px -2px rgba(16,185,129,0.35);
+}
+.regle-box.conf-level-moyen {
+  border-color: var(--warning, var(--warning));
+  background: linear-gradient(90deg, rgba(245,158,11,0.18), rgba(245,158,11,0.05));
+  box-shadow: 0 0 0 1px rgba(245,158,11,0.35), 0 2px 4px -2px rgba(245,158,11,0.4);
+}
+.regle-box.conf-level-pas-confiant {
+  border-color: var(--danger);
+  background: linear-gradient(90deg, rgba(239,68,68,0.18), rgba(239,68,68,0.05));
+  box-shadow: 0 0 0 1px rgba(239,68,68,0.35), 0 2px 4px -2px rgba(239,68,68,0.4);
+}
+.regle-box.conf-level-pas-confiant::after {
+  content: '? � retravailler';
+  font-size: .65rem;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  margin-left:.5rem;
+  color: var(--danger);
+  font-weight:600;
+}
+
+/* Inline note (small explanatory text appended to headings) */
+.note-inline {
+  font-weight: normal;
+  font-size: .75rem;
+  margin-left: .5rem;
+  color: var(--text-muted, #555);
+}
+
+/* Inline solution appearance (after validation) */
+.inline-solution {
+  margin-top: .35rem;
+  padding: .5rem .65rem;
+  border-left: 3px solid var(--primary, #2563eb);
+  background: var(--surface-alt, #f8fafc);
+  font-size: .85rem;
+  line-height: 1.3;
+  border-radius: 4px;
+}
+.inline-solution p { margin: .2rem 0; }
+.inline-solution strong { color: var(--primary-600, #1d4ed8); }
+.inline-solution .sol-hint { border-left: 3px solid var(--accent, var(--primary)); padding:.4rem .55rem .45rem .55rem; margin:.25rem 0 .4rem; background: var(--bg-secondary); border-radius:4px; position:relative; }
+.inline-solution .sol-correction { border-left: 3px solid var(--success,var(--success)); padding:.4rem .55rem .45rem .55rem; margin:.25rem 0 0; background: var(--bg-secondary); border-radius:4px; position:relative; }
+.inline-solution .hint-icon { margin-right:.35rem; opacity:.85; }
+.inline-solution .solution-badge { position:absolute; top:.35rem; right:.5rem; font-size:.9rem; }
+
+/* Harmoniser fond feedback (zone .exercise-feedback) */
+.exercise-feedback { background: var(--surface, var(--text-inverse)fff); padding:.25rem .4rem; border-radius:4px; transition: background .25s ease, border-color .25s ease; }
+.exercise-feedback.exercise-feedback--success { 
+  background: var(--bg-secondary) !important; 
+  border-left:3px solid var(--success,var(--success)); 
+  padding:.55rem .65rem .6rem; 
+  box-shadow: inset 0 0 0 1px rgba(16,185,129,0.15);
+}
+/* S�lecteur haute sp�cificit� pour contourner overrides �ventuels */
+body .content-section .exercise-feedback.exercise-feedback--success { background: var(--bg-secondary) !important; }
+.exercise-feedback--success .success-head { display:flex; align-items:center; gap:.4rem; font-weight:600; color: var(--success,var(--success)); margin-bottom:.15rem; }
+.exercise-feedback--success .assist-icon { font-size:.95rem; }
+.exercise-feedback--success .assist-text { letter-spacing:.3px; }
+.exercise-feedback--success .inline-solution { border-left:0; }
+.exercise-feedback.exercise-feedback--success .inline-solution { 
+  background: transparent; 
+  border-left: 0; 
+  padding: .25rem 0 0 0; 
+  margin: .3rem 0 0 0; 
+}
+.exercise-feedback.exercise-feedback--success .inline-solution .sol-correction,
+.exercise-feedback.exercise-feedback--success .inline-solution .sol-hint { 
+  background: transparent; 
+  border-left: 0; 
+  padding: 0; 
+}
+
+/* Placeholder styling if we later separate visible hint container */
+.exercise-hint { font-size:.75rem; color: var(--text-muted,#555); margin-top:.25rem; }
+.regle-box.conf-level-moyen::after {
+  content: 'En progr�s';
+  font-size: .65rem;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  margin-left:.5rem;
+  color: var(--warning, var(--warning));
+  font-weight:600;
+}
+.regle-box.conf-level-confiant::after {
+  content: '? Stable';
+  font-size: .65rem;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  margin-left:.5rem;
+  color: var(--success);
+  font-weight:600;
+}
+
+/* Mini recap recommendation */
+.mini-recap {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem 1.25rem;
+  border: 1px solid var(--border-light);
+  border-left: 5px solid var(--primary);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  position: relative;
+}
+.mini-recap-title { margin:0 0 .5rem; font-size:1rem; font-weight:600; }
+.mini-recap-main { margin:.25rem 0 .5rem; font-size:.9rem; line-height:1.35; }
+.mini-recap-extra { margin:0; font-size:.75rem; color: var(--text-muted); }
+.mini-recap-reset { position:absolute; top:.5rem; right:.5rem; background:var(--bg-input); border:1px solid var(--border-light); border-radius:4px; padding:.25rem .5rem; cursor:pointer; font-size:.7rem; }
+.mini-recap-reset:hover { background:var(--bg-hover); }
+.mini-recap--danger { border-left-color: var(--danger); }
+.mini-recap--warning { border-left-color: var(--warning, var(--warning)); }
+.mini-recap--success { border-left-color: var(--success); }
+.mini-recap--info { border-left-color: var(--primary); }
+.mini-recap a.mini-recap-link { color: var(--primary); font-weight:600; text-decoration:underline; }
+.mini-recap a.mini-recap-link:hover { text-decoration:none; }
+
+/* Helplike feedback (matching 'Besoin d\'aide ?' box) */
+.exercise-feedback--helplike { background: var(--bg-secondary) !important; border-left:3px solid var(--accent,var(--primary)) !important; padding:.45rem .6rem !important; border-radius:6px !important; }
+html body .content-section .card .exercise .exercise-feedback--helplike { background: var(--bg-secondary) !important; }
+html body .exercise-feedback--helplike { background: var(--bg-secondary) !important; }
+.mini-recap-hints { margin-top:.6rem; }
+.hint-badge { display:inline-block; background:var(--surface,var(--text-inverse)); border:1px solid rgba(0,0,0,0.06); padding:.15rem .4rem; margin-right:.35rem; border-radius:999px; font-size:.82rem; }
+
+.footer-section li {
+  margin-bottom: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+#progressSummary {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* ============================================================================
+   ENHANCED QUIZ PHASES
+   ============================================================================ */
+
+.phase-selector {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.phase-nav { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.25rem; }
+.phase-btn {
+  --_bg: var(--bg-secondary);
+  --_border: var(--border-light);
+  --_text: var(--text-secondary);
+  padding: .55rem 1rem;
+  background: var(--_bg);
+  color: var(--_text);
+  border: 2px solid var(--_border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .95rem;
+  letter-spacing:.25px;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  position:relative;
+  transition: background .25s, color .25s, border-color .25s, transform .25s;
+}
+.phase-btn::after { /* subtle focus ring anchor */ content:''; position:absolute; inset:-2px; border-radius:inherit; pointer-events:none; }
+.phase-btn:hover { background: var(--bg-input); border-color: var(--primary); color: var(--text-primary); }
+.phase-btn:focus-visible { outline:3px solid var(--primary-light); outline-offset:2px; }
+
+/* Active state unified + colored accents per phase index via data attributes if added later */
+.phase-btn.active { background: var(--primary); color:var(--text-inverse); border-color: var(--primary); box-shadow:0 2px 6px -1px rgba(0,0,0,.15); }
+
+/* Optional semantic variants (future-proof) */
+.phase-btn[data-phase="1"].active { background: linear-gradient(135deg,var(--success) 0%, var(--primary) 90%); }
+.phase-btn[data-phase="2"].active { background: linear-gradient(135deg,var(--warning) 0%, var(--primary) 90%); }
+.phase-btn[data-phase="3"].active { background: linear-gradient(135deg,var(--danger) 0%, var(--primary) 90%); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .phase-btn:hover { transform: translateY(-2px); }
+  .phase-btn:active { transform: translateY(0); }
+}
+
+.quiz-phase {
+  animation: slideIn var(--transition-slow) ease-out;
+}
+
+.quiz-phase.hidden {
+  display: none;
+}
+
+.exercise-step.hidden {
+  display: none;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*  REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================================
+   SPACING ABOVE SUBSECTION TITLES (user request)
+   Adds comfortable vertical rhythm before quiz / exercise subsection headers.
+   ========================================================================== */
+.retention-quiz > h3,
+.method-quiz > h3,
+.trap-quiz > h3,
+.phase-nav + .quiz-phase > h3, /* first heading inside phase after nav */
+.content-section > h3.spaced,
+.content-section .grid-auto > h3.spaced {
+  margin-top: 2.75rem; /* extra vertical space */
+  padding-top: .25rem;
+  position: relative;
+}
+
+/* Optional subtle separator line (disabled by default) */
+/*
+.retention-quiz > h3::before,
+.method-quiz > h3::before,
+.trap-quiz > h3::before {
+  content: '';
+  position: absolute;
+  top: -1.25rem;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg,var(--primary),var(--accent, var(--success)));
+}
+*/
+
+/* ============================================================================
+   CHAPTER-SPECIFIC EXTRACTED STYLES (from previous inline <style>)
+   Moved here to centralize styling before templating. Can later be scoped or
+   refactored into generic utilities if reused across chapters.
+   ========================================================================== */
+
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  padding: 0.2rem 0.9rem 0;
+}
+
+.modern-nav {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding-top: 0;
+}
+
+body.has-fixed-header { padding-top: 70px; }
+@media (max-width:760px) { body.has-fixed-header { padding-top: 60px; } }
+
+/* Header responsive */
+.header-bar { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin:0; padding:0; }
+.nav-toggle { display:none; background:var(--primary); color:var(--text-inverse); border:none; padding:.55rem .85rem; border-radius:8px; font-size:1.25rem; cursor:pointer; }
+.nav-toggle:focus-visible { outline:3px solid var(--primary-light); outline-offset:2px; }
+
+@media (max-width: 880px) {
+  .modern-nav { display:none; flex-direction:column; align-items:stretch; padding:.25rem .5rem .5rem; background:var(--bg-card); border:1px solid var(--border-light); border-radius:12px; margin-top:0; box-shadow:var(--shadow-md); }
+  .modern-nav.open { display:flex; animation:fadeSlide .25s ease; }
+  .nav-toggle { display:inline-flex; }
+  .modern-nav .btn { width:100%; justify-content:flex-start; font-size:.92rem; padding:.55rem .75rem; }
+  .nav-shortcuts { display:grid; grid-template-columns:repeat(2,1fr); gap:.5rem; width:100%; }
+  .nav-shortcuts .btn { font-size:.85rem; padding:.45rem .5rem; }
+}
+
+@media (max-width: 480px) {
+  .modern-nav .btn { font-size:.85rem; }
+  .nav-shortcuts { grid-template-columns:repeat(2,1fr); }
+}
+
+@keyframes fadeSlide { from { opacity:0; transform:translateY(-6px);} to { opacity:1; transform:translateY(0);} }
+
+.rule-header { display: flex; align-items: center; margin-bottom: 1rem; }
+.rules-grid {
+  display: grid;
+  gap: 1.5rem; /* espace entre les cartes pour �viter que le rond n'empi�te */
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  margin: 1.5rem 0 2rem;
+}
+
+.rule-card {
+  background: var(--bg-card, var(--text-inverse));
+  border: 1px solid var(--border-light, #e3e8ef);
+  border-radius: var(--radius-lg, 16px);
+  padding: 1.1rem 1.15rem 1.25rem;
+  position: relative;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,.06));
+  transition: var(--transition, .25s ease);
+}
+.rule-card:hover { box-shadow: var(--shadow-md, 0 4px 10px rgba(0,0,0,.08)); border-color: var(--border-medium,#d0d7e2); }
+
+/* Variation de couleur simple selon type d�j� pr�sent dans le HTML (primary / secondary / accent) */
+.rule-card.primary { border-top: 4px solid var(--primary); }
+.rule-card.secondary { border-top: 4px solid var(--warning, var(--warning)); }
+.rule-card.accent { border-top: 4px solid var(--accent, var(--success)); }
+
+.rule-card .rule-text { margin: 0 0 .75rem; line-height: 1.5; }
+.rule-card .rule-example { font-size: .9rem; background: var(--bg-secondary, #f5f7fa); padding: .6rem .7rem; border-radius: var(--radius-sm,8px); margin: 0 0 .75rem; }
+.rule-card .memory-tip { font-size: .85rem; background: linear-gradient(90deg,var(--primary-ultra-light,#eef7ff),rgba(255,255,255,.6)); padding: .55rem .7rem; border-left: 3px solid var(--primary); border-radius: 0 6px 6px 0; font-style: italic; margin-top: .4rem; }
+.rule-card.secondary .memory-tip { border-left-color: var(--warning,var(--warning)); }
+.rule-card.accent .memory-tip { border-left-color: var(--accent,var(--success)); }
+
+/* S�parateur uniquement en pile (petits �crans) */
+@media (max-width: 760px) {
+  .rules-grid { display: block; }
+  .rules-grid .rule-card + .rule-card { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light,#e3e8ef); }
+}
+.rule-number, .step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem; height: 2rem;
+  background: var(--primary);
+  color: var(--text-inverse);
+  border-radius: 50%;
+  font-weight: bold;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+.step-number { background: var(--accent); }
+.rule-header h3, .step-header h3 { margin: 0; flex: 1; }
+
+/* Reactivation plan */
+.reactivation-plan { display: flex; flex-direction: column; gap: .85rem; margin: 1.5rem 0 2rem; }
+.reactivation-item { background: var(--bg-secondary,#f5f7fa); padding: .75rem 1rem; border-radius: var(--radius-md,10px); display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; border:1px solid var(--border-light,#e2e8f0); }
+.reactivation-item strong { color: var(--primary); }
+.reactivation-add {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  background: var(--primary-ultra-light,#eef7ff);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition,.25s ease);
+}
+.reactivation-focus { font-size:.75rem; background:var(--bg-card,var(--text-inverse)); padding:.25rem .5rem; border-radius:12px; border:1px solid var(--border-light,#e2e8f0); margin-left:.5rem; color:var(--text-muted,#555); }
+.plan-base-date { font-style:italic; color:var(--text-muted,#555); margin-top:.5rem; }
+.plan-intro { font-size:.9rem; line-height:1.4; margin-top:.75rem; }
+.plan-legend { display:flex; flex-wrap:wrap; gap:1.25rem; font-size:.75rem; opacity:.85; margin-top:1rem; }
+@media (max-width:600px){ .reactivation-focus { display:block; margin:.35rem 0 0 2.9rem; } }
+
+/* Scoring */
+.score-badge { font-size:.85rem; background:var(--primary-ultra-light,#eef7ff); color:var(--primary); padding:.35rem .6rem; border-radius:999px; border:1px solid var(--primary-light,#c2e7fb); margin-left:.5rem; font-weight:600; }
+.section-score { font-size:.75rem; font-weight:600; color:var(--text-muted,#555); background:var(--bg-secondary,#f5f7fa); padding:.25rem .55rem; border-radius:6px; margin-left:.35rem; }
+.section-score.updated { animation:pulseScore .6s ease; }
+@keyframes pulseScore { 0%{background:var(--primary-light,#d8eefc); color:var(--primary);} 100%{background:var(--bg-secondary,#f5f7fa);} }
+/* Color coding thresholds */
+.section-score[data-ratio] { transition:background .3s,color .3s; }
+.section-score.level-low { background:#fee2e2; color:#b91c1c; }
+.section-score.level-mid { background:#fef3c7; color:#92400e; }
+.section-score.level-good { background:#dcfce7; color:#166534; }
+.section-score.level-excellent { background:#e0f2fe; color:#075985; }
+
+#global-score.max-known { font-size:.8rem; }
+.btn-reset-score { margin-left:.5rem; padding:.3rem .55rem; font-size:.7rem; line-height:1; }
+
+/* Self evaluation (fiche synth�se) */
+.self-eval { display:flex; flex-direction:column; gap:.25rem; margin-top:.5rem; padding:.5rem .65rem; border:1px dashed var(--border-medium); border-radius:8px; background:var(--bg-secondary); }
+.self-eval label { font-size:.8rem; display:flex; align-items:center; gap:.35rem; cursor:pointer; }
+.self-eval input[type=radio]{ accent-color: var(--primary); }
+.self-eval-legend { font-size:.7rem; text-transform:uppercase; letter-spacing:.5px; font-weight:600; color:var(--text-secondary); margin-bottom:.25rem; }
+
+/* Exercise input answer blocks */
+.exercise { margin:.6rem 0 1rem; display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+.exercise input { max-width:140px; font-size:.75rem; padding:.35rem .45rem; }
+.exercise-feedback { font-size:.85rem; min-width:160px; }
+.visually-hidden { position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+.reactivation-add:hover { background: var(--primary-light,#d8eefc); transform: translateY(-2px); }
+.reactivation-add:active { transform: translateY(0); }
+.reactivation-add:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+@media (max-width:600px){ .reactivation-add { width:2.2rem; height:2.2rem; font-size:1.1rem; } }
+
+.method-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; margin: 2rem 0; }
+.method-step { padding: 1.5rem; background: var(--bg-secondary); border-radius: var(--radius-md); border-top: 3px solid var(--accent); }
+.step-header { display: flex; align-items: center; margin-bottom: 1rem; }
+
+.pitfalls-grid { display: grid; gap: 1.5rem; margin: 2rem 0; }
+.pitfall-card { padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--danger); background: rgba(239,68,68,0.1); }
+
+.quiz-feedback { margin-top: 1rem; padding: 0.75rem; border-radius: var(--radius-sm); font-weight: 500; }
+
+/* Removed fallback button:not(.btn) styles after full migration to .btn variants */
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  background: var(--bg-input, var(--text-inverse));
+  color: var(--text-primary,#111);
+  font-weight: 500;
+}
+input[type="text"]::placeholder { color: var(--text-muted,#555); opacity: .9; font-weight:400; }
+input[type="text"][disabled] { background: var(--bg-secondary,#f4f6f8); color: var(--text-secondary,#666); }
+input[type="text"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(103,199,255,0.25); }
+
+/* Taller progress override (chapter preference) */
+
+
+/* Scroll offset for anchored sections */
+[data-section] { scroll-margin-top: 140px; }
+@media (max-width:760px) { [data-section] { scroll-margin-top: 120px; } }
+
+/* Skip link accessibility */
+.skip-link { position: absolute; left: -999px; top: auto; width:1px; height:1px; overflow:hidden; }
+.skip-link:focus { position: fixed; left:1rem; top:1rem; width:auto; height:auto; padding:.75rem 1rem; background:#000; color:var(--text-inverse); z-index:2000; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.25); }
+
+/* ============================================================================
+  INPUT SCROLL STABILITY FIXES
+  Emp�che la page de "sauter" quand l'�l�ve tape rapidement ou utilise les
+  fl�ches dans un champ de saisie. Limite aussi les side-effects de scroll
+  provoqu�s par les touches navigation que nous avons r�assign�es globalement.
+  ========================================================================== */
+input, textarea { overscroll-behavior: contain; }
+input[type=number] { font-variant-numeric: tabular-nums; }
+input:focus, textarea:focus { scroll-margin: 0; }
+
+/* D�sactive l'incr�mentation avec molette (source de scroll involontaire) sur les nombres */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+
+/* =============================================================================
+   THEME-SPECIFIC ENHANCEMENTS
+   ============================================================================= */
+
+/* Modern theme enhancements - animations et effets glassmorphism */
+[data-theme="modern"] .quiz:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+[data-theme="modern"] .button,
+[data-theme="modern"] .btn {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="modern"] .button::before,
+[data-theme="modern"] .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+[data-theme="modern"] .button:hover::before,
+[data-theme="modern"] .btn:hover::before {
+  left: 100%;
+}
+
+[data-theme="modern"] .score-engine .progress-fill {
+  box-shadow: 0 0 10px var(--primary);
+}
+
+[data-theme="modern"] .quiz-feedback {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* Classic theme enhancements - styles traditionnels */
+[data-theme="classic"] .quiz {
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+[data-theme="classic"] .button,
+[data-theme="classic"] .btn {
+  border: 2px solid var(--primary);
+  font-weight: 600;
+}
+
+[data-theme="classic"] .button:hover,
+[data-theme="classic"] .btn:hover {
+  border-color: var(--primary-dark);
+}
+
+/* Default theme - styles équilibrés (pas de modifications spéciales) */
+
+/* Animation universelle pour les transitions de thème */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+/* Préservation des animations déjà définies */
+.quiz, .button, .btn, .score-engine *, .feedback * {
+  transition: all 0.3s ease-in-out;
+}
+
+
+

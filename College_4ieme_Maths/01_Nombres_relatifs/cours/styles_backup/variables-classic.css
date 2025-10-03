@@ -1,0 +1,178 @@
+/* =============================================================================
+   VARIABLES CSS - PALETTE CLASSIQUE
+   Style Sobre et Professionnel pour l'Éducation
+   ============================================================================= */
+
+:root {
+  /* ===== COULEURS PRINCIPALES ===== */
+  --primary: #2563eb;          /* Bleu classique professionnel */
+  --primary-light: #60a5fa;   /* Bleu clair */
+  --primary-dark: #1d4ed8;    /* Bleu foncé */
+  --primary-ultra-light: #dbeafe; /* Bleu très clair pour fonds */
+  
+  --accent: #2563eb;           /* Accent (même que primary pour cohérence) */
+  
+  /* ===== COULEURS SÉMANTIQUES ===== */
+  --success: #059669;          /* Vert succès plus foncé */
+  --success-light: #10b981;   /* Vert clair */
+  --success-dark: #047857;    /* Vert foncé */
+  
+  --warning: #d97706;          /* Orange plus foncé */
+  --warning-light: #f59e0b;   /* Orange clair */
+  --warning-dark: #b45309;    /* Orange très foncé */
+  
+  --danger: #dc2626;           /* Rouge plus foncé */
+  --danger-light: #ef4444;    /* Rouge clair */
+  --danger-dark: #b91c1c;     /* Rouge très foncé */
+  
+  --error: var(--danger);      /* Alias pour erreur */
+  
+  /* ===== COULEURS SPÉCIFIQUES MATHÉMATIQUES ===== */
+  --math-positive: #059669;    /* Vert pour nombres positifs */
+  --math-negative: #dc2626;    /* Rouge pour nombres négatifs */
+  --math-neutral: #d97706;     /* Orange pour zéro/neutre */
+  --math-axis: #2563eb;        /* Bleu pour axes et lignes */
+  --math-highlight: #0891b2;   /* Cyan pour mise en évidence */
+  
+  /* ===== COULEURS DE FOND ===== */
+  --bg-primary: #ffffff;       /* Fond principal blanc */
+  --bg-secondary: #f8fafc;     /* Fond secondaire très clair */
+  --bg-tertiary: #f1f5f9;     /* Fond tertiaire */
+  --bg-card: #ffffff;          /* Fond des cartes */
+  --bg-input: #f9fafb;        /* Fond des champs de saisie */
+  --bg-hover: #f0f9ff;        /* Fond au survol */
+  
+  /* Surfaces spéciales */
+  --surface: var(--bg-primary);
+  --surface-alt: var(--bg-secondary);
+  
+  /* ===== COULEURS DE TEXTE ===== */
+  --text-primary: #1f2937;     /* Texte principal sombre */
+  --text-secondary: #4b5563;   /* Texte secondaire */
+  --text-muted: #6b7280;      /* Texte atténué */
+  --text-inverse: #ffffff;     /* Texte inverse (sur fond sombre) */
+  
+  /* ===== COULEURS DE BORDURE ===== */
+  --border-light: #e5e7eb;     /* Bordure claire */
+  --border-medium: #d1d5db;    /* Bordure moyenne */
+  --border-dark: #9ca3af;      /* Bordure foncée */
+  
+  /* ===== COULEURS AVEC TRANSPARENCE ===== */
+  /* Couleurs principales avec alpha */
+  --primary-alpha-05: rgba(37, 99, 235, 0.05);
+  --primary-alpha-10: rgba(37, 99, 235, 0.1);
+  --primary-alpha-15: rgba(37, 99, 235, 0.15);
+  --primary-alpha-20: rgba(37, 99, 235, 0.2);
+  --primary-alpha-35: rgba(37, 99, 235, 0.35);
+  
+  /* Couleurs sémantiques avec alpha */
+  --success-alpha-05: rgba(5, 150, 105, 0.05);
+  --success-alpha-15: rgba(5, 150, 105, 0.15);
+  --success-alpha-25: rgba(5, 150, 105, 0.25);
+  --success-alpha-35: rgba(5, 150, 105, 0.35);
+  
+  --warning-alpha-05: rgba(217, 119, 6, 0.05);
+  --warning-alpha-18: rgba(217, 119, 6, 0.18);
+  --warning-alpha-35: rgba(217, 119, 6, 0.35);
+  --warning-alpha-40: rgba(217, 119, 6, 0.4);
+  
+  --danger-alpha-04: rgba(220, 38, 38, 0.04);
+  --danger-alpha-35: rgba(220, 38, 38, 0.35);
+  
+  /* Couleurs mathématiques avec alpha */
+  --math-positive-alpha: rgba(5, 150, 105, 0.8);
+  --math-negative-alpha: rgba(220, 38, 38, 0.8);
+  --math-neutral-alpha: rgba(217, 119, 6, 0.8);
+  --math-highlight-alpha: rgba(8, 145, 178, 0.8);
+  
+  /* ===== PROPRIÉTÉS DÉRIVÉES ===== */
+  /* Couleurs de confiance (auto-évaluation) */
+  --confidence-high: var(--success);      /* Confiant */
+  --confidence-medium: var(--warning);    /* Moyen */
+  --confidence-low: var(--danger);        /* Pas confiant */
+  
+  /* Couleurs d'état des exercices */
+  --exercise-pending: var(--text-muted);
+  --exercise-correct: var(--success);
+  --exercise-incorrect: var(--danger);
+  --exercise-hint: var(--primary);
+  
+  /* ===== ESPACEMENTS ET DIMENSIONS ===== */
+  --space-xs: 0.25rem;         /* 4px */
+  --space-sm: 0.5rem;          /* 8px */
+  --space-md: 1rem;            /* 16px */
+  --space-lg: 1.5rem;          /* 24px */
+  --space-xl: 2rem;            /* 32px */
+  --space-xxl: 3rem;           /* 48px */
+  
+  /* ===== RAYONS DE BORDURE ===== */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+  
+  /* ===== OMBRES CLASSIQUES ===== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-primary: 0 4px 15px var(--primary-alpha-20);
+  --shadow-success: 0 2px 4px -2px var(--success-alpha-35);
+  --shadow-warning: 0 2px 4px -2px var(--warning-alpha-40);
+  
+  /* ===== TYPOGRAPHIE ===== */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.875rem;   /* 30px */
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+  
+  /* ===== Z-INDEX ===== */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
+  
+  /* ===== LARGEURS CONTENEUR ===== */
+  --container-max-width: 1200px;
+  --content-max-width: 800px;
+}
+
+/* =============================================================================
+   CLASSES UTILITAIRES DE COULEURS
+   ============================================================================= */
+
+/* Classes pour tests rapides */
+.text-primary { color: var(--primary); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-danger { color: var(--danger); }
+.text-math-positive { color: var(--math-positive); }
+.text-math-negative { color: var(--math-negative); }
+.text-math-neutral { color: var(--math-neutral); }
+
+.bg-primary { background-color: var(--primary); }
+.bg-success { background-color: var(--success); }
+.bg-warning { background-color: var(--warning); }
+.bg-danger { background-color: var(--danger); }
+.bg-secondary { background-color: var(--bg-secondary); }

@@ -1,0 +1,60 @@
+/* =============================================================================
+   THEME GAMER - Couleurs et styles spécifiques 
+   ============================================================================= */
+
+:root {
+  /* ===== FONDS GAMER ===== */
+  --bg-primary: #0f1419;
+  --bg-secondary: #1a1f2e;
+  --bg-tertiary: #242b3d;
+  --bg-card: #1a1f2e;
+  --bg-input: #1a1f2e;
+
+  /* ===== COULEURS PRINCIPALES ===== */
+  --primary: #00e0ff;
+  --primary-light: #33e6ff;
+  --primary-dark: #0099cc;
+  --primary-alpha-15: rgba(0, 224, 255, 0.15);
+  --primary-alpha-35: rgba(0, 224, 255, 0.35);
+  --secondary: #ff3b81;
+  --accent: #7c3aed;
+
+  /* ===== COULEURS SÉMANTIQUES ===== */
+  --success: #10ac84;
+  --success-light: rgba(16, 172, 132, 0.1);
+  --warning: #f39c12;
+  --warning-light: rgba(243, 156, 18, 0.1);
+  --error: #e74c3c;
+  --error-light: rgba(231, 76, 60, 0.1);
+  --danger: #e74c3c;
+
+  /* ===== TEXTE GAMER ===== */
+  --text-primary: #ffffff;
+  --text-secondary: #b8c4d0;
+  --text-muted: #7c8b9a;
+  --text-inverse: #0f1419;
+
+  /* ===== BORDURES GAMER ===== */
+  --border-light: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.2);
+
+  /* ===== OMBRES GAMER ===== */
+  --shadow-neon: 0 0 20px rgba(0, 224, 255, 0.3);
+  --shadow-accent: 0 0 15px rgba(124, 58, 237, 0.2);
+
+  /* ===== FONTS GAMER ===== */
+  --font-family-base: 'Orbitron', 'Rajdhani', sans-serif;
+
+  /* ===== COULEURS MATHÉMATIQUES ===== */
+  --math-positive: #10ac84;
+  --math-negative: #ff6b6b;
+  --math-neutral: #f39c12;
+
+  /* ===== BOUTONS GAMER ===== */
+  --button-primary: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  --button-text: var(--text-primary);
+  --button-hover-transform: translateY(-2px);
+
+  /* ===== VARIABLES MAX-WIDTH ===== */
+  --content-max-width: 800px;
+}

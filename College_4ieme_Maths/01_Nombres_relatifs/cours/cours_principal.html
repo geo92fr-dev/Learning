@@ -11,11 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- CSS moderne avec système de thèmes -->
+    <!-- CSS modulaire refactorisé -->
+    <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/variables.css" id="theme-variables">
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/components.css">
-    <link rel="stylesheet" href="styles/theme-selector.css">
 </head>
 <body class="has-fixed-header">
 <a href="#contenu-principal" class="skip-link">Aller au contenu principal</a>
@@ -33,7 +31,6 @@
                     </select>
                 </div>
             </h1>
-            <button class="nav-toggle" aria-label="Ouvrir / fermer la navigation" aria-expanded="false" aria-controls="nav-main" onclick="toggleNav(this)">☰</button>
         </div>
     <nav class="modern-nav" id="nav-main" role="navigation" aria-label="Navigation principale du chapitre">
             <button class="btn btn--secondary" onclick="showSection('introduction')">🏠 Introduction</button>

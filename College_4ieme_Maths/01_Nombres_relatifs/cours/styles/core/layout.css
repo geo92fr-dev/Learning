@@ -1,0 +1,84 @@
+/* =============================================================================
+   LAYOUT CSS - Mise en page et grilles responsives
+   ============================================================================= */
+
+/* Container principal */
+.container {
+  max-width: var(--content-max-width, 800px);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* Layout principal */
+main {
+  max-width: var(--content-max-width, 800px);
+  margin: 0 auto;
+}
+
+/* Navigation principale */
+nav {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-medium);
+  padding: var(--space-md) 0;
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* Gestion des sections */
+[data-section] {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--transition-normal);
+}
+
+[data-section].active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Typographie globale */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: var(--space-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+}
+
+h1 { font-size: var(--text-2xl); }
+h2 { 
+  font-size: var(--text-xl); 
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: var(--space-sm);
+}
+h3 { font-size: var(--text-lg); }
+
+p {
+  margin-bottom: var(--space-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+}
+
+ul {
+  margin-left: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+li {
+  margin-bottom: var(--space-sm);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-sm);
+  }
+  
+  nav {
+    padding: var(--space-lg) 0;
+  }
+}

@@ -1,0 +1,33 @@
+/* =============================================================================
+   MAIN CSS - Orchestrateur des imports modulaires
+   Architecture: Core → Thème → Composants
+   ============================================================================= */
+
+/* ===== 1. CORE - Fondations universelles ===== */
+@import url('core/reset.css');
+@import url('core/variables-core.css');
+@import url('core/layout.css');
+
+/* ===== 2. THEME - Couleurs et styles spécifiques ===== */
+@import url('themes/gamer.css');
+
+/* ===== 3. COMPONENTS - Éléments réutilisables ===== */
+@import url('components/buttons.css');
+@import url('components/navigation.css');
+@import url('components/quiz.css');
+@import url('components/cards.css');
+
+/* ===== 4. LEGACY - Sélecteur de thèmes ===== */
+@import url('theme-selector.css');
+
+/* ===== ANIMATIONS GLOBALES ===== */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: var(--transition-fast);
+  transition-timing-function: ease-in-out;
+}
+
+/* Préservation des animations spécifiques */
+.quiz, .btn, .nav-btn, .gamer-element {
+  transition: all var(--transition-normal);
+}

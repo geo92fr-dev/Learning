@@ -216,8 +216,8 @@
 /* ===== GLASSMORPHISM CARDS ===== */
 .card-glass {
   background: var(--surface-glass);
-  -webkit-backdrop-filter: var(--backdrop-glass);
   backdrop-filter: var(--backdrop-glass);
+  -webkit-backdrop-filter: var(--backdrop-glass);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-xl);
   padding: var(--space-lg);
